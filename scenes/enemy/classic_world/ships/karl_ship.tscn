@@ -1,9 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://dbq65hfwhr7jl"]
+[gd_scene load_steps=16 format=3 uid="uid://dbq65hfwhr7jl"]
 
 [ext_resource type="PackedScene" uid="uid://0ncg7uw24q8j" path="res://scenes/enemy/classic_world/ships/ship.tscn" id="1_1s1xa"]
 [ext_resource type="Script" path="res://scripts/enemy/classic_world/ships/karl_ship.gd" id="1_rbg3h"]
 [ext_resource type="Texture2D" uid="uid://bv7dks6ix012s" path="res://art/enemy/classic_world/karl_ship.png" id="3_1dll6"]
 [ext_resource type="Texture2D" uid="uid://b5expk52emxbn" path="res://art/enemy/classic_world/karl_ship_idle.png" id="4_ki8j5"]
+[ext_resource type="PackedScene" uid="uid://0472n5upj7sd" path="res://scenes/enemy/classic_world/ships/front_water_particles.tscn" id="5_c783j"]
+[ext_resource type="PackedScene" uid="uid://duakphuvthvd5" path="res://scenes/enemy/classic_world/ships/back_water_particles.tscn" id="6_o31fj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_okk0e"]
 atlas = ExtResource("4_ki8j5")
@@ -85,3 +87,7 @@ texture_filter = 1
 position = Vector2(0, 2)
 sprite_frames = SubResource("SpriteFrames_c3lle")
 flip_h = true
+
+[node name="front_water_particles" parent="." instance=ExtResource("5_c783j")]
+
+[node name="back_water_particles" parent="." instance=ExtResource("6_o31fj")]

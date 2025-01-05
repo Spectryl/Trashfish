@@ -34,8 +34,25 @@ func _process(delta: float) -> void:
 				get_parent().animated_sprite.play("swim")
 			nextX = randi() % 1300 + 450
 			state = 1
+			
 			direction = 1 if get_parent().global_position.x - nextX  <= 0 else -1 # Go Left if we are to the right, otherwise go right
 			get_parent().animated_sprite.flip_h = true if direction == 1 else false
+			# Reset these positions
+			# SOMEONE GIVE ME A BETTER WAY
+			get_parent().front_water.emitting = true
+			get_parent().back_water.emitting = true
+			
+			get_parent().front_water.direction.x = abs(get_parent().front_water.direction.x) * -1
+			get_parent().back_water.direction.x  = abs(get_parent().back_water.direction.x)
+			
+			get_parent().front_water.direction.x = get_parent().front_water.direction.x * -1 if direction == 1 else get_parent().front_water.direction.x
+			get_parent().back_water.direction.x  = get_parent().back_water.direction.x  * -1 if direction == 1 else abs(get_parent().back_water.direction.x)
+			# reset their positions
+			# I am breaking several geneva conventions with this code please lord save me from these water particles...
+			get_parent().front_water.position.x =  abs(get_parent().front_water.position.x) * -1
+			get_parent().back_water.position.x  =  abs(get_parent().back_water.position.x)
+			get_parent().front_water.position.x  = get_parent().front_water.position.x  * -1 if direction == 1 else get_parent().front_water.position.x
+			get_parent().back_water.position.x   = get_parent().back_water.position.x   * -1 if direction == 1 else abs(get_parent().back_water.position.x)
 			return
 		# We have a spot to go to but we aren't there yet
 		1:
@@ -46,6 +63,8 @@ func _process(delta: float) -> void:
 			return
 		# We have arrived at our spot but we haven't dropped an item yet
 		2:
+			get_parent().front_water.emitting = false
+			get_parent().back_water.emitting = false
 			# Karl Jacobs has an additional animation
 			if self.id == 4 or self.id == 3:
 				get_parent().animated_sprite.play("swim")

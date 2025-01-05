@@ -1,9 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://bk0k8v1urwir0"]
+[gd_scene load_steps=16 format=3 uid="uid://bk0k8v1urwir0"]
 
 [ext_resource type="Script" path="res://scripts/enemy/classic_world/ships/pirate_ship.gd" id="1_q23a1"]
 [ext_resource type="PackedScene" uid="uid://0ncg7uw24q8j" path="res://scenes/enemy/classic_world/ships/ship.tscn" id="2_ufgkj"]
 [ext_resource type="Texture2D" uid="uid://byjdlmvhxny27" path="res://art/enemy/classic_world/pirate_ship_idle.png" id="3_j458q"]
 [ext_resource type="Texture2D" uid="uid://boroqd11gqqsc" path="res://art/enemy/classic_world/pirate_ship_moving.png" id="4_jvufk"]
+[ext_resource type="PackedScene" uid="uid://0472n5upj7sd" path="res://scenes/enemy/classic_world/ships/front_water_particles.tscn" id="5_6n5xw"]
+[ext_resource type="PackedScene" uid="uid://duakphuvthvd5" path="res://scenes/enemy/classic_world/ships/back_water_particles.tscn" id="6_oigd1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5wxej"]
 atlas = ExtResource("3_j458q")
@@ -88,3 +90,7 @@ texture_filter = 1
 position = Vector2(0, -35)
 sprite_frames = SubResource("SpriteFrames_o5usg")
 animation = &"swim"
+
+[node name="front_water_particles" parent="." instance=ExtResource("5_6n5xw")]
+
+[node name="back_water_particles" parent="." instance=ExtResource("6_oigd1")]

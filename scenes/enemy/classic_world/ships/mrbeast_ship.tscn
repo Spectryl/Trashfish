@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bdrdrpgqc25qg"]
+[gd_scene load_steps=12 format=3 uid="uid://bdrdrpgqc25qg"]
 
 [ext_resource type="Script" path="res://scripts/enemy/classic_world/ships/mrbeast_ship.gd" id="1_kjtjv"]
 [ext_resource type="PackedScene" uid="uid://0ncg7uw24q8j" path="res://scenes/enemy/classic_world/ships/ship.tscn" id="1_u18oj"]
 [ext_resource type="Texture2D" uid="uid://bfhwnhiyweprk" path="res://art/enemy/classic_world/beast_ship.png" id="2_4fwby"]
+[ext_resource type="PackedScene" uid="uid://0472n5upj7sd" path="res://scenes/enemy/classic_world/ships/front_water_particles.tscn" id="4_8oh5l"]
+[ext_resource type="PackedScene" uid="uid://duakphuvthvd5" path="res://scenes/enemy/classic_world/ships/back_water_particles.tscn" id="5_gw62b"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_urdrr"]
 atlas = ExtResource("2_4fwby")
@@ -59,3 +61,7 @@ wait_time = 0.35
 texture_filter = 1
 position = Vector2(0, -34.625)
 sprite_frames = SubResource("SpriteFrames_15il8")
+
+[node name="front_water_particles" parent="." instance=ExtResource("4_8oh5l")]
+
+[node name="back_water_particles" parent="." instance=ExtResource("5_gw62b")]
