@@ -1,8 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://ilo5jqlay3jo"]
+[gd_scene load_steps=15 format=3 uid="uid://ilo5jqlay3jo"]
 
 [ext_resource type="Script" path="res://scripts/enemy/classic_world/ships/chandler_ship.gd" id="1_o53rk"]
 [ext_resource type="PackedScene" uid="uid://0ncg7uw24q8j" path="res://scenes/enemy/classic_world/ships/ship.tscn" id="1_pwmcu"]
 [ext_resource type="Texture2D" uid="uid://batpcd4ivej20" path="res://art/enemy/classic_world/chandler_ship.png" id="2_46rkd"]
+[ext_resource type="PackedScene" uid="uid://0472n5upj7sd" path="res://scenes/enemy/classic_world/ships/front_water_particles.tscn" id="4_xqh3f"]
+[ext_resource type="PackedScene" uid="uid://duakphuvthvd5" path="res://scenes/enemy/classic_world/ships/back_water_particles.tscn" id="5_yufdr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k7260"]
 atlas = ExtResource("2_46rkd")
@@ -80,3 +82,7 @@ wait_time = 0.321
 texture_filter = 1
 position = Vector2(-1, -35)
 sprite_frames = SubResource("SpriteFrames_qryl4")
+
+[node name="front_water_particles" parent="." instance=ExtResource("4_xqh3f")]
+
+[node name="back_water_particles" parent="." instance=ExtResource("5_yufdr")]
