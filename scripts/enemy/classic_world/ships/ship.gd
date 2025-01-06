@@ -67,7 +67,7 @@ func _process(delta: float) -> void:
 			get_parent().back_water.emitting = false
 			# Karl Jacobs has an additional animation
 			if self.id == 4 or self.id == 3:
-				get_parent().animated_sprite.play("swim")
+				get_parent().animated_sprite.play("default")
 			# Wait for some time if we'd like
 			if $wait_timer.time_left > 0.01 and not $wait_timer.is_stopped():
 				return
@@ -90,7 +90,8 @@ func _process(delta: float) -> void:
 			return
 		# Move towards our despawn position
 		4:
-			#delete_all_drop_children()
+			get_parent().front_water.emitting = true
+			get_parent().back_water.emitting = true
 			self.get_parent().global_position.x += direction * speed * delta
 			if check_in_range(self.get_parent().global_position.x,nextX, speed * delta):
 				state = 5

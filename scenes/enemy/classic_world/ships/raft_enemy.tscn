@@ -1,9 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://tnnxe3dimvi0"]
+[gd_scene load_steps=20 format=3 uid="uid://tnnxe3dimvi0"]
 
 [ext_resource type="Script" path="res://scripts/enemy/classic_world/ships/raft_enemy.gd" id="1_ef6wl"]
 [ext_resource type="Texture2D" uid="uid://c7tpy7v4e6jjo" path="res://art/enemy/classic_world/raft.png" id="1_fen3x"]
 [ext_resource type="Texture2D" uid="uid://de03ac32yi2ee" path="res://art/enemy/classic_world/awp.png" id="2_nk87i"]
 [ext_resource type="Script" path="res://scripts/enemy/classic_world/ships/gun.gd" id="4_its3k"]
+[ext_resource type="PackedScene" uid="uid://0472n5upj7sd" path="res://scenes/enemy/classic_world/ships/front_water_particles.tscn" id="5_1plyp"]
+[ext_resource type="PackedScene" uid="uid://duakphuvthvd5" path="res://scenes/enemy/classic_world/ships/back_water_particles.tscn" id="6_bvf0p"]
 
 [sub_resource type="Animation" id="Animation_0sbso"]
 resource_name = "idle"
@@ -122,5 +124,11 @@ script = ExtResource("4_its3k")
 
 [node name="shoot_timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="front_water_particles" parent="." instance=ExtResource("5_1plyp")]
+position = Vector2(-54, -5)
+
+[node name="back_water_particles" parent="." instance=ExtResource("6_bvf0p")]
+position = Vector2(57, -6)
 
 [connection signal="timeout" from="shoot_timer" to="." method="_on_shoot_timer_timeout"]

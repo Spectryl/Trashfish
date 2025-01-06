@@ -11,10 +11,9 @@ const play_slot_scene = preload("res://scenes/enemy/classic_world/drops/bullet.t
 
 func _ready() -> void:
 	raft.play("idle")
-	var spot_on_screen_to_spawn_at : int = randi() % 2
 	bullets_left += randi() % 3
 	speed += randi() % 150
-	match spot_on_screen_to_spawn_at:
+	match randi_range(0,1):
 		0:
 			self.global_position.x = -100
 		1:
@@ -30,6 +29,22 @@ func _process(delta: float) -> void:
 			state = 1
 			direction = 1 if self.global_position.x - nextX  <= 0 else -1 # Go Left if we are to the right, otherwise go right
 			self.flip()
+			$front_water_particles.emitting = true
+			$back_water_particles.emitting = true
+			
+			$front_water_particles.direction.x = abs($front_water_particles.direction.x) * -1
+			$back_water_particles.direction.x  = abs($back_water_particles.direction.x)
+			
+			$front_water_particles.direction.x = $front_water_particles.direction.x * -1 if direction == 1 else $front_water_particles.direction.x
+			$back_water_particles.direction.x  = $back_water_particles.direction.x  * -1 if direction == 1 else abs($back_water_particles.direction.x)
+			# reset their positions
+			# I am breaking several geneva conventions with this code please lord save me from these water particles...
+			$front_water_particles.position.x =  abs($front_water_particles.position.x) * -1
+			$back_water_particles.position.x  =  abs($back_water_particles.position.x)
+			$front_water_particles.position.x  = $front_water_particles.position.x  * -1 if direction == 1 else $front_water_particles.position.x
+			$back_water_particles.position.x   = $back_water_particles.position.x   * -1 if direction == 1 else abs($back_water_particles.position.x)
+			
+			
 			return
 		# We have a spot to go to but we aren't there yet
 		1:
@@ -39,6 +54,8 @@ func _process(delta: float) -> void:
 			return
 		# We have arrived at our spot fire!
 		2:
+			$front_water_particles.emitting = false
+			$back_water_particles.emitting = false
 			if bullets_left == 0:
 				state = 3
 				shoot_timer.stop()
@@ -47,7 +64,9 @@ func _process(delta: float) -> void:
 				shoot_timer.start()
 			return
 		3:
-			nextX = randi() % 2
+			$front_water_particles.emitting = true
+			$back_water_particles.emitting = true
+			nextX = randi_range(0,1)
 			nextX = -100 if nextX == 0 else 2000
 			direction = 1 if self.global_position.x - nextX  <= 0 else -1 # Go Left if we are to the right, otherwise go right
 			self.state = 4
@@ -56,17 +75,21 @@ func _process(delta: float) -> void:
 			self.global_position.x += direction * speed * delta
 			if check_in_range(self.global_position.x,nextX, speed * delta):
 				state = 5
-			self.flip()
+			flip()
 			return
 		# We are at our despawn position, so despawn
 		5:
 			self.get_parent().entities_spawned -= 1
-			self.queue_free()
+			queue_free()
 
 # After timer ends, have the gun fire a bullet towards the player and restart the timer
 func _on_shoot_timer_timeout() -> void:
 	gun.play("fire")
 	bullets_left -= 1
+	# safeguard so we don't fire extra bullets
+	if bullets_left == 0:
+		state = 3
+		return
 	var bullet = play_slot_scene.instantiate()
 	self.add_child(bullet)
 	

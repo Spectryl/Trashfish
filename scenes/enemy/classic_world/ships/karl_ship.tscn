@@ -86,8 +86,8 @@ id = 4
 texture_filter = 1
 position = Vector2(0, 2)
 sprite_frames = SubResource("SpriteFrames_c3lle")
-flip_h = true
 
 [node name="front_water_particles" parent="." instance=ExtResource("5_c783j")]
 
 [node name="back_water_particles" parent="." instance=ExtResource("6_o31fj")]
+position = Vector2(28, -3)
