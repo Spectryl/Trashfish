@@ -46,7 +46,7 @@ func _physics_process(delta):
 # Handles basic player movement
 func handle_player_input(delta):
 	if not isRolling:
-		direction = Input.get_vector("move_left","move_right","move_up","move_down")
+		direction = Input.get_vector("move_left","move_right","move_up","move_down").normalized()
 	#print(self.velocity.x, ":", self.velocity.y)
 	
 	self.velocity.x = lerp(velocity.x, speed * direction.x, acceleration * delta)
@@ -55,6 +55,7 @@ func handle_player_input(delta):
 	self.rotation_degrees *= -1 if self.velocity.x < 0 else 1
 	self.rotation_degrees *= -1 if self.velocity.y < 0 else 1
 
+	
 	
 # Handles basic player animations using bools/state machine
 func handle_player_animation():

@@ -17,6 +17,7 @@ func _ready() -> void:
 	high_score_ui = get_node("CanvasLayer/Panel/high_score")
 	health_ui = get_node("CanvasLayer/Panel/health")
 	player = get_node("player")
+	$ParallaxBackground/background.play("default")
 	
 	starve_bar.max_value = player.max_starve
 	var error = config.load("user://savedata.cfg")

@@ -5,10 +5,10 @@ const spawnable_drop2 = preload("res://scenes/enemy/classic_world/drops/trash_dr
 @onready var animated_sprite : AnimatedSprite2D = get_node("AnimatedSprite2D")
 @onready var ship_component  : Node2D           = get_node("ship_component")
 @onready var wait_timer      : Timer            = get_node("ship_component/wait_timer")
-@onready var front_water     : CPUParticles2D   = get_node("front_water_particles")
-@onready var back_water      : CPUParticles2D   = get_node("back_water_particles")
+@onready var water_layer     : AnimatedSprite2D = get_node("water_layer")
 var parent_score : int
 func _ready() -> void:
+	water_layer.play("default")
 	parent_score = get_parent().score
 	# as the game goes on, the chandler ship will drop less and less point trash, this is counteracted since there will be more of them
 	match int(parent_score / 20.0):

@@ -3,6 +3,7 @@ extends Node2D
 @onready var gun = $gun
 @onready var shoot_timer = $shoot_timer
 @onready var state = 0
+
 var nextX : float
 var direction : int
 var bullets_left : int = 2
@@ -19,7 +20,7 @@ func _ready() -> void:
 		1:
 			self.global_position.x = 2000
 	$shoot_timer.wait_time += randi() % 10
-
+	$water_layer.play("default")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	gun.set_gun_rotation()
@@ -29,20 +30,7 @@ func _process(delta: float) -> void:
 			state = 1
 			direction = 1 if self.global_position.x - nextX  <= 0 else -1 # Go Left if we are to the right, otherwise go right
 			self.flip()
-			$front_water_particles.emitting = true
-			$back_water_particles.emitting = true
-			
-			$front_water_particles.direction.x = abs($front_water_particles.direction.x) * -1
-			$back_water_particles.direction.x  = abs($back_water_particles.direction.x)
-			
-			$front_water_particles.direction.x = $front_water_particles.direction.x * -1 if direction == 1 else $front_water_particles.direction.x
-			$back_water_particles.direction.x  = $back_water_particles.direction.x  * -1 if direction == 1 else abs($back_water_particles.direction.x)
-			# reset their positions
-			# I am breaking several geneva conventions with this code please lord save me from these water particles...
-			$front_water_particles.position.x =  abs($front_water_particles.position.x) * -1
-			$back_water_particles.position.x  =  abs($back_water_particles.position.x)
-			$front_water_particles.position.x  = $front_water_particles.position.x  * -1 if direction == 1 else $front_water_particles.position.x
-			$back_water_particles.position.x   = $back_water_particles.position.x   * -1 if direction == 1 else abs($back_water_particles.position.x)
+			$water_layer.visible = true
 			
 			
 			return
@@ -54,8 +42,7 @@ func _process(delta: float) -> void:
 			return
 		# We have arrived at our spot fire!
 		2:
-			$front_water_particles.emitting = false
-			$back_water_particles.emitting = false
+			$water_layer.visible = false
 			if bullets_left == 0:
 				state = 3
 				shoot_timer.stop()
@@ -64,8 +51,7 @@ func _process(delta: float) -> void:
 				shoot_timer.start()
 			return
 		3:
-			$front_water_particles.emitting = true
-			$back_water_particles.emitting = true
+			$water_layer.visible = true
 			nextX = randi_range(0,1)
 			nextX = -100 if nextX == 0 else 2000
 			direction = 1 if self.global_position.x - nextX  <= 0 else -1 # Go Left if we are to the right, otherwise go right

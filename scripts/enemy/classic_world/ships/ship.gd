@@ -12,8 +12,7 @@ var drop
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	self.get_parent().global_position.y = get_parent().get_parent().global_position.y + randi() % 3
-	var spot_on_screen_to_spawn_at : int = randi() % 2
-	match spot_on_screen_to_spawn_at:
+	match randi_range(0,1):
 		0:
 			self.get_parent().global_position.x = -100
 		1:
@@ -37,22 +36,9 @@ func _process(delta: float) -> void:
 			
 			direction = 1 if get_parent().global_position.x - nextX  <= 0 else -1 # Go Left if we are to the right, otherwise go right
 			get_parent().animated_sprite.flip_h = true if direction == 1 else false
-			# Reset these positions
-			# SOMEONE GIVE ME A BETTER WAY
-			get_parent().front_water.emitting = true
-			get_parent().back_water.emitting = true
+			get_parent().water_layer.visible = true 
 			
-			get_parent().front_water.direction.x = abs(get_parent().front_water.direction.x) * -1
-			get_parent().back_water.direction.x  = abs(get_parent().back_water.direction.x)
 			
-			get_parent().front_water.direction.x = get_parent().front_water.direction.x * -1 if direction == 1 else get_parent().front_water.direction.x
-			get_parent().back_water.direction.x  = get_parent().back_water.direction.x  * -1 if direction == 1 else abs(get_parent().back_water.direction.x)
-			# reset their positions
-			# I am breaking several geneva conventions with this code please lord save me from these water particles...
-			get_parent().front_water.position.x =  abs(get_parent().front_water.position.x) * -1
-			get_parent().back_water.position.x  =  abs(get_parent().back_water.position.x)
-			get_parent().front_water.position.x  = get_parent().front_water.position.x  * -1 if direction == 1 else get_parent().front_water.position.x
-			get_parent().back_water.position.x   = get_parent().back_water.position.x   * -1 if direction == 1 else abs(get_parent().back_water.position.x)
 			return
 		# We have a spot to go to but we aren't there yet
 		1:
@@ -63,8 +49,7 @@ func _process(delta: float) -> void:
 			return
 		# We have arrived at our spot but we haven't dropped an item yet
 		2:
-			get_parent().front_water.emitting = false
-			get_parent().back_water.emitting = false
+			get_parent().water_layer.visible = false
 			# Karl Jacobs has an additional animation
 			if self.id == 4 or self.id == 3:
 				get_parent().animated_sprite.play("default")
@@ -90,8 +75,7 @@ func _process(delta: float) -> void:
 			return
 		# Move towards our despawn position
 		4:
-			get_parent().front_water.emitting = true
-			get_parent().back_water.emitting = true
+			get_parent().water_layer.visible = true
 			self.get_parent().global_position.x += direction * speed * delta
 			if check_in_range(self.get_parent().global_position.x,nextX, speed * delta):
 				state = 5
