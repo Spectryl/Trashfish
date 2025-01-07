@@ -14,7 +14,7 @@ var isDead : bool = false
 var isHoneyd : bool = false
 var isIced : bool = false
 var isRolling : bool = false
-
+var isControlsFlipped : bool = false
 var drop
 var direction : Vector2
 const trash_can = preload("res://scenes/player/trash_can.tscn")
@@ -47,7 +47,6 @@ func _physics_process(delta):
 func handle_player_input(delta):
 	if not isRolling:
 		direction = Input.get_vector("move_left","move_right","move_up","move_down").normalized()
-	#print(self.velocity.x, ":", self.velocity.y)
 	
 	self.velocity.x = lerp(velocity.x, speed * direction.x, acceleration * delta)
 	self.velocity.y = lerp(velocity.y, speed * direction.y * 0.65, acceleration * delta)
@@ -55,7 +54,8 @@ func handle_player_input(delta):
 	self.rotation_degrees *= -1 if self.velocity.x < 0 else 1
 	self.rotation_degrees *= -1 if self.velocity.y < 0 else 1
 
-	
+	self.velocity.x *= -1 if isControlsFlipped else 1
+	self.velocity.y *= -1 if isControlsFlipped else 1
 	
 # Handles basic player animations using bools/state machine
 func handle_player_animation():
@@ -150,6 +150,12 @@ func set_debuff(debuff : String) -> void:
 			isIced = true
 			self.speed /= ice_speed
 			$debuff_master/ice_timer.start()
+		"flipped_controls":
+			if isControlsFlipped:
+				$debuff_master/control_timer.start()
+				return
+			isControlsFlipped = true
+			$debuff_master/control_timer.start()
 
 # Flashes the player body when damaged
 func damage_flash_body():
@@ -191,7 +197,9 @@ func _on_honey_timer_timeout() -> void:
 func _on_ice_timer_timeout() -> void:
 	self.speed = speed * ice_speed
 	isIced = false
-
+	
+func _on_control_timer_timeout():
+	isControlsFlipped = false
 
 func _on_flash_timer_timeout() -> void:
 	$body.material.set_shader_parameter("flash_modifier", 0)
