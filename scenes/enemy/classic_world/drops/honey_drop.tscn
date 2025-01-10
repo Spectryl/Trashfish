@@ -81,7 +81,6 @@ disabled = true
 debug_color = Color(3.85046e-07, 0.598513, 0.708486, 0.42)
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-position = Vector2(0, -26.425)
 emitting = false
 amount = 50
 one_shot = true

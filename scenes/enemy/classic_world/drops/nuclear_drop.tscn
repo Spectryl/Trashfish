@@ -1,0 +1,94 @@
+[gd_scene load_steps=13 format=3 uid="uid://brwyum6fojkdd"]
+
+[ext_resource type="PackedScene" uid="uid://byt03rernj7cq" path="res://scenes/enemy/classic_world/drops/drop.tscn" id="1_a0qy8"]
+[ext_resource type="Script" path="res://scripts/enemy/classic_world/drops/nuclear_drop.gd" id="1_nbkry"]
+[ext_resource type="Texture2D" uid="uid://dhramjx5r0d1e" path="res://art/enemy/classic_world/nuclear_drop.png" id="2_nt6g2"]
+[ext_resource type="Texture2D" uid="uid://7f2pdbgscpso" path="res://art/enemy/classic_world/nuclear_explosion.png" id="3_ru38d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kmihx"]
+atlas = ExtResource("3_ru38d")
+region = Rect2(0, 0, 144, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0kym6"]
+atlas = ExtResource("2_nt6g2")
+region = Rect2(0, 0, 144, 69)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_spm7c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kmihx")
+}],
+"loop": true,
+"name": &"explosion",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0kym6")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6osk8"]
+size = Vector2(50, 46)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w1lg5"]
+size = Vector2(57, 40)
+
+[sub_resource type="Curve" id="Curve_44lcn"]
+_data = [Vector2(0.0168539, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_ok6s2"]
+offsets = PackedFloat32Array(0, 0.351852, 1)
+colors = PackedColorArray(0.6, 0.898039, 0.313726, 1, 0.6, 0.898039, 0.313726, 1, 0.902683, 0.913308, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_vnin6"]
+offsets = PackedFloat32Array(0, 0.506667, 1)
+colors = PackedColorArray(0.172809, 0.165104, 0.00133489, 1, 0.980392, 0.94902, 0.211765, 1, 1, 1, 1, 1)
+
+[node name="nuclear_drop" type="Node2D" groups=["drop"]]
+script = ExtResource("1_nbkry")
+
+[node name="drop_component" parent="." instance=ExtResource("1_a0qy8")]
+timer_length = 2.0
+delete_timer_length = 1.0
+fall_speed = 45
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_spm7c")
+animation = &"idle"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["drop"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+visible = false
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_6osk8")
+
+[node name="explosion_hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="explosion_hitbox"]
+visible = false
+position = Vector2(0.5, -2)
+shape = SubResource("RectangleShape2D_w1lg5")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 50
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 60.0
+scale_amount_min = 10.0
+scale_amount_max = 16.0
+scale_amount_curve = SubResource("Curve_44lcn")
+color_ramp = SubResource("Gradient_ok6s2")
+color_initial_ramp = SubResource("Gradient_vnin6")
