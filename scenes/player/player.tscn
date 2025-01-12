@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://ia6ngi8g5tqx"]
+[gd_scene load_steps=57 format=3 uid="uid://ia6ngi8g5tqx"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_edec7"]
 [ext_resource type="Shader" path="res://shaders/player/flash.gdshader" id="2_6cm53"]
@@ -10,8 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://d1rgjm4vsluua" path="res://art/player/honey_player.png" id="6_pyiet"]
 [ext_resource type="Texture2D" uid="uid://dfskd1e87ktt4" path="res://art/player/ice_player.png" id="7_qtndv"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_deb2k"]
-resource_local_to_scene = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_esx0d"]
 shader = ExtResource("2_6cm53")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifier = 0.0
@@ -202,12 +201,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7lv3r"]
-resource_local_to_scene = true
-shader = ExtResource("2_6cm53")
-shader_parameter/flash_color = Color(1, 1, 1, 1)
-shader_parameter/flash_modifier = 0.0
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_bs1xw"]
 atlas = ExtResource("4_17ldg")
 region = Rect2(432, 0, 144, 69)
@@ -362,24 +355,26 @@ texture_filter = 1
 script = ExtResource("1_edec7")
 max_health = 6
 
-[node name="body" type="AnimatedSprite2D" parent="."]
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+material = SubResource("ShaderMaterial_esx0d")
+
+[node name="body" type="AnimatedSprite2D" parent="CanvasGroup"]
 texture_filter = 1
-material = SubResource("ShaderMaterial_deb2k")
 position = Vector2(7, -33)
 sprite_frames = SubResource("SpriteFrames_0o1mn")
 animation = &"idle"
 
-[node name="flash_timer" type="Timer" parent="body"]
+[node name="flash_timer" type="Timer" parent="CanvasGroup/body"]
 one_shot = true
 
-[node name="head" type="AnimatedSprite2D" parent="."]
+[node name="head" type="AnimatedSprite2D" parent="CanvasGroup"]
 texture_filter = 1
-material = SubResource("ShaderMaterial_7lv3r")
 position = Vector2(7, -30)
 sprite_frames = SubResource("SpriteFrames_kffas")
 animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(5, -31)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_1cqym")
@@ -388,6 +383,7 @@ shape = SubResource("CapsuleShape2D_1cqym")
 autostart = true
 
 [node name="attack_hitbox" type="Area2D" parent="." groups=["attack"]]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack_hitbox" groups=["attack"]]
 position = Vector2(89, -32)
@@ -431,7 +427,7 @@ one_shot = true
 
 [node name="control_timer" type="Timer" parent="debuff_master"]
 
-[connection signal="timeout" from="body/flash_timer" to="." method="_on_flash_timer_timeout"]
+[connection signal="timeout" from="CanvasGroup/body/flash_timer" to="." method="_on_flash_timer_timeout"]
 [connection signal="timeout" from="Starve_Timer" to="." method="_on_starve_timer_timeout"]
 [connection signal="body_entered" from="attack_hitbox" to="." method="_on_attack_hitbox_body_entered"]
 [connection signal="timeout" from="attack_hitbox/attack_timer" to="." method="_on_attack_timer_timeout"]

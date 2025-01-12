@@ -22,7 +22,7 @@ const trash_can = preload("res://scenes/player/trash_can.tscn")
 func _ready() -> void:
 	$debuff_master/honey.play("default")
 	$debuff_master/ice.play("default")
-	player_shader(0,0,0,0,0)
+	player_flash_shader(0,0,0,0,0)
 
 
 func _physics_process(delta):
@@ -61,28 +61,28 @@ func handle_player_animation():
 	if abs(velocity.x) > 0.001:
 		flip(velocity.x < 0)
 	if isDead:
-		$body.play("death")
+		$CanvasGroup/body.play("death")
 		return
 	$debuff_master/honey.visible = isHoneyd
 	$debuff_master/ice.visible = isIced
 	match isAttacking:
 		true:
-			$head.play("attack")
+			$CanvasGroup/head.play("attack")
 		false:
-			$head.play("idle")
+			$CanvasGroup/head.play("idle")
 	match isRolling:
 		true:
-			$body.play("roll")
+			$CanvasGroup/body.play("roll")
 			return
 		false:
-			$body.play("idle")
-	$body.play("idle")
+			$CanvasGroup/body.play("idle")
+	$CanvasGroup/body.play("idle")
 	
 # Flip the animations and hitboxes
 func flip(value: bool):
-	if value != $body.flip_h:
-		$body.flip_h = value
-		$head.flip_h = value
+	if value != $CanvasGroup/body.flip_h:
+		$CanvasGroup/body.flip_h = value
+		$CanvasGroup/head.flip_h = value
 		$attack_hitbox/CollisionShape2D.position.x *= -1
 		$debuff_master/honey.flip_h = value
 		$debuff_master/ice.flip_h = value
@@ -94,7 +94,7 @@ func roll():
 	self.speed *= 1.8
 	self.velocity = speed * direction
 	
-	$head.visible = false
+	$CanvasGroup/head.visible = false
 	$debuff_master/roll_timer.start()
 
 # Getter for health
@@ -121,8 +121,8 @@ func player_death():
 	self.get_parent().update_hud_when_dead()
 	self.health = 0
 	self.isDead = true
-	$body.play("death")
-	$head.visible = false
+	$CanvasGroup/body.play("death")
+	$CanvasGroup/head.visible = false
 	drop = trash_can.instantiate()
 	self.add_child(drop)
 	
@@ -160,14 +160,14 @@ func set_debuff(debuff : String) -> void:
 func damage_flash_body():
 	if health <= 0:
 		return
-	player_shader(0.76,0,0,1.0, 0.7)
-	$body/flash_timer.start()
+	player_flash_shader(0.76,0,0,1.0, 0.7)
+	$CanvasGroup/body/flash_timer.start()
 # flashes player body green when healed
 func heal_flash_body():
 	if health <= 0 or health > max_health:
 		return
-	player_shader(0.13,0.86,0.14,1.0, 0.7)
-	$body/flash_timer.start()
+	player_flash_shader(0.13,0.86,0.14,1.0, 0.7)
+	$CanvasGroup/body/flash_timer.start()
 
 # When the attack timer resets (CD), we should turn off hitboxes
 func _on_attack_timer_timeout() -> void:
@@ -201,25 +201,26 @@ func _on_control_timer_timeout():
 	isControlsFlipped = false
 
 func _on_flash_timer_timeout() -> void:
-	$body.material.set_shader_parameter("flash_modifier", 0)
-	$head.material.set_shader_parameter("flash_modifier", 0)
+	$CanvasGroup.material.set_shader_parameter("flash_modifier", 0)
+	$CanvasGroup.material.set_shader_parameter("flash_modifier", 0)
 	
 func _on_roll_timer_timeout():
-	$head.visible = true
+	$CanvasGroup/head.visible = true
 	self.speed /= 1.8
 	isRolling = false
 	$debuff_master/roll_cooldown_timer.start()
 
 # lets player know they can roll again
 func _on_roll_cooldown_timer_timeout():
-	player_shader(0.66, 0.51, 0.17, 1.0, 0.7)
-	$body/flash_timer.start(0.5)
+	player_flash_shader(0.66, 0.51, 0.17, 1.0, 0.7)
+	$CanvasGroup/body/flash_timer.start(0.5)
 
-func player_shader(a : float, b : float, c : float, d : float, e : float):
-	$body.material.set_shader_parameter("flash_color",Color(a,b,c,d))
-	$body.material.set_shader_parameter("flash_modifier", e)
-	$head.material.set_shader_parameter("flash_color",Color(a,b,c,d))
-	$head.material.set_shader_parameter("flash_modifier", e)
+#flashes the whole player sprite as a color
+func player_flash_shader(a : float, b : float, c : float, d : float, e : float):
+	$CanvasGroup.material.set_shader_parameter("flash_color",Color(a,b,c,d))
+	$CanvasGroup.material.set_shader_parameter("flash_modifier", e)
+	$CanvasGroup.material.set_shader_parameter("flash_color",Color(a,b,c,d))
+	$CanvasGroup.material.set_shader_parameter("flash_modifier", e)
 # every second we will take a bit of starvation
 # default is you take a hit every 20 seconds of not eating
 func _on_starve_timer_timeout():
