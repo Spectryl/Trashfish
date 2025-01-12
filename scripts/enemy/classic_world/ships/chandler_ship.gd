@@ -1,7 +1,8 @@
 extends Node2D
 const spawnable_drop1 = preload("res://scenes/enemy/classic_world/drops/recycle_drop.tscn")
-const spawnable_drop2 = preload("res://scenes/enemy/classic_world/drops/trash_drop.tscn")
+#const spawnable_drop2 = preload("res://scenes/enemy/classic_world/drops/trash_drop.tscn")
 #const spawnable_drop2 = preload("res://scenes/enemy/heart_drop.tscn")
+const spawnable_drop2 = preload("res://scenes/enemy/classic_world/drops/nuclear_drop.tscn")
 @onready var animated_sprite : AnimatedSprite2D = get_node("AnimatedSprite2D")
 @onready var ship_component  : Node2D           = get_node("ship_component")
 @onready var wait_timer      : Timer            = get_node("ship_component/wait_timer")

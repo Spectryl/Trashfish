@@ -26,6 +26,6 @@ func attacked():
 	drop_component.delete_timer.start()
 	drop_component.isActive = false #freezes the object
 	$StaticBody2D.set_deferred("disable_mode",true) # disables the eating hitboxes
-	$StaticBody2D/CollisionPolygon2D.set_deferred("disabled",true)
+	$StaticBody2D/CollisionShape2D.set_deferred("disabled",true)
 	drop_component.active_timer.stop()
 	drop_component.active_timer.emit_signal("timeout")
