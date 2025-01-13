@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmpyt664m05hc"]
+
+[ext_resource type="Script" path="res://scripts/misc/sound_component.gd" id="1_bnljp"]
+
+[node name="sound_component" type="Node2D"]
+script = ExtResource("1_bnljp")
+
+[node name="audio" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="finished" from="audio" to="." method="_on_audio_finished"]

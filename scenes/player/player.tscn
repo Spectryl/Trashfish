@@ -411,6 +411,7 @@ wait_time = 0.45
 one_shot = true
 
 [node name="debuff_master" type="Node2D" parent="."]
+visible = false
 
 [node name="honey" type="AnimatedSprite2D" parent="debuff_master"]
 visible = false

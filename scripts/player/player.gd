@@ -18,7 +18,7 @@ var isControlsFlipped : bool = false
 var drop
 var direction : Vector2
 const trash_can = preload("res://scenes/player/trash_can.tscn")
-
+const sound_component = preload("res://scenes/misc/sound_component.tscn")
 func _ready() -> void:
 	$debuff_master/honey.play("default")
 	$debuff_master/ice.play("default")
@@ -218,6 +218,9 @@ func _on_roll_timer_timeout():
 # lets player know they can roll again
 func _on_roll_cooldown_timer_timeout():
 	player_flash_shader(0.66, 0.51, 0.17, 1.0, 0.7)
+	var a = sound_component.instantiate()
+	self.add_child(a)
+	a.audio("res://audio/classic_world/sfx/audio_resources/bloop.tres")
 	$CanvasGroup/body/flash_timer.start(0.5)
 
 #flashes the whole player sprite as a color
