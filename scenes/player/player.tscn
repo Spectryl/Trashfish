@@ -1,9 +1,10 @@
-[gd_scene load_steps=57 format=3 uid="uid://ia6ngi8g5tqx"]
+[gd_scene load_steps=60 format=3 uid="uid://ia6ngi8g5tqx"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_edec7"]
 [ext_resource type="Shader" path="res://shaders/player/flash.gdshader" id="2_6cm53"]
 [ext_resource type="Texture2D" uid="uid://beolwmdrk1w4w" path="res://art/player/dead_player.png" id="2_y0gff"]
 [ext_resource type="Texture2D" uid="uid://d3ptwjd0li3mr" path="res://art/player/player_swim.png" id="3_58xq2"]
+[ext_resource type="Shader" path="res://shaders/player/sprite_flip.gdshader" id="3_tmm1g"]
 [ext_resource type="Texture2D" uid="uid://ccy56dt2gdsyf" path="res://art/player/player_attack.png" id="4_17ldg"]
 [ext_resource type="Texture2D" uid="uid://bhx4urlhmshsf" path="res://art/player/player_head_idle.png" id="4_e3boi"]
 [ext_resource type="Texture2D" uid="uid://b2oahm8k5suqk" path="res://art/player/player_roll.png" id="5_7wplv"]
@@ -14,6 +15,12 @@
 shader = ExtResource("2_6cm53")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jvel1"]
+shader = ExtResource("3_tmm1g")
+shader_parameter/u_color_key = Color(0.188235, 0.376471, 0.509804, 1)
+shader_parameter/u_replacement_color = Color(1, 1, 0.117647, 1)
+shader_parameter/u_tolerance = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uclss"]
 atlas = ExtResource("2_y0gff")
@@ -201,6 +208,12 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w7h5i"]
+shader = ExtResource("3_tmm1g")
+shader_parameter/u_color_key = Color(0.188235, 0.376471, 0.509804, 1)
+shader_parameter/u_replacement_color = Color(1, 1, 0.117647, 1)
+shader_parameter/u_tolerance = 0.0
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_bs1xw"]
 atlas = ExtResource("4_17ldg")
 region = Rect2(432, 0, 144, 69)
@@ -360,6 +373,7 @@ material = SubResource("ShaderMaterial_esx0d")
 
 [node name="body" type="AnimatedSprite2D" parent="CanvasGroup"]
 texture_filter = 1
+material = SubResource("ShaderMaterial_jvel1")
 position = Vector2(7, -33)
 sprite_frames = SubResource("SpriteFrames_0o1mn")
 animation = &"idle"
@@ -369,6 +383,7 @@ one_shot = true
 
 [node name="head" type="AnimatedSprite2D" parent="CanvasGroup"]
 texture_filter = 1
+material = SubResource("ShaderMaterial_w7h5i")
 position = Vector2(7, -30)
 sprite_frames = SubResource("SpriteFrames_kffas")
 animation = &"idle"

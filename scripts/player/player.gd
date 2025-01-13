@@ -153,6 +153,9 @@ func set_debuff(debuff : String) -> void:
 			if isControlsFlipped:
 				$debuff_master/control_timer.start()
 				return
+				
+			$CanvasGroup/body.material.set_shader_parameter("u_tolerance", 0.055)
+			$CanvasGroup/head.material.set_shader_parameter("u_tolerance", 0.055)
 			isControlsFlipped = true
 			$debuff_master/control_timer.start()
 
@@ -198,6 +201,8 @@ func _on_ice_timer_timeout() -> void:
 	isIced = false
 	
 func _on_control_timer_timeout():
+	$CanvasGroup/body.material.set_shader_parameter("u_tolerance", 0)
+	$CanvasGroup/head.material.set_shader_parameter("u_tolerance", 0)
 	isControlsFlipped = false
 
 func _on_flash_timer_timeout() -> void:
