@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dj4vdaxwdewiu"]
+[gd_scene load_steps=17 format=3 uid="uid://dj4vdaxwdewiu"]
 
 [ext_resource type="Script" path="res://scripts/world/classic_world/collision_polygon_2d.gd" id="1_4hx4q"]
 [ext_resource type="Script" path="res://scripts/world/classic_world/world.gd" id="1_gcfhd"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cgyve4kk648yh" path="res://art/world/classic_world/sky.png" id="5_ou8na"]
 [ext_resource type="Texture2D" uid="uid://bfig4ppqc525o" path="res://art/world/classic_world/health.png" id="7_tqa8c"]
 [ext_resource type="Texture2D" uid="uid://djpnypv17cuuo" path="res://art/world/classic_world/starve_icon.png" id="8_s7dsv"]
+[ext_resource type="AudioStream" uid="uid://ccp6gvrp78xp5" path="res://audio/classic_world/music/lisa.ogg" id="9_hxwpp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tyyj0"]
 atlas = ExtResource("5_2afuy")
@@ -170,3 +171,9 @@ texture_filter = 1
 position = Vector2(58, 127)
 scale = Vector2(3, 3)
 texture = ExtResource("8_s7dsv")
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_hxwpp")
+volume_db = -4.0
+autoplay = true
+parameters/looping = true

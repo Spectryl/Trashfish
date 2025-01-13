@@ -5,7 +5,7 @@ const spawnable_drop3 = preload("res://scenes/enemy/classic_world/drops/ice_drop
 const spawnable_drop4 = preload("res://scenes/enemy/classic_world/drops/recycle_drop.tscn")
 const spawnable_drop5 = preload("res://scenes/enemy/classic_world/drops/trash_drop.tscn")
 const spawnable_drop6 = preload("res://scenes/enemy/classic_world/drops/heart_drop.tscn")
-
+const spawnable_drop7 = preload("res://scenes/enemy/classic_world/drops/nuclear_drop.tscn")
 @onready var animated_sprite : AnimatedSprite2D = get_node("AnimatedSprite2D")
 @onready var ship_component  : Node2D           = get_node("ship_component")
 @onready var wait_timer      : Timer            = get_node("ship_component/wait_timer")

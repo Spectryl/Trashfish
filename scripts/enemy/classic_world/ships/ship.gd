@@ -99,7 +99,7 @@ func get_spawnable_drop():
 		return
 	# Karl jacobs needs all the drops...
 	if self.id == 4:
-		match randi() % 6:
+		match randi_range(0,6):
 			0:
 				drop = get_parent().spawnable_drop1.instantiate()
 			1:
@@ -112,6 +112,8 @@ func get_spawnable_drop():
 				drop = get_parent().spawnable_drop5.instantiate()
 			5: 
 				drop = get_parent().spawnable_drop6.instantiate()
+			6:
+				drop = get_parent().spawnable_drop7.instantiate()
 		return
 	
 	drop = get_parent().spawnable_drop.instantiate()
@@ -135,7 +137,6 @@ func _on_wait_timer_timeout() -> void:
 # turns out I was correct in my original report, this looks real jank but the problem is now inherently fixed instead of band-aid fixed
 func delete_all_drop_children() -> void:
 	for x in get_parent().get_children():
-		#print(x)
 		if x.is_in_group("drop"):
 			x.queue_free()
 			return #return since there is usually only 1 drop so we can just return to save time
