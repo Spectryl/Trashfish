@@ -6,6 +6,7 @@ const spawnable_drop = preload("res://scenes/enemy/classic_world/drops/dynamite_
 @onready var ship_component  : Node2D           = get_node("ship_component")
 @onready var wait_timer      : Timer            = get_node("ship_component/wait_timer")
 @onready var water_layer     : AnimatedSprite2D = get_node("water_layer")
+
 var parent_score : int
 func _ready() -> void:
 	parent_score = get_parent().score
