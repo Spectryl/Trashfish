@@ -29,7 +29,7 @@ func _ready() -> void:
 		high_score = config.get_value("player", "classic_high_score", 0)
 	
 func _process(_delta: float) -> void:
-	if player.isDead:
+	if player.is_dead:
 		return
 	if score > high_score:
 		high_score = score
@@ -42,14 +42,14 @@ func _process(_delta: float) -> void:
 	
 # heals player from world node to save some brain power
 func heal_player():
-	get_node("player").increase_health()
+	player.increase_health()
 
 # world has access to player pos so comps can access whenever
 func get_player_position() -> Vector2:
-	return get_node("player").global_position
+	return player.global_position
 # world has access to player starvation
 func get_player_starvation() -> int:
-	return get_node("player").starve
+	return player.starve
 
 # Final hud update when dead
 func update_hud_when_dead():

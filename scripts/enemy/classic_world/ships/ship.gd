@@ -3,6 +3,9 @@ extends Node2D
 @export var speed : int = 200
 @export var id : int
 @export var wait_time : float = 0.25
+
+@onready var parent = get_parent()
+@onready var wait_timer = $wait_timer
 var state : int = 0
 var nextX : float
 var direction : int = 0
@@ -11,12 +14,12 @@ const death_timer = preload("res://scenes/misc/delete_component.tscn")
 var drop
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	self.get_parent().global_position.y = get_parent().get_parent().global_position.y + randi() % 3
+	parent.global_position.y = parent.get_parent().global_position.y + randi() % 3
 	match randi_range(0,1):
 		0:
-			self.get_parent().global_position.x = -100
+			parent.global_position.x = -100
 		1:
-			self.get_parent().global_position.x = 2000
+			parent.global_position.x = 2000
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -25,98 +28,96 @@ func _process(delta: float) -> void:
 	match state:
 		0:
 			# this is for when we run out of things to drop so lets go to despawning state
-			if self.counter < 0:
+			if counter < 0:
 				state = 3
 				return
 			
-			if self.id == 4 or self.id == 3:
-				get_parent().animated_sprite.play("swim")
+			if id == 4 or id == 3:
+				parent.animated_sprite.play("swim")
 			nextX = randi() % 1300 + 450
 			state = 1
 			
-			direction = 1 if get_parent().global_position.x - nextX  <= 0 else -1 # Go Left if we are to the right, otherwise go right
-			get_parent().animated_sprite.flip_h = true if direction == 1 else false
-			get_parent().water_layer.visible = true 
-			
-			
+			direction = 1 if parent.global_position.x - nextX  <= 0 else -1 # Go Left if we are to the right, otherwise go right
+			parent.animated_sprite.flip_h = true if direction == 1 else false
+			parent.water_layer.visible = true 
 			return
 		# We have a spot to go to but we aren't there yet
 		1:
-			self.get_parent().global_position.x += direction * speed * delta
-			if check_in_range(self.get_parent().global_position.x,nextX, speed * delta):
+			parent.global_position.x += direction * speed * delta
+			if check_in_range(self.parent.global_position.x,nextX, speed * delta):
 				state = 2
-				$wait_timer.start()
+				wait_timer.start()
 			return
 		# We have arrived at our spot but we haven't dropped an item yet
 		2:
-			get_parent().water_layer.visible = false
+			parent.water_layer.visible = false
 			# Karl Jacobs has an additional animation
-			if self.id == 4 or self.id == 3:
-				get_parent().animated_sprite.play("default")
+			if id == 4 or id == 3:
+				parent.animated_sprite.play("default")
 			# Wait for some time if we'd like
-			if $wait_timer.time_left > 0.01 and not $wait_timer.is_stopped():
+			if wait_timer.time_left > 0.01 and not wait_timer.is_stopped():
 				return
 			
 			get_spawnable_drop()
-			self.get_parent().add_child(drop)
+			parent.add_child(drop)
 			state = 3
 			return
 		# We have run out of things to drop, so lets' be set to despawn!
 		3:
 			
-			if self.counter < 0:
+			if counter < 0:
 				# Reset Karl Jacobs Animation
-				if self.id == 4 or self.id == 3:
-					self.get_parent().animated_sprite.play("swim")
-				self.state = 4
+				if id == 4 or id == 3:
+					parent.animated_sprite.play("swim")
+				state = 4
 				nextX = randi() % 2
 				nextX = -100 if nextX == 0 else 2000
-				direction = 1 if get_parent().global_position.x - nextX  <= 0 else -1 # Go Left if we are to the right, otherwise go right
+				direction = 1 if parent.global_position.x - nextX  <= 0 else -1 # Go Left if we are to the right, otherwise go right
 			return
 		# Move towards our despawn position
 		4:
-			get_parent().water_layer.visible = true
-			self.get_parent().global_position.x += direction * speed * delta
-			if check_in_range(self.get_parent().global_position.x,nextX, speed * delta):
+			parent.water_layer.visible = true
+			parent.global_position.x += direction * speed * delta
+			if check_in_range(parent.global_position.x,nextX, speed * delta):
 				state = 5
-			get_parent().animated_sprite.flip_h = true if direction == 1 else false
+			parent.animated_sprite.flip_h = true if direction == 1 else false
 			return
 		# We are at our despawn position, so despawn
 		5:
-			self.get_parent().get_parent().entities_spawned -= 1
-			self.get_parent().queue_free()
+			parent.get_parent().entities_spawned -= 1
+			parent.queue_free()
 			
 	
 # Gets what type of drop we need to drop from the parent then we can pass it to this component
 func get_spawnable_drop():
 	# For chandler/kris ships which need multiple drops
-	if self.id == 2 or self.id == 3:
-		match randi() % 2:
+	if id == 2 or id == 3:
+		match randi_range(0,1):
 			0:
-				drop = get_parent().spawnable_drop1.instantiate()
+				drop = parent.spawnable_drop1.instantiate()
 			1:
-				drop = get_parent().spawnable_drop2.instantiate()
+				drop = parent.spawnable_drop2.instantiate()
 		return
 	# Karl jacobs needs all the drops...
-	if self.id == 4:
+	if id == 4:
 		match randi_range(0,6):
 			0:
-				drop = get_parent().spawnable_drop1.instantiate()
+				drop = parent.spawnable_drop1.instantiate()
 			1:
-				drop = get_parent().spawnable_drop2.instantiate()
+				drop = parent.spawnable_drop2.instantiate()
 			2:
-				drop = get_parent().spawnable_drop3.instantiate()
+				drop = parent.spawnable_drop3.instantiate()
 			3:
-				drop = get_parent().spawnable_drop4.instantiate()
+				drop = parent.spawnable_drop4.instantiate()
 			4:
-				drop = get_parent().spawnable_drop5.instantiate()
+				drop = parent.spawnable_drop5.instantiate()
 			5: 
-				drop = get_parent().spawnable_drop6.instantiate()
+				drop = parent.spawnable_drop6.instantiate()
 			6:
-				drop = get_parent().spawnable_drop7.instantiate()
+				drop = parent.spawnable_drop7.instantiate()
 		return
 	
-	drop = get_parent().spawnable_drop.instantiate()
+	drop = parent.spawnable_drop.instantiate()
 	
 
 func check_in_range(a : float, b : float , range_of_pos : float) -> bool:

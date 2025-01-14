@@ -1,8 +1,8 @@
 extends Node2D
 
 func _ready() -> void:
-	$drop_component.timer_length += randi() % 10
-	$drop_component.fall_speed += randi() % 200
+	$drop_component.timer_length += randi_range(0,10)
+	$drop_component.fall_speed += randi_range(0,200)
 
 func timer_timeout_event():
 	pass
@@ -11,8 +11,8 @@ func timer_timeout_event():
 # When the player attacks this object
 func attacked():
 	#     Ship       Ship master   world
-	self.get_parent().get_parent().get_parent().score += 1
-	self.get_parent().get_parent().get_parent().heal_player()
+	get_parent().get_parent().get_parent().score += 1
+	get_parent().get_parent().get_parent().heal_player()
 	particle_event()
 
 #Basically this is an extra event between the activeness and deleteness so particles can properly appear for certain objects

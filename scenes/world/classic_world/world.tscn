@@ -65,7 +65,7 @@ script = ExtResource("1_gcfhd")
 [node name="collision" type="StaticBody2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="collision"]
-polygon = PackedVector2Array(-111, 2, -109, 1196, -1, 1196, 2068, 1086, 1925, -74, 1917, 1006, 1915, 984, 1845, 971, 1804, 960, 1671, 966, 1633, 982, 1190, 984, 1157, 969, 1031.49, 972.685, 992, 982, 886, 986, 852, 975, 819.587, 976.064, 787, 999, 766.812, 999.102, 741, 987, -1, 1003, 0, 207, 3, 160, 46, 161, 225, 162, 317, 164, 480, 173, 673, 177, 720, 178, 958, 182, 1089, 190, 1329, 194, 1423, 195, 1513, 202, 1885, 203, 1919, 188, -1, -69)
+polygon = PackedVector2Array(-44, 1, -42, 1044, -5, 1083, 2009, 1084, 1920, 177, 1921, 961, 1920, 1002, 0, 1003, 0, 207, 1922, 203, -3, 1)
 script = ExtResource("1_4hx4q")
 
 [node name="player" parent="." instance=ExtResource("1_vr02h")]
