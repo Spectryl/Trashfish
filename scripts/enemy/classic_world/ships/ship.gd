@@ -70,7 +70,7 @@ func _process(delta: float) -> void:
 				if id == 4 or id == 3:
 					parent.animated_sprite.play("swim")
 				state = 4
-				nextX = randi() % 2
+				nextX = randi_range(0,1)
 				nextX = -100 if nextX == 0 else 2000
 				direction = 1 if parent.global_position.x - nextX  <= 0 else -1 # Go Left if we are to the right, otherwise go right
 			return

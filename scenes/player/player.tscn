@@ -283,14 +283,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1cqym"]
-radius = 32.0
-height = 140.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jjfob"]
-radius = 28.0
-height = 56.0
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_bbmfk"]
 atlas = ExtResource("6_pyiet")
 region = Rect2(0, 0, 144, 69)
@@ -363,6 +355,14 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1cqym"]
+radius = 32.0
+height = 140.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jjfob"]
+radius = 28.0
+height = 56.0
+
 [node name="player" type="CharacterBody2D" groups=["player"]]
 texture_filter = 1
 script = ExtResource("1_edec7")
@@ -387,6 +387,18 @@ material = SubResource("ShaderMaterial_w7h5i")
 position = Vector2(7, -30)
 sprite_frames = SubResource("SpriteFrames_kffas")
 animation = &"idle"
+
+[node name="honey" type="AnimatedSprite2D" parent="CanvasGroup"]
+visible = false
+texture_filter = 1
+position = Vector2(4, -33)
+sprite_frames = SubResource("SpriteFrames_7b6dx")
+
+[node name="ice" type="AnimatedSprite2D" parent="CanvasGroup"]
+visible = false
+texture_filter = 1
+position = Vector2(8, -30)
+sprite_frames = SubResource("SpriteFrames_p7d51")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -413,21 +425,9 @@ one_shot = true
 [node name="debuff_master" type="Node2D" parent="."]
 visible = false
 
-[node name="honey" type="AnimatedSprite2D" parent="debuff_master"]
-visible = false
-texture_filter = 1
-position = Vector2(4, -33)
-sprite_frames = SubResource("SpriteFrames_7b6dx")
-
 [node name="honey_timer" type="Timer" parent="debuff_master"]
 wait_time = 4.0
 one_shot = true
-
-[node name="ice" type="AnimatedSprite2D" parent="debuff_master"]
-visible = false
-texture_filter = 1
-position = Vector2(8, -30)
-sprite_frames = SubResource("SpriteFrames_p7d51")
 
 [node name="ice_timer" type="Timer" parent="debuff_master"]
 wait_time = 2.0

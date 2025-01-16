@@ -12,6 +12,6 @@ const spawnable_drop7 = preload("res://scenes/enemy/classic_world/drops/nuclear_
 @onready var water_layer     : AnimatedSprite2D = get_node("water_layer")
 func _ready() -> void:
 	animated_sprite.play("default")
-	ship_component.counter += randi() % 5 #30 Under 30 Congrats Karl!... About that 30, NAHHHHHHH TO MUCH RNG
-	ship_component.speed += randi() % 750
-	wait_timer .wait_time = randi() % 1 + ship_component.wait_time
+	ship_component.counter += randi_range(0,5)
+	ship_component.speed += randi_range(0,750)
+	wait_timer .wait_time = randi_range(0,1)  + ship_component.wait_time

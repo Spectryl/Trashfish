@@ -9,8 +9,8 @@ var starve : int = 100
 @export var honey_speed : float = 2.5
 @export var ice_speed : int = 5
 
-@onready var honey_sprite        = $debuff_master/honey
-@onready var ice_sprite          = $debuff_master/ice
+@onready var honey_sprite        = $CanvasGroup/honey
+@onready var ice_sprite          = $CanvasGroup/ice
 @onready var canvas_group        = $CanvasGroup
 @onready var head                = $CanvasGroup/head
 @onready var body                = $CanvasGroup/body
@@ -117,6 +117,9 @@ func get_health():
 # Variables to mess with player health
 func set_health(change : int):
 	health = change
+	
+func player_position() -> Vector2:
+	return global_position
 
 func decrease_health() :
 	if world_id == 0 or world_id == 1 or (is_rolling and not starve <= 0):

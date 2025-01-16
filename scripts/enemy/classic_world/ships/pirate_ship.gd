@@ -8,6 +8,6 @@ const spawnable_drop2 = preload("res://scenes/enemy/classic_world/drops/ice_drop
 @onready var water_layer     : AnimatedSprite2D = get_node("water_layer")
 func _ready() -> void:
 	animated_sprite.play("default")
-	ship_component.counter += randi() % 3
-	ship_component.speed += randi() % 250 
-	wait_timer.wait_time = randi() % 1 + $ship_component.wait_time
+	ship_component.counter += randi_range(0,3)
+	ship_component.speed += randi_range(0,250)
+	wait_timer.wait_time = randi_range(0,1) + $ship_component.wait_time

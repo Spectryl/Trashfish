@@ -6,12 +6,12 @@ var fish
 const play_slot_scene = preload("res://scenes/enemy/classic_world/ships/orca.tscn")
 func _ready():
 	# Spawn on left or right side of screen
-	match randi() % 2:
+	match randi_range(0,1):
 		0:
 			self.global_position.x = 50
 		1:
 			self.global_position.x = 1870
-	self.global_position.y = randi() % 700 + 400
+	self.global_position.y = randi_range(0,700) + 400
 	$start_timer.start(5)
 	$flash_timer.start()
 

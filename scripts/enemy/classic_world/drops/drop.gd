@@ -13,10 +13,11 @@ var delete_timer: Timer
 var particle_timer: Timer
 var xDirection : float
 var ship_component : Node2D
-
+var parent : Node2D
 func _ready() -> void:
 	
 	ship_component = get_parent().get_parent().ship_component
+	parent = get_parent()
 	
 	xDirection = cos(randi() % 4)
 	active_timer = Timer.new()
@@ -56,9 +57,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if not isActive:
 		return
-	self.get_parent().global_position.x += horizontal_distance_component * delta
-	self.get_parent().global_position.y += fall_speed * delta
-	self.get_parent().rotation_degrees += rotation_speed
+	parent.global_position.x += horizontal_distance_component * delta
+	parent.global_position.y += fall_speed * delta
+	parent.rotation_degrees += rotation_speed
 	
 
 # On timer timeout, call the parents Event
@@ -66,24 +67,23 @@ func _on_active_timer_timeout() -> void:
 	# if we have a particle event, this will proc it.  The particle event will then call the delete_timer
 	if particle_timer_length != 0.01:
 		particle_timer.start()
-		#get_parent().particle_event()
 	else:
 		delete_timer.start()
 	isActive = false
-	get_parent().timer_timeout_event()
+	parent.timer_timeout_event()
 
 
 func _on_particle_timer_timeout() -> void:
 	delete_timer.start()
 func _on_delete_timer_timeout() -> void:
 
-	if get_parent().get_parent() == null:
-		self.get_parent().queue_free()
+	if parent.get_parent() == null:
+		parent.queue_free()
 	# Karl Jacobs Check
 	if self.ship_component.id == 4:
-		self.get_parent().get_parent().animated_sprite.play("default")
+		self.parent.get_parent().animated_sprite.play("default")
 	
 	ship_component.counter += -1
 	ship_component.state = 0
 	ship_component.hasWaited = false
-	self.get_parent().queue_free()
+	parent.queue_free()

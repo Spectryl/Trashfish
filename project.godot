@@ -18,6 +18,10 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 config/windows_native_icon="res://art/misc/icon.ico"
 
+[autoload]
+
+global="*res://scripts/misc/global_variables.gd"
+
 [display]
 
 window/size/viewport_width=1920
