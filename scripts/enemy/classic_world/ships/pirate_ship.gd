@@ -10,4 +10,4 @@ func _ready() -> void:
 	animated_sprite.play("default")
 	ship_component.counter += randi_range(0,3)
 	ship_component.speed += randi_range(0,250)
-	wait_timer.wait_time = randi_range(0,1) + $ship_component.wait_time
+	wait_timer.wait_time = randi_range(0,1) + ship_component.wait_time

@@ -15,9 +15,9 @@ var xDirection : float
 var ship_component : Node2D
 var parent : Node2D
 func _ready() -> void:
-	
-	ship_component = get_parent().get_parent().ship_component
 	parent = get_parent()
+	ship_component = parent.get_parent().ship_component
+	
 	
 	xDirection = cos(randi() % 4)
 	active_timer = Timer.new()
@@ -80,8 +80,8 @@ func _on_delete_timer_timeout() -> void:
 	if parent.get_parent() == null:
 		parent.queue_free()
 	# Karl Jacobs Check
-	if self.ship_component.id == 4:
-		self.parent.get_parent().animated_sprite.play("default")
+	if ship_component.id == 4:
+		parent.get_parent().animated_sprite.play("default")
 	
 	ship_component.counter += -1
 	ship_component.state = 0

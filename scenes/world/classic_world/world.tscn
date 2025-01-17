@@ -77,6 +77,8 @@ position = Vector2(393, 205)
 script = ExtResource("5_4ij4q")
 timer_wait_time = 7.0
 
+[node name="sound_master" type="Node" parent="."]
+
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="sky" type="Sprite2D" parent="ParallaxBackground"]
