@@ -32,7 +32,9 @@ var is_controls_flipped : bool = false
 var drop
 var direction : Vector2
 const trash_can = preload("res://scenes/player/trash_can.tscn")
+var world : Node2D
 func _ready() -> void:
+	world = global.world
 	honey_sprite.play("default")
 	ice_sprite.play("default")
 	player_flash_shader(0,0,0,0,0)

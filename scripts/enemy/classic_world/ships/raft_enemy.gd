@@ -20,14 +20,14 @@ func _ready() -> void:
 			self.global_position.x = -100
 		1:
 			self.global_position.x = 2000
-	shoot_timer.wait_time += randi() % 10
+	shoot_timer.wait_time += randi_range(0,10)
 	water_layer.play("default")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	gun.set_gun_rotation()
 	match state:
 		0:
-			nextX = randi() % 800 + 200
+			nextX = randi_range(0,800) + 200
 			state = 1
 			direction = 1 if self.global_position.x - nextX  <= 0 else -1 # Go Left if we are to the right, otherwise go right
 			self.flip()
