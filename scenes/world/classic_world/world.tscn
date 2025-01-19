@@ -1,13 +1,12 @@
-[gd_scene load_steps=19 format=3 uid="uid://dj4vdaxwdewiu"]
+[gd_scene load_steps=18 format=3 uid="uid://dj4vdaxwdewiu"]
 
 [ext_resource type="Script" path="res://scripts/world/classic_world/collision_polygon_2d.gd" id="1_4hx4q"]
 [ext_resource type="Script" path="res://scripts/world/classic_world/world.gd" id="1_gcfhd"]
 [ext_resource type="PackedScene" uid="uid://ia6ngi8g5tqx" path="res://scenes/player/player.tscn" id="1_vr02h"]
 [ext_resource type="Texture2D" uid="uid://rjycrnaueu0r" path="res://art/world/classic_world/background.png" id="5_2afuy"]
 [ext_resource type="Script" path="res://scripts/world/classic_world/ship_master.gd" id="5_4ij4q"]
-[ext_resource type="Script" path="res://scripts/world/classic_world/sound_master.gd" id="5_ngb0b"]
 [ext_resource type="Texture2D" uid="uid://cgyve4kk648yh" path="res://art/world/classic_world/sky.png" id="5_ou8na"]
-[ext_resource type="AudioStream" uid="uid://dgk0ebaa1330k" path="res://audio/classic_world/sfx/bloop.ogg" id="6_qrytc"]
+[ext_resource type="PackedScene" uid="uid://c6bnupwh41dh5" path="res://scenes/misc/sound_master.tscn" id="5_ulj5o"]
 [ext_resource type="Texture2D" uid="uid://bfig4ppqc525o" path="res://art/world/classic_world/health.png" id="7_tqa8c"]
 [ext_resource type="Texture2D" uid="uid://djpnypv17cuuo" path="res://art/world/classic_world/starve_icon.png" id="8_s7dsv"]
 [ext_resource type="AudioStream" uid="uid://ccp6gvrp78xp5" path="res://audio/classic_world/music/lisa.ogg" id="9_hxwpp"]
@@ -79,12 +78,7 @@ position = Vector2(393, 205)
 script = ExtResource("5_4ij4q")
 timer_wait_time = 7.0
 
-[node name="sound_master" type="Node" parent="."]
-script = ExtResource("5_ngb0b")
-
-[node name="bloop" type="AudioStreamPlayer" parent="sound_master"]
-stream = ExtResource("6_qrytc")
-max_polyphony = 33
+[node name="sound_master" parent="." instance=ExtResource("5_ulj5o")]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 

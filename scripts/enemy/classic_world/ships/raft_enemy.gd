@@ -70,6 +70,7 @@ func _process(delta: float) -> void:
 # After timer ends, have the gun fire a bullet towards the player and restart the timer
 func _on_shoot_timer_timeout() -> void:
 	gun.play("fire")
+	global.world.sound_master.play("rifle_shot")
 	bullets_left -= 1
 	# safeguard so we don't fire extra bullets
 	if bullets_left == 0:

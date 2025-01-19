@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://c6bnupwh41dh5"]
+
+[ext_resource type="Script" path="res://scripts/world/classic_world/sound_master.gd" id="1_7opjd"]
+[ext_resource type="AudioStream" uid="uid://dgk0ebaa1330k" path="res://audio/player/sfx/bloop.ogg" id="2_ptymc"]
+[ext_resource type="AudioStream" uid="uid://cro1yryl0ibsl" path="res://audio/classic_world/sfx/explosion1.ogg" id="3_b7grx"]
+[ext_resource type="AudioStream" uid="uid://gsi72bnh6h0n" path="res://audio/player/sfx/chomp.ogg" id="4_winql"]
+[ext_resource type="AudioStream" uid="uid://brbs0cxdqrjcw" path="res://audio/classic_world/sfx/rifle_shot.ogg" id="5_y0alb"]
+
+[node name="sound_master" type="Node"]
+script = ExtResource("1_7opjd")
+
+[node name="bloop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ptymc")
+max_polyphony = 5
+
+[node name="explosion1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_b7grx")
+max_polyphony = 33
+
+[node name="chomp" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_winql")
+max_polyphony = 44
+
+[node name="rifle_shot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_y0alb")
+max_polyphony = 44

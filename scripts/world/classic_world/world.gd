@@ -4,25 +4,22 @@ var high_score : int = 0: set = update_high_score_hud
 var health : int = 0: set = update_health_hud
 var config : ConfigFile
 
-var starve_bar : ProgressBar
-var score_ui : Label
-var high_score_ui : Label
-var health_ui : Label
-var player : CharacterBody2D
+@onready var starve_bar : ProgressBar          = $CanvasLayer/starve_bar
+@onready var score_ui : Label                  = $CanvasLayer/Panel/score
+@onready var high_score_ui : Label             = $CanvasLayer/Panel/high_score
+@onready var health_ui : Label                 = $CanvasLayer/Panel/health
+@onready var player : CharacterBody2D          = $player
+@onready var sound_master : Node               = $sound_master
 func _ready() -> void:
 	
 	
 	config = ConfigFile.new()
-	# Get all the nodes at the beginning, so we don't need to reget em 
-	# Also it helps when I inevitablely move shit around
-	starve_bar = get_node("CanvasLayer/starve_bar")
-	score_ui = get_node("CanvasLayer/Panel/score")
-	high_score_ui = get_node("CanvasLayer/Panel/high_score")
-	health_ui = get_node("CanvasLayer/Panel/health")
-	player = get_node("player")
+
+	
 	
 	global.player = player
 	global.world  = self
+	player.world = self
 	health = player.get_health()
 	$ParallaxBackground/background.play("default")
 	starve_bar.max_value = player.max_starve
