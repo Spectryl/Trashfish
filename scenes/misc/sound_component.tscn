@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmfdtyuaf8h6m"]
+
+[ext_resource type="Script" path="res://scripts/misc/sound_component.gd" id="1_ns3ww"]
+[ext_resource type="AudioStream" uid="uid://drowo78tqrcjs" path="res://audio/classic_world/sfx/resources/fuse.tres" id="2_rxe6r"]
+
+[node name="sound_component" type="Node2D"]
+script = ExtResource("1_ns3ww")
+
+[node name="audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_rxe6r")

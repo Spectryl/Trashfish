@@ -2,19 +2,35 @@ extends Node2D
 var animated_sprite : Node2D
 var drop_component : Node2D
 var particles : Node2D
-var audio_player
+var sound_timer : Timer
 
+var stream_length : float
 func _ready() -> void:
 	animated_sprite = get_node("AnimatedSprite2D")
 	drop_component = get_node("drop_component")
 	particles = get_node("CPUParticles2D")
-
-	
 	animated_sprite.play("idle")
 	drop_component.timer_length += randi_range(0,4)
 	drop_component.fall_speed += randi_range(0,55)
+	
+	
+	sound_timer = Timer.new()
+	stream_length = global.world.sound_master.fuse.stream.get_length()
+	sound_timer.wait_time = stream_length
+	sound_timer.one_shot  = false
+	sound_timer.autostart = false
+	add_child(sound_timer)
+	sound_timer.timeout.connect(sound_timer_timeout_event)
+	sound_timer.start(stream_length)
+	global.world.sound_master.play("fuse")
+
+
+func sound_timer_timeout_event():
+	global.world.sound_master.play("fuse")
+	
 
 func timer_timeout_event():
+	sound_timer.stop()
 	global.world.sound_master.play("explosion1")
 	self.rotation_degrees = 0
 	$explosion_hitbox/CollisionPolygon2D.set_deferred("disabled", false)

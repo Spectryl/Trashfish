@@ -24,3 +24,6 @@ max_polyphony = 44
 [node name="rifle_shot" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_y0alb")
 max_polyphony = 44
+
+[node name="fuse" type="AudioStreamPlayer" parent="."]
+max_polyphony = 44
