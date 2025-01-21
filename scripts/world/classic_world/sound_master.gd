@@ -4,7 +4,7 @@ extends Node
 @onready var chomp      : AudioStreamPlayer  = $chomp
 @onready var rifle_shot  : AudioStreamPlayer = $rifle_shot
 @onready var fuse  : AudioStreamPlayer       = $fuse
-
+@onready var wave_splash : AudioStreamPlayer = $wave_splash
 
 
 var sound_dictionary = {
@@ -16,7 +16,7 @@ func _ready() -> void:
 	sound_dictionary["chomp"]      = chomp
 	sound_dictionary["rifle_shot"] = rifle_shot
 	sound_dictionary["fuse"]       = fuse
-
+	sound_dictionary["wave_splash"]= wave_splash
 
 func play(sfx_name : String):
 	sound_dictionary[sfx_name].play()

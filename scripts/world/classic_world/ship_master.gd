@@ -18,7 +18,7 @@ func _ready() -> void:
 	self.timer.one_shot = true
 	self.add_child(timer)
 	self.timer.timeout.connect(_on_delete_timer_timeout)
-	spawn_new_enemy()
+	timer.start(1)
 	
 
 
