@@ -1,15 +1,16 @@
 extends Node2D
-const beast_ship = preload("res://scenes/enemy/classic_world/ships/mrbeast_ship.tscn")
+const beast_ship    = preload("res://scenes/enemy/classic_world/ships/mrbeast_ship.tscn")
 const chandler_ship = preload("res://scenes/enemy/classic_world/ships/chandler_ship.tscn")
-const raft_ship = preload("res://scenes/enemy/classic_world/ships/raft_enemy.tscn")
-const pirate_ship = preload("res://scenes/enemy/classic_world/ships/pirate_ship.tscn")
-const karl_ship = preload("res://scenes/enemy/classic_world/ships/karl_ship.tscn")
-const orca =      preload("res://scenes/enemy/classic_world/ships/fish_spawner.tscn")
+const raft_ship     = preload("res://scenes/enemy/classic_world/ships/raft_enemy.tscn")
+const pirate_ship   = preload("res://scenes/enemy/classic_world/ships/pirate_ship.tscn")
+const karl_ship     = preload("res://scenes/enemy/classic_world/ships/karl_ship.tscn")
+const orca          = preload("res://scenes/enemy/classic_world/ships/fish_spawner.tscn")
 @export var timer_wait_time : float
 @export var max_entities : int = 30
 var entities_spawned : int
 var score : int
 var timer : Timer
+@onready var world : Node2D = get_parent()
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	randomize()
@@ -18,12 +19,12 @@ func _ready() -> void:
 	self.timer.one_shot = true
 	self.add_child(timer)
 	self.timer.timeout.connect(_on_delete_timer_timeout)
-	timer.start(1)
+	timer.start(1) #This is so the world's Global.world is set properly so everything reliant on that one variable is set properly
 	
 
 
 func _on_delete_timer_timeout() -> void:
-	score = get_parent().score
+	score = world.score
 	var a = int(timer_wait_time - (score / 30.0))
 	if (a <= 1):
 		a = 1
@@ -62,6 +63,6 @@ func spawn_new_enemy() -> void:
 		5:
 			b = orca.instantiate()
 	b.set_global_scale(Vector2(2,2))
-	self.add_child(b)
-	self.timer.start()
-	self.entities_spawned += 1
+	add_child(b)
+	timer.start()
+	entities_spawned += 1

@@ -33,7 +33,7 @@ func _ready() -> void:
 	add_child(delete_timer)
 	delete_timer .timeout.connect(_on_delete_timer_timeout)
 	active_timer.start()
-	get_parent().global_position.y = get_parent().global_position.y + 50
+	parent.global_position.y = parent.global_position.y + 50
 
 	if particle_timer_length != 0.01:
 		particle_timer = Timer.new()
@@ -52,6 +52,8 @@ func _ready() -> void:
 	match xDirection * -1.0 < 0:
 		true: rotation_speed *= -1
 		false: pass
+	
+	global.world.sound_master.play("drop_splash")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c6bnupwh41dh5"]
+[gd_scene load_steps=9 format=3 uid="uid://c6bnupwh41dh5"]
 
 [ext_resource type="Script" path="res://scripts/world/classic_world/sound_master.gd" id="1_7opjd"]
 [ext_resource type="AudioStream" uid="uid://dgk0ebaa1330k" path="res://audio/player/sfx/bloop.ogg" id="2_ptymc"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://brbs0cxdqrjcw" path="res://audio/classic_world/sfx/rifle_shot.ogg" id="5_y0alb"]
 [ext_resource type="AudioStream" uid="uid://bpilryhv40y1r" path="res://audio/classic_world/sfx/fuse.ogg" id="6_al5o7"]
 [ext_resource type="AudioStream" uid="uid://dho5fbun0qwp7" path="res://audio/classic_world/sfx/wave_splash.ogg" id="7_jegqv"]
+[ext_resource type="AudioStream" uid="uid://d0hsnqyblfroh" path="res://audio/classic_world/sfx/drop_splash.ogg" id="8_nskwb"]
 
 [node name="sound_master" type="Node"]
 script = ExtResource("1_7opjd")
@@ -33,4 +34,8 @@ max_polyphony = 44
 
 [node name="wave_splash" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_jegqv")
+volume_db = -15.0
 max_polyphony = 55
+
+[node name="drop_splash" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_nskwb")

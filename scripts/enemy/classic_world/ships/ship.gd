@@ -39,6 +39,7 @@ func _process(delta: float) -> void:
 	# IF we aren't moving and we aren't dropping items, then we should find a new spot to go
 	match state:
 		0:
+			sound_timer.start(stream_length)
 			world.sound_master.play("wave_splash")
 			# this is for when we run out of things to drop so lets go to despawning state
 			if counter < 0:
@@ -56,8 +57,6 @@ func _process(delta: float) -> void:
 			return
 		# We have a spot to go to but we aren't there yet
 		1:
-			
-			sound_timer.start(stream_length)
 			parent.global_position.x += direction * speed * delta
 			if check_in_range(self.parent.global_position.x,nextX, speed * delta):
 				state = 2
@@ -86,6 +85,7 @@ func _process(delta: float) -> void:
 				if id == 4 or id == 3:
 					parent.animated_sprite.play("swim")
 				world.sound_master.play("wave_splash")
+				sound_timer.start(stream_length)
 				state = 4
 				nextX = randi_range(0,1)
 				nextX = -100 if nextX == 0 else 2000
@@ -94,7 +94,6 @@ func _process(delta: float) -> void:
 		# Move towards our despawn position
 		4:
 			
-			sound_timer.start(stream_length)
 			parent.water_layer.visible = true
 			parent.global_position.x += direction * speed * delta
 			if check_in_range(parent.global_position.x,nextX, speed * delta):
@@ -149,7 +148,7 @@ func check_in_range(a : float, b : float , range_of_pos : float) -> bool:
 	return false
 		
 func sound_timer_timeout_event() -> void:
-	global.world.sound_master.play("wave_splash")
+	world.sound_master.play("wave_splash")
 
 func _on_wait_timer_timeout() -> void:
 	hasWaited = true
