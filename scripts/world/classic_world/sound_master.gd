@@ -21,7 +21,7 @@ func _ready() -> void:
 	sound_dictionary["drop_splash"]= drop_splash
 
 func play(sfx_name : String):
-	sound_dictionary[sfx_name].play()
+	sound_dictionary[sfx_name].play_audio()
 
 func stop(sfx_name : String):
 	sound_dictionary[sfx_name].stop()
