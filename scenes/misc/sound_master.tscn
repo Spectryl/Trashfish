@@ -22,19 +22,26 @@ script = ExtResource("3_fr5gk")
 stream = ExtResource("3_b7grx")
 max_polyphony = 33
 script = ExtResource("3_fr5gk")
+pitch_scale_min = 0.95
+pitch_scale_max = 1.05
 
 [node name="chomp" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_winql")
 max_polyphony = 44
 script = ExtResource("3_fr5gk")
+pitch_scale_min = 0.95
+pitch_scale_max = 1.05
 
 [node name="rifle_shot" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_y0alb")
 max_polyphony = 44
 script = ExtResource("3_fr5gk")
+pitch_scale_min = 0.9
+pitch_scale_max = 1.1
 
 [node name="fuse" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_al5o7")
+volume_db = 18.0
 max_polyphony = 44
 script = ExtResource("3_fr5gk")
 
@@ -43,6 +50,8 @@ stream = ExtResource("7_jegqv")
 volume_db = -12.5
 max_polyphony = 55
 script = ExtResource("3_fr5gk")
+pitch_scale_min = 0.8
+pitch_scale_max = 1.2
 
 [node name="drop_splash" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_nskwb")
