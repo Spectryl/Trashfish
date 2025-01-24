@@ -199,7 +199,7 @@ func _on_attack_hitbox_body_entered(object: Node2D) -> void:
 	if object.is_in_group("player"):
 		return
 	if object.is_in_group("drop"):
-		world.sound_master.play("chomp")
+		global.sound_master.play("chomp")
 		reset_starvation()
 		object.get_parent().attacked()
 		return
@@ -235,7 +235,7 @@ func _on_roll_timer_timeout():
 
 # lets player know they can roll again
 func _on_roll_cooldown_timer_timeout():
-	world.sound_master.play("bloop")
+	global.sound_master.play("bloop")
 	player_flash_shader(0.66, 0.51, 0.17, 1.0, 0.7)
 	flash_timer.start(0.5)
 

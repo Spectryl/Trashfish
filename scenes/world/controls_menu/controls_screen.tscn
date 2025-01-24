@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://yqsbttqubc1n"]
+[gd_scene load_steps=3 format=3 uid="uid://yqsbttqubc1n"]
 
 [ext_resource type="Texture2D" uid="uid://bubdtv5x205ea" path="res://art/world/control_menu/control_menu.png" id="1_p0ue0"]
-[ext_resource type="PackedScene" uid="uid://ia6ngi8g5tqx" path="res://scenes/player/player.tscn" id="2_1drte"]
 [ext_resource type="PackedScene" uid="uid://cjwviwi1ego2b" path="res://scenes/world/main_menu/title_button.tscn" id="3_mhkuf"]
 
 [node name="controls_screen" type="Node2D"]
@@ -16,12 +15,6 @@ texture = ExtResource("1_p0ue0")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(-93, 0, 0, 0, 0, 1076, 1920, 1080, 1920, -1, 1920, 0, 0, 0, 1921, -5, 1949, 1087, 0, 1133, -18, 1080)
-
-[node name="player" parent="StaticBody2D/CollisionPolygon2D" instance=ExtResource("2_1drte")]
-position = Vector2(382, 480)
-scale = Vector2(3, 3)
-health = 10000
-world_id = 1
 
 [node name="title_button" parent="." instance=ExtResource("3_mhkuf")]
 position = Vector2(1469, 659)

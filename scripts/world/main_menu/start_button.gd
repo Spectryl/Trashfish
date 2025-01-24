@@ -1,6 +1,5 @@
 extends Node2D
 
-
 func attacked():
 	get_tree().change_scene_to_file("res://scenes/world/classic_world/world.tscn")
 	load_save_data()

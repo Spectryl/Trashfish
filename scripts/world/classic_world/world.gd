@@ -8,18 +8,16 @@ var config : ConfigFile
 @onready var score_ui : Label                  = $CanvasLayer/Panel/score
 @onready var high_score_ui : Label             = $CanvasLayer/Panel/high_score
 @onready var health_ui : Label                 = $CanvasLayer/Panel/health
-@onready var player : CharacterBody2D          = $player
-@onready var sound_master : Node               = $sound_master
+@onready var player : CharacterBody2D          = global.player
+@onready var sound_master : Node               = global.sound_master
 func _ready() -> void:
 	
 	
 	config = ConfigFile.new()
 
 	
-	
-	global.player = player
+
 	global.world  = self
-	player.world = self
 	health = player.get_health()
 	$ParallaxBackground/background.play("default")
 	starve_bar.max_value = player.max_starve
