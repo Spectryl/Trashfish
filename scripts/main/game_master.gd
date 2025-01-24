@@ -5,7 +5,7 @@ extends Node2D
 
 const main_menu_scene = preload("res://scenes/world/main_menu/main_menu.tscn")
 const player_scene    = preload("res://scenes/player/player.tscn")
-
+const audio_scene     = preload("res://scenes/main/audio_master.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.

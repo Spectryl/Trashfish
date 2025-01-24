@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=3 uid="uid://c6bnupwh41dh5"]
+
+[ext_resource type="Script" path="res://scripts/world/classic_world/sound_master.gd" id="1_amg6c"]
+[ext_resource type="AudioStream" uid="uid://dgk0ebaa1330k" path="res://audio/sound_effects/bloop.ogg" id="2_fjgyy"]
+[ext_resource type="Script" path="res://scripts/misc/audio_stream_component.gd" id="3_fwkhs"]
+[ext_resource type="AudioStream" uid="uid://gsi72bnh6h0n" path="res://audio/sound_effects/chomp.ogg" id="4_neqga"]
+[ext_resource type="AudioStream" uid="uid://d0hsnqyblfroh" path="res://audio/sound_effects/drop_splash.ogg" id="5_reh3m"]
+[ext_resource type="AudioStream" uid="uid://cro1yryl0ibsl" path="res://audio/sound_effects/explosion1.ogg" id="6_4682m"]
+[ext_resource type="AudioStream" uid="uid://brbs0cxdqrjcw" path="res://audio/sound_effects/rifle_shot.ogg" id="7_u2wru"]
+[ext_resource type="AudioStream" uid="uid://bpilryhv40y1r" path="res://audio/sound_effects/fuse.ogg" id="8_ya4cn"]
+[ext_resource type="AudioStream" uid="uid://dho5fbun0qwp7" path="res://audio/sound_effects/wave_splash.ogg" id="9_1q5tc"]
+
+[node name="sound_master" type="Node"]
+script = ExtResource("1_amg6c")
+
+[node name="bloop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_fjgyy")
+max_polyphony = 5
+script = ExtResource("3_fwkhs")
+
+[node name="chomp" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_neqga")
+max_polyphony = 5
+script = ExtResource("3_fwkhs")
+pitch_scale_min = 0.95
+pitch_scale_max = 1.05
+
+[node name="drop_splash" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_reh3m")
+max_polyphony = 5
+script = ExtResource("3_fwkhs")
+pitch_scale_min = 0.8
+pitch_scale_max = 1.5
+
+[node name="explosion1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_4682m")
+volume_db = -5.0
+max_polyphony = 3
+script = ExtResource("3_fwkhs")
+pitch_scale_min = 0.8
+pitch_scale_max = 1.2
+
+[node name="rifle_shot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_u2wru")
+max_polyphony = 5
+script = ExtResource("3_fwkhs")
+pitch_scale_min = 0.9
+pitch_scale_max = 1.1
+
+[node name="fuse" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_ya4cn")
+volume_db = 18.0
+max_polyphony = 5
+script = ExtResource("3_fwkhs")
+
+[node name="wave_splash" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_1q5tc")
+volume_db = -12.5
+max_polyphony = 40
+script = ExtResource("3_fwkhs")
+pitch_scale_min = 0.8
+pitch_scale_max = 1.2
