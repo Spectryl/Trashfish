@@ -1,14 +1,14 @@
 [gd_scene load_steps=10 format=3 uid="uid://c6bnupwh41dh5"]
 
 [ext_resource type="Script" path="res://scripts/world/classic_world/sound_master.gd" id="1_7opjd"]
-[ext_resource type="AudioStream" uid="uid://dgk0ebaa1330k" path="res://audio/player/sfx/bloop.ogg" id="2_ptymc"]
-[ext_resource type="AudioStream" uid="uid://cro1yryl0ibsl" path="res://audio/classic_world/sfx/explosion1.ogg" id="3_b7grx"]
+[ext_resource type="AudioStream" path="res://audio/player/sfx/bloop.ogg" id="2_ptymc"]
+[ext_resource type="AudioStream" path="res://audio/classic_world/sfx/explosion1.ogg" id="3_b7grx"]
 [ext_resource type="Script" path="res://scripts/misc/audio_stream_component.gd" id="3_fr5gk"]
-[ext_resource type="AudioStream" uid="uid://gsi72bnh6h0n" path="res://audio/player/sfx/chomp.ogg" id="4_winql"]
-[ext_resource type="AudioStream" uid="uid://brbs0cxdqrjcw" path="res://audio/classic_world/sfx/rifle_shot.ogg" id="5_y0alb"]
-[ext_resource type="AudioStream" uid="uid://bpilryhv40y1r" path="res://audio/classic_world/sfx/fuse.ogg" id="6_al5o7"]
-[ext_resource type="AudioStream" uid="uid://dho5fbun0qwp7" path="res://audio/classic_world/sfx/wave_splash.ogg" id="7_jegqv"]
-[ext_resource type="AudioStream" uid="uid://d0hsnqyblfroh" path="res://audio/classic_world/sfx/drop_splash.ogg" id="8_nskwb"]
+[ext_resource type="AudioStream" path="res://audio/player/sfx/chomp.ogg" id="4_winql"]
+[ext_resource type="AudioStream" path="res://audio/classic_world/sfx/rifle_shot.ogg" id="5_y0alb"]
+[ext_resource type="AudioStream" path="res://audio/classic_world/sfx/fuse.ogg" id="6_al5o7"]
+[ext_resource type="AudioStream" path="res://audio/classic_world/sfx/wave_splash.ogg" id="7_jegqv"]
+[ext_resource type="AudioStream" path="res://audio/classic_world/sfx/drop_splash.ogg" id="8_nskwb"]
 
 [node name="sound_master" type="Node"]
 script = ExtResource("1_7opjd")

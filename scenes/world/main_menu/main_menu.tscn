@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b210yyc8g3mvk" path="res://scenes/world/main_menu/start_button.tscn" id="3_w6es1"]
 [ext_resource type="PackedScene" uid="uid://cya1bmeausnpo" path="res://scenes/world/main_menu/controls_button.tscn" id="4_whecn"]
 [ext_resource type="PackedScene" uid="uid://b3fjylmcjo6lh" path="res://scenes/world/main_menu/quit_button.tscn" id="5_2utky"]
-[ext_resource type="AudioStream" uid="uid://cx7oeupgn61rq" path="res://audio/main_menu/music/midnight_sands.ogg" id="6_yk1ol"]
+[ext_resource type="AudioStream" path="res://audio/main_menu/music/midnight_sands.ogg" id="6_yk1ol"]
 [ext_resource type="PackedScene" uid="uid://c6bnupwh41dh5" path="res://scenes/misc/sound_master.tscn" id="8_inwvi"]
 
 [node name="main_menu" type="Node2D"]
