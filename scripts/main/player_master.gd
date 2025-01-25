@@ -5,7 +5,8 @@ const player_scene = preload("res://scenes/player/player.tscn")
 func _ready() -> void:
 	player = player_scene.instantiate()
 	self.add_child(player)
-	global.player = player 
+	global.player = player
+	global.player_master = self
 	change_player_global_position(Vector2(300,380))
 	change_player_scale(3.0)
 	print(player.global_position)

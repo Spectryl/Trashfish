@@ -15,12 +15,14 @@ const death_timer = preload("res://scenes/misc/delete_component.tscn")
 var sound_timer : Timer
 var stream_length : float
 var drop
+var sound_master : Node
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	parent.global_position.y = parent.get_parent().global_position.y + randi_range(0,3)
 	world = global.world
 	sound_timer = Timer.new()
-	stream_length = world.sound_master.wave_splash.stream.get_length()
+	sound_master = global.sound_master
+	stream_length = sound_master.wave_splash.stream.get_length()
 	sound_timer.wait_time = stream_length
 	sound_timer.one_shot  = false
 	sound_timer.autostart = false
@@ -40,7 +42,7 @@ func _process(delta: float) -> void:
 	match state:
 		0:
 			sound_timer.start(stream_length)
-			world.sound_master.play("wave_splash")
+			sound_master.play("wave_splash")
 			# this is for when we run out of things to drop so lets go to despawning state
 			if counter < 0:
 				state = 3
@@ -84,7 +86,7 @@ func _process(delta: float) -> void:
 				# Reset Karl Jacobs Animation
 				if id == 4 or id == 3:
 					parent.animated_sprite.play("swim")
-				world.sound_master.play("wave_splash")
+				sound_master.play("wave_splash")
 				sound_timer.start(stream_length)
 				state = 4
 				nextX = randi_range(0,1)
@@ -148,7 +150,7 @@ func check_in_range(a : float, b : float , range_of_pos : float) -> bool:
 	return false
 		
 func sound_timer_timeout_event() -> void:
-	world.sound_master.play("wave_splash")
+	sound_master.play("wave_splash")
 
 func _on_wait_timer_timeout() -> void:
 	hasWaited = true

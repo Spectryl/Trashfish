@@ -13,8 +13,11 @@ func _ready() -> void:
 	music_dictionary["lisa"]           = lisa
 	music_dictionary["midnight_sands"] = midnight_sands
 	global.music_master = self
+	play("midnight_sands")
 # Ends the current song and plays the new song
 func change_song(new_song_file_name : String):
+	if new_song_file_name == current_song_playing:
+		return
 	stop(current_song_playing)
 	play(new_song_file_name)
 

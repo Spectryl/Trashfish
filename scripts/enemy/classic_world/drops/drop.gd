@@ -3,7 +3,7 @@ extends Node2D
 @export var delete_timer_length : float
 @export var particle_timer_length : float = 0.01
 @export var fall_speed : int
-
+@export var sound_master : Node = global.sound_master
 var rotation_speed : float
 var horizontal_distance_component : float
 
@@ -53,7 +53,7 @@ func _ready() -> void:
 		true: rotation_speed *= -1
 		false: pass
 	
-	global.world.sound_master.play("drop_splash")
+	sound_master.play("drop_splash")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

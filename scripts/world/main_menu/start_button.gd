@@ -1,7 +1,7 @@
 extends Node2D
 
 func attacked():
-	get_tree().change_scene_to_file("res://scenes/world/classic_world/world.tscn")
+	global.world_master.change_world(2)
 	load_save_data()
 	
 	

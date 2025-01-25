@@ -16,8 +16,6 @@ func _ready() -> void:
 	config = ConfigFile.new()
 
 	
-
-	global.world  = self
 	health = player.get_health()
 	$ParallaxBackground/background.play("default")
 	starve_bar.max_value = player.max_starve

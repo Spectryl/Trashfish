@@ -16,13 +16,13 @@ position = Vector2(960, 540)
 texture = ExtResource("1_1swq0")
 
 [node name="start_button" parent="." instance=ExtResource("3_w6es1")]
-position = Vector2(683, 385)
+position = Vector2(679, 258)
 
 [node name="controls_button" parent="." instance=ExtResource("4_whecn")]
 position = Vector2(683, 517.04)
 
 [node name="quit_button" parent="." instance=ExtResource("5_2utky")]
-position = Vector2(683, 651.675)
+position = Vector2(673, 848)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
