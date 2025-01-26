@@ -81,13 +81,7 @@ func _on_shoot_timer_timeout() -> void:
 	
 # Checks if value a/b are in range of each other
 func check_in_range(a : float, b : float , range_of_value : float ) -> bool:
-	if a > b:
-		if a - b < range_of_value + 1:
-			return true
-	if a < b:
-		if b - a < range_of_value + 1:
-			return true
-	return false
+	return abs(a - b) < range_of_value + 1
 
 # Flips the ship and gun around
 func flip():

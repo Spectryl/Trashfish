@@ -1,18 +1,10 @@
-[gd_scene load_steps=28 format=3 uid="uid://tnnxe3dimvi0"]
+[gd_scene load_steps=26 format=3 uid="uid://tnnxe3dimvi0"]
 
 [ext_resource type="Script" path="res://scripts/enemy/classic_world/ships/raft_enemy.gd" id="1_ef6wl"]
 [ext_resource type="Texture2D" uid="uid://c7tpy7v4e6jjo" path="res://art/enemy/classic_world/raft.png" id="1_fen3x"]
 [ext_resource type="Texture2D" uid="uid://de03ac32yi2ee" path="res://art/enemy/classic_world/awp.png" id="2_nk87i"]
 [ext_resource type="Script" path="res://scripts/enemy/classic_world/ships/gun.gd" id="4_its3k"]
 [ext_resource type="Texture2D" uid="uid://mxk4ye0eopij" path="res://art/enemy/classic_world/water_layer.png" id="5_5f0vo"]
-
-[sub_resource type="Animation" id="Animation_0sbso"]
-resource_name = "idle"
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_mydu5"]
-_data = {
-"idle": SubResource("Animation_0sbso")
-}
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vodw4"]
 atlas = ExtResource("1_fen3x")
@@ -164,11 +156,6 @@ animations = [{
 
 [node name="raft_enemy" type="Node2D"]
 script = ExtResource("1_ef6wl")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_mydu5")
-}
 
 [node name="raft" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

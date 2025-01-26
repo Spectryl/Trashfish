@@ -141,14 +141,8 @@ func get_spawnable_drop():
 	
 
 func check_in_range(a : float, b : float , range_of_pos : float) -> bool:
-	if a > b:
-		if a - b < range_of_pos + 1:
-			return true
-	if a < b:
-		if b - a < range_of_pos + 1:
-			return true
-	return false
-		
+	return abs(a - b) < range_of_pos + 1
+
 func sound_timer_timeout_event() -> void:
 	sound_master.play("wave_splash")
 

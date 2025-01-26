@@ -113,7 +113,7 @@ func roll():
 
 # Getter for health
 func get_health():
-	return health;
+	return health
 
 # Variables to mess with player health
 func set_health(change : int):
@@ -125,11 +125,11 @@ func player_position() -> Vector2:
 func decrease_health() :
 	if world_id == 0 or world_id == 1 or (is_rolling and not starve <= 0):
 		return
-	health -= 1;
-	damage_flash_body();
+	health -= 1
+	damage_flash_body()
 
 func increase_health():
-	health += 1;
+	health += 1
 	if health > max_health:
 		health = max_health
 	heal_flash_body()
