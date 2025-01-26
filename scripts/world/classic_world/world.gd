@@ -4,6 +4,8 @@ var high_score : int = 0: set = update_high_score_hud
 var health : int = 0: set = update_health_hud
 var config : ConfigFile
 
+var world_id = 2 #would be better if composition was used here but its one variable
+
 @onready var starve_bar : ProgressBar          = $CanvasLayer/starve_bar
 @onready var score_ui : Label                  = $CanvasLayer/Panel/score
 @onready var high_score_ui : Label             = $CanvasLayer/Panel/high_score

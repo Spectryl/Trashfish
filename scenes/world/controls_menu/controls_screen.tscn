@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://yqsbttqubc1n"]
+[gd_scene load_steps=4 format=3 uid="uid://yqsbttqubc1n"]
 
+[ext_resource type="Script" path="res://scripts/world/controls_menu/controls_screen.gd" id="1_hkpdo"]
 [ext_resource type="Texture2D" uid="uid://bubdtv5x205ea" path="res://art/world/control_menu/control_menu.png" id="1_p0ue0"]
 [ext_resource type="PackedScene" uid="uid://cjwviwi1ego2b" path="res://scenes/world/main_menu/title_button.tscn" id="3_mhkuf"]
 
 [node name="controls_screen" type="Node2D"]
+script = ExtResource("1_hkpdo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1

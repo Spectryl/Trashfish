@@ -5,7 +5,7 @@ var starve : int = 100
 @export var health : int = 6
 @export var max_starve : int = 100
 @export var max_health : int = 10
-@export var world_id : int = 3
+@export var world_id : int = 0
 @export var honey_speed : float = 2.5
 @export var ice_speed : int = 5
 
@@ -22,6 +22,7 @@ var starve : int = 100
 @onready var control_timer       = $debuff_master/control_timer
 @onready var roll_timer          = $debuff_master/roll_timer
 @onready var roll_cooldown_timer = $debuff_master/roll_cooldown_timer
+@onready var starve_timer        = $Starve_Timer
 
 var is_attacking : bool = false
 var is_dead : bool = false

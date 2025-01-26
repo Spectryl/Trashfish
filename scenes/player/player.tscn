@@ -408,7 +408,6 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_1cqym")
 
 [node name="Starve_Timer" type="Timer" parent="."]
-autostart = true
 
 [node name="attack_hitbox" type="Area2D" parent="." groups=["attack"]]
 visible = false

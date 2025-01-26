@@ -85,7 +85,7 @@ func _on_delete_timer_timeout() -> void:
 	if ship_component.id == 4:
 		parent.get_parent().animated_sprite.play("default")
 	
-	ship_component.counter += -1
+	ship_component.counter -= 1
 	ship_component.state = 0
 	ship_component.hasWaited = false
 	parent.queue_free()
