@@ -7,8 +7,7 @@ func _ready() -> void:
 	self.add_child(player)
 	global.player = player
 	global.player_master = self
-	change_player_global_position(Vector2(300,380))
-	change_player_scale(3.0)
+	disable_player_activity()
 
 func set_player_defaults(new_scale: float = 1, new_speed : float = 200, new_global_position : Vector2 = Vector2(0,0), new_world_id : int = 0):
 	change_player_scale(new_scale)
@@ -33,10 +32,24 @@ func change_player_global_position(new_position : Vector2) -> void:
 # Changes Player's world_id
 func change_player_world(new_id : int) -> void:
 	player.world_id = new_id
-	
+
+# Disables the player's starve timer, use this for non-play areas
 func disable_player_starve_timer() -> void:
 	player.starve_timer.stop()
 
+# Enables the player's starve timer, use this for play areas
 func enable_player_starve_timer() -> void:
 	player.starve_timer.start()
 	player.starve = player.max_starve
+
+# disables the player completely on screens & hides them
+func disable_player_activity() -> void:
+	player.set_process(false)
+	player.visible = false
+	player.body_hurtbox.set_deferred("disabled", true)
+
+#Enables a player, use this on play-areas
+func enable_player_activity() -> void:
+	player.set_process(true)
+	player.visible = true
+	player.body_hurtbox.set_deferred("disabled", false)
