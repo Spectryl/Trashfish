@@ -22,7 +22,7 @@ func _on_explosion_hitbox_body_entered(body: Node2D) -> void:
 
 # When the player attacks this object
 func attacked():
-	self.get_parent().get_parent().get_parent().score += 1
+	global.world.score += 1
 	drop_component.delete_timer.start()
 	drop_component.isActive = false #freezes the object
 	$StaticBody2D.set_deferred("disable_mode",true) # disables the eating hitboxes

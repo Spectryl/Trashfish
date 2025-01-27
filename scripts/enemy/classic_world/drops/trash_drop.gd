@@ -9,7 +9,7 @@ func timer_timeout_event():
 	pass
 
 func attacked():
-	self.get_parent().get_parent().get_parent().score += 1
+	global.world.score += 1
 	particle_event()
 	
 func particle_event():
