@@ -1,24 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://da51siwmltkoo"]
+[gd_scene load_steps=4 format=3 uid="uid://da51siwmltkoo"]
 
 [ext_resource type="Texture2D" uid="uid://dwxg3n1piywg2" path="res://art/world/main_menu/main_menu.png" id="1_1swq0"]
 [ext_resource type="Script" path="res://scripts/world/main_menu/main_menu.gd" id="1_thvtn"]
-[ext_resource type="Texture2D" uid="uid://clq44mlyt6kmm" path="res://art/world/main_menu/start_button.png" id="3_05ksy"]
-[ext_resource type="Texture2D" uid="uid://i55vhi2s2qbn" path="res://art/world/main_menu/controls_button.png" id="4_17pt2"]
-[ext_resource type="Texture2D" uid="uid://1axiehrh7c1c" path="res://art/world/main_menu/quit_button.png" id="5_720gf"]
+[ext_resource type="Script" path="res://scripts/world/main_menu/menu.gd" id="3_y14qv"]
 
 [node name="main_menu" type="Node2D"]
 script = ExtResource("1_thvtn")
 
-[node name="main_menu" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="main_menu"]
-layout_mode = 1
+[node name="TextureRect" type="TextureRect" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -30,43 +19,9 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_1swq0")
 
-[node name="MarginContainer" type="MarginContainer" parent="main_menu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 1.0
-offset_top = -5.0
+[node name="menu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
 offset_right = 1924.0
-offset_bottom = 1088.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="main_menu/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/separation = 60
-alignment = 1
-
-[node name="start_button" type="TextureButton" parent="main_menu/MarginContainer/VBoxContainer"]
-layout_mode = 2
-toggle_mode = true
-texture_normal = ExtResource("3_05ksy")
-stretch_mode = 0
-
-[node name="controls_button" type="TextureButton" parent="main_menu/MarginContainer/VBoxContainer"]
-layout_mode = 2
-toggle_mode = true
-texture_normal = ExtResource("4_17pt2")
-stretch_mode = 0
-
-[node name="quit_button" type="TextureButton" parent="main_menu/MarginContainer/VBoxContainer"]
-layout_mode = 2
-toggle_mode = true
-texture_normal = ExtResource("5_720gf")
-stretch_mode = 0
-
-[connection signal="pressed" from="main_menu/MarginContainer/VBoxContainer/start_button" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="main_menu/MarginContainer/VBoxContainer/controls_button" to="." method="_on_controls_button_pressed"]
-[connection signal="pressed" from="main_menu/MarginContainer/VBoxContainer/quit_button" to="." method="_on_quit_button_pressed"]
+offset_bottom = 1078.0
+script = ExtResource("3_y14qv")

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccx5d513blbua"]
+
+[ext_resource type="Script" path="res://scripts/world/options_menu/options_menu.gd" id="1_ba5dd"]
+[ext_resource type="PackedScene" uid="uid://benrome6etksn" path="res://scenes/world/options_menu/options_ui.tscn" id="2_ilud4"]
+
+[node name="options_menu" type="Node2D"]
+script = ExtResource("1_ba5dd")
+
+[node name="options_ui" parent="." instance=ExtResource("2_ilud4")]

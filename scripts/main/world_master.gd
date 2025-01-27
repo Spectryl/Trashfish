@@ -2,6 +2,7 @@ extends Node2D
 @onready var world : Node2D
 
 const main_menu_scene    = preload("res://scenes/world/main_menu/main_menu.tscn")
+const options_menu_scene = preload("res://scenes/world/options_menu/options_menu.tscn")
 const control_menu_scene = preload("res://scenes/world/controls_menu/controls_screen.tscn")
 const beach_world_scene  = preload("res://scenes/world/classic_world/world.tscn")
 
@@ -31,7 +32,6 @@ func change_world(world_id : int) -> void:
 			global.player_master.disable_player_starve_timer()
 			global.player_master.enable_player_activity()
 			global.player_master.change_player_scale(3.0)
-			
 		2:
 			world = beach_world_scene.instantiate()
 			global.player_master.enable_player_activity()
