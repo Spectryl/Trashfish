@@ -74,10 +74,10 @@ animation = &"idle"
 [node name="StaticBody2D" type="StaticBody2D" parent="." groups=["drop"]]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-position = Vector2(-1, 14)
-polygon = PackedVector2Array(-1, -29, 3, -29, 6, -27, 6, -2, 2, -1, 2, -1, 0, -1, -4, -2, -4, -26)
+polygon = PackedVector2Array(5, -12, 2, -14, -2, -14, -5, -12, -5, 11, 0, 13, 5, 11)
 
 [node name="explosion_hitbox" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="explosion_hitbox"]
 position = Vector2(-1, 14)

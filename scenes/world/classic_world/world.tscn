@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://dj4vdaxwdewiu"]
+[gd_scene load_steps=16 format=3 uid="uid://dj4vdaxwdewiu"]
 
 [ext_resource type="Script" path="res://scripts/world/classic_world/collision_polygon_2d.gd" id="1_4hx4q"]
 [ext_resource type="Script" path="res://scripts/world/classic_world/world.gd" id="1_gcfhd"]
 [ext_resource type="Texture2D" uid="uid://rjycrnaueu0r" path="res://art/world/classic_world/background.png" id="5_2afuy"]
 [ext_resource type="Script" path="res://scripts/world/classic_world/ship_master.gd" id="5_4ij4q"]
 [ext_resource type="Texture2D" uid="uid://cgyve4kk648yh" path="res://art/world/classic_world/sky.png" id="5_ou8na"]
+[ext_resource type="FontFile" uid="uid://c0quiovxikjm8" path="res://font/VT323-Regular.ttf" id="6_0gp58"]
 [ext_resource type="Texture2D" uid="uid://bfig4ppqc525o" path="res://art/world/classic_world/health.png" id="7_tqa8c"]
 [ext_resource type="Texture2D" uid="uid://djpnypv17cuuo" path="res://art/world/classic_world/starve_icon.png" id="8_s7dsv"]
 
@@ -93,33 +94,37 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="high_score" type="Label" parent="CanvasLayer/Panel"]
+modulate = Color(1, 1, 1, 0.921569)
 texture_filter = 5
 layout_mode = 0
-offset_left = 612.0
-offset_top = -18.0
-offset_right = 924.0
-offset_bottom = 51.0
-scale = Vector2(4.2, 4.2)
+offset_left = 1297.0
+offset_top = -7.0
+offset_right = 1921.0
+offset_bottom = 113.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("6_0gp58")
+theme_override_font_sizes/font_size = 120
 text = "High Score: 0"
 horizontal_alignment = 2
 
 [node name="score" type="Label" parent="CanvasLayer/Panel"]
+modulate = Color(1, 1, 1, 0.921569)
 texture_filter = 5
 texture_repeat = 1
 layout_mode = 0
-offset_left = 1490.0
-offset_top = 66.0
-offset_right = 1591.0
-offset_bottom = 89.0
-scale = Vector2(4.2, 4.2)
+offset_left = 1538.0
+offset_top = 73.0
+offset_right = 1922.0
+offset_bottom = 193.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("6_0gp58")
+theme_override_font_sizes/font_size = 120
 text = "Score: 0"
 horizontal_alignment = 2
 
@@ -134,15 +139,16 @@ texture = ExtResource("7_tqa8c")
 texture_filter = 1
 texture_repeat = 1
 layout_mode = 0
-offset_left = 107.0
-offset_top = -11.0
-offset_right = 177.0
-offset_bottom = 17.0
-scale = Vector2(4.2, 4.2)
+offset_left = 109.0
+offset_top = 2.0
+offset_right = 253.0
+offset_bottom = 122.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("6_0gp58")
+theme_override_font_sizes/font_size = 100
 text = "X 3"
 
 [node name="starve_bar" type="ProgressBar" parent="CanvasLayer"]
