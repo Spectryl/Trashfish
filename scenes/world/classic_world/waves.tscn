@@ -1,0 +1,73 @@
+[gd_scene load_steps=11 format=3 uid="uid://c4xcomwxj7op3"]
+
+[ext_resource type="Texture2D" uid="uid://bbpgc8ounkily" path="res://art/world/classic_world/waves.png" id="1_oh1dj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qp8ux"]
+atlas = ExtResource("1_oh1dj")
+region = Rect2(0, 0, 100, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ooau"]
+atlas = ExtResource("1_oh1dj")
+region = Rect2(100, 0, 100, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvmc1"]
+atlas = ExtResource("1_oh1dj")
+region = Rect2(200, 0, 100, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xnopx"]
+atlas = ExtResource("1_oh1dj")
+region = Rect2(300, 0, 100, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t7mk5"]
+atlas = ExtResource("1_oh1dj")
+region = Rect2(400, 0, 100, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_el6hg"]
+atlas = ExtResource("1_oh1dj")
+region = Rect2(500, 0, 100, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30l12"]
+atlas = ExtResource("1_oh1dj")
+region = Rect2(600, 0, 100, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5asm"]
+atlas = ExtResource("1_oh1dj")
+region = Rect2(700, 0, 100, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0s8l6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qp8ux")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ooau")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bvmc1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xnopx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t7mk5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_el6hg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_30l12")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s5asm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[node name="waves" type="AnimatedSprite2D"]
+texture_filter = 1
+position = Vector2(50, -7)
+sprite_frames = SubResource("SpriteFrames_0s8l6")
+frame_progress = 0.704751

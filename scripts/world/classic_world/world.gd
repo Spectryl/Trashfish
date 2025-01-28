@@ -4,6 +4,7 @@ var high_score : int = 0: set = update_high_score_hud
 var health : int = 0: set = update_health_hud
 var config : ConfigFile
 
+
 var world_id = 2 #would be better if composition was used here but its one variable
 
 @onready var starve_bar : ProgressBar          = $CanvasLayer/starve_bar
@@ -19,7 +20,6 @@ func _ready() -> void:
 
 	
 	health = player.get_health()
-	$ParallaxBackground/background.play("default")
 	starve_bar.max_value = player.max_starve
 	var error = config.load("user://savedata.cfg")
 	if error != OK:
@@ -27,6 +27,8 @@ func _ready() -> void:
 		high_score = 0
 	else:
 		high_score = config.get_value("player", "classic_high_score", 0)
+		
+	generate_waves()
 	
 func _process(_delta: float) -> void:
 	if player.is_dead:
@@ -70,3 +72,10 @@ func update_health_hud(new_health : int):
 	health = new_health
 	health_ui.text = "X %d" % health
 	
+func generate_waves():
+	var waves_sprite = load("res://scenes/world/classic_world/waves.tscn")
+	for i in range(26):
+		var new_wave = waves_sprite.instantiate()
+		new_wave.play("default")
+		new_wave.global_position = Vector2(i * 100, 200)
+		add_child(new_wave)
