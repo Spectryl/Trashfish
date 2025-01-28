@@ -29,7 +29,7 @@ fall_speed = 40
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(0, -14)
+position = Vector2(0, -2)
 texture = ExtResource("3_kgxs6")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." groups=["drop"]]

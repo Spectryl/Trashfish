@@ -23,7 +23,8 @@ func _ready() -> void:
 	sound_timer.timeout.connect(sound_timer_timeout_event)
 	sound_timer.start(stream_length)
 	global.sound_master.play("fuse")
-
+	
+	animated_sprite.position = Vector2(9,-13)
 
 func sound_timer_timeout_event():
 	global.sound_master.play("fuse")
@@ -35,6 +36,7 @@ func timer_timeout_event():
 	rotation_degrees = 0
 	$explosion_hitbox/CollisionPolygon2D.set_deferred("disabled", false)
 	animated_sprite.play("explosion")
+	animated_sprite.position = Vector2(2,-4)
 	$StaticBody2D/CollisionPolygon2D.set_deferred("disabled", true)
 	particles.emitting = true
 

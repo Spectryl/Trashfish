@@ -56,7 +56,7 @@ texture = ExtResource("5_2afuy")
 centered = false
 
 [node name="background_polygon" type="Polygon2D" parent="ParallaxBackground"]
-color = Color(0.309804, 0.803922, 0.894118, 1)
+color = Color(0.372549, 0.803922, 0.894118, 1)
 antialiased = true
 polygon = PackedVector2Array(0, 206, 1920, 206, 1920, 933, 0, 933)
 

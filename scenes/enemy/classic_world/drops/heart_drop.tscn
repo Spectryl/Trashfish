@@ -29,10 +29,11 @@ fall_speed = 50
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(0, -17)
+position = Vector2(0, -1)
 texture = ExtResource("2_gw837")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." groups=["drop"]]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, -1)

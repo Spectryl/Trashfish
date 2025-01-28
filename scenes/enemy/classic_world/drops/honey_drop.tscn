@@ -5,19 +5,19 @@
 [ext_resource type="Texture2D" uid="uid://b5ba0xhj2skmx" path="res://art/enemy/classic_world/honey_drop.png" id="2_1k6aw"]
 [ext_resource type="Texture2D" uid="uid://chv64luwhe0vo" path="res://art/enemy/classic_world/honey_explosion.png" id="2_kdq6p"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_q78dv"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_1gt1v"]
 atlas = ExtResource("2_kdq6p")
-region = Rect2(0, 0, 144, 90)
+region = Rect2(0, 0, 84, 62)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yrga8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqlav"]
 atlas = ExtResource("2_1k6aw")
-region = Rect2(0, 0, 144, 69)
+region = Rect2(0, 0, 34, 50)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2q26l"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_q78dv")
+"texture": SubResource("AtlasTexture_1gt1v")
 }],
 "loop": true,
 "name": &"explosion",
@@ -25,7 +25,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_yrga8")
+"texture": SubResource("AtlasTexture_wqlav")
 }],
 "loop": true,
 "name": &"idle",
@@ -33,7 +33,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sc50r"]
-size = Vector2(30, 47)
+size = Vector2(32, 47)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hyw57"]
 radius = 31.0
@@ -61,20 +61,21 @@ fall_speed = 10
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 texture_repeat = 2
-position = Vector2(1, -8)
+position = Vector2(0, -2)
 sprite_frames = SubResource("SpriteFrames_2q26l")
 animation = &"idle"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." groups=["drop"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(1, -2)
+position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_sc50r")
 
 [node name="explosion_hitbox" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="explosion_hitbox"]
-position = Vector2(1, -8)
+position = Vector2(0, -2)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_hyw57")
 disabled = true

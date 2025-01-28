@@ -5,31 +5,31 @@
 [ext_resource type="Texture2D" uid="uid://7cj8wkwn8sah" path="res://art/enemy/classic_world/ice_drop.png" id="2_3g1yb"]
 [ext_resource type="Texture2D" uid="uid://jo2guthsahun" path="res://art/enemy/classic_world/ice_explosion.png" id="3_q8222"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5s4an"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4s8fw"]
 atlas = ExtResource("3_q8222")
-region = Rect2(0, 0, 144, 69)
+region = Rect2(0, 0, 65, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_iadbf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_lmxsw"]
 atlas = ExtResource("2_3g1yb")
-region = Rect2(0, 0, 144, 69)
+region = Rect2(0, 0, 36, 38)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ankjy"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_f0x3g"]
 atlas = ExtResource("2_3g1yb")
-region = Rect2(144, 0, 144, 69)
+region = Rect2(36, 0, 36, 38)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fq2xm"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_eepon"]
 atlas = ExtResource("2_3g1yb")
-region = Rect2(288, 0, 144, 69)
+region = Rect2(72, 0, 36, 38)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7al2e"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_yg7so"]
 atlas = ExtResource("2_3g1yb")
-region = Rect2(432, 0, 144, 69)
+region = Rect2(108, 0, 36, 38)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_r58q0"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5s4an")
+"texture": SubResource("AtlasTexture_4s8fw")
 }],
 "loop": true,
 "name": &"explosion",
@@ -37,16 +37,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_iadbf")
+"texture": SubResource("AtlasTexture_lmxsw")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ankjy")
+"texture": SubResource("AtlasTexture_f0x3g")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fq2xm")
+"texture": SubResource("AtlasTexture_eepon")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7al2e")
+"texture": SubResource("AtlasTexture_yg7so")
 }],
 "loop": true,
 "name": &"idle",
@@ -81,10 +81,11 @@ animation = &"idle"
 [node name="StaticBody2D" type="StaticBody2D" parent="." groups=["drop"]]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-position = Vector2(0, 21)
+position = Vector2(0, 20)
 polygon = PackedVector2Array(-17, -35, -9, 0, 9, 0, 17, -35)
 
 [node name="explosion_hitbox" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="explosion_hitbox"]
 position = Vector2(0, 20)

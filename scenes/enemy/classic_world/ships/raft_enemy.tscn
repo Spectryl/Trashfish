@@ -49,33 +49,33 @@ animations = [{
 "speed": 1.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_k2p2p"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_71fs5"]
 atlas = ExtResource("2_nk87i")
-region = Rect2(0, 0, 143, 68)
+region = Rect2(0, 0, 113, 34)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8xi8r"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_x4xta"]
 atlas = ExtResource("2_nk87i")
-region = Rect2(143, 0, 143, 68)
+region = Rect2(113, 0, 113, 34)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tlqmg"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ixcu"]
 atlas = ExtResource("2_nk87i")
-region = Rect2(286, 0, 143, 68)
+region = Rect2(226, 0, 113, 34)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wa3uy"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_tmg4q"]
 atlas = ExtResource("2_nk87i")
-region = Rect2(0, 0, 143, 68)
+region = Rect2(0, 0, 113, 34)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_43jhp"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_k2p2p")
+"texture": SubResource("AtlasTexture_71fs5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8xi8r")
+"texture": SubResource("AtlasTexture_x4xta")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tlqmg")
+"texture": SubResource("AtlasTexture_1ixcu")
 }],
 "loop": true,
 "name": &"fire",
@@ -83,7 +83,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wa3uy")
+"texture": SubResource("AtlasTexture_tmg4q")
 }],
 "loop": true,
 "name": &"idle",
@@ -169,7 +169,7 @@ texture_filter = 1
 position = Vector2(-57, -24)
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_43jhp")
-animation = &"idle"
+animation = &"fire"
 script = ExtResource("4_its3k")
 
 [node name="shoot_timer" type="Timer" parent="."]

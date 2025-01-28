@@ -74,7 +74,7 @@ func update_health_hud(new_health : int):
 	
 func generate_waves():
 	var waves_sprite = load("res://scenes/world/classic_world/waves.tscn")
-	for i in range(26):
+	for i in range(20):
 		var new_wave = waves_sprite.instantiate()
 		new_wave.play("default")
 		new_wave.global_position = Vector2(i * 100, 200)

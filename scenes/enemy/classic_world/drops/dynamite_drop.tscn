@@ -5,27 +5,27 @@
 [ext_resource type="Texture2D" uid="uid://274ie1nnbdaf" path="res://art/enemy/classic_world/explosion.png" id="3_hrs3s"]
 [ext_resource type="Texture2D" uid="uid://yd8oda208dfq" path="res://art/enemy/classic_world/dynamite.png" id="3_j8c31"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0w7mr"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_fwdto"]
 atlas = ExtResource("3_hrs3s")
-region = Rect2(0, 0, 144, 69)
+region = Rect2(0, 0, 65, 59)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sa6t1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwie7"]
 atlas = ExtResource("3_j8c31")
-region = Rect2(0, 0, 144, 69)
+region = Rect2(0, 0, 30, 52)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nqivc"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_mcg4h"]
 atlas = ExtResource("3_j8c31")
-region = Rect2(144, 0, 144, 69)
+region = Rect2(30, 0, 30, 52)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rmn5w"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_sxyxm"]
 atlas = ExtResource("3_j8c31")
-region = Rect2(288, 0, 144, 69)
+region = Rect2(60, 0, 30, 52)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kihmo"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0w7mr")
+"texture": SubResource("AtlasTexture_fwdto")
 }],
 "loop": true,
 "name": &"explosion",
@@ -33,13 +33,13 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_sa6t1")
+"texture": SubResource("AtlasTexture_pwie7")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_nqivc")
+"texture": SubResource("AtlasTexture_mcg4h")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rmn5w")
+"texture": SubResource("AtlasTexture_sxyxm")
 }],
 "loop": true,
 "name": &"idle",
@@ -67,7 +67,7 @@ fall_speed = 75
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-1, -10)
+position = Vector2(9, -13)
 sprite_frames = SubResource("SpriteFrames_kihmo")
 animation = &"idle"
 
@@ -80,7 +80,7 @@ polygon = PackedVector2Array(5, -12, 2, -14, -2, -14, -5, -12, -5, 11, 0, 13, 5,
 visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="explosion_hitbox"]
-position = Vector2(-1, 14)
+position = Vector2(-1, 16)
 polygon = PackedVector2Array(-5, -40, -10, -40, -22, -42, -23, -41, -12, -32, -14, -31, -14, -33, -17, -32, -20, -31, -22, -31, -24, -29, -13, -21, -27, -21, -28, -20, -14, -14, -28, -10, -14, -6, -25, -3, -23, 0, -12, 1, -8, 1, -14, 7, -8, 9, 6, 4, 9, 8, 12, 8, 13, 4, 15, -1, 22, -2, 31, -3, 32, -4, 17, -10, 35, -19, 34, -20, 33, -21, 28, -22, 22, -22, 21, -23, 18, -23, 16, -24, 15, -25, 18, -27, 20, -28, 21, -29, 22, -30, 24, -30, 25, -31, 29, -37, 29, -38, 28, -39, 25, -39, 25, -40, 10, -40, 9, -39, 6, -39, 4, -40, 4, -42, 5, -42, 5, -44, 1, -48, -2, -43)
 disabled = true
 
