@@ -10,6 +10,12 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 script = ExtResource("1_wfmpv")
 
+[node name="Polygon2D" type="Polygon2D" parent="."]
+visible = false
+z_index = 1
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(150, 130, 1770, 130, 1770, 920, 150, 920)
+
 [node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
@@ -25,6 +31,7 @@ tab_alignment = 1
 current_tab = 0
 
 [node name="sound" type="TabBar" parent="TabContainer"]
+z_index = 2
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -35,6 +42,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Label" type="Label" parent="TabContainer/sound/MarginContainer"]
+layout_mode = 2
+text = "ddddddddddddddddddd
+"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
