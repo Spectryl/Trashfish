@@ -36,6 +36,7 @@ func load_save_data():
 
 func _on_start_button_mouse_entered() -> void:
 	start_button.set_deferred("modulate", hover_color)
+	global.sound_master.play("button_hover")
 
 #region Hovering a button Code
 func _on_start_button_mouse_exited() -> void:
@@ -43,18 +44,21 @@ func _on_start_button_mouse_exited() -> void:
 
 func _on_options_button_mouse_entered() -> void:
 	options_button.set_deferred("modulate", hover_color)
+	global.sound_master.play("button_hover")
 
 func _on_options_button_mouse_exited() -> void:
 	options_button.set_deferred("modulate", reset_color)
 
 func _on_controls_button_mouse_entered() -> void:
 	controls_button.set_deferred("modulate", hover_color)
+	global.sound_master.play("button_hover")
 
 func _on_controls_button_mouse_exited() -> void:
 	controls_button.set_deferred("modulate", reset_color)
 
 func _on_quit_button_mouse_entered() -> void:
 	quit_button.set_deferred("modulate", hover_color)
+	global.sound_master.play("button_hover")
 
 func _on_quit_button_mouse_exited() -> void:
 	quit_button.set_deferred("modulate", reset_color)
