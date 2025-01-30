@@ -54,8 +54,8 @@ func _process(delta: float) -> void:
 			state = 1
 			
 			direction = 1 if parent.global_position.x - nextX  <= 0 else -1 # Go Left if we are to the right, otherwise go right
-			parent.animated_sprite.flip_h = true if direction == 1 else false
-			parent.water_layer.visible = true 
+			parent.flip(true) if direction == 1 else parent.flip(false)
+			parent.isMoving = true
 			return
 		# We have a spot to go to but we aren't there yet
 		1:
@@ -67,7 +67,7 @@ func _process(delta: float) -> void:
 		# We have arrived at our spot but we haven't dropped an item yet
 		2:
 			sound_timer.stop()
-			parent.water_layer.visible = false
+			parent.isMoving = false
 			# Karl Jacobs has an additional animation
 			if id == 4 or id == 3:
 				parent.animated_sprite.play("default")
@@ -96,11 +96,11 @@ func _process(delta: float) -> void:
 		# Move towards our despawn position
 		4:
 			
-			parent.water_layer.visible = true
+			parent.isMoving = true
 			parent.global_position.x += direction * speed * delta
 			if check_in_range(parent.global_position.x,nextX, speed * delta):
 				state = 5
-			parent.animated_sprite.flip_h = true if direction == 1 else false
+			parent.flip(true) if direction == 1 else parent.flip(false)
 			return
 		# We are at our despawn position, so despawn
 		5:

@@ -1,0 +1,140 @@
+[gd_scene load_steps=21 format=3 uid="uid://ilo5jqlay3jo"]
+
+[ext_resource type="Script" path="res://scripts/enemy/classic_world/ships/chandler_ship.gd" id="1_f26hp"]
+[ext_resource type="PackedScene" uid="uid://0ncg7uw24q8j" path="res://scenes/enemy/classic_world/ships/ship.tscn" id="2_xiosy"]
+[ext_resource type="Texture2D" uid="uid://4ypfcov4skb6" path="res://art/enemy/classic_world/trash_ship_idle.png" id="3_w1bxe"]
+[ext_resource type="Texture2D" uid="uid://mxk4ye0eopij" path="res://art/enemy/classic_world/water_layer.png" id="4_2deva"]
+[ext_resource type="Texture2D" uid="uid://cwvhqrms4d76n" path="res://art/enemy/classic_world/trash_ship_smoke.png" id="5_ygo7l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cdbos"]
+atlas = ExtResource("3_w1bxe")
+region = Rect2(0, 0, 144, 69)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qryl4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cdbos")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0jka"]
+atlas = ExtResource("4_2deva")
+region = Rect2(0, 0, 144, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e72ct"]
+atlas = ExtResource("4_2deva")
+region = Rect2(144, 0, 144, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tpeqe"]
+atlas = ExtResource("4_2deva")
+region = Rect2(288, 0, 144, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q8ntc"]
+atlas = ExtResource("4_2deva")
+region = Rect2(432, 0, 144, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kehut"]
+atlas = ExtResource("4_2deva")
+region = Rect2(576, 0, 144, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vjt5h"]
+atlas = ExtResource("4_2deva")
+region = Rect2(720, 0, 144, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m3mas"]
+atlas = ExtResource("4_2deva")
+region = Rect2(864, 0, 144, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1ghr"]
+atlas = ExtResource("4_2deva")
+region = Rect2(1008, 0, 144, 69)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t6ul5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0jka")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e72ct")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tpeqe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q8ntc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kehut")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vjt5h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m3mas")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l1ghr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_so24u"]
+atlas = ExtResource("5_ygo7l")
+region = Rect2(0, 0, 51, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ir4sv"]
+atlas = ExtResource("5_ygo7l")
+region = Rect2(51, 0, 51, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nr0dj"]
+atlas = ExtResource("5_ygo7l")
+region = Rect2(102, 0, 51, 43)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hfwki"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_so24u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ir4sv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nr0dj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 9.0
+}]
+
+[node name="trash_ship" type="Node2D"]
+script = ExtResource("1_f26hp")
+
+[node name="ship_component" parent="." instance=ExtResource("2_xiosy")]
+speed = 120
+id = 2
+wait_time = 0.321
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-1, -35)
+sprite_frames = SubResource("SpriteFrames_qryl4")
+
+[node name="water_layer" type="AnimatedSprite2D" parent="."]
+z_index = 2
+texture_filter = 1
+position = Vector2(0, -35)
+sprite_frames = SubResource("SpriteFrames_t6ul5")
+
+[node name="smoke" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(49, -60)
+sprite_frames = SubResource("SpriteFrames_hfwki")
+frame_progress = 0.0269493

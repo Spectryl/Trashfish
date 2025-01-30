@@ -1,6 +1,6 @@
 extends Node2D
 const beast_ship    = preload("res://scenes/enemy/classic_world/ships/mrbeast_ship.tscn")
-const chandler_ship = preload("res://scenes/enemy/classic_world/ships/chandler_ship.tscn")
+const trash_ship = preload("res://scenes/enemy/classic_world/ships/trash_ship.tscn")
 const raft_ship     = preload("res://scenes/enemy/classic_world/ships/raft_enemy.tscn")
 const pirate_ship   = preload("res://scenes/enemy/classic_world/ships/pirate_ship.tscn")
 const karl_ship     = preload("res://scenes/enemy/classic_world/ships/karl_ship.tscn")
@@ -51,7 +51,7 @@ func spawn_new_enemy() -> void:
 	var b
 	match a:
 		0:
-			b = chandler_ship.instantiate()
+			b = trash_ship.instantiate()
 		1:
 			b = beast_ship.instantiate()
 		2:
