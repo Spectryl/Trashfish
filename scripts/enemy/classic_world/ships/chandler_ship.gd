@@ -8,6 +8,7 @@ const spawnable_drop2 = preload("res://scenes/enemy/classic_world/drops/trash_dr
 @onready var wait_timer      : Timer            = get_node("ship_component/wait_timer")
 @onready var water_layer     : AnimatedSprite2D = get_node("water_layer")
 @onready var smoke           : AnimatedSprite2D = $smoke
+@onready var crates          : Sprite2D         = $crates
 var parent_score : int
 var isMoving : bool = true: set = changeState
 func _ready() -> void:
@@ -31,11 +32,13 @@ func _ready() -> void:
 	ship_component.speed += randi_range(0,55)
 	wait_timer.wait_time = randi_range(0,2) + ship_component.wait_time
 
-func flip(value : bool):
-	animated_sprite.flip_h = value
-	water_layer.flip_h     = value
-	smoke.position.x = abs(smoke.position.x) * (-1 if value else 1)
-	smoke.flip_h = value
+func flip():
+	animated_sprite.flip_h = !animated_sprite.flip_h
+	water_layer.flip_h     = !water_layer.flip_h
+	smoke.position.x *= -1
+	smoke.flip_h = !smoke.flip_h
+	crates.flip_h = !crates.flip_h
+	crates.position.x *= -1
 
 func changeState(new_value : bool):
 	isMoving = new_value

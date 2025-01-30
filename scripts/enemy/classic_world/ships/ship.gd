@@ -36,9 +36,10 @@ func _ready() -> void:
 			parent.global_position.x = 2000
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	# IF we aren't moving and we aren't dropping items, then we should find a new spot to go
+	
+	
 	match state:
 		0:
 			sound_timer.start(stream_length)
@@ -54,7 +55,7 @@ func _process(delta: float) -> void:
 			state = 1
 			
 			direction = 1 if parent.global_position.x - nextX  <= 0 else -1 # Go Left if we are to the right, otherwise go right
-			parent.flip(true) if direction == 1 else parent.flip(false)
+			flip_check()
 			parent.isMoving = true
 			return
 		# We have a spot to go to but we aren't there yet
@@ -92,15 +93,15 @@ func _process(delta: float) -> void:
 				nextX = randi_range(0,1)
 				nextX = -100 if nextX == 0 else 2000
 				direction = 1 if parent.global_position.x - nextX  <= 0 else -1 # Go Left if we are to the right, otherwise go right
+				flip_check()
 			return
 		# Move towards our despawn position
 		4:
-			
 			parent.isMoving = true
 			parent.global_position.x += direction * speed * delta
 			if check_in_range(parent.global_position.x,nextX, speed * delta):
 				state = 5
-			parent.flip(true) if direction == 1 else parent.flip(false)
+			
 			return
 		# We are at our despawn position, so despawn
 		5:
@@ -148,6 +149,20 @@ func sound_timer_timeout_event() -> void:
 
 func _on_wait_timer_timeout() -> void:
 	hasWaited = true
+
+# Checks if we need to flip the ship around 
+# <--- Default
+func flip_check() -> void:
+	#print(parent.global_position.x, int(parent.animated_sprite.flip_h), direction)
+	# flip_h
+	# <--- is 0
+	# ---> is 1
+	# Direction
+	# <------ is -1
+	# -----> is 1
+	# only flip if they aren't synced uppppppppppppppppppppppppppp
+	if (!int(parent.animated_sprite.flip_h) and direction == 1) or (int(parent.animated_sprite.flip_h) and direction == 0):
+		parent.flip()
 
 # Deletes all the drops when we stop moving so it looks c l e a n
 # turns out I was correct in my original report, this looks real jank but the problem is now inherently fixed instead of band-aid fixed
