@@ -51,7 +51,7 @@ func _process(delta: float) -> void:
 			
 			if id == 4 or id == 3:
 				parent.animated_sprite.play("swim")
-			nextX = randi_range(0,1300) + 450
+			nextX = randi_range(0,1500) + 250
 			state = 1
 			
 			direction = 1 if parent.global_position.x - nextX  <= 0 else -1 # Go Left if we are to the right, otherwise go right
@@ -89,11 +89,11 @@ func _process(delta: float) -> void:
 					parent.animated_sprite.play("swim")
 				sound_master.play("wave_splash")
 				sound_timer.start(stream_length)
-				state = 4
 				nextX = randi_range(0,1)
 				nextX = -100 if nextX == 0 else 2000
 				direction = 1 if parent.global_position.x - nextX  <= 0 else -1 # Go Left if we are to the right, otherwise go right
 				flip_check()
+				state = 4
 			return
 		# Move towards our despawn position
 		4:
@@ -161,7 +161,7 @@ func flip_check() -> void:
 	# <------ is -1
 	# -----> is 1
 	# only flip if they aren't synced uppppppppppppppppppppppppppp
-	if (!int(parent.animated_sprite.flip_h) and direction == 1) or (int(parent.animated_sprite.flip_h) and direction == 0):
+	if (!int(parent.animated_sprite.flip_h) and direction == 1) or (int(parent.animated_sprite.flip_h) and direction == -1):
 		parent.flip()
 
 # Deletes all the drops when we stop moving so it looks c l e a n
