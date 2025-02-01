@@ -1,22 +1,23 @@
-[gd_scene load_steps=35 format=3 uid="uid://ilo5jqlay3jo"]
+[gd_scene load_steps=36 format=3 uid="uid://ilo5jqlay3jo"]
 
 [ext_resource type="Script" path="res://scripts/enemy/classic_world/ships/chandler_ship.gd" id="1_f26hp"]
 [ext_resource type="PackedScene" uid="uid://0ncg7uw24q8j" path="res://scenes/enemy/classic_world/ships/ship.tscn" id="2_xiosy"]
-[ext_resource type="Texture2D" uid="uid://c3xi0qr0k2boq" path="res://art/enemy/classic_world/trash_ship.png" id="3_qcbtn"]
+[ext_resource type="Texture2D" uid="uid://4ypfcov4skb6" path="res://art/enemy/classic_world/trash_ship_idle.png" id="3_tq6ua"]
 [ext_resource type="Texture2D" uid="uid://mxk4ye0eopij" path="res://art/enemy/classic_world/water_layer.png" id="4_2deva"]
 [ext_resource type="Texture2D" uid="uid://brwk873jcihlg" path="res://art/enemy/classic_world/trash_ship_containers.png" id="4_kagrb"]
 [ext_resource type="Texture2D" uid="uid://cwvhqrms4d76n" path="res://art/enemy/classic_world/trash_ship_smoke.png" id="5_ygo7l"]
+[ext_resource type="PackedScene" uid="uid://tyvty80hr3op" path="res://scenes/enemy/classic_world/ships/trash_ship_smoke_vent.tscn" id="6_rgjns"]
 [ext_resource type="Texture2D" uid="uid://cemig8bdlknx8" path="res://art/enemy/classic_world/kevin.png" id="7_pchn7"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_uqw2q"]
-atlas = ExtResource("3_qcbtn")
+[sub_resource type="AtlasTexture" id="AtlasTexture_bsc2u"]
+atlas = ExtResource("3_tq6ua")
 region = Rect2(0, 0, 144, 69)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qryl4"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_uqw2q")
+"texture": SubResource("AtlasTexture_bsc2u")
 }],
 "loop": true,
 "name": &"default",
@@ -246,3 +247,9 @@ z_index = -1
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_oo2by")
 animation = &"idle"
+
+[node name="trash_ship_smoke_vent" parent="." instance=ExtResource("6_rgjns")]
+position = Vector2(31, -29)
+
+[node name="trash_ship_smoke_vent2" parent="." instance=ExtResource("6_rgjns")]
+position = Vector2(51, -29)

@@ -137,7 +137,7 @@ func increase_health():
 	heal_flash_body()
 	
 func player_death():
-	get_parent().update_hud_when_dead()
+	global.world.update_hud_when_dead()
 	health = 0
 	is_dead = true
 	body.play("death")

@@ -11,6 +11,8 @@ const spawnable_drop2 = preload("res://scenes/enemy/classic_world/drops/trash_dr
 @onready var crates          : Sprite2D         = $crates
 @onready var kevin           : CharacterBody2D  = $kevin
 @onready var kevin_sprite    : AnimatedSprite2D = $kevin/AnimatedSprite2D
+@onready var smoke_vent1     : AnimatedSprite2D = $trash_ship_smoke_vent
+@onready var smoke_vent2     : AnimatedSprite2D = $trash_ship_smoke_vent2
 var parent_score : int
 var isMoving : bool = true: set = changeState
 
@@ -59,6 +61,11 @@ func flip():
 	kevin_sprite.flip_h = animated_sprite.flip_h
 	kevin.position.x *= -1
 	speed *= -1
+	smoke_vent1.flip_h = !smoke_vent1.flip_h
+	smoke_vent2.flip_h = !smoke_vent2.flip_h
+	smoke_vent1.position.x *= -1
+	smoke_vent2.position.x *= -1
+	
 
 func changeState(new_value : bool):
 	isMoving = new_value

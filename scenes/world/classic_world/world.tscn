@@ -42,8 +42,7 @@ script = ExtResource("1_4hx4q")
 [node name="ship_master" type="Node2D" parent="."]
 position = Vector2(393, 205)
 script = ExtResource("5_4ij4q")
-timer_wait_time = 1.0
-max_entities = 300000
+timer_wait_time = 7.0
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
