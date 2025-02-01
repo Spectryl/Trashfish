@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ilo5jqlay3jo"]
+[gd_scene load_steps=35 format=3 uid="uid://ilo5jqlay3jo"]
 
 [ext_resource type="Script" path="res://scripts/enemy/classic_world/ships/chandler_ship.gd" id="1_f26hp"]
 [ext_resource type="PackedScene" uid="uid://0ncg7uw24q8j" path="res://scenes/enemy/classic_world/ships/ship.tscn" id="2_xiosy"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://mxk4ye0eopij" path="res://art/enemy/classic_world/water_layer.png" id="4_2deva"]
 [ext_resource type="Texture2D" uid="uid://brwk873jcihlg" path="res://art/enemy/classic_world/trash_ship_containers.png" id="4_kagrb"]
 [ext_resource type="Texture2D" uid="uid://cwvhqrms4d76n" path="res://art/enemy/classic_world/trash_ship_smoke.png" id="5_ygo7l"]
+[ext_resource type="Texture2D" uid="uid://cemig8bdlknx8" path="res://art/enemy/classic_world/kevin.png" id="7_pchn7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uqw2q"]
 atlas = ExtResource("3_qcbtn")
@@ -115,6 +116,96 @@ animations = [{
 "speed": 9.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_7m2sr"]
+atlas = ExtResource("7_pchn7")
+region = Rect2(58, 0, 58, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hmpff"]
+atlas = ExtResource("7_pchn7")
+region = Rect2(116, 0, 58, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxmcw"]
+atlas = ExtResource("7_pchn7")
+region = Rect2(174, 0, 58, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cdog8"]
+atlas = ExtResource("7_pchn7")
+region = Rect2(232, 0, 58, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_620va"]
+atlas = ExtResource("7_pchn7")
+region = Rect2(232, 0, 58, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_errgu"]
+atlas = ExtResource("7_pchn7")
+region = Rect2(290, 0, 58, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sn7lx"]
+atlas = ExtResource("7_pchn7")
+region = Rect2(348, 0, 58, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_asnse"]
+atlas = ExtResource("7_pchn7")
+region = Rect2(406, 0, 58, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nwk2y"]
+atlas = ExtResource("7_pchn7")
+region = Rect2(464, 0, 58, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ok71"]
+atlas = ExtResource("7_pchn7")
+region = Rect2(522, 0, 58, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvoi2"]
+atlas = ExtResource("7_pchn7")
+region = Rect2(580, 0, 58, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oo2by"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7m2sr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hmpff")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxmcw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cdog8")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_620va")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_errgu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sn7lx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_asnse")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nwk2y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ok71")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bvoi2")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
 [node name="trash_ship" type="Node2D"]
 script = ExtResource("1_f26hp")
 
@@ -146,3 +237,12 @@ position = Vector2(49, -60)
 sprite_frames = SubResource("SpriteFrames_hfwki")
 frame = 1
 frame_progress = 0.842789
+
+[node name="kevin" type="CharacterBody2D" parent="."]
+position = Vector2(-48, -45)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="kevin"]
+z_index = -1
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_oo2by")
+animation = &"idle"

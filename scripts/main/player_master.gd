@@ -53,3 +53,4 @@ func enable_player_activity() -> void:
 	player.set_process(true)
 	player.visible = true
 	player.body_hurtbox.set_deferred("disabled", false)
+	
