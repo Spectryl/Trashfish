@@ -9,8 +9,7 @@ const spawnable_drop2 = preload("res://scenes/enemy/classic_world/drops/trash_dr
 @onready var water_layer     : AnimatedSprite2D = get_node("water_layer")
 @onready var smoke           : AnimatedSprite2D = $smoke
 @onready var crates          : Sprite2D         = $crates
-@onready var kevin           : CharacterBody2D  = $kevin
-@onready var kevin_sprite    : AnimatedSprite2D = $kevin/AnimatedSprite2D
+@onready var kevin           : AnimatedSprite2D = $kevin
 @onready var smoke_vent1     : AnimatedSprite2D = $trash_ship_smoke_vent
 @onready var smoke_vent2     : AnimatedSprite2D = $trash_ship_smoke_vent2
 var parent_score : int
@@ -23,7 +22,7 @@ var isMoving : bool = true: set = changeState
 func _ready() -> void:
 	water_layer.play("default")
 	smoke.play("default")
-	kevin_sprite.play("idle")
+	kevin.play("idle")
 	parent_score = get_parent().score
 	# as the game goes on, the chandler ship will drop less and less point trash, this is counteracted since there will be more of them
 	match int(parent_score / 20.0):
@@ -48,31 +47,30 @@ func _process(delta: float) -> void:
 	kevin.position.x += speed * delta
 	if kevin.position.x < pos1 or kevin.position.x > pos2:
 		speed *= -1
-		kevin_sprite.flip_h = false if speed < 0 else true
+		kevin.flip_h = false if speed < 0 else true
 		
 
 func flip():
 	animated_sprite.flip_h = !animated_sprite.flip_h
 	water_layer.flip_h     = !water_layer.flip_h
-	smoke.position.x *= -1
-	smoke.flip_h = !smoke.flip_h
-	crates.flip_h = !crates.flip_h
-	crates.position.x *= -1
-	kevin_sprite.flip_h = animated_sprite.flip_h
-	kevin.position.x *= -1
-	speed *= -1
-	smoke_vent1.flip_h = !smoke_vent1.flip_h
-	smoke_vent2.flip_h = !smoke_vent2.flip_h
+	smoke.position.x       *= -1
+	smoke.flip_h           = !smoke.flip_h
+	crates.flip_h          = !crates.flip_h
+	crates.position.x      *= -1
+	kevin.flip_h           = animated_sprite.flip_h
+	kevin.position.x       *= -1
+	smoke_vent1.flip_h     = !smoke_vent1.flip_h
+	smoke_vent2.flip_h     = !smoke_vent2.flip_h
 	smoke_vent1.position.x *= -1
 	smoke_vent2.position.x *= -1
-	
+	speed *= -1
 
 func changeState(new_value : bool):
 	isMoving = new_value
 	water_layer.visible = isMoving
 	smoke.visible = isMoving
 	@warning_ignore("standalone_ternary")
-	kevin_sprite.play("idle") if isMoving else kevin_sprite.play("walk")
+	kevin.play("idle") if isMoving else kevin.play("walk")
 	kevin.position.x = 48 if crates.flip_h else -48
 	
 func evil_abs(value : int) -> int:

@@ -19,7 +19,7 @@ func _ready() -> void:
 	ship_component = parent.get_parent().ship_component
 	
 	
-	xDirection = cos(randi() % 4)
+	xDirection = cos(randf_range(0,PI))
 	active_timer = Timer.new()
 	active_timer.wait_time = timer_length
 	active_timer.one_shot = true
@@ -55,7 +55,6 @@ func _ready() -> void:
 	
 	sound_master.play("drop_splash")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if not isActive:
 		return

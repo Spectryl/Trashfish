@@ -239,17 +239,15 @@ sprite_frames = SubResource("SpriteFrames_hfwki")
 frame = 1
 frame_progress = 0.842789
 
-[node name="kevin" type="CharacterBody2D" parent="."]
-position = Vector2(-48, -45)
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="kevin"]
-z_index = -1
-texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_oo2by")
-animation = &"idle"
-
 [node name="trash_ship_smoke_vent" parent="." instance=ExtResource("6_rgjns")]
 position = Vector2(31, -29)
 
 [node name="trash_ship_smoke_vent2" parent="." instance=ExtResource("6_rgjns")]
 position = Vector2(51, -29)
+
+[node name="kevin" type="AnimatedSprite2D" parent="."]
+z_index = -1
+texture_filter = 1
+position = Vector2(-51, -43)
+sprite_frames = SubResource("SpriteFrames_oo2by")
+animation = &"idle"
