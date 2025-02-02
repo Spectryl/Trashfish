@@ -1,10 +1,10 @@
 extends Node2D
-const beast_ship    = preload("res://scenes/enemy/classic_world/ships/mrbeast_ship.tscn")
-const trash_ship = preload("res://scenes/enemy/classic_world/ships/trash_ship.tscn")
-const raft_ship     = preload("res://scenes/enemy/classic_world/ships/raft_enemy.tscn")
-const pirate_ship   = preload("res://scenes/enemy/classic_world/ships/pirate_ship.tscn")
-const karl_ship     = preload("res://scenes/enemy/classic_world/ships/karl_ship.tscn")
-const orca          = preload("res://scenes/enemy/classic_world/ships/fish_spawner.tscn")
+const beast_ship      = preload("res://scenes/enemy/classic_world/ships/mrbeast_ship.tscn")
+const trash_ship      = preload("res://scenes/enemy/classic_world/ships/trash_ship.tscn")
+const raft_ship       = preload("res://scenes/enemy/classic_world/ships/raft_enemy.tscn")
+const pirate_ship     = preload("res://scenes/enemy/classic_world/ships/pirate_ship.tscn")
+const swimmer_ship    = preload("res://scenes/enemy/classic_world/ships/swimmer_ship.tscn")
+const orca            = preload("res://scenes/enemy/classic_world/ships/fish_spawner.tscn")
 @export var timer_wait_time : float
 @export var max_entities : int = 30
 var entities_spawned : int
@@ -59,7 +59,7 @@ func spawn_new_enemy() -> void:
 		3:
 			b = pirate_ship.instantiate()
 		4: 
-			b = karl_ship.instantiate()
+			b = swimmer_ship.instantiate()
 		5:
 			b = orca.instantiate()
 	b.set_global_scale(Vector2(2,2))

@@ -24,3 +24,5 @@ func flip():
 func changeState(new_value : bool):
 	isMoving = new_value
 	water_layer.visible = isMoving
+	@warning_ignore("standalone_ternary")
+	animated_sprite.play("swim") if isMoving else animated_sprite.play("idle") 

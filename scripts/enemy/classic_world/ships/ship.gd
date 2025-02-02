@@ -49,8 +49,6 @@ func _process(delta: float) -> void:
 				state = 3
 				return
 			
-			if id == 4 or id == 3:
-				parent.animated_sprite.play("swim")
 			nextX = randi_range(0,1500) + 250
 			state = 1
 			
@@ -84,9 +82,6 @@ func _process(delta: float) -> void:
 		3:
 			
 			if counter < 0:
-				# Reset Karl Jacobs Animation
-				if id == 4 or id == 3:
-					parent.animated_sprite.play("swim")
 				sound_master.play("wave_splash")
 				sound_timer.start(stream_length)
 				nextX = randi_range(0,1)
