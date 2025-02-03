@@ -102,15 +102,21 @@ text = "Sound Volume"
 layout_mode = 2
 audio_bus_name = "Sound"
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
-offset_right = 1200.0
-offset_bottom = 1050.0
-theme_override_constants/margin_left = 750
-theme_override_constants/margin_top = 950
-
-[node name="TextureButton" type="TextureButton" parent="MarginContainer"]
+[node name="Graphics" type="TabBar" parent="TabContainer"]
+visible = false
 layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="title_screen_button" type="TextureButton" parent="."]
+layout_mode = 2
+offset_left = 750.0
+offset_top = 965.0
+offset_right = 1200.0
+offset_bottom = 1065.0
+grow_horizontal = 2
+grow_vertical = 2
 texture_normal = ExtResource("2_ug8si")
 
-[connection signal="pressed" from="MarginContainer/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="mouse_entered" from="title_screen_button" to="." method="_on_title_screen_button_mouse_entered"]
+[connection signal="mouse_exited" from="title_screen_button" to="." method="_on_title_screen_button_mouse_exited"]
+[connection signal="pressed" from="title_screen_button" to="." method="_on_texture_button_pressed"]

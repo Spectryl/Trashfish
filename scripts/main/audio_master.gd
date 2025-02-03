@@ -3,7 +3,7 @@ extends Node2D
 @onready var music_master = $music_master
 
 @onready var master_bus_index : int = AudioServer.get_bus_index("Master")
-@onready var music_bus_index  : int = AudioServer.get_bus_index("Master")
+@onready var music_bus_index  : int = AudioServer.get_bus_index("Music")
 @onready var sound_bus_index  : int = AudioServer.get_bus_index("Sound")
 
 func _ready() -> void:

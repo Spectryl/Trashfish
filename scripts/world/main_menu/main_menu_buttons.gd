@@ -22,12 +22,12 @@ func _on_quit_button_pressed() -> void:
 #endregion
 
 
-
+#region Hovering a button Code
 func _on_start_button_mouse_entered() -> void:
 	start_button.set_deferred("modulate", hover_color)
 	global.sound_master.play("button_hover")
 
-#region Hovering a button Code
+
 func _on_start_button_mouse_exited() -> void:
 	start_button.set_deferred("modulate", reset_color)
 
