@@ -7,6 +7,8 @@ extends Node2D
 @onready var sound_bus_index  : int = AudioServer.get_bus_index("Sound")
 
 func _ready() -> void:
+	global.audio_master = self
+	
 	var config = ConfigFile.new()
 	var error = config.load("user://savedata.cfg")
 	if error != OK:
