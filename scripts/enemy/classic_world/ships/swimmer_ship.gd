@@ -12,16 +12,16 @@ const spawnable_drop7 = preload("res://scenes/enemy/classic_world/drops/nuclear_
 @onready var water_layer     : AnimatedSprite2D = get_node("water_layer")
 var isMoving : bool = true: set = changeState
 func _ready() -> void:
-	animated_sprite.play("default")
+	animated_sprite.play("swim")
 	ship_component.counter += randi_range(0,5)
 	ship_component.speed += randi_range(0,750)
 	wait_timer .wait_time = randi_range(0,1)  + ship_component.wait_time
 
-func flip():
+func flip() -> void:
 	animated_sprite.flip_h = !animated_sprite.flip_h
 	water_layer.flip_h     = !water_layer.flip_h
-
-func changeState(new_value : bool):
+	
+func changeState(new_value : bool) -> void :
 	isMoving = new_value
 	water_layer.visible = isMoving
 	@warning_ignore("standalone_ternary")

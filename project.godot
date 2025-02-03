@@ -17,6 +17,10 @@ config/custom_user_dir_name="trashfish"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/windows_native_icon="res://art/misc/icon.ico"
 
+[audio]
+
+buses/default_bus_layout="res://scenes/misc/default_bus_layout.tres"
+
 [autoload]
 
 global="*res://scripts/misc/global_variables.gd"

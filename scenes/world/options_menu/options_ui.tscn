@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://benrome6etksn"]
+[gd_scene load_steps=5 format=3 uid="uid://benrome6etksn"]
 
 [ext_resource type="Script" path="res://scripts/world/options_menu/options_ui.gd" id="1_wfmpv"]
+[ext_resource type="FontFile" uid="uid://c0quiovxikjm8" path="res://font/VT323-Regular.ttf" id="2_ekkdw"]
+[ext_resource type="PackedScene" uid="uid://cpx8dacbpg66w" path="res://scenes/world/options_menu/volume_slider.tscn" id="2_n2gfy"]
 [ext_resource type="Texture2D" uid="uid://3et37qb88nef" path="res://art/world/main_menu/title_screen_button.png" id="2_ug8si"]
 
 [node name="options_ui" type="Control"]
@@ -11,10 +13,10 @@ offset_bottom = 1080.0
 script = ExtResource("1_wfmpv")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-visible = false
+self_modulate = Color(1, 1, 1, 0.1)
 z_index = 1
-color = Color(0, 0, 0, 1)
-polygon = PackedVector2Array(150, 130, 1770, 130, 1770, 920, 150, 920)
+color = Color(0, 0, 0.666667, 1)
+polygon = PackedVector2Array(150, 156, 1770, 156, 1770, 920, 150, 920)
 
 [node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 1
@@ -27,34 +29,83 @@ offset_right = -150.0
 offset_bottom = -160.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_ekkdw")
+theme_override_font_sizes/font_size = 50
 tab_alignment = 1
 current_tab = 0
 
-[node name="sound" type="TabBar" parent="TabContainer"]
+[node name="Sound" type="TabBar" parent="TabContainer"]
 z_index = 2
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="TabContainer/sound"]
+[node name="master_volume_container" type="MarginContainer" parent="TabContainer/Sound"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 28.0
+offset_right = 2.0
+offset_bottom = -480.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="TabContainer/sound/MarginContainer"]
+[node name="master_volume" type="Label" parent="TabContainer/Sound/master_volume_container"]
 layout_mode = 2
-text = "ddddddddddddddddddd
-"
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_ekkdw")
+theme_override_font_sizes/font_size = 120
+text = "Master Volume"
+
+[node name="master_volume_slider" parent="TabContainer/Sound/master_volume_container" instance=ExtResource("2_n2gfy")]
+layout_mode = 2
+audio_bus_name = "Master"
+
+[node name="music_volume_container" type="MarginContainer" parent="TabContainer/Sound"]
+layout_mode = 2
+offset_left = 2.0
+offset_top = 200.0
+offset_right = 1622.0
+offset_bottom = 454.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="music_volume" type="Label" parent="TabContainer/Sound/music_volume_container"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_ekkdw")
+theme_override_font_sizes/font_size = 120
+text = "Music Volume"
+
+[node name="music_volume_slider" parent="TabContainer/Sound/music_volume_container" instance=ExtResource("2_n2gfy")]
+layout_mode = 2
+audio_bus_name = "Music"
+
+[node name="sound_volume_container" type="MarginContainer" parent="TabContainer/Sound"]
+layout_mode = 2
+offset_left = 2.0
+offset_top = 372.0
+offset_right = 1622.0
+offset_bottom = 626.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="sound_volume" type="Label" parent="TabContainer/Sound/sound_volume_container"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_ekkdw")
+theme_override_font_sizes/font_size = 120
+text = "Sound Volume"
+
+[node name="sound_volume_slider" parent="TabContainer/Sound/sound_volume_container" instance=ExtResource("2_n2gfy")]
+layout_mode = 2
+audio_bus_name = "Sound"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 1200.0
+offset_bottom = 1050.0
 theme_override_constants/margin_left = 750
 theme_override_constants/margin_top = 950
 

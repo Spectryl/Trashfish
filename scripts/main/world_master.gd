@@ -9,6 +9,7 @@ func _ready() -> void:
 	global.world_master = self
 	world = load("res://scenes/world/main_menu/main_menu.tscn").instantiate()
 	self.add_child(world)
+	check_save()
 
 # returns the current world id
 func get_world_id() -> int:
@@ -39,3 +40,19 @@ func change_world(world_id : int) -> void:
 	call_deferred("add_child", world)
 	global.player_master.change_player_world(get_world_id())
 	global.world = world
+
+# Checks if a player save is created
+func check_save() -> void:
+	# Will create a save file if the player does not have one, otherwise it does nothing really.
+	var config : ConfigFile = ConfigFile.new()
+	var error : Error = config.load("user://savedata.cfg")
+	if error != OK:
+		config = ConfigFile.new()
+		config.set_value("settings", "master_volume", 1.0)
+		config.set_value("settings", "music_volume", 1.0)
+		config.set_value("settings", "sound_volume", 1.0)
+		config.set_value("player", "classic_high_score", 0)
+		config.save("user://savedata.cfg")
+		print("No Save file found!")
+	else:
+		print("Save file found")

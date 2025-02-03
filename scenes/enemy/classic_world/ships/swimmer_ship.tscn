@@ -212,8 +212,7 @@ id = 4
 texture_filter = 1
 position = Vector2(0, -14)
 sprite_frames = SubResource("SpriteFrames_c3lle")
-animation = &"idle"
-frame_progress = 0.977052
+animation = &"swim"
 
 [node name="water_layer" type="AnimatedSprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.74902)
