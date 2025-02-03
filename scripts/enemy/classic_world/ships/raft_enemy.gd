@@ -13,6 +13,7 @@ const play_slot_scene = preload("res://scenes/enemy/classic_world/drops/bullet.t
 
 func _ready() -> void:
 	raft.play("idle")
+	water_layer.play("default")
 	bullets_left += randi_range(0,3)
 	speed += randi_range(0,150)
 	match randi_range(0,1):

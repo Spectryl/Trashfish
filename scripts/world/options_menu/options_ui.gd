@@ -39,6 +39,5 @@ func _on_title_screen_button_mouse_entered() -> void:
 	title_screen_button.set_deferred("modulate", Color(255,0,0,255))
 	global.sound_master.play("button_hover")
 
-
 func _on_title_screen_button_mouse_exited() -> void:
 	title_screen_button.set_deferred("modulate", Color(1,1,1,1))

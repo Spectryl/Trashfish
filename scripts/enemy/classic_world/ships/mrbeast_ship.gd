@@ -11,6 +11,7 @@ var parent_score : int
 func _ready() -> void:
 	parent_score = get_parent().score
 	animated_sprite.play("default")
+	water_layer.play("default")
 	ship_component.counter += randi_range(0,int(2 + parent_score / 100.0) )
 	ship_component.speed += randi_range(0,30)
 	wait_timer.wait_time = randi_range(0,3) + ship_component.wait_time

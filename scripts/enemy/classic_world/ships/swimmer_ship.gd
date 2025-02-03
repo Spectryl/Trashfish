@@ -21,8 +21,9 @@ func flip() -> void:
 	animated_sprite.flip_h = !animated_sprite.flip_h
 	water_layer.flip_h     = !water_layer.flip_h
 	
-func changeState(new_value : bool) -> void :
+func changeState(new_value : bool) -> void:
 	isMoving = new_value
 	water_layer.visible = isMoving
 	@warning_ignore("standalone_ternary")
 	animated_sprite.play("swim") if isMoving else animated_sprite.play("idle") 
+	animated_sprite.position.y = -14 if isMoving else 4

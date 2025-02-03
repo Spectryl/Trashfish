@@ -68,8 +68,6 @@ func _process(delta: float) -> void:
 			sound_timer.stop()
 			parent.isMoving = false
 			# Karl Jacobs has an additional animation
-			if id == 4 or id == 3:
-				parent.animated_sprite.play("default")
 			# Wait for some time if we'd like
 			if wait_timer.time_left > 0.01 and not wait_timer.is_stopped():
 				return
