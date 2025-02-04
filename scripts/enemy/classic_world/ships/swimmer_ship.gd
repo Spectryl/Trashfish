@@ -27,3 +27,22 @@ func changeState(new_value : bool) -> void:
 	@warning_ignore("standalone_ternary")
 	animated_sprite.play("swim") if isMoving else animated_sprite.play("idle") 
 	animated_sprite.position.y = -14 if isMoving else 4
+
+func get_drop() -> void:
+	var drop
+	match randi_range(0,6):
+		0:
+			drop = spawnable_drop1.instantiate()
+		1:
+			drop = spawnable_drop2.instantiate()
+		2:
+			drop = spawnable_drop3.instantiate()
+		3:
+			drop = spawnable_drop4.instantiate()
+		4:
+			drop = spawnable_drop5.instantiate()
+		5: 
+			drop = spawnable_drop6.instantiate()
+		6:
+			drop = spawnable_drop7.instantiate()
+	add_child(drop)

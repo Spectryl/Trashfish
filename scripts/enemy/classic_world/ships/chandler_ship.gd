@@ -76,3 +76,11 @@ func changeState(new_value : bool):
 func evil_abs(value : int) -> int:
 	return abs(value) * -1
 	
+func get_drop() -> void:
+	var drop
+	match randi_range(0,1):
+			0:
+				drop = spawnable_drop1.instantiate()
+			_:
+				drop = spawnable_drop2.instantiate()
+	add_child(drop)

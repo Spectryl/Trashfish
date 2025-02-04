@@ -23,3 +23,6 @@ func flip():
 func changeState(new_value : bool):
 	isMoving = new_value
 	water_layer.visible = isMoving
+
+func get_drop() -> void:
+	add_child(spawnable_drop.instantiate())

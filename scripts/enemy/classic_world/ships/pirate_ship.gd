@@ -21,3 +21,12 @@ func flip():
 func changeState(new_value : bool):
 	isMoving = new_value
 	water_layer.visible = isMoving
+
+func get_drop() -> void:
+	var drop
+	match randi_range(0,1):
+			0:
+				drop = spawnable_drop1.instantiate()
+			_:
+				drop = spawnable_drop2.instantiate()
+	add_child(drop)

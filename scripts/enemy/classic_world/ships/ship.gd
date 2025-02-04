@@ -67,13 +67,11 @@ func _process(delta: float) -> void:
 		2:
 			sound_timer.stop()
 			parent.isMoving = false
-			# Karl Jacobs has an additional animation
 			# Wait for some time if we'd like
 			if wait_timer.time_left > 0.01 and not wait_timer.is_stopped():
 				return
 			
-			get_spawnable_drop()
-			parent.add_child(drop)
+			parent.get_drop()
 			state = 3
 			return
 		# We have run out of things to drop, so lets' be set to despawn!
@@ -100,39 +98,6 @@ func _process(delta: float) -> void:
 		5:
 			parent.get_parent().entities_spawned -= 1
 			parent.queue_free()
-			
-	
-# Gets what type of drop we need to drop from the parent then we can pass it to this component
-func get_spawnable_drop():
-	# For chandler/kris ships which need multiple drops
-	if id == 2 or id == 3:
-		match randi_range(0,1):
-			0:
-				drop = parent.spawnable_drop1.instantiate()
-			1:
-				drop = parent.spawnable_drop2.instantiate()
-		return
-	# Karl jacobs needs all the drops...
-	if id == 4:
-		match randi_range(0,6):
-			0:
-				drop = parent.spawnable_drop1.instantiate()
-			1:
-				drop = parent.spawnable_drop2.instantiate()
-			2:
-				drop = parent.spawnable_drop3.instantiate()
-			3:
-				drop = parent.spawnable_drop4.instantiate()
-			4:
-				drop = parent.spawnable_drop5.instantiate()
-			5: 
-				drop = parent.spawnable_drop6.instantiate()
-			6:
-				drop = parent.spawnable_drop7.instantiate()
-		return
-	
-	drop = parent.spawnable_drop.instantiate()
-	
 
 func check_in_range(a : float, b : float , range_of_pos : float) -> bool:
 	return abs(a - b) < range_of_pos + 1
