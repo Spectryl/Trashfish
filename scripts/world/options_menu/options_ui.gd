@@ -26,11 +26,11 @@ func _ready() -> void:
 		master_volume = config.get_value("settings",  "master_volume", 1.0)
 		music_volume  = config.get_value("settings",  "music_volume" , 1.0)
 		sound_volume  = config.get_value("settings",  "sound_volume" , 1.0)
-	master_volume_slider.value = master_volume
-	music_volume_slider.value  = music_volume
-	sound_volume_slider.value  = sound_volume
 
 func _on_texture_button_pressed() -> void:
+	print(db_to_linear(AudioServer.get_bus_volume_db(global.audio_master.master_bus_index)))
+	print(db_to_linear(AudioServer.get_bus_volume_db(global.audio_master.music_bus_index)))
+	print(db_to_linear(AudioServer.get_bus_volume_db(global.audio_master.sound_bus_index)))
 	config.set_value("settings", "master_volume", db_to_linear(AudioServer.get_bus_volume_db(global.audio_master.master_bus_index)))
 	config.set_value("settings", "music_volume" , db_to_linear(AudioServer.get_bus_volume_db(global.audio_master.music_bus_index)))
 	config.set_value("settings", "sound_volume" , db_to_linear(AudioServer.get_bus_volume_db(global.audio_master.sound_bus_index)))
