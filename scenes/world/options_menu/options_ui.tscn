@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://benrome6etksn"]
+[gd_scene load_steps=6 format=3 uid="uid://benrome6etksn"]
 
 [ext_resource type="Script" path="res://scripts/world/options_menu/options_ui.gd" id="1_wfmpv"]
 [ext_resource type="FontFile" uid="uid://c0quiovxikjm8" path="res://font/VT323-Regular.ttf" id="2_ekkdw"]
 [ext_resource type="PackedScene" uid="uid://cpx8dacbpg66w" path="res://scenes/world/options_menu/volume_slider.tscn" id="2_n2gfy"]
 [ext_resource type="Texture2D" uid="uid://3et37qb88nef" path="res://art/world/main_menu/title_screen_button.png" id="2_ug8si"]
+[ext_resource type="Script" path="res://scripts/world/options_menu/window_type_button.gd" id="4_p5yqb"]
 
 [node name="options_ui" type="Control"]
 layout_mode = 3
@@ -32,9 +33,10 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_ekkdw")
 theme_override_font_sizes/font_size = 50
 tab_alignment = 1
-current_tab = 0
+current_tab = 1
 
 [node name="Sound" type="TabBar" parent="TabContainer"]
+visible = false
 z_index = 2
 layout_mode = 2
 metadata/_tab_index = 0
@@ -103,9 +105,72 @@ layout_mode = 2
 audio_bus_name = "Sound"
 
 [node name="Graphics" type="TabBar" parent="TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 1
+
+[node name="window_type" type="Control" parent="TabContainer/Graphics"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Label" type="Label" parent="TabContainer/Graphics/window_type"]
+layout_mode = 2
+offset_left = 9.0
+offset_top = 2.0
+offset_right = 805.0
+offset_bottom = 122.0
+theme_override_fonts/font = ExtResource("2_ekkdw")
+theme_override_font_sizes/font_size = 120
+text = "Window Type"
+
+[node name="VSeparator" type="VSeparator" parent="TabContainer/Graphics/window_type"]
+layout_mode = 2
+offset_left = 9.0
+offset_top = 2.0
+offset_right = 1614.0
+offset_bottom = 122.0
+
+[node name="window_type_button" type="OptionButton" parent="TabContainer/Graphics/window_type"]
+layout_mode = 2
+offset_left = 814.0
+offset_top = 2.0
+offset_right = 1617.0
+offset_bottom = 122.0
+theme_override_fonts/font = ExtResource("2_ekkdw")
+theme_override_font_sizes/font_size = 100
+script = ExtResource("4_p5yqb")
+
+[node name="HSeparator" type="HSeparator" parent="TabContainer/Graphics"]
+offset_left = 2.0
+offset_top = 130.0
+offset_right = 1619.0
+offset_bottom = 134.0
+
+[node name="resolution" type="Control" parent="TabContainer/Graphics"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Label" type="Label" parent="TabContainer/Graphics/resolution"]
+offset_left = 9.0
+offset_top = 140.0
+offset_right = 805.0
+offset_bottom = 260.0
+theme_override_fonts/font = ExtResource("2_ekkdw")
+theme_override_font_sizes/font_size = 120
+text = "Resolution"
+
+[node name="VSeparator" type="VSeparator" parent="TabContainer/Graphics/resolution"]
+offset_left = 9.0
+offset_top = 140.0
+offset_right = 1614.0
+offset_bottom = 260.0
+
+[node name="resolution_button" type="OptionButton" parent="TabContainer/Graphics/resolution"]
+offset_left = 814.0
+offset_top = 140.0
+offset_right = 1617.0
+offset_bottom = 260.0
+theme_override_fonts/font = ExtResource("2_ekkdw")
+theme_override_font_sizes/font_size = 100
 
 [node name="title_screen_button" type="TextureButton" parent="."]
 layout_mode = 2
@@ -117,6 +182,8 @@ grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("2_ug8si")
 
+[connection signal="item_selected" from="TabContainer/Graphics/window_type/window_type_button" to="." method="_on_window_type_button_item_selected"]
+[connection signal="item_selected" from="TabContainer/Graphics/resolution/resolution_button" to="." method="_on_window_type_button_item_selected"]
 [connection signal="mouse_entered" from="title_screen_button" to="." method="_on_title_screen_button_mouse_entered"]
 [connection signal="mouse_exited" from="title_screen_button" to="." method="_on_title_screen_button_mouse_exited"]
 [connection signal="pressed" from="title_screen_button" to="." method="_on_texture_button_pressed"]
