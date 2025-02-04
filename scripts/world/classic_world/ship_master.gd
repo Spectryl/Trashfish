@@ -62,7 +62,7 @@ func spawn_new_enemy() -> void:
 			b = swimmer_ship.instantiate()
 		5:
 			b = orca.instantiate()
-	b.set_global_scale(Vector2(2,2))
+	b.set_global_scale(Vector2(2.0,2.0))
 	add_child(b)
 	timer.start()
 	entities_spawned += 1

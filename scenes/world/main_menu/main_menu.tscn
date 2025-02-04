@@ -9,7 +9,7 @@ script = ExtResource("1_thvtn")
 
 [node name="dark_triangle_polygon" type="Polygon2D" parent="."]
 color = Color(0.00784314, 0.0784314, 0.203922, 1)
-polygon = PackedVector2Array(0, 0, 1920, 0, 1920, 1080)
+polygon = PackedVector2Array(0, 0, 1920, 0, 1920, 1080, 348.158, 195.839)
 script = ExtResource("2_c102s")
 stroke_color = Color(0.00784314, 0.0784314, 0.203922, 1)
 
@@ -22,6 +22,6 @@ stroke_color = Color(0.027451, 0.184314, 0.47451, 1)
 [node name="menu" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 1924.0
-offset_bottom = 1078.0
+offset_right = 1919.0
+offset_bottom = 1083.0
 script = ExtResource("3_y14qv")

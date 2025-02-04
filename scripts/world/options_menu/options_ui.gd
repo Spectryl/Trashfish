@@ -12,6 +12,8 @@ var master_volume : float
 var music_volume  : float
 var sound_volume  : float
 
+var window_index : int
+var resolution_index : int
 func _ready() -> void:
 	config = ConfigFile.new()
 	var error = config.load("user://savedata.cfg")
@@ -32,6 +34,8 @@ func _on_texture_button_pressed() -> void:
 	config.set_value("settings", "master_volume", db_to_linear(AudioServer.get_bus_volume_db(global.audio_master.master_bus_index)))
 	config.set_value("settings", "music_volume" , db_to_linear(AudioServer.get_bus_volume_db(global.audio_master.music_bus_index)))
 	config.set_value("settings", "sound_volume" , db_to_linear(AudioServer.get_bus_volume_db(global.audio_master.sound_bus_index)))
+	config.set_value("settings", "window", window_index)
+	config.set_value("settings", "resolution", resolution_index)
 	config.save("user://savedata.cfg")
 	menu.switch_menu(0)
 
@@ -41,3 +45,13 @@ func _on_title_screen_button_mouse_entered() -> void:
 
 func _on_title_screen_button_mouse_exited() -> void:
 	title_screen_button.set_deferred("modulate", Color(1,1,1,1))
+
+# When we click an option, we should change the screen we are on
+func _on_window_type_button_item_selected(index: int) -> void:
+	global.game_master.change_display(index)
+	self.window_index = index
+
+
+func _on_resolution_button_item_selected(index: int) -> void:
+	global.game_master.change_resolution(index)
+	self.resolution_index = index
