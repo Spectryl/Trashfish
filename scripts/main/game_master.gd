@@ -6,6 +6,9 @@ extends Node2D
 @onready var world_master  : Node2D = $world_master
 
 const resolutions : Dictionary = {
+	"640x480"   = Vector2i(640 ,480),
+	"780x480"   = Vector2i(720 ,480),
+	"1280x720"  = Vector2i(1280, 720),
 	"1920x1080" = Vector2i(1920,1080),
 	"2560x1440" = Vector2i(2560,1440),
 	"3440x1440" = Vector2i(3440,1440),
@@ -18,7 +21,6 @@ func _ready() -> void:
 	config.load("user://savedata.cfg")
 	change_display(config.get_value("settings", "window", 1))
 	change_resolution(config.get_value("settings", "resolution", 0))
-
 # Checks if a player save is created
 func check_save() -> void:
 	# Will create a save file if the player does not have one, otherwise it does nothing really.
@@ -50,3 +52,6 @@ func change_display(index : int) -> void:
 
 func change_resolution(index : int) -> void:
 	DisplayServer.window_set_size(resolutions.values()[index])
+	var centre_screen = DisplayServer.screen_get_position() + DisplayServer.screen_get_size()/2
+	var window_size = get_window().get_size_with_decorations()
+	get_window().set_position(centre_screen - window_size/2)

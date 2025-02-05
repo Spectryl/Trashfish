@@ -28,9 +28,9 @@ func _ready() -> void:
 		sound_volume  = config.get_value("settings",  "sound_volume" , 1.0)
 
 func _on_texture_button_pressed() -> void:
-	print(db_to_linear(AudioServer.get_bus_volume_db(global.audio_master.master_bus_index)))
-	print(db_to_linear(AudioServer.get_bus_volume_db(global.audio_master.music_bus_index)))
-	print(db_to_linear(AudioServer.get_bus_volume_db(global.audio_master.sound_bus_index)))
+	#print(db_to_linear(AudioServer.get_bus_volume_db(global.audio_master.master_bus_index)))
+	#print(db_to_linear(AudioServer.get_bus_volume_db(global.audio_master.music_bus_index)))
+	#print(db_to_linear(AudioServer.get_bus_volume_db(global.audio_master.sound_bus_index)))
 	config.set_value("settings", "master_volume", db_to_linear(AudioServer.get_bus_volume_db(global.audio_master.master_bus_index)))
 	config.set_value("settings", "music_volume" , db_to_linear(AudioServer.get_bus_volume_db(global.audio_master.music_bus_index)))
 	config.set_value("settings", "sound_volume" , db_to_linear(AudioServer.get_bus_volume_db(global.audio_master.sound_bus_index)))
@@ -48,10 +48,12 @@ func _on_title_screen_button_mouse_exited() -> void:
 
 # When we click an option, we should change the screen we are on
 func _on_window_type_button_item_selected(index: int) -> void:
-	global.game_master.change_display(index)
 	self.window_index = index
+	global.game_master.change_display(index)
+	
 
 
 func _on_resolution_button_item_selected(index: int) -> void:
-	global.game_master.change_resolution(index)
 	self.resolution_index = index
+	global.game_master.change_resolution(index)
+	

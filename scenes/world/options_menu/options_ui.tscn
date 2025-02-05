@@ -34,9 +34,10 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_ekkdw")
 theme_override_font_sizes/font_size = 50
 tab_alignment = 1
-current_tab = 0
+current_tab = 1
 
 [node name="Sound" type="TabBar" parent="TabContainer"]
+visible = false
 z_index = 2
 layout_mode = 2
 metadata/_tab_index = 0
@@ -64,6 +65,13 @@ text = "Master Volume"
 layout_mode = 2
 audio_bus_name = "Master"
 
+[node name="HSeparator" type="HSeparator" parent="TabContainer/Sound"]
+layout_mode = 2
+offset_left = 2.0
+offset_top = 75.0
+offset_right = 1622.0
+offset_bottom = 329.0
+
 [node name="music_volume_container" type="MarginContainer" parent="TabContainer/Sound"]
 layout_mode = 2
 offset_left = 2.0
@@ -83,6 +91,11 @@ text = "Music Volume"
 [node name="music_volume_slider" parent="TabContainer/Sound/music_volume_container" instance=ExtResource("2_n2gfy")]
 layout_mode = 2
 audio_bus_name = "Music"
+
+[node name="HSeparator2" type="HSeparator" parent="TabContainer/Sound"]
+offset_top = 247.0
+offset_right = 1620.0
+offset_bottom = 501.0
 
 [node name="sound_volume_container" type="MarginContainer" parent="TabContainer/Sound"]
 layout_mode = 2
@@ -104,8 +117,14 @@ text = "Sound Volume"
 layout_mode = 2
 audio_bus_name = "Sound"
 
+[node name="HSeparator3" type="HSeparator" parent="TabContainer/Sound"]
+layout_mode = 2
+offset_left = 2.0
+offset_top = 419.0
+offset_right = 1622.0
+offset_bottom = 673.0
+
 [node name="Graphics" type="TabBar" parent="TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
