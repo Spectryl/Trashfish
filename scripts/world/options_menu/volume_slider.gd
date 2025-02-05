@@ -1,6 +1,7 @@
 extends HSlider
 
 @export var audio_bus_name : String
+@export var sfx_to_play    : String
 var bus_index : int
 func _ready() -> void:
 	bus_index = AudioServer.get_bus_index(audio_bus_name)
@@ -9,3 +10,4 @@ func _ready() -> void:
 	
 func _on_value_changed(new_value : float) -> void:
 	AudioServer.set_bus_volume_db(bus_index, linear_to_db(new_value))
+	global.sound_master.play(sfx_to_play)

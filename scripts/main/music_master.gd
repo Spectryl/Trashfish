@@ -1,11 +1,10 @@
 extends Node
 @onready var lisa : AudioStreamPlayer            = $lisa
 @onready var midnight_sands : AudioStreamPlayer  = $midnight_sands
-
 var current_song_playing : String
 
 
-var music_dictionary = {
+var music_dictionary : Dictionary = {
 }
 
 func _ready() -> void:

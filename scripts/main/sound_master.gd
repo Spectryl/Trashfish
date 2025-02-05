@@ -7,10 +7,12 @@ extends Node
 @onready var rifle_shot  : AudioStreamPlayer = $rifle_shot
 @onready var fuse  : AudioStreamPlayer       = $fuse
 @onready var wave_splash : AudioStreamPlayer = $wave_splash
+@onready var ui_sfx_test : AudioStreamPlayer = $ui_sfx_test
+@onready var ui_music_test:AudioStreamPlayer = $ui_music_test
 
 
 
-var sound_dictionary = {
+var sound_dictionary : Dictionary= {
 }
 
 func _ready() -> void:
@@ -23,10 +25,13 @@ func _ready() -> void:
 	sound_dictionary["fuse"]         = fuse
 	sound_dictionary["wave_splash"]  = wave_splash
 	sound_dictionary["drop_splash"]  = drop_splash
+	sound_dictionary["ui_music_test"]= ui_music_test
+	sound_dictionary["ui_sfx_test"]  = ui_sfx_test
 	global.sound_master = self
 
+#Plays a sound effect
 func play(sfx_name : String):
 	sound_dictionary[sfx_name].play_audio()
-
+# stops a sound effect (this shouldn't be used
 func stop(sfx_name : String):
 	sound_dictionary[sfx_name].stop()

@@ -35,10 +35,9 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_ekkdw")
 theme_override_font_sizes/font_size = 50
 tab_alignment = 1
-current_tab = 1
+current_tab = 0
 
 [node name="Sound" type="TabBar" parent="TabContainer"]
-visible = false
 z_index = 2
 layout_mode = 2
 metadata/_tab_index = 0
@@ -65,13 +64,14 @@ text = "Master Volume"
 [node name="master_volume_slider" parent="TabContainer/Sound/master_volume_container" instance=ExtResource("2_n2gfy")]
 layout_mode = 2
 audio_bus_name = "Master"
+sfx_to_play = "ui_music_test"
 
 [node name="HSeparator" type="HSeparator" parent="TabContainer/Sound"]
 layout_mode = 2
 offset_left = 2.0
-offset_top = 75.0
+offset_top = 200.0
 offset_right = 1622.0
-offset_bottom = 329.0
+offset_bottom = 204.0
 
 [node name="music_volume_container" type="MarginContainer" parent="TabContainer/Sound"]
 layout_mode = 2
@@ -92,12 +92,14 @@ text = "Music Volume"
 [node name="music_volume_slider" parent="TabContainer/Sound/music_volume_container" instance=ExtResource("2_n2gfy")]
 layout_mode = 2
 audio_bus_name = "Music"
+sfx_to_play = "ui_music_test"
 
 [node name="HSeparator2" type="HSeparator" parent="TabContainer/Sound"]
 layout_mode = 0
-offset_top = 247.0
-offset_right = 1620.0
-offset_bottom = 501.0
+offset_left = 2.0
+offset_top = 374.0
+offset_right = 1622.0
+offset_bottom = 378.0
 
 [node name="sound_volume_container" type="MarginContainer" parent="TabContainer/Sound"]
 layout_mode = 2
@@ -118,15 +120,17 @@ text = "Sound Volume"
 [node name="sound_volume_slider" parent="TabContainer/Sound/sound_volume_container" instance=ExtResource("2_n2gfy")]
 layout_mode = 2
 audio_bus_name = "Sound"
+sfx_to_play = "ui_sfx_test"
 
 [node name="HSeparator3" type="HSeparator" parent="TabContainer/Sound"]
 layout_mode = 2
 offset_left = 2.0
-offset_top = 419.0
+offset_top = 546.0
 offset_right = 1622.0
-offset_bottom = 673.0
+offset_bottom = 550.0
 
 [node name="Graphics" type="TabBar" parent="TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
@@ -200,6 +204,7 @@ theme_override_font_sizes/font_size = 100
 script = ExtResource("5_1jvqv")
 
 [node name="HSeparator2" type="HSeparator" parent="TabContainer/Graphics"]
+layout_mode = 0
 offset_left = 4.0
 offset_top = 260.0
 offset_right = 1621.0
@@ -221,6 +226,7 @@ theme_override_font_sizes/font_size = 120
 text = "Vsync"
 
 [node name="VSeparator" type="VSeparator" parent="TabContainer/Graphics/vsync"]
+layout_mode = 0
 offset_left = 9.0
 offset_top = 260.0
 offset_right = 1614.0
