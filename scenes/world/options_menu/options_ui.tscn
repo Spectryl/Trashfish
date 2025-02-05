@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://benrome6etksn"]
+[gd_scene load_steps=8 format=3 uid="uid://benrome6etksn"]
 
 [ext_resource type="Script" path="res://scripts/world/options_menu/options_ui.gd" id="1_wfmpv"]
 [ext_resource type="FontFile" uid="uid://c0quiovxikjm8" path="res://font/VT323-Regular.ttf" id="2_ekkdw"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://3et37qb88nef" path="res://art/world/main_menu/title_screen_button.png" id="2_ug8si"]
 [ext_resource type="Script" path="res://scripts/world/options_menu/window_type_button.gd" id="4_p5yqb"]
 [ext_resource type="Script" path="res://scripts/world/options_menu/resolution_button.gd" id="5_1jvqv"]
+[ext_resource type="Script" path="res://scripts/world/options_menu/vsyncbutton.gd" id="6_gyuk1"]
 
 [node name="options_ui" type="Control"]
 layout_mode = 3
@@ -93,6 +94,7 @@ layout_mode = 2
 audio_bus_name = "Music"
 
 [node name="HSeparator2" type="HSeparator" parent="TabContainer/Sound"]
+layout_mode = 0
 offset_top = 247.0
 offset_right = 1620.0
 offset_bottom = 501.0
@@ -147,7 +149,7 @@ layout_mode = 2
 offset_left = 9.0
 offset_top = 2.0
 offset_right = 1614.0
-offset_bottom = 122.0
+offset_bottom = 132.0
 
 [node name="window_type_button" type="OptionButton" parent="TabContainer/Graphics/window_type"]
 layout_mode = 2
@@ -183,9 +185,9 @@ text = "Resolution"
 [node name="VSeparator" type="VSeparator" parent="TabContainer/Graphics/resolution"]
 layout_mode = 0
 offset_left = 9.0
-offset_top = 140.0
+offset_top = 130.0
 offset_right = 1614.0
-offset_bottom = 260.0
+offset_bottom = 262.0
 
 [node name="resolution_button" type="OptionButton" parent="TabContainer/Graphics/resolution"]
 layout_mode = 0
@@ -197,16 +199,49 @@ theme_override_fonts/font = ExtResource("2_ekkdw")
 theme_override_font_sizes/font_size = 100
 script = ExtResource("5_1jvqv")
 
+[node name="HSeparator2" type="HSeparator" parent="TabContainer/Graphics"]
+offset_left = 4.0
+offset_top = 260.0
+offset_right = 1621.0
+offset_bottom = 264.0
+
 [node name="vsync" type="Control" parent="TabContainer/Graphics"]
 anchors_preset = 0
-offset_top = 278.0
-offset_right = 40.0
-offset_bottom = 318.0
 
 [node name="Label" type="Label" parent="TabContainer/Graphics/vsync"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -7.042
+anchor_bottom = -7.042
+offset_top = 278.0
+offset_right = 240.0
+offset_bottom = 398.0
+theme_override_fonts/font = ExtResource("2_ekkdw")
+theme_override_font_sizes/font_size = 120
+text = "Vsync"
+
+[node name="VSeparator" type="VSeparator" parent="TabContainer/Graphics/vsync"]
+offset_left = 9.0
+offset_top = 260.0
+offset_right = 1614.0
+offset_bottom = 400.0
+
+[node name="vsyncbutton" type="CheckButton" parent="TabContainer/Graphics/vsync"]
+texture_filter = 1
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 1030.0
+offset_top = 243.0
+offset_right = 1074.0
+offset_bottom = 267.0
+scale = Vector2(7, 7)
+script = ExtResource("6_gyuk1")
+
+[node name="HSeparator3" type="HSeparator" parent="TabContainer/Graphics"]
+layout_mode = 2
+offset_left = 4.0
+offset_top = 398.0
+offset_right = 1621.0
+offset_bottom = 402.0
 
 [node name="title_screen_button" type="TextureButton" parent="."]
 layout_mode = 2
@@ -220,6 +255,7 @@ texture_normal = ExtResource("2_ug8si")
 
 [connection signal="item_selected" from="TabContainer/Graphics/window_type/window_type_button" to="." method="_on_window_type_button_item_selected"]
 [connection signal="item_selected" from="TabContainer/Graphics/resolution/resolution_button" to="." method="_on_resolution_button_item_selected"]
+[connection signal="toggled" from="TabContainer/Graphics/vsync/vsyncbutton" to="." method="_on_vsyncbutton_toggled"]
 [connection signal="mouse_entered" from="title_screen_button" to="." method="_on_title_screen_button_mouse_entered"]
 [connection signal="mouse_exited" from="title_screen_button" to="." method="_on_title_screen_button_mouse_exited"]
 [connection signal="pressed" from="title_screen_button" to="." method="_on_texture_button_pressed"]

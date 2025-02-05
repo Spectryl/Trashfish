@@ -14,6 +14,7 @@ var sound_volume  : float
 
 var window_index : int
 var resolution_index : int
+var vsync_mode : bool
 func _ready() -> void:
 	config = ConfigFile.new()
 	var error = config.load("user://savedata.cfg")
@@ -22,10 +23,16 @@ func _ready() -> void:
 		master_volume = 1.0
 		music_volume  = 1.0
 		sound_volume  = 1.0
+		window_index = 0
+		resolution_index = 0
+		vsync_mode = 1
 	else:
-		master_volume = config.get_value("settings",  "master_volume", 1.0)
-		music_volume  = config.get_value("settings",  "music_volume" , 1.0)
-		sound_volume  = config.get_value("settings",  "sound_volume" , 1.0)
+		master_volume    = config.get_value("settings",  "master_volume", 1.0)
+		music_volume     = config.get_value("settings",  "music_volume" , 1.0)
+		sound_volume     = config.get_value("settings",  "sound_volume" , 1.0)
+		window_index     = config.get_value("settings",  "window", 0)
+		resolution_index = config.get_value("settings",  "resolution", 0)
+		vsync_mode       = config.get_value("settings",  "vsync", 1.0)
 
 func _on_texture_button_pressed() -> void:
 	#print(db_to_linear(AudioServer.get_bus_volume_db(global.audio_master.master_bus_index)))
@@ -36,6 +43,7 @@ func _on_texture_button_pressed() -> void:
 	config.set_value("settings", "sound_volume" , db_to_linear(AudioServer.get_bus_volume_db(global.audio_master.sound_bus_index)))
 	config.set_value("settings", "window", window_index)
 	config.set_value("settings", "resolution", resolution_index)
+	config.set_value("settings", "vsync", vsync_mode)
 	config.save("user://savedata.cfg")
 	menu.switch_menu(0)
 
@@ -57,3 +65,8 @@ func _on_resolution_button_item_selected(index: int) -> void:
 	self.resolution_index = index
 	global.game_master.change_resolution(index)
 	
+
+
+func _on_vsyncbutton_toggled(toggled_on: bool) -> void:
+	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED if toggled_on else DisplayServer.VSYNC_DISABLED)
+	vsync_mode = toggled_on
