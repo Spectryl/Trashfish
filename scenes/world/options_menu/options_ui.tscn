@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://benrome6etksn"]
+[gd_scene load_steps=9 format=3 uid="uid://benrome6etksn"]
 
 [ext_resource type="Script" path="res://scripts/world/options_menu/options_ui.gd" id="1_wfmpv"]
 [ext_resource type="FontFile" uid="uid://c0quiovxikjm8" path="res://font/VT323-Regular.ttf" id="2_ekkdw"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/world/options_menu/window_type_button.gd" id="4_p5yqb"]
 [ext_resource type="Script" path="res://scripts/world/options_menu/resolution_button.gd" id="5_1jvqv"]
 [ext_resource type="Script" path="res://scripts/world/options_menu/vsyncbutton.gd" id="6_gyuk1"]
+[ext_resource type="Script" path="res://scripts/world/options_menu/frame_rate_button.gd" id="7_f1h0w"]
 
 [node name="options_ui" type="Control"]
 layout_mode = 3
@@ -70,7 +71,7 @@ sfx_to_play = "ui_music_test"
 layout_mode = 2
 offset_left = 2.0
 offset_top = 200.0
-offset_right = 1622.0
+offset_right = 1621.0
 offset_bottom = 204.0
 
 [node name="music_volume_container" type="MarginContainer" parent="TabContainer/Sound"]
@@ -98,7 +99,7 @@ sfx_to_play = "ui_music_test"
 layout_mode = 0
 offset_left = 2.0
 offset_top = 374.0
-offset_right = 1622.0
+offset_right = 1620.0
 offset_bottom = 378.0
 
 [node name="sound_volume_container" type="MarginContainer" parent="TabContainer/Sound"]
@@ -126,13 +127,49 @@ sfx_to_play = "ui_sfx_test"
 layout_mode = 2
 offset_left = 2.0
 offset_top = 546.0
-offset_right = 1622.0
+offset_right = 1621.0
 offset_bottom = 550.0
+
+[node name="HSeparator4" type="HSeparator" parent="TabContainer/Sound"]
+offset_left = 2.0
+offset_top = -6.0
+offset_right = 811.0
+offset_bottom = -2.0
+scale = Vector2(2, 2)
+
+[node name="VSeparator" type="VSeparator" parent="TabContainer/Sound"]
+offset_left = -4.305
+offset_top = 2.0
+offset_right = -0.305
+offset_bottom = 381.0
+scale = Vector2(2, 2)
+
+[node name="VSeparator2" type="VSeparator" parent="TabContainer/Sound"]
+offset_left = 1616.0
+offset_top = 2.0
+offset_right = 1620.0
+offset_bottom = 381.0
+scale = Vector2(2, 2)
+
+[node name="HSeparator6" type="HSeparator" parent="TabContainer/Sound"]
+offset_left = 2.0
+offset_top = 757.0
+offset_right = 811.0
+offset_bottom = 761.0
+scale = Vector2(2, 2)
 
 [node name="Graphics" type="TabBar" parent="TabContainer"]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
+
+[node name="HSeparator4" type="HSeparator" parent="TabContainer/Graphics"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -6.0
+offset_right = 811.0
+offset_bottom = -2.0
+scale = Vector2(2, 2)
 
 [node name="window_type" type="Control" parent="TabContainer/Graphics"]
 layout_mode = 3
@@ -160,7 +197,7 @@ layout_mode = 2
 offset_left = 814.0
 offset_top = 2.0
 offset_right = 1617.0
-offset_bottom = 122.0
+offset_bottom = 130.0
 theme_override_fonts/font = ExtResource("2_ekkdw")
 theme_override_font_sizes/font_size = 100
 script = ExtResource("4_p5yqb")
@@ -196,7 +233,7 @@ offset_bottom = 262.0
 [node name="resolution_button" type="OptionButton" parent="TabContainer/Graphics/resolution"]
 layout_mode = 0
 offset_left = 814.0
-offset_top = 140.0
+offset_top = 134.0
 offset_right = 1617.0
 offset_bottom = 260.0
 theme_override_fonts/font = ExtResource("2_ekkdw")
@@ -205,9 +242,9 @@ script = ExtResource("5_1jvqv")
 
 [node name="HSeparator2" type="HSeparator" parent="TabContainer/Graphics"]
 layout_mode = 0
-offset_left = 4.0
+offset_left = 3.0
 offset_top = 260.0
-offset_right = 1621.0
+offset_right = 1619.0
 offset_bottom = 264.0
 
 [node name="vsync" type="Control" parent="TabContainer/Graphics"]
@@ -218,8 +255,9 @@ layout_mode = 1
 anchors_preset = -1
 anchor_top = -7.042
 anchor_bottom = -7.042
+offset_left = 8.595
 offset_top = 278.0
-offset_right = 240.0
+offset_right = 248.595
 offset_bottom = 398.0
 theme_override_fonts/font = ExtResource("2_ekkdw")
 theme_override_font_sizes/font_size = 120
@@ -244,10 +282,72 @@ script = ExtResource("6_gyuk1")
 
 [node name="HSeparator3" type="HSeparator" parent="TabContainer/Graphics"]
 layout_mode = 2
-offset_left = 4.0
+offset_left = 3.0
 offset_top = 398.0
-offset_right = 1621.0
+offset_right = 1619.0
 offset_bottom = 402.0
+
+[node name="frame_rate" type="Control" parent="TabContainer/Graphics"]
+layout_mode = 1
+anchors_preset = 0
+
+[node name="Label" type="Label" parent="TabContainer/Graphics/frame_rate"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -7.042
+anchor_bottom = -7.042
+offset_left = 8.595
+offset_top = 416.0
+offset_right = 248.595
+offset_bottom = 536.0
+theme_override_fonts/font = ExtResource("2_ekkdw")
+theme_override_font_sizes/font_size = 120
+text = "Framerate"
+
+[node name="VSeparator" type="VSeparator" parent="TabContainer/Graphics/frame_rate"]
+layout_mode = 0
+offset_left = 801.0
+offset_top = 396.0
+offset_right = 822.0
+offset_bottom = 530.0
+
+[node name="frame_rate_button" type="OptionButton" parent="TabContainer/Graphics/frame_rate"]
+layout_mode = 0
+offset_left = 814.0
+offset_top = 402.0
+offset_right = 1617.0
+offset_bottom = 530.0
+theme_override_fonts/font = ExtResource("2_ekkdw")
+theme_override_font_sizes/font_size = 100
+script = ExtResource("7_f1h0w")
+
+[node name="HSeparator5" type="HSeparator" parent="TabContainer/Graphics"]
+offset_left = 3.0
+offset_top = 529.0
+offset_right = 1619.0
+offset_bottom = 533.0
+
+[node name="VSeparator" type="VSeparator" parent="TabContainer/Graphics"]
+layout_mode = 0
+offset_left = -4.305
+offset_top = 2.0
+offset_right = -0.305
+offset_bottom = 381.0
+scale = Vector2(2, 2)
+
+[node name="VSeparator2" type="VSeparator" parent="TabContainer/Graphics"]
+offset_left = 1616.0
+offset_top = 3.0
+offset_right = 1620.0
+offset_bottom = 382.0
+scale = Vector2(2, 2)
+
+[node name="HSeparator6" type="HSeparator" parent="TabContainer/Graphics"]
+offset_left = 2.0
+offset_top = 757.0
+offset_right = 811.0
+offset_bottom = 761.0
+scale = Vector2(2, 2)
 
 [node name="title_screen_button" type="TextureButton" parent="."]
 layout_mode = 2
@@ -262,6 +362,7 @@ texture_normal = ExtResource("2_ug8si")
 [connection signal="item_selected" from="TabContainer/Graphics/window_type/window_type_button" to="." method="_on_window_type_button_item_selected"]
 [connection signal="item_selected" from="TabContainer/Graphics/resolution/resolution_button" to="." method="_on_resolution_button_item_selected"]
 [connection signal="toggled" from="TabContainer/Graphics/vsync/vsyncbutton" to="." method="_on_vsyncbutton_toggled"]
+[connection signal="item_selected" from="TabContainer/Graphics/frame_rate/frame_rate_button" to="." method="_on_frame_rate_button_item_selected"]
 [connection signal="mouse_entered" from="title_screen_button" to="." method="_on_title_screen_button_mouse_entered"]
 [connection signal="mouse_exited" from="title_screen_button" to="." method="_on_title_screen_button_mouse_exited"]
 [connection signal="pressed" from="title_screen_button" to="." method="_on_texture_button_pressed"]

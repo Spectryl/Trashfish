@@ -15,6 +15,7 @@ var sound_volume  : float
 var window_index : int
 var resolution_index : int
 var vsync_mode : bool
+var frame_rate : int
 func _ready() -> void:
 	config = ConfigFile.new()
 	var error = config.load("user://savedata.cfg")
@@ -26,6 +27,7 @@ func _ready() -> void:
 		window_index = 0
 		resolution_index = 0
 		vsync_mode = 1
+		frame_rate = 60
 	else:
 		master_volume    = config.get_value("settings",  "master_volume", 1.0)
 		music_volume     = config.get_value("settings",  "music_volume" , 1.0)
@@ -33,7 +35,7 @@ func _ready() -> void:
 		window_index     = config.get_value("settings",  "window", 0)
 		resolution_index = config.get_value("settings",  "resolution", 0)
 		vsync_mode       = config.get_value("settings",  "vsync", 1.0)
-
+		frame_rate       = config.get_value("settings",  "framerate", 60.0)
 func _on_texture_button_pressed() -> void:
 	#print(db_to_linear(AudioServer.get_bus_volume_db(global.audio_master.master_bus_index)))
 	#print(db_to_linear(AudioServer.get_bus_volume_db(global.audio_master.music_bus_index)))
@@ -44,13 +46,13 @@ func _on_texture_button_pressed() -> void:
 	config.set_value("settings", "window", window_index)
 	config.set_value("settings", "resolution", resolution_index)
 	config.set_value("settings", "vsync", vsync_mode)
+	config.set_value("settings", "framerate", frame_rate)
 	config.save("user://savedata.cfg")
 	menu.switch_menu(0)
-
+# from the main_menu_buttons, same exact code basically
 func _on_title_screen_button_mouse_entered() -> void:
 	title_screen_button.set_deferred("modulate", Color(255,0,0,255))
 	global.sound_master.play("button_hover")
-
 func _on_title_screen_button_mouse_exited() -> void:
 	title_screen_button.set_deferred("modulate", Color(1,1,1,1))
 
@@ -59,13 +61,21 @@ func _on_window_type_button_item_selected(index: int) -> void:
 	self.window_index = index
 	global.game_master.change_display(index)
 	global.sound_master.play("button_hover")
-	
+# chanegs our resolution, do it by global master so we can reuse this later
 func _on_resolution_button_item_selected(index: int) -> void:
 	self.resolution_index = index
 	global.game_master.change_resolution(index)
 	global.sound_master.play("button_hover")
-	
+# Controls the vsync if we click or not
 func _on_vsyncbutton_toggled(toggled_on: bool) -> void:
 	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED if toggled_on else DisplayServer.VSYNC_DISABLED)
 	vsync_mode = toggled_on
+	global.sound_master.play("button_hover")
+
+# Sets fps based on what index of the list we choose
+func _on_frame_rate_button_item_selected(index: int) -> void:
+	var fps        = (index+1) * 15
+	#print(fps)
+	Engine.max_fps = fps
+	frame_rate     = fps
 	global.sound_master.play("button_hover")

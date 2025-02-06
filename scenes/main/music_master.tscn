@@ -9,9 +9,8 @@ script = ExtResource("1_2t2ie")
 
 [node name="lisa" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_eu33j")
-volume_db = -4.0
 bus = &"Music"
 
 [node name="midnight_sands" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_habgx")
-volume_db = -4.0
+bus = &"Music"

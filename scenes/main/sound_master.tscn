@@ -22,7 +22,7 @@ script = ExtResource("3_fwkhs")
 
 [node name="button_hover" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_vm0py")
-volume_db = 20.0
+volume_db = 10.0
 max_polyphony = 50
 bus = &"Sound"
 script = ExtResource("3_fwkhs")
@@ -62,7 +62,7 @@ pitch_scale_max = 1.1
 
 [node name="fuse" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_ya4cn")
-volume_db = 18.0
+volume_db = -15.0
 max_polyphony = 5
 bus = &"Sound"
 script = ExtResource("3_fwkhs")
@@ -78,14 +78,14 @@ pitch_scale_max = 1.2
 
 [node name="ui_sfx_test" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_vm0py")
-volume_db = 20.0
+volume_db = 10.0
 max_polyphony = 50
 bus = &"Sound"
 script = ExtResource("3_fwkhs")
 
 [node name="ui_music_test" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_vm0py")
-volume_db = 20.0
+volume_db = 10.0
 max_polyphony = 50
 bus = &"Music"
 script = ExtResource("3_fwkhs")
