@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3j33iqpsfure"
-path="res://.godot/imported/new_stn (1).png-8a758721f205bc25c4fae2881287dc31.ctex"
+uid="uid://bg5py02ta0uvx"
+path="res://.godot/imported/small_awp.png-81cb95382b40a02b773abb9ee58cf586.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/misc/new_stn (1).png"
-dest_files=["res://.godot/imported/new_stn (1).png-8a758721f205bc25c4fae2881287dc31.ctex"]
+source_file="res://art/enemy/classic_world/small_awp.png"
+dest_files=["res://.godot/imported/small_awp.png-81cb95382b40a02b773abb9ee58cf586.ctex"]
 
 [params]
 

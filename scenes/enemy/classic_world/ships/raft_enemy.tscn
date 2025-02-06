@@ -1,8 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://tnnxe3dimvi0"]
+[gd_scene load_steps=27 format=3 uid="uid://tnnxe3dimvi0"]
 
 [ext_resource type="Script" path="res://scripts/enemy/classic_world/ships/raft_enemy.gd" id="1_ef6wl"]
 [ext_resource type="Texture2D" uid="uid://c7tpy7v4e6jjo" path="res://art/enemy/classic_world/raft.png" id="1_fen3x"]
-[ext_resource type="Texture2D" uid="uid://de03ac32yi2ee" path="res://art/enemy/classic_world/awp.png" id="2_nk87i"]
+[ext_resource type="Texture2D" uid="uid://bg5py02ta0uvx" path="res://art/enemy/classic_world/small_awp.png" id="3_dejeu"]
 [ext_resource type="Script" path="res://scripts/enemy/classic_world/ships/gun.gd" id="4_its3k"]
 [ext_resource type="Texture2D" uid="uid://mxk4ye0eopij" path="res://art/enemy/classic_world/water_layer.png" id="5_5f0vo"]
 
@@ -49,33 +49,40 @@ animations = [{
 "speed": 1.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_71fs5"]
-atlas = ExtResource("2_nk87i")
-region = Rect2(0, 0, 113, 34)
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0xsv"]
+atlas = ExtResource("3_dejeu")
+region = Rect2(0, 0, 43, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_x4xta"]
-atlas = ExtResource("2_nk87i")
-region = Rect2(113, 0, 113, 34)
+[sub_resource type="AtlasTexture" id="AtlasTexture_jf6sl"]
+atlas = ExtResource("3_dejeu")
+region = Rect2(43, 0, 43, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1ixcu"]
-atlas = ExtResource("2_nk87i")
-region = Rect2(226, 0, 113, 34)
+[sub_resource type="AtlasTexture" id="AtlasTexture_7op4b"]
+atlas = ExtResource("3_dejeu")
+region = Rect2(86, 0, 43, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tmg4q"]
-atlas = ExtResource("2_nk87i")
-region = Rect2(0, 0, 113, 34)
+[sub_resource type="AtlasTexture" id="AtlasTexture_p217r"]
+atlas = ExtResource("3_dejeu")
+region = Rect2(86, 0, 43, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_urkk3"]
+atlas = ExtResource("3_dejeu")
+region = Rect2(0, 0, 43, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_43jhp"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_71fs5")
+"texture": SubResource("AtlasTexture_g0xsv")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_x4xta")
+"texture": SubResource("AtlasTexture_jf6sl")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1ixcu")
+"texture": SubResource("AtlasTexture_7op4b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p217r")
 }],
 "loop": true,
 "name": &"fire",
@@ -83,7 +90,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tmg4q")
+"texture": SubResource("AtlasTexture_urkk3")
 }],
 "loop": true,
 "name": &"idle",
@@ -167,7 +174,6 @@ frame_progress = 0.134252
 [node name="gun" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(-57, -24)
-scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_43jhp")
 animation = &"fire"
 script = ExtResource("4_its3k")
