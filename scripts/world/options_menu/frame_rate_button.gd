@@ -9,6 +9,6 @@ func _ready() -> void:
 		if fps > DisplayServer.screen_get_refresh_rate():
 			break
 	var config : ConfigFile = ConfigFile.new()
-	config.load("user://savedata.cfg")
+	config.load_encrypted_pass("user://savedata.cfg", global.game_master.password)
 	selected = config.get_value("settings","framerate",0) / 15 - 1 #convert it back into indexes
 	

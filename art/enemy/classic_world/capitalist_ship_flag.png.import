@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dp5clisxoyg5b"
-path="res://.godot/imported/kris_ship.png-1558bdaf0b0defe84c1422e165612ede.ctex"
+uid="uid://6vlosgthljh7"
+path="res://.godot/imported/capitalist_ship_flag.png-014c74b725f194b552481ca7975cfefe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/enemy/classic_world/kris_ship.png"
-dest_files=["res://.godot/imported/kris_ship.png-1558bdaf0b0defe84c1422e165612ede.ctex"]
+source_file="res://art/enemy/classic_world/capitalist_ship_flag.png"
+dest_files=["res://.godot/imported/capitalist_ship_flag.png-014c74b725f194b552481ca7975cfefe.ctex"]
 
 [params]
 

@@ -20,6 +20,7 @@ func _ready() -> void:
 	check_save()
 	var config : ConfigFile = ConfigFile.new()
 	config.load_encrypted_pass("user://savedata.cfg", password)
+	audio_master.set_up_audio(password)
 	change_display(config.get_value("settings", "window", 1))
 	change_resolution(config.get_value("settings", "resolution", 0))
 # Checks if a player save is created

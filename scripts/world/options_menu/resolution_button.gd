@@ -20,5 +20,5 @@ func _ready() -> void:
 			break
 		self.add_item(res)
 	var config : ConfigFile = ConfigFile.new()
-	config.load("user://savedata.cfg")
+	config.load_encrypted_pass("user://savedata.cfg", global.game_master.password)
 	selected = config.get_value("settings","resolution",0)

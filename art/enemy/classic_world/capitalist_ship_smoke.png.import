@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnmjo74k2hl4f"
-path="res://.godot/imported/trash_ship_moving.png-29b6a24b50f36b98695b561d5411920f.ctex"
+uid="uid://do51cp006w0m7"
+path="res://.godot/imported/capitalist_ship_smoke.png-3714d4727a0a1d026a1395308032acab.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/enemy/classic_world/trash_ship_moving.png"
-dest_files=["res://.godot/imported/trash_ship_moving.png-29b6a24b50f36b98695b561d5411920f.ctex"]
+source_file="res://art/enemy/classic_world/capitalist_ship_smoke.png"
+dest_files=["res://.godot/imported/capitalist_ship_smoke.png-3714d4727a0a1d026a1395308032acab.ctex"]
 
 [params]
 

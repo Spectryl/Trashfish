@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://de03ac32yi2ee"
-path="res://.godot/imported/awp.png-4348ccc9d94ca2f1cd9c6b84a22b1a31.ctex"
+uid="uid://8p1fsg0r2wu7"
+path="res://.godot/imported/rca_logo.png-47ed958be617037806e145445503db22.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/enemy/classic_world/awp.png"
-dest_files=["res://.godot/imported/awp.png-4348ccc9d94ca2f1cd9c6b84a22b1a31.ctex"]
+source_file="res://art/enemy/classic_world/rca_logo.png"
+dest_files=["res://.godot/imported/rca_logo.png-47ed958be617037806e145445503db22.ctex"]
 
 [params]
 

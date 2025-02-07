@@ -1,10 +1,10 @@
 extends Node2D
-const beast_ship      = preload("res://scenes/enemy/classic_world/ships/mrbeast_ship.tscn")
-const trash_ship      = preload("res://scenes/enemy/classic_world/ships/trash_ship.tscn")
-const raft_ship       = preload("res://scenes/enemy/classic_world/ships/raft_enemy.tscn")
-const pirate_ship     = preload("res://scenes/enemy/classic_world/ships/pirate_ship.tscn")
-const swimmer_ship    = preload("res://scenes/enemy/classic_world/ships/swimmer_ship.tscn")
-const orca            = preload("res://scenes/enemy/classic_world/ships/fish_spawner.tscn")
+const capitalist_ship      = preload("res://scenes/enemy/classic_world/ships/capitalist_ship.tscn")
+const trash_ship           = preload("res://scenes/enemy/classic_world/ships/trash_ship.tscn")
+const raft_ship            = preload("res://scenes/enemy/classic_world/ships/raft_enemy.tscn")
+const pirate_ship          = preload("res://scenes/enemy/classic_world/ships/pirate_ship.tscn")
+const swimmer_ship         = preload("res://scenes/enemy/classic_world/ships/swimmer_ship.tscn")
+const orca                 = preload("res://scenes/enemy/classic_world/ships/fish_spawner.tscn")
 @export var timer_wait_time : float
 @export var max_entities : int = 30
 var entities_spawned : int
@@ -53,7 +53,7 @@ func spawn_new_enemy() -> void:
 		0:
 			b = trash_ship.instantiate()
 		1:
-			b = beast_ship.instantiate()
+			b = capitalist_ship.instantiate()
 		2:
 			b = raft_ship.instantiate()
 		3:

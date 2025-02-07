@@ -11,5 +11,5 @@ func _ready() -> void:
 	for window in windows_types:
 		self.add_item(window)
 	var config : ConfigFile = ConfigFile.new()
-	config.load("user://savedata.cfg")
+	config.load_encrypted_pass("user://savedata.cfg", global.game_master.password)
 	selected = config.get_value("settings","window",0)

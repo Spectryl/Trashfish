@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bfhwnhiyweprk"
-path="res://.godot/imported/beast_ship.png-87894f15c1bebd1ce9b94ef66e136063.ctex"
+uid="uid://delth42vcy31x"
+path="res://.godot/imported/capitalist_ship.png-d0180d6480439399626860d92a0a2389.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/enemy/classic_world/beast_ship.png"
-dest_files=["res://.godot/imported/beast_ship.png-87894f15c1bebd1ce9b94ef66e136063.ctex"]
+source_file="res://art/enemy/classic_world/capitalist_ship.png"
+dest_files=["res://.godot/imported/capitalist_ship.png-d0180d6480439399626860d92a0a2389.ctex"]
 
 [params]
 
