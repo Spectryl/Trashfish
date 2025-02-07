@@ -21,7 +21,7 @@ func _ready() -> void:
 	
 	health = player.get_health()
 	starve_bar.max_value = player.max_starve
-	var error = config.load("user://savedata.cfg")
+	var error = config.load_encrypted_pass("user://savedata.cfg",global.game_master.password)
 	if error != OK:
 		print("error")
 		high_score = 0
@@ -58,7 +58,7 @@ func update_hud_when_dead():
 	score_ui.text = "Score: %d" % score
 	health_ui.text = "X %d" % player.get_health()
 	config.set_value("player", "classic_high_score", high_score)
-	config.save("user://savedata.cfg")
+	config.save_encrypted_pass("user://savedata.cfg", global.game_master.password)
 	
 func update_score_hud(new_score : int):
 	score = new_score

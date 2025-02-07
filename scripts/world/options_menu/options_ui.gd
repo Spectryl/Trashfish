@@ -18,7 +18,7 @@ var vsync_mode : bool
 var frame_rate : int
 func _ready() -> void:
 	config = ConfigFile.new()
-	var error = config.load("user://savedata.cfg")
+	var error = config.load_encrypted_pass("user://savedata.cfg", global.game_master.password)
 	if error != OK:
 		print("error:", error)
 		master_volume = 1.0
@@ -47,7 +47,7 @@ func _on_texture_button_pressed() -> void:
 	config.set_value("settings", "resolution", resolution_index)
 	config.set_value("settings", "vsync", vsync_mode)
 	config.set_value("settings", "framerate", frame_rate)
-	config.save("user://savedata.cfg")
+	config.save_encrypted_pass("user://savedata.cfg", global.game_master.password)
 	menu.switch_menu(0)
 # from the main_menu_buttons, same exact code basically
 func _on_title_screen_button_mouse_entered() -> void:

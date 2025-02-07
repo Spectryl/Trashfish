@@ -18,6 +18,7 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 boot_splash/bg_color=Color(0.0430392, 0.0430392, 0.0430391, 1)
 boot_splash/image="res://art/misc/new_stn (1).png"
 boot_splash/fullsize=false
+config/icon="res://art/misc/desktop_icon.png"
 config/windows_native_icon="res://art/misc/icon.ico"
 
 [audio]

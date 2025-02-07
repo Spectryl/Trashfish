@@ -1,8 +1,8 @@
 extends Node2D
-@onready var raft = $raft
-@onready var gun = $gun
-@onready var shoot_timer = $shoot_timer
-@onready var water_layer = $water_layer
+@onready var raft       :AnimatedSprite2D   = $raft
+@onready var gun        :AnimatedSprite2D   = $gun
+@onready var shoot_timer : Timer            = $shoot_timer
+@onready var water_layer : AnimatedSprite2D = $water_layer
 @onready var state = 0
 
 var nextX : float

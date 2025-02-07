@@ -5,12 +5,12 @@ extends Node2D
 @onready var master_bus_index : int = AudioServer.get_bus_index("Master")
 @onready var music_bus_index  : int = AudioServer.get_bus_index("Music")
 @onready var sound_bus_index  : int = AudioServer.get_bus_index("Sound")
-
+@onready var game_master   : Node2D = get_parent()
 func _ready() -> void:
 	global.audio_master = self
-	
+	await get_tree().create_timer(1).timeout
 	var config = ConfigFile.new()
-	var error = config.load("user://savedata.cfg")
+	var error = config.load_encrypted_pass("user://savedata.cfg", game_master.password)
 	if error != OK:
 		print("error:", error)
 		config.set_value("settings", "master_volume", 1.0)

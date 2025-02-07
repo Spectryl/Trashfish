@@ -2,8 +2,6 @@ extends Node
 @onready var lisa : AudioStreamPlayer            = $lisa
 @onready var midnight_sands : AudioStreamPlayer  = $midnight_sands
 var current_song_playing : String = "none"
-
-
 var music_dictionary : Dictionary = {
 }
 
