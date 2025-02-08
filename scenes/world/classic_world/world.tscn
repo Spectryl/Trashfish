@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dj4vdaxwdewiu"]
+[gd_scene load_steps=11 format=3 uid="uid://dj4vdaxwdewiu"]
 
 [ext_resource type="Script" path="res://scripts/world/classic_world/collision_polygon_2d.gd" id="1_4hx4q"]
 [ext_resource type="Script" path="res://scripts/world/classic_world/world.gd" id="1_gcfhd"]
@@ -8,20 +8,6 @@
 [ext_resource type="FontFile" uid="uid://c0quiovxikjm8" path="res://font/VT323-Regular.ttf" id="6_0gp58"]
 [ext_resource type="Texture2D" uid="uid://bfig4ppqc525o" path="res://art/world/classic_world/health.png" id="7_tqa8c"]
 [ext_resource type="Texture2D" uid="uid://djpnypv17cuuo" path="res://art/world/classic_world/starve_icon.png" id="8_s7dsv"]
-
-[sub_resource type="Environment" id="Environment_ix3ld"]
-background_mode = 3
-background_canvas_max_layer = 1
-tonemap_mode = 2
-tonemap_exposure = 0.7
-tonemap_white = 1.78
-glow_enabled = true
-glow_strength = 0.9
-glow_bloom = 0.08
-glow_blend_mode = 1
-glow_hdr_threshold = 0.65
-glow_hdr_luminance_cap = 1.22
-adjustment_enabled = true
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wl38v"]
 bg_color = Color(0, 0, 0, 1)
@@ -58,9 +44,6 @@ centered = false
 [node name="background_polygon" type="Polygon2D" parent="ParallaxBackground"]
 color = Color(0.372549, 0.803922, 0.894118, 1)
 polygon = PackedVector2Array(0, 206, 1920, 206, 1920, 933, 0, 933)
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_ix3ld")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 10

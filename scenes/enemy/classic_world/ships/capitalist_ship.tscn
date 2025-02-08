@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bdrdrpgqc25qg"]
+[gd_scene load_steps=47 format=3 uid="uid://bdrdrpgqc25qg"]
 
 [ext_resource type="Script" path="res://scripts/enemy/classic_world/ships/mrbeast_ship.gd" id="1_kjtjv"]
 [ext_resource type="PackedScene" uid="uid://0ncg7uw24q8j" path="res://scenes/enemy/classic_world/ships/ship.tscn" id="1_u18oj"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://6vlosgthljh7" path="res://art/enemy/classic_world/capitalist_ship_flag.png" id="5_c3w3d"]
 [ext_resource type="Texture2D" uid="uid://do51cp006w0m7" path="res://art/enemy/classic_world/capitalist_ship_smoke.png" id="6_iwul7"]
 [ext_resource type="Texture2D" uid="uid://8p1fsg0r2wu7" path="res://art/enemy/classic_world/rca_logo.png" id="7_oww5l"]
+[ext_resource type="Shader" path="res://shaders/player/sprite_flip.gdshader" id="8_h10ow"]
+[ext_resource type="Texture2D" uid="uid://c78xodykwyjtb" path="res://art/enemy/classic_world/josh.png" id="8_i4ts8"]
+[ext_resource type="Script" path="res://scripts/enemy/classic_world/ships/josh.gd" id="10_ma55b"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7tg3e"]
 atlas = ExtResource("3_npfm8")
@@ -173,7 +176,103 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="mrbeast_ship" type="Node2D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_remjv"]
+shader = ExtResource("8_h10ow")
+shader_parameter/u_color_key = Color(0.462745, 0.258824, 0.541176, 1)
+shader_parameter/u_replacement_color = Color(100, 100, 100, 1)
+shader_parameter/u_tolerance = 0.2
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w1wlr"]
+atlas = ExtResource("8_i4ts8")
+region = Rect2(0, 0, 58, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hjfm8"]
+atlas = ExtResource("8_i4ts8")
+region = Rect2(58, 0, 58, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vw22a"]
+atlas = ExtResource("8_i4ts8")
+region = Rect2(116, 0, 58, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fkpow"]
+atlas = ExtResource("8_i4ts8")
+region = Rect2(174, 0, 58, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uu25t"]
+atlas = ExtResource("8_i4ts8")
+region = Rect2(232, 0, 58, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qg2qi"]
+atlas = ExtResource("8_i4ts8")
+region = Rect2(290, 0, 58, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iq4pp"]
+atlas = ExtResource("8_i4ts8")
+region = Rect2(348, 0, 58, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lhna5"]
+atlas = ExtResource("8_i4ts8")
+region = Rect2(406, 0, 58, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1udut"]
+atlas = ExtResource("8_i4ts8")
+region = Rect2(464, 0, 58, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqqtg"]
+atlas = ExtResource("8_i4ts8")
+region = Rect2(522, 0, 58, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmoc0"]
+atlas = ExtResource("8_i4ts8")
+region = Rect2(580, 0, 58, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7dfrs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w1wlr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hjfm8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vw22a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkpow")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uu25t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qg2qi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iq4pp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lhna5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1udut")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gqqtg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rmoc0")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 9.0
+}]
+
+[node name="capitalist_ship" type="Node2D"]
 script = ExtResource("1_kjtjv")
 
 [node name="ship_component" parent="." instance=ExtResource("1_u18oj")]
@@ -197,16 +296,24 @@ z_index = -2
 texture_filter = 1
 position = Vector2(5, -46)
 sprite_frames = SubResource("SpriteFrames_wyfc5")
-frame_progress = 0.615362
+frame_progress = 0.112876
 
 [node name="smoke" type="AnimatedSprite2D" parent="."]
 z_index = -1
 texture_filter = 1
 position = Vector2(62, -23)
 sprite_frames = SubResource("SpriteFrames_cemms")
-frame_progress = 0.753742
+frame_progress = 0.853699
 
 [node name="logo" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(-12, -13)
 texture = ExtResource("7_oww5l")
+
+[node name="josh" type="AnimatedSprite2D" parent="."]
+z_index = -1
+texture_filter = 1
+material = SubResource("ShaderMaterial_remjv")
+position = Vector2(-45, -54)
+sprite_frames = SubResource("SpriteFrames_7dfrs")
+script = ExtResource("10_ma55b")
