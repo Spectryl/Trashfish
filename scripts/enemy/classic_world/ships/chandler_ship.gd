@@ -72,10 +72,10 @@ func changeState(new_value : bool):
 	@warning_ignore("standalone_ternary")
 	kevin.play("idle") if isMoving else kevin.play("walk")
 	kevin.position.x = 48 if crates.flip_h else -48
+	speed = abs(speed) if animated_sprite.flip_h else abs(speed) * -1
+	kevin.flip_h = animated_sprite.flip_h
 	
-func evil_abs(value : int) -> int:
-	return abs(value) * -1
-	
+
 func get_drop() -> void:
 	var drop
 	match randi_range(0,1):
