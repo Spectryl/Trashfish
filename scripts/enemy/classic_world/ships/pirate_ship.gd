@@ -7,6 +7,7 @@ const spawnable_drop2 = preload("res://scenes/enemy/classic_world/drops/ice_drop
 @onready var wait_timer      : Timer            = get_node("ship_component/wait_timer")
 @onready var water_layer     : AnimatedSprite2D = get_node("water_layer")
 @onready var flag            : AnimatedSprite2D = get_node("flag")
+@onready var pirate          : AnimatedSprite2D = get_node("pirate")
 var isMoving : bool = true: set = changeState
 func _ready() -> void:
 	animated_sprite.play("default")
@@ -18,16 +19,22 @@ func _ready() -> void:
 	for i in range(randi_range(0,3)):
 		var new_window = window.instantiate()
 		new_window.position = Vector2(-27 + randi_range(0,60),randi_range(-20,-8))
+		new_window.z_index = 1
 		add_child(new_window)
 
 func flip():
 	animated_sprite.flip_h = !animated_sprite.flip_h
 	water_layer.flip_h     = !water_layer.flip_h
-
+	flag.position.x        *= -1
+	flag.flip_h            = !flag.flip_h
+	pirate.position.x      *= -1
+	pirate.flip_h          = !pirate.flip_h
 
 func changeState(new_value : bool):
 	isMoving = new_value
 	water_layer.visible = isMoving
+	@warning_ignore("standalone_ternary")
+	pirate.play("default") if isMoving else pirate.play("default")
 
 func get_drop() -> void:
 	var drop

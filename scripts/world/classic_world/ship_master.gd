@@ -38,16 +38,9 @@ func _on_delete_timer_timeout() -> void:
 # Handles spawning enemies
 func spawn_new_enemy() -> void:
 	# so we can have ramping difficulty, so its harder enemies the further u go
-	
-	var difficulty_check : int = int(score / 5.0) # Determines how much we should range
-	
 	if score % 30 == 0 and score != 0:
 		max_entities += 1
-	if difficulty_check > 6:
-		difficulty_check = 6
-	if difficulty_check <= 0:
-		difficulty_check = 1
-	var entity_index_to_spawn : int = randi_range(0,difficulty_check)
+	var entity_index_to_spawn : int = randi_range(0,clamp(int(score / 5.0), 0, 5))
 	var entity
 	match entity_index_to_spawn:
 		0:
