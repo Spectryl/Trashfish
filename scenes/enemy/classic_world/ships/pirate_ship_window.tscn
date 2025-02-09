@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://boubyp4niy40e"]
+
+[ext_resource type="Texture2D" uid="uid://b6aum0u0lpvv2" path="res://art/enemy/classic_world/pirate_ship_window.png" id="1_pj17l"]
+
+[node name="pirate_ship_window" type="Sprite2D"]
+z_index = 1
+texture_filter = 1
+texture = ExtResource("1_pj17l")

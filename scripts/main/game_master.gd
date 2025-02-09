@@ -4,7 +4,7 @@ extends Node2D
 @onready var audio_master  : Node2D = $audio_master
 @onready var player_master : Node2D = $player_master
 @onready var world_master  : Node2D = $world_master
-@onready var password : String  = str(int(OS.get_environment("USERNAME")) && 1010010 ^ 00110101) if OS.has_environment("USERNAME") else str(int(OS.get_name()) && 1010010 ^ 00110101)
+@onready var password : String  = OS.get_environment("USERNAME") if OS.has_environment("USERNAME") else OS.get_name()
 const resolutions : Dictionary = {
 	"640x480"   = Vector2i(640 ,480),
 	"780x480"   = Vector2i(720 ,480),

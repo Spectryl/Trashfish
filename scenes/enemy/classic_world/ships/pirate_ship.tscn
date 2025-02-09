@@ -1,77 +1,23 @@
-[gd_scene load_steps=24 format=3 uid="uid://bk0k8v1urwir0"]
+[gd_scene load_steps=22 format=3 uid="uid://bk0k8v1urwir0"]
 
 [ext_resource type="Script" path="res://scripts/enemy/classic_world/ships/pirate_ship.gd" id="1_q23a1"]
 [ext_resource type="PackedScene" uid="uid://0ncg7uw24q8j" path="res://scenes/enemy/classic_world/ships/ship.tscn" id="2_ufgkj"]
-[ext_resource type="Texture2D" uid="uid://byjdlmvhxny27" path="res://art/enemy/classic_world/pirate_ship_idle.png" id="3_j458q"]
-[ext_resource type="Texture2D" uid="uid://boroqd11gqqsc" path="res://art/enemy/classic_world/pirate_ship_moving.png" id="4_jvufk"]
+[ext_resource type="Texture2D" uid="uid://bqttvkbag8jgq" path="res://art/enemy/classic_world/pirate_ship.png" id="3_f770c"]
 [ext_resource type="Texture2D" uid="uid://mxk4ye0eopij" path="res://art/enemy/classic_world/water_layer.png" id="5_btdi1"]
+[ext_resource type="Texture2D" uid="uid://3ek4sriqqwtf" path="res://art/enemy/classic_world/pirate_ship_flag.png" id="5_cr7yv"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5wxej"]
-atlas = ExtResource("3_j458q")
+[sub_resource type="AtlasTexture" id="AtlasTexture_jdmtn"]
+atlas = ExtResource("3_f770c")
 region = Rect2(0, 0, 144, 69)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_c614c"]
-atlas = ExtResource("3_j458q")
-region = Rect2(144, 0, 144, 69)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_efbcg"]
-atlas = ExtResource("3_j458q")
-region = Rect2(288, 0, 144, 69)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nok22"]
-atlas = ExtResource("3_j458q")
-region = Rect2(432, 0, 144, 69)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_x2i58"]
-atlas = ExtResource("4_jvufk")
-region = Rect2(0, 0, 144, 69)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cpglq"]
-atlas = ExtResource("4_jvufk")
-region = Rect2(144, 0, 144, 69)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_43s2u"]
-atlas = ExtResource("4_jvufk")
-region = Rect2(288, 0, 144, 69)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1os61"]
-atlas = ExtResource("4_jvufk")
-region = Rect2(432, 0, 144, 69)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o5usg"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5wxej")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_c614c")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_efbcg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nok22")
+"texture": SubResource("AtlasTexture_jdmtn")
 }],
 "loop": true,
 "name": &"default",
-"speed": 1.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_x2i58")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cpglq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_43s2u")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1os61")
-}],
-"loop": true,
-"name": &"swim",
 "speed": 1.0
 }]
 
@@ -139,6 +85,42 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_30212"]
+atlas = ExtResource("5_cr7yv")
+region = Rect2(0, 0, 66, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xnr3"]
+atlas = ExtResource("5_cr7yv")
+region = Rect2(66, 0, 66, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ypsvr"]
+atlas = ExtResource("5_cr7yv")
+region = Rect2(132, 0, 66, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8hqpg"]
+atlas = ExtResource("5_cr7yv")
+region = Rect2(66, 0, 66, 41)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o2sc3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_30212")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3xnr3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ypsvr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8hqpg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 9.0
+}]
+
 [node name="pirate_ship" type="Node2D"]
 script = ExtResource("1_q23a1")
 
@@ -152,9 +134,17 @@ wait_time = 0.125
 texture_filter = 1
 position = Vector2(0, -35)
 sprite_frames = SubResource("SpriteFrames_o5usg")
-animation = &"swim"
 
 [node name="water_layer" type="AnimatedSprite2D" parent="."]
+z_index = 1
 texture_filter = 1
 position = Vector2(0, -35)
 sprite_frames = SubResource("SpriteFrames_dpdxw")
+
+[node name="flag" type="AnimatedSprite2D" parent="."]
+z_index = -1
+texture_filter = 1
+position = Vector2(3, -53)
+sprite_frames = SubResource("SpriteFrames_o2sc3")
+frame = 2
+frame_progress = 0.199025

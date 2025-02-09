@@ -39,30 +39,31 @@ func _on_delete_timer_timeout() -> void:
 func spawn_new_enemy() -> void:
 	# so we can have ramping difficulty, so its harder enemies the further u go
 	
-	var c = int(score / 5.0)
+	var difficulty_check : int = int(score / 5.0) # Determines how much we should range
 	
 	if score % 30 == 0 and score != 0:
 		max_entities += 1
-	if c > 6:
-		c = 6
-	if c <= 0:
-		c = 1
-	var a : int = randi() % c
-	var b
-	match a:
+	if difficulty_check > 6:
+		difficulty_check = 6
+	if difficulty_check <= 0:
+		difficulty_check = 1
+	var entity_index_to_spawn : int = randi_range(0,difficulty_check)
+	var entity
+	match entity_index_to_spawn:
 		0:
-			b = trash_ship.instantiate()
+			entity = trash_ship.instantiate()
 		1:
-			b = capitalist_ship.instantiate()
+			entity = capitalist_ship.instantiate()
 		2:
-			b = raft_ship.instantiate()
+			entity = raft_ship.instantiate()
 		3:
-			b = pirate_ship.instantiate()
+			entity = pirate_ship.instantiate()
 		4: 
-			b = swimmer_ship.instantiate()
+			entity = swimmer_ship.instantiate()
 		5:
-			b = orca.instantiate()
-	b.set_global_scale(Vector2(2.0,2.0))
-	add_child(b)
+			entity = orca.instantiate()
+	entity.set_global_scale(Vector2(2.0,2.0))
+	entity.z_index = entities_spawned
+	add_child(entity)
 	timer.start()
 	entities_spawned += 1
