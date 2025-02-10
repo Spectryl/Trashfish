@@ -1,7 +1,7 @@
 extends Node2D
 const capitalist_ship      = preload("res://scenes/enemy/classic_world/ships/capitalist_ship.tscn")
 const trash_ship           = preload("res://scenes/enemy/classic_world/ships/trash_ship.tscn")
-const raft_ship            = preload("res://scenes/enemy/classic_world/ships/raft_enemy.tscn")
+const gun_ship            = preload("res://scenes/enemy/classic_world/ships/gun_ship.tscn")
 const pirate_ship          = preload("res://scenes/enemy/classic_world/ships/pirate_ship.tscn")
 const swimmer_ship         = preload("res://scenes/enemy/classic_world/ships/swimmer_ship.tscn")
 const orca                 = preload("res://scenes/enemy/classic_world/ships/fish_spawner.tscn")
@@ -48,13 +48,14 @@ func spawn_new_enemy() -> void:
 		1:
 			entity = capitalist_ship.instantiate()
 		2:
-			entity = raft_ship.instantiate()
+			entity = gun_ship.instantiate()
 		3:
 			entity = pirate_ship.instantiate()
 		4: 
 			entity = swimmer_ship.instantiate()
 		5:
 			entity = orca.instantiate()
+	entity = gun_ship.instantiate()
 	entity.set_global_scale(Vector2(2.0,2.0))
 	entity.z_index = entities_spawned
 	add_child(entity)
