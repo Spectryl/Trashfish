@@ -65,8 +65,10 @@ func _process(delta: float) -> void:
 			return
 		# We have arrived at our spot but we haven't dropped an item yet
 		2:
-			sound_timer.stop()
-			parent.isMoving = false
+			# don't want this code running 800000 times
+			if parent.isMoving == true:
+				sound_timer.stop()
+				parent.isMoving = false
 			# Wait for some time if we'd like
 			if wait_timer.time_left > 0.01 and not wait_timer.is_stopped():
 				return

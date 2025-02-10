@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://tnnxe3dimvi0"]
+[gd_scene load_steps=56 format=3 uid="uid://tnnxe3dimvi0"]
 
 [ext_resource type="Script" path="res://scripts/enemy/classic_world/ships/raft_enemy.gd" id="1_ef6wl"]
 [ext_resource type="PackedScene" uid="uid://0ncg7uw24q8j" path="res://scenes/enemy/classic_world/ships/ship.tscn" id="2_of3fo"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/enemy/classic_world/ships/gun.gd" id="4_its3k"]
 [ext_resource type="Texture2D" uid="uid://babyliqo84vkb" path="res://art/enemy/classic_world/gun_ship_flag.png" id="4_rsww5"]
 [ext_resource type="Texture2D" uid="uid://mxk4ye0eopij" path="res://art/enemy/classic_world/water_layer.png" id="5_5f0vo"]
+[ext_resource type="Shader" path="res://shaders/player/sprite_flip.gdshader" id="6_1844h"]
 [ext_resource type="Texture2D" uid="uid://c6yddyisxak0b" path="res://art/enemy/classic_world/idaho_man.png" id="6_tyopa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_52lcg"]
@@ -137,6 +138,13 @@ animations = [{
 "name": &"default",
 "speed": 12.0
 }]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5jx3s"]
+resource_local_to_scene = true
+shader = ExtResource("6_1844h")
+shader_parameter/u_color_key = Color(0.462745, 0.258824, 0.541176, 1)
+shader_parameter/u_replacement_color = Color(0, 1, 0.156863, 1)
+shader_parameter/u_tolerance = 0.2
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6jj3i"]
 atlas = ExtResource("6_tyopa")
@@ -411,11 +419,12 @@ frame_progress = 0.0917188
 
 [node name="gunman" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+material = SubResource("ShaderMaterial_5jx3s")
 position = Vector2(-50, -38)
 sprite_frames = SubResource("SpriteFrames_3gf1f")
-animation = &"walk"
 
 [node name="gun" type="AnimatedSprite2D" parent="gunman"]
+visible = false
 position = Vector2(-17, 18)
 sprite_frames = SubResource("SpriteFrames_po8bj")
 animation = &"fire"

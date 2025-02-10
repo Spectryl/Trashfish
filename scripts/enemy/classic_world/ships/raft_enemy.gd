@@ -33,8 +33,12 @@ func flip():
 func _process(delta):
 	if isMoving:
 		return
+	#print(gunman.animation)
+	
 	gun.set_gun_rotation()
 	gunman.position.x += speed * delta
+	print(nextX)
+	print(gunman.position.x)
 	if check_in_range(gunman.position.x, nextX, speed * delta):
 		speed = 0
 		state = 2
@@ -43,7 +47,8 @@ func _process(delta):
 func changeState(new_value : bool):
 	isMoving = new_value
 	water_layer.visible = isMoving
-	gunman.play("default") if isMoving else gunman.play("wake_up")
+	@warning_ignore("standalone_ternary")
+	gunman.play("wake_up") if not isMoving and ship_component.state == 2 else gunman.play("default")
 
 func get_drop() -> void:
 	var drop = spawnable_drop.instantiate()
@@ -66,15 +71,19 @@ func state_machine() -> void:
 	match state:
 		1:
 			gunman.play("walk")
-			print(gunman.animation)
 			nextX = randi_range(-50, 20)
+			
 			speed = 50
 			speed = abs(speed) * -1 if nextX < gunman.position.x else speed
-			gunman.flip_h = speed < 0
+			gunman.flip_h = speed > 0
 		3:
 			gunman.play("lying_down")
 			gun.visible = true
-			ship_component.wait_timer(2)
+			ship_component.wait_timer.start(2)
 
 func check_in_range(a : float, b : float , range_of_pos : float) -> bool:
 	return abs(a - b) < range_of_pos + 1
+
+func flip_gunman() -> void:
+	gunman.flip_h = !gunman.flip_h
+	gun.flip_h    = !gun.flip_h
