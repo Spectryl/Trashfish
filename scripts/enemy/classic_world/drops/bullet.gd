@@ -6,7 +6,7 @@ func _ready() -> void:
 	speed += randi_range(0,55)
 	set_rotation(raft_enemy.gun.get_rotation())
 	global_position = raft_enemy.gun.get_global_position()
-	raft_enemy.shoot_timer.start(10)
+	#raft_enemy.shoot_timer.start(10)
 	direction = Vector2(cos(get_rotation()), sin(get_rotation())) * speed
 
 func _process(delta : float) -> void:

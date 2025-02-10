@@ -26,19 +26,14 @@ func flip():
 	animated_sprite.flip_h = !animated_sprite.flip_h
 	water_layer.flip_h     = !water_layer.flip_h
 	flag.position.x        *= -1
-	#flag.flip_h            = !flag.flip_h
 	gunman.position.x      *= -1
 	gunman.flip_h          = !gunman.flip_h
-
 func _process(delta):
-	if isMoving:
+	if isMoving or state == 2 or state == 3:
 		return
-	#print(gunman.animation)
-	
+
 	gun.set_gun_rotation()
 	gunman.position.x += speed * delta
-	print(nextX)
-	print(gunman.position.x)
 	if check_in_range(gunman.position.x, nextX, speed * delta):
 		speed = 0
 		state = 2
@@ -71,7 +66,7 @@ func state_machine() -> void:
 	match state:
 		1:
 			gunman.play("walk")
-			nextX = randi_range(-50, 20)
+			nextX = randi_range(-50, 0)
 			
 			speed = 50
 			speed = abs(speed) * -1 if nextX < gunman.position.x else speed
@@ -82,7 +77,7 @@ func state_machine() -> void:
 			ship_component.wait_timer.start(2)
 
 func check_in_range(a : float, b : float , range_of_pos : float) -> bool:
-	return abs(a - b) < range_of_pos + 1
+	return abs(a - b) < abs(range_of_pos) + 1
 
 func flip_gunman() -> void:
 	gunman.flip_h = !gunman.flip_h
