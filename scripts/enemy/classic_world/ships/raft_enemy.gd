@@ -8,6 +8,7 @@ const spawnable_drop = preload("res://scenes/enemy/classic_world/drops/bullet.ts
 @onready var flag            : AnimatedSprite2D = get_node("flag")
 @onready var gunman          : AnimatedSprite2D = get_node("gunman")
 @onready var gun             : AnimatedSprite2D = get_node("gunman/gun")
+@onready var shoot_timer     : Timer            = get_node("shoot_timer")
 var isMoving : bool = true: set = changeState
 var nextX : int
 var speed : int
@@ -29,10 +30,9 @@ func flip():
 	gunman.position.x      *= -1
 	gunman.flip_h          = !gunman.flip_h
 func _process(delta):
+	gun.set_gun_rotation()
 	if isMoving or state == 2 or state == 3:
 		return
-
-	gun.set_gun_rotation()
 	gunman.position.x += speed * delta
 	if check_in_range(gunman.position.x, nextX, speed * delta):
 		speed = 0
@@ -46,8 +46,7 @@ func changeState(new_value : bool):
 	gunman.play("wake_up") if not isMoving and ship_component.state == 2 else gunman.play("default")
 
 func get_drop() -> void:
-	var drop = spawnable_drop.instantiate()
-	add_child(drop)
+	shoot_timer.start(2)
 
 
 func _on_gunman_animation_finished() -> void:
@@ -71,6 +70,8 @@ func state_machine() -> void:
 			speed = 50
 			speed = abs(speed) * -1 if nextX < gunman.position.x else speed
 			gunman.flip_h = speed > 0
+			gun.flip_h = speed > 0
+			gun.position.x *= -1 if gun.flip_h else 1
 		3:
 			gunman.play("lying_down")
 			gun.visible = true
@@ -78,6 +79,15 @@ func state_machine() -> void:
 
 func check_in_range(a : float, b : float , range_of_pos : float) -> bool:
 	return abs(a - b) < abs(range_of_pos) + 1
+
+func _on_shoot_timer_timeout() -> void:
+	gun.play("fire")
+	global.sound_master.play("rifle_shot")
+	if ship_component.counter == 0:
+		ship_component.state = 3
+		return
+	var bullet = spawnable_drop.instantiate()
+	add_child(bullet)
 
 func flip_gunman() -> void:
 	gunman.flip_h = !gunman.flip_h

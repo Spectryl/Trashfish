@@ -430,4 +430,8 @@ sprite_frames = SubResource("SpriteFrames_po8bj")
 animation = &"fire"
 script = ExtResource("4_its3k")
 
+[node name="shoot_timer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="animation_finished" from="gunman" to="." method="_on_gunman_animation_finished"]
+[connection signal="timeout" from="shoot_timer" to="." method="_on_shoot_timer_timeout"]
