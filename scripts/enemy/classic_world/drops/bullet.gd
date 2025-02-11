@@ -3,10 +3,10 @@ var speed : int = 200
 var direction : Vector2
 @onready var gun_ship = get_parent()
 func _ready() -> void:
-	speed += randi_range(0,55)
+	speed += randi_range(0,105)
 	set_rotation(gun_ship.gun.get_rotation())
 	global_position = gun_ship.gun.get_global_position()
-	gun_ship.shoot_timer.start(10)
+	gun_ship.shoot_timer.start(randf_range(5,10))
 	direction = Vector2(cos(get_rotation()), sin(get_rotation())) * speed
 
 func _process(delta : float) -> void:

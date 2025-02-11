@@ -36,7 +36,7 @@ func _process(_delta: float) -> void:
 	if score > high_score:
 		high_score = score
 		config.set_value("player", "classic_high_score", high_score)
-		config.save("user://savedata.cfg")
+		config.save_encrypted_pass("user://savedata.cfg", global.game_master.password)
 	starve_bar.value = get_player_starvation()
 	var player_health = player.get_health()
 	if health != player_health:
