@@ -70,8 +70,8 @@ func state_machine() -> void:
 			speed = 50
 			speed = abs(speed) * -1 if nextX < gunman.position.x else speed
 			gunman.flip_h = speed > 0
-			gun.flip_h = speed > 0
-			gun.position.x *= -1 if gun.flip_h else 1
+			#gun.flip_h = speed > 0
+			gun.position.x *= -1 if gunman.flip_h else 1
 		3:
 			gunman.play("lying_down")
 			gun.visible = true
@@ -83,8 +83,9 @@ func check_in_range(a : float, b : float , range_of_pos : float) -> bool:
 func _on_shoot_timer_timeout() -> void:
 	gun.play("fire")
 	global.sound_master.play("rifle_shot")
-	if ship_component.counter == 0:
+	if ship_component.counter < 0:
 		ship_component.state = 3
+		gun.visible = false
 		return
 	var bullet = spawnable_drop.instantiate()
 	add_child(bullet)

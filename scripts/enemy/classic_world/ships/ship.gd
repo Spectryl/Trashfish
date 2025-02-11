@@ -78,7 +78,6 @@ func _process(delta: float) -> void:
 			return
 		# We have run out of things to drop, so lets' be set to despawn!
 		3:
-			
 			if counter < 0:
 				sound_master.play("wave_splash")
 				sound_timer.start(stream_length)
