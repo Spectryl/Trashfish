@@ -30,6 +30,7 @@ func _ready() -> void:
 func check_save() -> void:
 	# Will create a save file if the player does not have one, otherwise it does nothing really.
 	var config : ConfigFile = ConfigFile.new()
+	print(password)
 	var error : Error = config.load_encrypted_pass("user://savedata.cfg", password)
 	if error != OK:
 		config = ConfigFile.new()

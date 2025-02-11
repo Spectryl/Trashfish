@@ -78,4 +78,5 @@ func generate_waves():
 		var new_wave = waves_sprite.instantiate()
 		new_wave.play("default")
 		new_wave.global_position = Vector2(i * 100, 200)
+		new_wave.z_index = 99
 		add_child(new_wave)

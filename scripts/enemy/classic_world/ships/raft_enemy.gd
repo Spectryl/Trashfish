@@ -22,6 +22,8 @@ func _ready() -> void:
 	ship_component.counter += randi_range(0,3)
 	ship_component.speed += randi_range(0,250)
 	wait_timer.wait_time = randi_range(0,1) + ship_component.wait_time
+	var new_color = Color(randf_range(0,1), randf_range(0,1), randf_range(0,1), 1.0)
+	gunman.material.set_shader_parameter("u_replacement_color", new_color)
 
 func flip():
 	animated_sprite.flip_h = !animated_sprite.flip_h

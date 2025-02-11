@@ -436,9 +436,8 @@ position = Vector2(-27, -39)
 sprite_frames = SubResource("SpriteFrames_3gf1f")
 
 [node name="gun" type="AnimatedSprite2D" parent="gunman"]
-position = Vector2(-17, 18)
+position = Vector2(-14, 21)
 sprite_frames = SubResource("SpriteFrames_po8bj")
-animation = &"fire"
 script = ExtResource("4_its3k")
 
 [node name="shoot_timer" type="Timer" parent="."]

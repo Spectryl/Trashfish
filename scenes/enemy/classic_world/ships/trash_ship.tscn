@@ -250,4 +250,5 @@ z_index = -1
 texture_filter = 1
 position = Vector2(-51, -43)
 sprite_frames = SubResource("SpriteFrames_oo2by")
-animation = &"idle"
+animation = &"walk"
+frame_progress = 0.0634188
