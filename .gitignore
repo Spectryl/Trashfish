@@ -4,5 +4,6 @@
 export_presets.cfg
 *.rar
 *.exe
+*.zip
 *.7z
 *.pck

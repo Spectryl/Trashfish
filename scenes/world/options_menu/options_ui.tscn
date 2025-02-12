@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://benrome6etksn"]
+[gd_scene load_steps=10 format=3 uid="uid://benrome6etksn"]
 
 [ext_resource type="Script" path="res://scripts/world/options_menu/options_ui.gd" id="1_wfmpv"]
 [ext_resource type="FontFile" uid="uid://c0quiovxikjm8" path="res://font/VT323-Regular.ttf" id="2_ekkdw"]
 [ext_resource type="PackedScene" uid="uid://cpx8dacbpg66w" path="res://scenes/world/options_menu/volume_slider.tscn" id="2_n2gfy"]
 [ext_resource type="Texture2D" uid="uid://3et37qb88nef" path="res://art/world/main_menu/title_screen_button.png" id="2_ug8si"]
 [ext_resource type="Script" path="res://scripts/world/options_menu/window_type_button.gd" id="4_p5yqb"]
+[ext_resource type="Script" path="res://scripts/world/options_menu/graphics.gd" id="4_xjbfh"]
 [ext_resource type="Script" path="res://scripts/world/options_menu/resolution_button.gd" id="5_1jvqv"]
 [ext_resource type="Script" path="res://scripts/world/options_menu/vsyncbutton.gd" id="6_gyuk1"]
 [ext_resource type="Script" path="res://scripts/world/options_menu/frame_rate_button.gd" id="7_f1h0w"]
@@ -36,9 +37,10 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_ekkdw")
 theme_override_font_sizes/font_size = 50
 tab_alignment = 1
-current_tab = 0
+current_tab = 1
 
 [node name="Sound" type="TabBar" parent="TabContainer"]
+visible = false
 z_index = 2
 layout_mode = 2
 metadata/_tab_index = 0
@@ -163,9 +165,9 @@ offset_bottom = 761.0
 scale = Vector2(2, 2)
 
 [node name="Graphics" type="TabBar" parent="TabContainer"]
-visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_ekkdw")
+script = ExtResource("4_xjbfh")
 metadata/_tab_index = 1
 
 [node name="HSeparator4" type="HSeparator" parent="TabContainer/Graphics"]

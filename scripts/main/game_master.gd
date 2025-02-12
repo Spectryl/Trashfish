@@ -4,7 +4,7 @@ extends Node2D
 @onready var audio_master  : Node2D = $audio_master
 @onready var player_master : Node2D = $player_master
 @onready var world_master  : Node2D = $world_master
-@onready var password : String  = OS.get_environment("USERNAME") if OS.has_environment("USERNAME") else OS.get_name()
+@onready var password : String  = "freedom"
 const resolutions : Dictionary = {
 	"640x480"   = Vector2i(640 ,480),
 	"780x480"   = Vector2i(720 ,480),
@@ -25,7 +25,7 @@ func _ready() -> void:
 	config.load_encrypted_pass("user://savedata.cfg", password)
 	audio_master.set_up_audio(password)
 	change_display(config.get_value("settings", "window", 1))
-	change_resolution(config.get_value("settings", "resolution", 0))
+	change_resolution(config.get_value("settings", "resolution", 2))
 # Checks if a player save is created
 func check_save() -> void:
 	# Will create a save file if the player does not have one, otherwise it does nothing really.
