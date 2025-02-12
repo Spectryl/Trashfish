@@ -4,7 +4,6 @@ var delete_timer : Timer
 # Purpose of this component is to automatically delete things when they aren't needed anymore
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	delete_timer = Timer.new()
 	delete_timer.wait_time = delete_time

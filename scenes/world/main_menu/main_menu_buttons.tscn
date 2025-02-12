@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://i55vhi2s2qbn" path="res://art/world/main_menu/controls_button.png" id="3_o5sgc"]
 [ext_resource type="Script" path="res://scripts/world/main_menu/start_button.gd" id="3_qcoiv"]
 [ext_resource type="Texture2D" uid="uid://1axiehrh7c1c" path="res://art/world/main_menu/quit_button.png" id="4_prk38"]
-[ext_resource type="Script" path="res://scripts/world/main_menu/quit_button.gd" id="7_m7eh0"]
+[ext_resource type="PackedScene" uid="uid://ctdvbp2l1ur0q" path="res://scenes/misc/web_delete_component.tscn" id="7_21duf"]
 
 [node name="main_menu_buttons" type="Control"]
 layout_mode = 3
@@ -66,7 +66,9 @@ focus_neighbor_bottom = NodePath("../start_button")
 toggle_mode = true
 texture_normal = ExtResource("4_prk38")
 stretch_mode = 0
-script = ExtResource("7_m7eh0")
+
+[node name="web_delete_component" parent="MarginContainer/VBoxContainer/quit_button" instance=ExtResource("7_21duf")]
+position = Vector2(-737, -730.5)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0

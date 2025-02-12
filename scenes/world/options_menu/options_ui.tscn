@@ -5,10 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://cpx8dacbpg66w" path="res://scenes/world/options_menu/volume_slider.tscn" id="2_n2gfy"]
 [ext_resource type="Texture2D" uid="uid://3et37qb88nef" path="res://art/world/main_menu/title_screen_button.png" id="2_ug8si"]
 [ext_resource type="Script" path="res://scripts/world/options_menu/window_type_button.gd" id="4_p5yqb"]
-[ext_resource type="Script" path="res://scripts/world/options_menu/graphics.gd" id="4_xjbfh"]
 [ext_resource type="Script" path="res://scripts/world/options_menu/resolution_button.gd" id="5_1jvqv"]
 [ext_resource type="Script" path="res://scripts/world/options_menu/vsyncbutton.gd" id="6_gyuk1"]
 [ext_resource type="Script" path="res://scripts/world/options_menu/frame_rate_button.gd" id="7_f1h0w"]
+[ext_resource type="PackedScene" uid="uid://ctdvbp2l1ur0q" path="res://scenes/misc/web_delete_component.tscn" id="8_5an64"]
 
 [node name="options_ui" type="Control"]
 layout_mode = 3
@@ -167,7 +167,6 @@ scale = Vector2(2, 2)
 [node name="Graphics" type="TabBar" parent="TabContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_ekkdw")
-script = ExtResource("4_xjbfh")
 metadata/_tab_index = 1
 
 [node name="HSeparator4" type="HSeparator" parent="TabContainer/Graphics"]
@@ -358,6 +357,8 @@ offset_top = 757.0
 offset_right = 811.0
 offset_bottom = 761.0
 scale = Vector2(2, 2)
+
+[node name="web_delete_component" parent="TabContainer/Graphics" instance=ExtResource("8_5an64")]
 
 [node name="title_screen_button" type="TextureButton" parent="."]
 layout_mode = 2
