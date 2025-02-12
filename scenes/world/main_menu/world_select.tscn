@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://vk3bcqbry74w"]
+[gd_scene load_steps=4 format=3 uid="uid://vk3bcqbry74w"]
 
 [ext_resource type="Script" path="res://scripts/world/main_menu/world_select.gd" id="1_1xcrm"]
 [ext_resource type="Texture2D" uid="uid://i8n3dqy7kgbu" path="res://art/world/main_menu/beach_world_icon.png" id="1_qynar"]
+[ext_resource type="Texture2D" uid="uid://dmk6o416kmbs2" path="res://art/world/main_menu/choose_your_world.png" id="2_8cebv"]
 
 [node name="world_select" type="Control"]
 layout_mode = 3
@@ -12,22 +13,40 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1xcrm")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -403.5
+offset_top = 20.0
+offset_right = 403.5
+offset_bottom = 155.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_8cebv")
+
+[node name="worlds" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -75.0
+offset_right = 100.0
+offset_bottom = 75.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="worlds" type="HBoxContainer" parent="MarginContainer"]
-layout_mode = 2
+size_flags_horizontal = 4
 alignment = 1
 
-[node name="classic" type="TextureButton" parent="MarginContainer/worlds"]
+[node name="classic" type="TextureButton" parent="worlds"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 texture_normal = ExtResource("1_qynar")
 
-[connection signal="pressed" from="MarginContainer/worlds/classic" to="." method="_on_classic_pressed"]
+[connection signal="pressed" from="worlds/classic" to="." method="_on_classic_pressed"]
