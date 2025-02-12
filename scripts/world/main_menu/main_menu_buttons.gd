@@ -9,7 +9,7 @@ var hover_color : Color = Color(255,0,0,255) # Color when we hover a button
 var reset_color : Color = Color(1,1,1,1)     # Color when we stop hovering, this can be forced to be default color
 #region Button_Press
 func _on_start_button_pressed() -> void:
-	global.world_master.change_world(2)
+	menu.switch_menu(2)
 
 func _on_options_button_pressed() -> void:
 	menu.switch_menu(1)

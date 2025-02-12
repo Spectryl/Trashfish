@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://vk3bcqbry74w"]
+
+[ext_resource type="Script" path="res://scripts/world/main_menu/world_select.gd" id="1_1xcrm"]
+[ext_resource type="Texture2D" uid="uid://i8n3dqy7kgbu" path="res://art/world/main_menu/beach_world_icon.png" id="1_qynar"]
+
+[node name="world_select" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1xcrm")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="worlds" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="classic" type="TextureButton" parent="MarginContainer/worlds"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture_normal = ExtResource("1_qynar")
+
+[connection signal="pressed" from="MarginContainer/worlds/classic" to="." method="_on_classic_pressed"]

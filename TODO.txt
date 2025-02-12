@@ -1,0 +1,11 @@
+TODO:
+
+Make all Image Buttons Texts Black -> White // Background Lighter
+Make a proper Controls Screen
+Make a mechanic for respawning
+Rebalance
+MORE SFX
+NEW GAMEMODES
+-J6
+-Lights Out
+-Hard Mode
