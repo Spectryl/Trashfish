@@ -5,8 +5,8 @@ extends Control
 @onready var controls_button : TextureButton = $MarginContainer/VBoxContainer/controls_button
 @onready var quit_button : TextureButton     = $MarginContainer/VBoxContainer/quit_button
 
-var hover_color : Color = Color(255,0,0,255) # Color when we hover a button
-var reset_color : Color = Color(1,1,1,1)     # Color when we stop hovering, this can be forced to be default color
+var hover_color : Color = Color8(0,255,255,255) # Color when we hover a button
+var reset_color : Color = Color8(255,255,255,255)     # Color when we stop hovering, this can be forced to be default color
 #region Button_Press
 func _on_start_button_pressed() -> void:
 	menu.switch_menu(2)

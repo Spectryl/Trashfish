@@ -51,10 +51,10 @@ func _on_texture_button_pressed() -> void:
 	menu.switch_menu(0)
 # from the main_menu_buttons, same exact code basically
 func _on_title_screen_button_mouse_entered() -> void:
-	title_screen_button.set_deferred("modulate", Color(255,0,0,255))
+	title_screen_button.set_deferred("modulate", Color8(0,255,255,255))
 	global.sound_master.play("button_hover")
 func _on_title_screen_button_mouse_exited() -> void:
-	title_screen_button.set_deferred("modulate", Color(1,1,1,1))
+	title_screen_button.set_deferred("modulate", Color8(255,255,255,255))
 
 # When we click an option, we should change the screen we are on
 func _on_window_type_button_item_selected(index: int) -> void:
