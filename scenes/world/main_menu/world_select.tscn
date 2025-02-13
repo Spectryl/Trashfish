@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://vk3bcqbry74w"]
+[gd_scene load_steps=6 format=3 uid="uid://vk3bcqbry74w"]
 
 [ext_resource type="Script" path="res://scripts/world/main_menu/world_select.gd" id="1_1xcrm"]
 [ext_resource type="Texture2D" uid="uid://i8n3dqy7kgbu" path="res://art/world/main_menu/beach_world_icon.png" id="1_qynar"]
 [ext_resource type="Texture2D" uid="uid://dmk6o416kmbs2" path="res://art/world/main_menu/choose_your_world.png" id="2_8cebv"]
+[ext_resource type="Texture2D" uid="uid://wkdcrujuq5gd" path="res://art/world/main_menu/back_button.png" id="3_ye7fq"]
+[ext_resource type="Texture2D" uid="uid://c17lyu7us74qg" path="res://art/world/main_menu/locked_world_icon.png" id="5_gfvix"]
 
 [node name="world_select" type="Control"]
 layout_mode = 3
@@ -13,19 +15,34 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1xcrm")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="choose_your_world" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -403.5
-offset_top = 20.0
+offset_top = 50.0
 offset_right = 403.5
-offset_bottom = 155.0
+offset_bottom = 185.0
 grow_horizontal = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("2_8cebv")
+
+[node name="back_button" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -955.0
+offset_top = 436.0
+offset_right = -505.0
+offset_bottom = 536.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("3_ye7fq")
 
 [node name="worlds" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -43,10 +60,23 @@ grow_vertical = 2
 size_flags_horizontal = 4
 alignment = 1
 
-[node name="classic" type="TextureButton" parent="worlds"]
+[node name="beach" type="TextureButton" parent="worlds"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 texture_normal = ExtResource("1_qynar")
 
-[connection signal="pressed" from="worlds/classic" to="." method="_on_classic_pressed"]
+[node name="lava" type="TextureButton" parent="worlds"]
+layout_mode = 2
+disabled = true
+texture_normal = ExtResource("5_gfvix")
+
+[node name="electric" type="TextureButton" parent="worlds"]
+layout_mode = 2
+disabled = true
+texture_normal = ExtResource("5_gfvix")
+
+[connection signal="mouse_entered" from="back_button" to="." method="_on_back_button_mouse_entered"]
+[connection signal="mouse_exited" from="back_button" to="." method="_on_back_button_mouse_exited"]
+[connection signal="pressed" from="back_button" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="worlds/beach" to="." method="_on_beach_pressed"]

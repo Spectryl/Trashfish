@@ -9,7 +9,7 @@ func _ready() -> void:
 	menu = main_menu_buttons.instantiate()
 	add_child(menu)
 	
-	
+# Deletes the old menu and creates a new menu
 func switch_menu(new_menu : int) -> void:
 	menu.queue_free()
 	match new_menu:
