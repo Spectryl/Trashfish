@@ -35,6 +35,7 @@ size_flags_horizontal = 4
 theme_override_constants/separation = 40
 
 [node name="resume_button" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+modulate = Color(0.443137, 1, 0.0509804, 1)
 texture_filter = 1
 layout_mode = 2
 texture_normal = ExtResource("1_a046k")
