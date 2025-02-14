@@ -39,3 +39,9 @@ func change_world(world_id : int) -> void:
 	call_deferred("add_child", world)
 	global.player_master.change_player_world(get_world_id())
 	global.world = world
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("pause"):
+		if get_world_id() == 0 or get_world_id() == 1:
+			return 
+		get_tree().paused = true

@@ -4,9 +4,9 @@ var player : CharacterBody2D
 const player_scene = preload("res://scenes/player/player.tscn")
 func _ready() -> void:
 	player = player_scene.instantiate()
-	self.add_child(player)
 	global.player = player
 	global.player_master = self
+	self.add_child(player)
 	disable_player_activity()
 
 func set_player_defaults(new_scale: float = 1, new_speed : float = 200, new_global_position : Vector2 = Vector2(0,0), new_world_id : int = 0):
@@ -54,3 +54,14 @@ func enable_player_activity() -> void:
 	player.visible = true
 	player.body_hurtbox.set_deferred("disabled", false)
 	
+func new_player(index : int, starve : bool = false, active : bool = false) -> void:
+	player.queue_free()
+	match index:
+		0:
+			player = player_scene.instantiate()
+	@warning_ignore("standalone_ternary")
+	enable_player_starve_timer() if starve else disable_player_starve_timer()
+	@warning_ignore("standalone_ternary")
+	enable_player_activity()     if active else disable_player_activity()
+	add_child(player)
+		
