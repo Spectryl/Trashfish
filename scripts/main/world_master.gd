@@ -1,6 +1,6 @@
 extends Node2D
-@onready var world : Node2D
-
+@onready var world      : Node2D
+@onready var pause_menu : Control = $pause_menu
 
 
 
@@ -43,5 +43,6 @@ func change_world(world_id : int) -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
 		if get_world_id() == 0 or get_world_id() == 1:
-			return 
+			return
+		pause_menu.visible = true
 		get_tree().paused = true

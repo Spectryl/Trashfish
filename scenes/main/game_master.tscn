@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cycuj3jwqmgf"]
+[gd_scene load_steps=6 format=3 uid="uid://cycuj3jwqmgf"]
 
 [ext_resource type="Script" path="res://scripts/main/game_master.gd" id="1_rnyhu"]
 [ext_resource type="PackedScene" uid="uid://mjpkhj7q0g0c" path="res://scenes/main/audio_master.tscn" id="2_3cgmn"]
 [ext_resource type="PackedScene" uid="uid://drxnem1c0nc47" path="res://scenes/main/player_master.tscn" id="3_vr6n3"]
 [ext_resource type="PackedScene" uid="uid://cjxp501t4sut5" path="res://scenes/main/world_master.tscn" id="4_0obw4"]
+[ext_resource type="PackedScene" uid="uid://bcwmj7e733el7" path="res://scenes/misc/pause_menu.tscn" id="5_2ebf8"]
 
 [node name="game_master" type="Node2D"]
 script = ExtResource("1_rnyhu")
@@ -13,3 +14,10 @@ script = ExtResource("1_rnyhu")
 [node name="player_master" parent="." instance=ExtResource("3_vr6n3")]
 
 [node name="world_master" parent="." instance=ExtResource("4_0obw4")]
+
+[node name="pause_menu" parent="world_master" instance=ExtResource("5_2ebf8")]
+z_index = 99
+offset_left = 942.0
+offset_top = 479.0
+offset_right = 942.0
+offset_bottom = 479.0
