@@ -7,6 +7,8 @@ var hover_color : Color = Color8(113,255,13,255)
 var reset_color : Color = Color8(255,255,255,255)
 func _ready() -> void:
 	self.visible = false
+	self.global_position = Vector2(942,479)
+	self.z_index = 99
 
 func _on_resume_button_pressed() -> void:
 	resume_game()

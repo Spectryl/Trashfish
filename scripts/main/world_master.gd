@@ -1,6 +1,6 @@
 extends Node2D
 @onready var world      : Node2D
-@onready var pause_menu : Control = $pause_menu
+@onready var pause_menu : Control 
 
 
 
@@ -8,7 +8,9 @@ func _ready() -> void:
 	global.world = world
 	global.world_master = self
 	world = load("res://scenes/world/main_menu/main_menu.tscn").instantiate()
+	pause_menu = load("res://scenes/misc/pause_menu.tscn").instantiate()
 	self.add_child(world)
+	self.add_child(pause_menu)
 
 # returns the current world id
 func get_world_id() -> int:
