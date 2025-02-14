@@ -12,6 +12,7 @@ func _ready() -> void:
 
 func _on_resume_button_pressed() -> void:
 	resume_game()
+	get_tree().paused = false
 
 
 func _on_options_button_pressed() -> void:
@@ -20,7 +21,6 @@ func _on_options_button_pressed() -> void:
 			pass
 		1:
 			pass
-
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
 		if global.world_master.get_world_id() == 0 or global.world_master.get_world_id() == 1:
@@ -36,3 +36,31 @@ func _on_quit_button_pressed() -> void:
 func resume_game() -> void:
 	self.visible = false
 	get_tree().paused = false
+
+
+
+func _on_resume_button_mouse_entered() -> void:
+	resume_button.set_deferred("modulate", hover_color)
+	global.sound_master.play("button_hover")
+
+
+func _on_resume_button_mouse_exited() -> void:
+	resume_button.set_deferred("modulate", reset_color)
+
+
+func _on_options_button_mouse_entered() -> void:
+	options_button.set_deferred("modulate", hover_color)
+	global.sound_master.play("button_hover")
+
+
+func _on_options_button_mouse_exited() -> void:
+	options_button.set_deferred("modulate", reset_color)
+
+
+func _on_quit_button_mouse_entered() -> void:
+	quit_button.set_deferred("modulate", hover_color)
+	global.sound_master.play("button_hover")
+
+
+func _on_quit_button_mouse_exited() -> void:
+	quit_button.set_deferred("modulate", reset_color)

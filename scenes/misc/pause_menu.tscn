@@ -49,6 +49,12 @@ texture_filter = 1
 layout_mode = 2
 texture_normal = ExtResource("3_24gtw")
 
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/resume_button" to="." method="_on_resume_button_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/VBoxContainer/resume_button" to="." method="_on_resume_button_mouse_exited"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/resume_button" to="." method="_on_resume_button_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/options_button" to="." method="_on_options_button_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/VBoxContainer/options_button" to="." method="_on_options_button_mouse_exited"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/options_button" to="." method="_on_options_button_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/quit_button" to="." method="_on_quit_button_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/VBoxContainer/quit_button" to="." method="_on_quit_button_mouse_exited"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/quit_button" to="." method="_on_quit_button_pressed"]
