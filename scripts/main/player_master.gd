@@ -59,9 +59,12 @@ func new_player(index : int, starve : bool = false, active : bool = false) -> vo
 	match index:
 		0:
 			player = player_scene.instantiate()
+	global.player = player
+	add_child(player)
 	@warning_ignore("standalone_ternary")
 	enable_player_starve_timer() if starve else disable_player_starve_timer()
 	@warning_ignore("standalone_ternary")
 	enable_player_activity()     if active else disable_player_activity()
-	add_child(player)
+	
+	
 		

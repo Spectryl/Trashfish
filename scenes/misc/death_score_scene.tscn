@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cyfpmik1twiak"]
+[gd_scene load_steps=7 format=3 uid="uid://cyfpmik1twiak"]
 
 [ext_resource type="Script" path="res://scripts/misc/death_score_scene.gd" id="1_ljbko"]
 [ext_resource type="Texture2D" uid="uid://c0qfwwcmnvw44" path="res://art/misc/you_died_text.png" id="2_7vktj"]
 [ext_resource type="FontFile" uid="uid://c0quiovxikjm8" path="res://font/VT323-Regular.ttf" id="3_hlfi1"]
 [ext_resource type="Texture2D" uid="uid://lk64u7r537oj" path="res://art/misc/play_again_button.png" id="4_msn3e"]
+[ext_resource type="Script" path="res://scripts/misc/death_score_container.gd" id="4_ownfd"]
 [ext_resource type="Texture2D" uid="uid://dj4xwfbkk4xf4" path="res://art/misc/red_title_screen_button.png" id="5_uvtg6"]
 
 [node name="death_score_scene" type="Control"]
@@ -51,6 +52,7 @@ offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 40
+script = ExtResource("4_ownfd")
 
 [node name="play_again_button" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2

@@ -41,3 +41,8 @@ func change_world(world_id : int) -> void:
 	call_deferred("add_child", world)
 	global.player_master.change_player_world(get_world_id())
 	global.world = world
+
+#Resets the world, this is called when we die and we need to reset both player & world
+func reset_world() -> void:
+	global.player_master.new_player(0, true, true)
+	change_world(get_world_id())

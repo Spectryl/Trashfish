@@ -13,8 +13,7 @@ func _ready() -> void:
 	score.text = score_str
 
 func _on_play_again_button_pressed() -> void:
-	pass # Replace with function body.
-
+	global.world_master.reset_world()
 
 func _on_play_again_button_mouse_entered() -> void:
 	play_button.set_deferred("modulate", hover_color)
@@ -25,7 +24,7 @@ func _on_play_again_button_mouse_exited() -> void:
 	play_button.set_deferred("modulate", reset_color)
 
 func _on_quit_button_pressed() -> void:
-	pass # Replace with function body.
+	global.world_master.change_world(0)
 
 
 func _on_quit_button_mouse_entered() -> void:
