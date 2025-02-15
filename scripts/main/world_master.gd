@@ -41,5 +41,3 @@ func change_world(world_id : int) -> void:
 	call_deferred("add_child", world)
 	global.player_master.change_player_world(get_world_id())
 	global.world = world
-
-

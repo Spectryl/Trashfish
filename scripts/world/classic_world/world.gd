@@ -59,6 +59,16 @@ func update_hud_when_dead():
 	health_ui.text = "X %d" % player.get_health()
 	config.set_value("player", "classic_high_score", high_score)
 	config.save_encrypted_pass("user://savedata.cfg", global.game_master.password)
+
+	starve_bar.queue_free()
+	score_ui.queue_free()
+	high_score_ui.queue_free()
+	health_ui.queue_free()
+	var a = load("res://scenes/misc/death_score_scene.tscn").instantiate()
+	a.score_str = "SCORE: %d" % score
+	add_child(a)
+
+
 	
 func update_score_hud(new_score : int):
 	score = new_score

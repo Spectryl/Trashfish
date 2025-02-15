@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cjxp501t4sut5" path="res://scenes/main/world_master.tscn" id="4_0obw4"]
 
 [node name="game_master" type="Node2D"]
+process_priority = 1
 script = ExtResource("1_rnyhu")
 
 [node name="audio_master" parent="." instance=ExtResource("2_3cgmn")]
