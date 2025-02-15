@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://benrome6etksn"]
+[gd_scene load_steps=13 format=3 uid="uid://benrome6etksn"]
 
 [ext_resource type="Script" path="res://scripts/world/options_menu/options_ui.gd" id="1_wfmpv"]
 [ext_resource type="FontFile" uid="uid://c0quiovxikjm8" path="res://font/VT323-Regular.ttf" id="2_ekkdw"]
@@ -9,6 +9,11 @@
 [ext_resource type="Script" path="res://scripts/world/options_menu/vsyncbutton.gd" id="6_gyuk1"]
 [ext_resource type="Script" path="res://scripts/world/options_menu/frame_rate_button.gd" id="7_f1h0w"]
 [ext_resource type="PackedScene" uid="uid://ctdvbp2l1ur0q" path="res://scenes/misc/web_delete_component.tscn" id="8_5an64"]
+[ext_resource type="PackedScene" uid="uid://8fitsee2cxfn" path="res://scenes/world/options_menu/rebind_button.tscn" id="9_8v6ig"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sj0qs"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mei8e"]
 
 [node name="options_ui" type="Control"]
 layout_mode = 3
@@ -37,7 +42,7 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_ekkdw")
 theme_override_font_sizes/font_size = 50
 tab_alignment = 1
-current_tab = 1
+current_tab = 2
 
 [node name="Sound" type="TabBar" parent="TabContainer"]
 visible = false
@@ -165,6 +170,7 @@ offset_bottom = 761.0
 scale = Vector2(2, 2)
 
 [node name="Graphics" type="TabBar" parent="TabContainer"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_ekkdw")
 metadata/_tab_index = 1
@@ -359,6 +365,89 @@ offset_bottom = 761.0
 scale = Vector2(2, 2)
 
 [node name="web_delete_component" parent="TabContainer/Graphics" instance=ExtResource("8_5an64")]
+
+[node name="Controls" type="TabBar" parent="TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="HSeparator4" type="HSeparator" parent="TabContainer/Controls"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -6.0
+offset_right = 811.0
+offset_bottom = -2.0
+scale = Vector2(2, 2)
+
+[node name="VSeparator" type="VSeparator" parent="TabContainer/Controls"]
+layout_mode = 0
+offset_left = -4.305
+offset_top = 2.0
+offset_right = -0.305
+offset_bottom = 381.0
+scale = Vector2(2, 2)
+
+[node name="VSeparator2" type="VSeparator" parent="TabContainer/Controls"]
+layout_mode = 0
+offset_left = 1616.0
+offset_top = 3.0
+offset_right = 1620.0
+offset_bottom = 382.0
+scale = Vector2(2, 2)
+
+[node name="HSeparator6" type="HSeparator" parent="TabContainer/Controls"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 757.0
+offset_right = 811.0
+offset_bottom = 761.0
+scale = Vector2(2, 2)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Controls"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Controls/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 200
+
+[node name="HSeparator" type="HSeparator" parent="TabContainer/Controls/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 60
+theme_override_styles/separator = SubResource("StyleBoxEmpty_sj0qs")
+
+[node name="rebind_button" parent="TabContainer/Controls/ScrollContainer/VBoxContainer" instance=ExtResource("9_8v6ig")]
+layout_mode = 2
+action_name = "move_up"
+
+[node name="rebind_button2" parent="TabContainer/Controls/ScrollContainer/VBoxContainer" instance=ExtResource("9_8v6ig")]
+layout_mode = 2
+
+[node name="rebind_button3" parent="TabContainer/Controls/ScrollContainer/VBoxContainer" instance=ExtResource("9_8v6ig")]
+layout_mode = 2
+action_name = "move_right"
+
+[node name="rebind_button4" parent="TabContainer/Controls/ScrollContainer/VBoxContainer" instance=ExtResource("9_8v6ig")]
+layout_mode = 2
+action_name = "move_down"
+
+[node name="rebind_button5" parent="TabContainer/Controls/ScrollContainer/VBoxContainer" instance=ExtResource("9_8v6ig")]
+layout_mode = 2
+action_name = "attack"
+
+[node name="rebind_button6" parent="TabContainer/Controls/ScrollContainer/VBoxContainer" instance=ExtResource("9_8v6ig")]
+layout_mode = 2
+action_name = "roll"
+
+[node name="HSeparator2" type="HSeparator" parent="TabContainer/Controls/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+theme_override_styles/separator = SubResource("StyleBoxEmpty_mei8e")
 
 [node name="title_screen_button" type="TextureButton" parent="."]
 layout_mode = 2

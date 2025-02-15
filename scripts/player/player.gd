@@ -43,11 +43,6 @@ func _ready() -> void:
 
 
 func _physics_process(delta):
-	if (Input.is_action_just_pressed("restart")):
-		get_tree().change_scene_to_file("res://scenes/world/world.tscn")
-	if (Input.is_action_just_pressed("revive")):
-		set_health(10)
-		is_dead = false
 	if is_dead:
 		return
 	if Input.is_action_just_pressed("attack") and not is_attacking and not is_rolling:
