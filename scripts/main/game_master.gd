@@ -72,12 +72,9 @@ func set_controls() -> void:
 	
 	for i in range(len(control_list)):
 		var action_name = control_list[i]
-		#print(action_name)
 		var action_event= InputMap.action_get_events(action_name)[0]
-		print(config.get_value("controls", action_name))
 		var event = config.get_value("controls", action_name, action_event.physical_keycode)
 		var newKey = InputEventKey.new()
-		#print(event)
 		newKey.set_keycode(event)
 		newKey.set_pressed(true)
 		InputMap.action_erase_events(action_name)
