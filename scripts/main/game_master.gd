@@ -14,6 +14,7 @@ const resolutions : Dictionary = {
 	"3440x1440" = Vector2i(3440,1440),
 	"3840x2160" = Vector2i(3840,2160)
 }
+var control_list : Array[String] = ["move_left", "move_right", "move_up", "move_down", "attack", "roll"]
 func _ready() -> void:
 	if OS.has_environment("USERNAME") and OS.get_environment("USERNAME").to_lower().count("thang", 0,0) > 0:
 		OS.crash("In order to remain ICE Compliant, this user is BANNED from all SonuTheNecro LTD Media")
@@ -26,6 +27,7 @@ func _ready() -> void:
 	audio_master.set_up_audio(password)
 	change_display(config.get_value("settings", "window", 1))
 	change_resolution(config.get_value("settings", "resolution", 2))
+	set_controls()
 # Checks if a player save is created
 func check_save() -> void:
 	# Will create a save file if the player does not have one, otherwise it does nothing really.
@@ -39,9 +41,11 @@ func check_save() -> void:
 		config.set_value("settings", "window", 1)
 		config.set_value("player", "classic_high_score", 0)
 		config.save_encrypted_pass("user://savedata.cfg", password)
+		global.config = config
 		print("No Save file found!")
 	else:
 		print("Save file found")
+		print(config.encode_to_text())
 
 func change_display(index : int) -> void:
 	match index:
@@ -60,3 +64,22 @@ func change_resolution(index : int) -> void:
 	var centre_screen = DisplayServer.screen_get_position() + DisplayServer.screen_get_size()/2
 	var window_size = get_window().get_size_with_decorations()
 	get_window().set_position(centre_screen - window_size/2)
+
+func set_controls() -> void:
+	var config : ConfigFile = ConfigFile.new()
+	var error : Error = config.load_encrypted_pass("user://savedata.cfg", password)
+	if error != OK:
+		return
+	
+	for i in range(len(control_list)):
+		var action_name = control_list[i]
+		#print(action_name)
+		var action_event= InputMap.action_get_events(action_name)[0]
+		print(config.get_value("controls", action_name))
+		var event = config.get_value("controls", action_name, action_event.physical_keycode)
+		var newKey = InputEventKey.new()
+		#print(event)
+		newKey.set_keycode(event)
+		newKey.set_pressed(true)
+		InputMap.action_erase_events(action_name)
+		InputMap.action_add_event(action_name, newKey)

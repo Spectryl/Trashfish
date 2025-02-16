@@ -47,6 +47,7 @@ func _on_texture_button_pressed() -> void:
 	config.set_value("settings", "resolution", resolution_index)
 	config.set_value("settings", "vsync", vsync_mode)
 	config.set_value("settings", "framerate", frame_rate)
+	#config.set_value("controls", "controls", InputMap)
 	config.save_encrypted_pass("user://savedata.cfg", global.game_master.password)
 	menu.switch_menu(0)
 # from the main_menu_buttons, same exact code basically

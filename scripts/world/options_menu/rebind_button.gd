@@ -10,6 +10,8 @@ func _ready() -> void:
 	set_process_unhandled_key_input(false)
 	set_action_name()
 	set_text_for_key()
+
+
 func set_action_name() -> void:
 	label.text = "unassigned"
 	match action_name:
@@ -30,7 +32,6 @@ func set_text_for_key() -> void:
 	var action_events = InputMap.action_get_events(action_name)
 	var action_event = action_events[0]
 	var action_keycode = OS.get_keycode_string(action_event.physical_keycode)
-
 	button.text = "%s" % action_keycode
 
 func _on_button_toggled(toggled_on:bool) -> void:
@@ -60,7 +61,7 @@ func rebind_action_key(event) -> void:
 	var is_duplicate=false
 	var action_event=event
 	var action_keycode=OS.get_keycode_string(action_event.physical_keycode)
-	for i in get_tree().get_nodes_in_group("hotkey_button"):
+	for i in get_tree().get_nodes_in_group("controls"):
 			if i.action_name!=self.action_name:
 				if i.button.text=="%s" %action_keycode:
 					is_duplicate=true
@@ -68,6 +69,15 @@ func rebind_action_key(event) -> void:
 	if not is_duplicate:
 		InputMap.action_erase_events(action_name)
 		InputMap.action_add_event(action_name,event)
+		var config : ConfigFile = ConfigFile.new()
+		var error : Error = config.load_encrypted_pass("user://savedata.cfg", global.game_master.password)
+		if error != OK:
+			print("a")
+		else:
+			config.set_value("controls" , action_name, action_event.physical_keycode)
+			config.save_encrypted_pass("user://savedata.cfg", global.game_master.password)
+			print(config.encode_to_text())
+			config.save_encrypted_pass("user://savedata.cfg", global.game_master.password)
 		set_process_unhandled_key_input(false)
 		set_text_for_key()
 		set_action_name()

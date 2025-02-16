@@ -32,6 +32,7 @@ var is_honeyd : bool = false
 var is_iced : bool = false
 var is_rolling : bool = false
 var is_controls_flipped : bool = false
+var is_active = false
 var drop
 var direction : Vector2
 const trash_can = preload("res://scenes/player/trash_can.tscn")
@@ -41,14 +42,16 @@ func _ready() -> void:
 	ice_sprite.play("default")
 	player_flash_shader(0,0,0,0,0)
 
-
-func _physics_process(delta):
-	if is_dead:
-		return
+func _input(event: InputEvent) -> void:
+	#print(event)
 	if Input.is_action_just_pressed("attack") and not is_attacking and not is_rolling:
 		attack()
 	if Input.is_action_just_pressed("roll") and not is_rolling and roll_cooldown_timer.is_stopped():
 		roll()
+
+func _physics_process(delta):
+	if is_dead:
+		return
 	if health == 0:
 		player_death()
 		return
