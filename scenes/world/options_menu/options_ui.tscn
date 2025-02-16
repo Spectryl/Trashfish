@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://benrome6etksn"]
+[gd_scene load_steps=14 format=3 uid="uid://benrome6etksn"]
 
 [ext_resource type="Script" path="res://scripts/world/options_menu/options_ui.gd" id="1_wfmpv"]
 [ext_resource type="FontFile" uid="uid://c0quiovxikjm8" path="res://font/VT323-Regular.ttf" id="2_ekkdw"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scripts/world/options_menu/frame_rate_button.gd" id="7_f1h0w"]
 [ext_resource type="PackedScene" uid="uid://ctdvbp2l1ur0q" path="res://scenes/misc/web_delete_component.tscn" id="8_5an64"]
 [ext_resource type="PackedScene" uid="uid://8fitsee2cxfn" path="res://scenes/world/options_menu/rebind_button.tscn" id="9_8v6ig"]
+[ext_resource type="Script" path="res://scripts/world/options_menu/control_button_text_container.gd" id="9_ub2ig"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sj0qs"]
 
@@ -411,10 +412,14 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Controls/ScrollContainer"]
+process_thread_group = 1
+process_thread_group_order = 1
+process_thread_messages = 0
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 200
+script = ExtResource("9_ub2ig")
 
 [node name="HSeparator" type="HSeparator" parent="TabContainer/Controls/ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -427,14 +432,15 @@ action_name = "move_up"
 
 [node name="rebind_button2" parent="TabContainer/Controls/ScrollContainer/VBoxContainer" instance=ExtResource("9_8v6ig")]
 layout_mode = 2
-
-[node name="rebind_button3" parent="TabContainer/Controls/ScrollContainer/VBoxContainer" instance=ExtResource("9_8v6ig")]
-layout_mode = 2
-action_name = "move_right"
+action_name = "move_left"
 
 [node name="rebind_button4" parent="TabContainer/Controls/ScrollContainer/VBoxContainer" instance=ExtResource("9_8v6ig")]
 layout_mode = 2
 action_name = "move_down"
+
+[node name="rebind_button3" parent="TabContainer/Controls/ScrollContainer/VBoxContainer" instance=ExtResource("9_8v6ig")]
+layout_mode = 2
+action_name = "move_right"
 
 [node name="rebind_button5" parent="TabContainer/Controls/ScrollContainer/VBoxContainer" instance=ExtResource("9_8v6ig")]
 layout_mode = 2
@@ -463,6 +469,7 @@ texture_normal = ExtResource("2_ug8si")
 [connection signal="item_selected" from="TabContainer/Graphics/resolution/resolution_button" to="." method="_on_resolution_button_item_selected"]
 [connection signal="toggled" from="TabContainer/Graphics/vsync/vsyncbutton" to="." method="_on_vsyncbutton_toggled"]
 [connection signal="item_selected" from="TabContainer/Graphics/frame_rate/frame_rate_button" to="." method="_on_frame_rate_button_item_selected"]
+[connection signal="tab_button_pressed" from="TabContainer/Controls" to="." method="_on_controls_tab_button_pressed"]
 [connection signal="mouse_entered" from="title_screen_button" to="." method="_on_title_screen_button_mouse_entered"]
 [connection signal="mouse_exited" from="title_screen_button" to="." method="_on_title_screen_button_mouse_exited"]
 [connection signal="pressed" from="title_screen_button" to="." method="_on_texture_button_pressed"]

@@ -41,7 +41,6 @@ func check_save() -> void:
 		config.set_value("settings", "window", 1)
 		config.set_value("player", "classic_high_score", 0)
 		config.save_encrypted_pass("user://savedata.cfg", password)
-		global.config = config
 		print("No Save file found!")
 	else:
 		print("Save file found")
@@ -67,7 +66,7 @@ func change_resolution(index : int) -> void:
 
 func set_controls() -> void:
 	var config : ConfigFile = ConfigFile.new()
-	var error : Error = config.load_encrypted_pass("user://savedata.cfg", password)
+	var error : Error = config.load_encrypted_pass("user://controls.cfg", password)
 	if error != OK:
 		return
 	

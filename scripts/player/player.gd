@@ -42,7 +42,7 @@ func _ready() -> void:
 	ice_sprite.play("default")
 	player_flash_shader(0,0,0,0,0)
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	#print(event)
 	if Input.is_action_just_pressed("attack") and not is_attacking and not is_rolling:
 		attack()

@@ -4,7 +4,7 @@ extends Control
 @onready var label  : Label  = $HBoxContainer/Label
 @onready var button : Button = $HBoxContainer/Button
 
-@export var action_name : String = "move_left"
+@export var action_name : String
 
 func _ready() -> void:
 	set_process_unhandled_key_input(false)
@@ -70,14 +70,10 @@ func rebind_action_key(event) -> void:
 		InputMap.action_erase_events(action_name)
 		InputMap.action_add_event(action_name,event)
 		var config : ConfigFile = ConfigFile.new()
-		var error : Error = config.load_encrypted_pass("user://savedata.cfg", global.game_master.password)
-		if error != OK:
-			print("a")
-		else:
-			config.set_value("controls" , action_name, action_event.physical_keycode)
-			config.save_encrypted_pass("user://savedata.cfg", global.game_master.password)
-			print(config.encode_to_text())
-			config.save_encrypted_pass("user://savedata.cfg", global.game_master.password)
+		var error : Error = config.load_encrypted_pass("user://controls.cfg", global.game_master.password)
+		config.set_value("controls" , action_name as String, int(action_event.physical_keycode) as int)
+		config.save_encrypted_pass("user://controls.cfg", global.game_master.password)
+		print(config.get_value("controls", action_name))
 		set_process_unhandled_key_input(false)
 		set_text_for_key()
 		set_action_name()

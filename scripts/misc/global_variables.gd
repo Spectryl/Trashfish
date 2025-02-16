@@ -7,4 +7,3 @@ var music_master : Node
 var world_master : Node2D
 var player_master : Node2D
 var game_master : Node2D
-var config : ConfigFile
