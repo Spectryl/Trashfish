@@ -11,7 +11,6 @@ func _ready() -> void:
 	set_action_name()
 	set_text_for_key()
 
-
 func set_action_name() -> void:
 	label.text = "unassigned"
 	match action_name:
@@ -77,3 +76,9 @@ func rebind_action_key(event) -> void:
 		set_process_unhandled_key_input(false)
 		set_text_for_key()
 		set_action_name()
+
+func initial_update_key_text() -> void:
+	var action_events = InputMap.action_get_events(action_name)
+	var action_event = action_events[0]
+	var action_keycode = OS.get_keycode_string(action_event.get_keycode())
+	button.text = "%s" % action_keycode

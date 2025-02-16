@@ -5,5 +5,4 @@ extends VBoxContainer
 func _ready() -> void:
 	for i in get_child_count():
 		if get_child(i).is_in_group("controls"):
-			get_child(i).rebind_action_key()
-
+			get_child(i).initial_update_key_text()
