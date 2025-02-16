@@ -69,7 +69,7 @@ func rebind_action_key(event) -> void:
 		InputMap.action_erase_events(action_name)
 		InputMap.action_add_event(action_name,event)
 		var config : ConfigFile = ConfigFile.new()
-		var error : Error = config.load_encrypted_pass("user://controls.cfg", global.game_master.password)
+		config.load_encrypted_pass("user://controls.cfg", global.game_master.password)
 		config.set_value("controls" , action_name as String, int(action_event.physical_keycode) as int)
 		config.save_encrypted_pass("user://controls.cfg", global.game_master.password)
 		print(config.get_value("controls", action_name))
