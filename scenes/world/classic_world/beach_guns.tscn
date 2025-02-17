@@ -1,44 +1,44 @@
-[gd_scene load_steps=11 format=3 uid="uid://dj4vdaxwdewiu"]
+[gd_scene load_steps=11 format=3 uid="uid://bbi7t7tacp7s5"]
 
-[ext_resource type="Script" path="res://scripts/world/classic_world/collision_polygon_2d.gd" id="1_4hx4q"]
-[ext_resource type="Script" path="res://scripts/world/classic_world/world.gd" id="1_gcfhd"]
-[ext_resource type="Texture2D" uid="uid://rjycrnaueu0r" path="res://art/world/classic_world/background.png" id="5_2afuy"]
-[ext_resource type="Script" path="res://scripts/world/classic_world/ship_master.gd" id="5_4ij4q"]
-[ext_resource type="Texture2D" uid="uid://cgyve4kk648yh" path="res://art/world/classic_world/sky.png" id="5_ou8na"]
-[ext_resource type="FontFile" uid="uid://c0quiovxikjm8" path="res://font/VT323-Regular.ttf" id="6_0gp58"]
-[ext_resource type="Texture2D" uid="uid://bfig4ppqc525o" path="res://art/world/classic_world/health.png" id="7_tqa8c"]
-[ext_resource type="Texture2D" uid="uid://djpnypv17cuuo" path="res://art/world/classic_world/starve_icon.png" id="8_s7dsv"]
+[ext_resource type="Script" path="res://scripts/world/classic_world/beach_guns.gd" id="1_5qjhs"]
+[ext_resource type="Script" path="res://scripts/world/classic_world/collision_polygon_2d.gd" id="1_y775y"]
+[ext_resource type="Texture2D" uid="uid://cgyve4kk648yh" path="res://art/world/classic_world/sky.png" id="2_0ec83"]
+[ext_resource type="Script" path="res://scripts/world/classic_world/gunship_master.gd" id="3_6xvo2"]
+[ext_resource type="Texture2D" uid="uid://rjycrnaueu0r" path="res://art/world/classic_world/background.png" id="3_q466n"]
+[ext_resource type="FontFile" uid="uid://c0quiovxikjm8" path="res://font/VT323-Regular.ttf" id="4_a6v73"]
+[ext_resource type="Texture2D" uid="uid://bfig4ppqc525o" path="res://art/world/classic_world/health.png" id="5_ewotj"]
+[ext_resource type="Texture2D" uid="uid://djpnypv17cuuo" path="res://art/world/classic_world/starve_icon.png" id="6_sojk0"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wl38v"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3v14j"]
 bg_color = Color(0, 0, 0, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pjxve"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o7p4h"]
 bg_color = Color(0.882353, 0, 0.117647, 1)
 
-[node name="world" type="Node2D"]
-script = ExtResource("1_gcfhd")
+[node name="beach_guns" type="Node2D"]
+script = ExtResource("1_5qjhs")
 
 [node name="collision" type="StaticBody2D" parent="."]
 visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="collision"]
 polygon = PackedVector2Array(-44, 1, -42, 1044, -5, 1083, 2009, 1084, 1920, 177, 1921, 961, 1920, 1002, 0, 1003, 0, 207, 1922, 203, -3, 1)
-script = ExtResource("1_4hx4q")
+script = ExtResource("1_y775y")
 
 [node name="ship_master" type="Node2D" parent="."]
 position = Vector2(393, 205)
-script = ExtResource("5_4ij4q")
-timer_wait_time = 7.0
+script = ExtResource("3_6xvo2")
+timer_wait_time = 0.1
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="sky" type="Sprite2D" parent="ParallaxBackground"]
 position = Vector2(959, 202)
-texture = ExtResource("5_ou8na")
+texture = ExtResource("2_0ec83")
 
 [node name="background" type="Sprite2D" parent="ParallaxBackground"]
 position = Vector2(0, 933)
-texture = ExtResource("5_2afuy")
+texture = ExtResource("3_q466n")
 centered = false
 
 [node name="background_polygon" type="Polygon2D" parent="ParallaxBackground"]
@@ -64,7 +64,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 20
-theme_override_fonts/font = ExtResource("6_0gp58")
+theme_override_fonts/font = ExtResource("4_a6v73")
 theme_override_font_sizes/font_size = 120
 text = "High Score: 0"
 horizontal_alignment = 2
@@ -82,7 +82,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 20
-theme_override_fonts/font = ExtResource("6_0gp58")
+theme_override_fonts/font = ExtResource("4_a6v73")
 theme_override_font_sizes/font_size = 120
 text = "Score: 0"
 horizontal_alignment = 2
@@ -92,7 +92,7 @@ texture_filter = 1
 texture_repeat = 1
 position = Vector2(51, 49)
 scale = Vector2(3, 3)
-texture = ExtResource("7_tqa8c")
+texture = ExtResource("5_ewotj")
 
 [node name="health" type="Label" parent="CanvasLayer/Panel"]
 texture_filter = 1
@@ -106,7 +106,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 20
-theme_override_fonts/font = ExtResource("6_0gp58")
+theme_override_fonts/font = ExtResource("4_a6v73")
 theme_override_font_sizes/font_size = 120
 text = "X 3"
 
@@ -118,8 +118,8 @@ offset_right = 254.0
 offset_bottom = 147.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0.917647, 0, 0, 1)
-theme_override_styles/background = SubResource("StyleBoxFlat_wl38v")
-theme_override_styles/fill = SubResource("StyleBoxFlat_pjxve")
+theme_override_styles/background = SubResource("StyleBoxFlat_3v14j")
+theme_override_styles/fill = SubResource("StyleBoxFlat_o7p4h")
 value = 50.0
 rounded = true
 show_percentage = false
@@ -129,4 +129,4 @@ modulate = Color(1, 1, 1, 0.901961)
 texture_filter = 1
 position = Vector2(58, 127)
 scale = Vector2(3, 3)
-texture = ExtResource("8_s7dsv")
+texture = ExtResource("6_sojk0")

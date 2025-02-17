@@ -5,6 +5,7 @@ extends Control
 var beach                : TwoClickTextureButton
 var volcano              : TwoClickTextureButton
 var electro              : TwoClickTextureButton
+var state : int = 0
 var hover_color : Color = Color8(0,255,255,255) # Color when we hover a button
 var reset_color : Color = Color8(255,255,255,255)     # Color when we stop hovering, this can be forced to be default color
 
@@ -24,9 +25,15 @@ func _ready() -> void:
 	
 
 func _on_beach_left_click_pressed() -> void:
-	global.world_master.change_world(2)
+	match state:
+		0:
+			global.world_master.change_world(2)
+		1: 
+			global.world_master.change_world(3)
 func _on_beach_right_click_pressed() -> void:
-	print("right click")
+	state += 1
+	if state > 1: #reset the counter to zero
+		state = 0
 
 func _on_back_button_pressed() -> void:
 	menu.switch_menu(0)

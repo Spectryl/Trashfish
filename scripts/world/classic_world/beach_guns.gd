@@ -5,7 +5,7 @@ var health : int = 0: set = update_health_hud
 var config : ConfigFile
 
 
-var world_id = 2 
+var world_id = 3
 
 @onready var starve_bar : ProgressBar          = $CanvasLayer/starve_bar
 @onready var score_ui : Label                  = $CanvasLayer/Panel/score
@@ -14,11 +14,7 @@ var world_id = 2
 @onready var player : CharacterBody2D          = global.player
 @onready var sound_master : Node               = global.sound_master
 func _ready() -> void:
-	
-	
-	config = ConfigFile.new()
-
-	
+	config = ConfigFile.new()	
 	health = player.get_health()
 	starve_bar.max_value = player.max_starve
 	var error = config.load_encrypted_pass("user://savedata.cfg",global.game_master.password)
@@ -26,7 +22,7 @@ func _ready() -> void:
 		print("error")
 		high_score = 0
 	else:
-		high_score = config.get_value("player", "classic_high_score", 0)
+		high_score = config.get_value("player", "beach_guns_score", 0)
 		
 	generate_waves()
 	
@@ -35,7 +31,7 @@ func _process(_delta: float) -> void:
 		return
 	if score > high_score:
 		high_score = score
-		config.set_value("player", "classic_high_score", high_score)
+		config.set_value("player", "beach_guns_score", high_score)
 		config.save_encrypted_pass("user://savedata.cfg", global.game_master.password)
 	starve_bar.value = get_player_starvation()
 	var player_health = player.get_health()

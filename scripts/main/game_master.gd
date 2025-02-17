@@ -44,7 +44,6 @@ func check_save() -> void:
 		print("No Save file found!")
 	else:
 		print("Save file found")
-		print(config.encode_to_text())
 
 func change_display(index : int) -> void:
 	match index:

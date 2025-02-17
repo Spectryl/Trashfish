@@ -3,11 +3,8 @@ var player : CharacterBody2D
 
 const player_scene = preload("res://scenes/player/player.tscn")
 func _ready() -> void:
-	player = player_scene.instantiate()
 	global.player = player
 	global.player_master = self
-	self.add_child(player)
-	disable_player_activity()
 
 func set_player_defaults(new_scale: float = 1, new_speed : float = 200, new_global_position : Vector2 = Vector2(0,0), new_world_id : int = 0):
 	change_player_scale(new_scale)
@@ -53,9 +50,15 @@ func enable_player_activity() -> void:
 	player.set_process(true)
 	player.visible = true
 	player.body_hurtbox.set_deferred("disabled", false)
-	
-func new_player(index : int, starve : bool = false, active : bool = false) -> void:
-	player.queue_free()
+
+# Allows the ability to change max health, useful for different gamemodes in worlds
+func change_player_max_health(new_max_health : int) -> void:
+	player.max_health = new_max_health
+	player.health = new_max_health
+
+# call this whenever we swap/reload worlds to delete the old player and create a whole new one : D
+func create_new_player(index : int, starve : bool = false, active : bool = false) -> void:
+	delete_player()
 	match index:
 		0:
 			player = player_scene.instantiate()
@@ -66,5 +69,9 @@ func new_player(index : int, starve : bool = false, active : bool = false) -> vo
 	@warning_ignore("standalone_ternary")
 	enable_player_activity()     if active else disable_player_activity()
 	
+
+func delete_player():
+	if player != null:
+		player.queue_free()
 	
 		

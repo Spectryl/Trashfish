@@ -19,6 +19,7 @@ func get_world_id() -> int:
 # Changes what world/level we are on
 func change_world(world_id : int) -> void:
 	world.queue_free()
+	global.player_master.delete_player()
 	match world_id:
 		0:
 			world = load("res://scenes/world/main_menu/main_menu.tscn").instantiate()
@@ -32,17 +33,23 @@ func change_world(world_id : int) -> void:
 			global.player_master.enable_player_activity()
 			global.player_master.change_player_scale(3)
 		2:
-			world = load("res://scenes/world/classic_world/world.tscn").instantiate()
-			global.player_master.enable_player_activity()
+			world = load("res://scenes/world/classic_world/beach_classic.tscn").instantiate()
+			global.player_master.create_new_player(0,true,true)
 			global.player_master.change_player_scale(2)
-			global.player_master.enable_player_starve_timer()
 			global.player_master.change_player_global_position(Vector2(800,650))
 			global.music_master.change_song("lisa")
+		3:
+			world = load("res://scenes/world/classic_world/beach_guns.tscn").instantiate()
+			global.player_master.create_new_player(0, false, true)
+			global.player_master.change_player_scale(2)
+			global.player_master.change_player_global_position(Vector2(800,650))
+			global.music_master.change_song("lisa")
+		
 	call_deferred("add_child", world)
 	global.player_master.change_player_world(get_world_id())
 	global.world = world
 
 #Resets the world, this is called when we die and we need to reset both player & world
 func reset_world() -> void:
-	global.player_master.new_player(0, true, true)
+	global.player_master.create_new_player(0, true, true)
 	change_world(get_world_id())

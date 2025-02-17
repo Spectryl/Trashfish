@@ -43,7 +43,6 @@ func _ready() -> void:
 	player_flash_shader(0,0,0,0,0)
 
 func _input(_event: InputEvent) -> void:
-	#print(event)
 	if Input.is_action_just_pressed("attack") and not is_attacking and not is_rolling:
 		attack()
 	if Input.is_action_just_pressed("roll") and not is_rolling and roll_cooldown_timer.is_stopped():
