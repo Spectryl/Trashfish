@@ -11,6 +11,11 @@ func _ready() -> void:
 	music_dictionary["midnight_sands"] = midnight_sands
 	global.music_master = self
 	play("midnight_sands")
+
+	lisa.connect("finished", song_has_ended)
+	midnight_sands.connect("finished", song_has_ended)
+
+
 # Ends the current song and plays the new song
 func change_song(new_song_file_name : String) -> void:
 	if new_song_file_name == current_song_playing:
@@ -33,3 +38,7 @@ func stop(song_file_name : String) -> void:
 func end_all_music() -> void:
 	stop(current_song_playing)
 	current_song_playing = "none"
+
+# should reset the song, have all song "finished signals" attach to this
+func song_has_ended() -> void:
+	play(current_song_playing)

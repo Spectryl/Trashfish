@@ -1,11 +1,20 @@
 TODO:
 
-Make all Image Buttons Texts Black -> White // Background Lighter
-Make a proper Controls Screen
-Make a mechanic for respawning
 Rebalance
 MORE SFX
 NEW GAMEMODES
--J6
+-J6 X
 -Lights Out
 -Hard Mode
+
+Bugs/Issues:
+Music doesn't Loop
+Dynamite has no sizzles
+
+
+Completed Tasks:
+
+
+Make all Image Buttons Texts Black -> White // Background Lighter X
+Make a proper Controls Screen X
+Make a mechanic for respawning X
