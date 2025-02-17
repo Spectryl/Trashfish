@@ -39,7 +39,8 @@ func check_save() -> void:
 		config.set_value("settings", "music_volume", 1.0)
 		config.set_value("settings", "sound_volume", 1.0)
 		config.set_value("settings", "window", 1)
-		config.set_value("player", "classic_high_score", 0)
+		config.set_value("player", "beach_classic_high_score", 0)
+		config.set_value("player", "beach_guns_high_score", 0)
 		config.save_encrypted_pass("user://savedata.cfg", password)
 		print("No Save file found!")
 	else:

@@ -26,7 +26,7 @@ func _ready() -> void:
 		print("error")
 		high_score = 0
 	else:
-		high_score = config.get_value("player", "classic_high_score", 0)
+		high_score = config.get_value("player", "beach_classic_high_score", 0)
 		
 	generate_waves()
 	
@@ -35,7 +35,7 @@ func _process(_delta: float) -> void:
 		return
 	if score > high_score:
 		high_score = score
-		config.set_value("player", "classic_high_score", high_score)
+		config.set_value("player", "beach_classic_high_score", high_score)
 		config.save_encrypted_pass("user://savedata.cfg", global.game_master.password)
 	starve_bar.value = get_player_starvation()
 	var player_health = player.get_health()
@@ -57,7 +57,7 @@ func get_player_starvation() -> int:
 func update_hud_when_dead():
 	score_ui.text = "Score: %d" % score
 	health_ui.text = "X %d" % player.get_health()
-	config.set_value("player", "classic_high_score", high_score)
+	config.set_value("player", "beach_classic_high_score", high_score)
 	config.save_encrypted_pass("user://savedata.cfg", global.game_master.password)
 
 	starve_bar.queue_free()
