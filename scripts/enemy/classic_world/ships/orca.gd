@@ -16,12 +16,12 @@ func _ready() -> void:
 	speed += randi_range(0,50)
 	if parentX == 50:
 		endPos.x = 2000
-		endPos.y =  randi_range(0,700)  + 100
+		endPos.y =  randi_range(0,700)  + 250
 		global_position.x = -100
 		global_position.y =  parentY
 	else:
 		endPos.x = -100
-		endPos.y =  randi_range(0,700) + 100
+		endPos.y =  randi_range(0,700) + 250
 		global_position.x = 2000
 		global_position.y =  parentY
 		animated_sprite.flip_h = true
