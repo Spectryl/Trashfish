@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cr7ojktia784r"]
+[gd_scene load_steps=4 format=3 uid="uid://cr7ojktia784r"]
 
 [ext_resource type="Texture2D" uid="uid://cpul22cnrgj8w" path="res://art/enemy/classic_world/bullet.png" id="1_03gwr"]
 [ext_resource type="Script" path="res://scripts/enemy/classic_world/drops/bullet.gd" id="1_orer8"]
@@ -6,21 +6,6 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v46av"]
 radius = 5.04
 height = 17.58
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rbgav"]
-atlas = ExtResource("1_03gwr")
-region = Rect2(14, 17, 129, 51)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_lyrdh"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rbgav")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}]
 
 [node name="bullet" type="Node2D"]
 script = ExtResource("1_orer8")
@@ -32,11 +17,9 @@ rotation = 1.5708
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CapsuleShape2D_v46av")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(0, -2)
-sprite_frames = SubResource("SpriteFrames_lyrdh")
-animation = &"idle"
-offset = Vector2(25.395, 0)
+position = Vector2(1, -6)
+texture = ExtResource("1_03gwr")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

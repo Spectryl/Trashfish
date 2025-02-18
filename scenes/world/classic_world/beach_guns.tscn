@@ -53,7 +53,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="high_score" type="Label" parent="CanvasLayer/Panel"]
-modulate = Color(1, 1, 1, 0.921569)
+modulate = Color(1, 1, 1, 0.564706)
 texture_filter = 5
 layout_mode = 0
 offset_left = 664.0
@@ -66,11 +66,11 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 20
 theme_override_fonts/font = ExtResource("4_a6v73")
 theme_override_font_sizes/font_size = 120
-text = "High Score: 0"
+text = "Best Time: 0"
 horizontal_alignment = 2
 
 [node name="score" type="Label" parent="CanvasLayer/Panel"]
-modulate = Color(1, 1, 1, 0.921569)
+modulate = Color(1, 1, 1, 0.564706)
 texture_filter = 5
 texture_repeat = 1
 layout_mode = 0
@@ -84,7 +84,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 20
 theme_override_fonts/font = ExtResource("4_a6v73")
 theme_override_font_sizes/font_size = 120
-text = "Score: 0"
+text = "Time: 0"
 horizontal_alignment = 2
 
 [node name="health_icon" type="Sprite2D" parent="CanvasLayer/Panel"]

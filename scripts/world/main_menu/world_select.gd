@@ -34,6 +34,13 @@ func _on_beach_right_click_pressed() -> void:
 	state += 1
 	if state > 1: #reset the counter to zero
 		state = 0
+	# Match the visualness of a button based on our state
+	match state:
+		0:
+			beach.texture_normal = load("res://resources/buttons/beach_world_icon.tres")
+		1:
+			beach.texture_normal = load("res://resources/buttons/beach_world_guns_icon.tres")
+
 
 func _on_back_button_pressed() -> void:
 	menu.switch_menu(0)

@@ -1,10 +1,11 @@
 extends Node2D
-var score : int = 0: set = update_score_hud
-var high_score : int = 0: set = update_high_score_hud
 var health : int = 0: set = update_health_hud
 var config : ConfigFile
-
-
+var high_time : float = 0.0: set = update_high_time_hud
+var time : float = 0.0     : set = update_time_hud
+var minutes: int = 0
+var seconds: int = 0
+var mili   : int = 0
 var world_id = 3
 
 @onready var starve_bar : ProgressBar          = $CanvasLayer/starve_bar
@@ -20,18 +21,26 @@ func _ready() -> void:
 	var error = config.load_encrypted_pass("user://savedata.cfg",global.game_master.password)
 	if error != OK:
 		print("error")
-		high_score = 0
+		high_time = 0.0
 	else:
-		high_score = config.get_value("player", "beach_guns_high_score", 0)
+		high_time = config.get_value("player", "beach_guns_high_score", 0)
 		
+	high_time = high_time
 	generate_waves()
 	
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if player.is_dead:
 		return
-	if score > high_score:
-		high_score = score
-		config.set_value("player", "beach_guns_high_score", high_score)
+	time += delta
+	@warning_ignore("narrowing_conversion")
+	mili = fmod(time,1) * 100
+	@warning_ignore("narrowing_conversion")
+	seconds = fmod(time, 60)
+	@warning_ignore("narrowing_conversion")
+	minutes = fmod(time,3600) / 60
+	if time > high_time:
+		high_time = time
+		config.set_value("player", "beach_guns_high_score", high_time)
 		config.save_encrypted_pass("user://savedata.cfg", global.game_master.password)
 	starve_bar.value = get_player_starvation()
 	var player_health = player.get_health()
@@ -51,9 +60,9 @@ func get_player_starvation() -> int:
 
 # Final hud update when dead
 func update_hud_when_dead():
-	score_ui.text = "Score: %d" % score
+	score_ui.text = "%02d:%02d.%03d" % [minutes, seconds, mili]
 	health_ui.text = "X %d" % player.get_health()
-	config.set_value("player", "beach_guns_high_score", high_score)
+	config.set_value("player", "beach_guns_high_score", high_time)
 	config.save_encrypted_pass("user://savedata.cfg", global.game_master.password)
 
 	starve_bar.queue_free()
@@ -61,18 +70,21 @@ func update_hud_when_dead():
 	high_score_ui.queue_free()
 	health_ui.queue_free()
 	var a = load("res://scenes/misc/death_score_scene.tscn").instantiate()
-	a.score_str = "SCORE: %d" % score
+	a.score_str = "TIME SURVIVED: %02d:%02d.%03d" % [minutes, seconds, mili]
 	add_child(a)
 
 
 	
-func update_score_hud(new_score : int):
-	score = new_score
-	score_ui.text = "Score: %d" % score
+func update_time_hud(new_time : float):
+	time = new_time
+	score_ui.text = "Time:%02d:%02d.%03d" % [minutes, seconds, mili]
 	
-func update_high_score_hud(new_high_score : int):
-	high_score = new_high_score
-	high_score_ui.text = "High Score: %d" % high_score
+func update_high_time_hud(new_high_time: float):
+	high_time = new_high_time
+	var temp_mili = fmod(high_time,1) * 100
+	var temp_seconds = fmod(high_time, 60)
+	var temp_minutes = fmod(high_time,3600) / 60
+	high_score_ui.text = "Best Time:%02d:%02d.%03d" % [temp_minutes, temp_seconds, temp_mili]
 	
 func update_health_hud(new_health : int):
 	health = new_health
