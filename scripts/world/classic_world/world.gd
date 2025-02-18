@@ -11,12 +11,12 @@ var world_id = 2
 @onready var score_ui : Label                  = $CanvasLayer/Panel/score
 @onready var high_score_ui : Label             = $CanvasLayer/Panel/high_score
 @onready var health_ui : Label                 = $CanvasLayer/Panel/health
-@onready var animation_player : AnimationPlayer= $ParallaxBackground/AnimationPlayer
+@onready var sun_player : AnimationPlayer      = $ParallaxBackground/sun/sun_animator
 @onready var player : CharacterBody2D          = global.player
 @onready var sound_master : Node               = global.sound_master
 func _ready() -> void:
 	
-	animation_player.play("rotate_sun")
+	sun_player.play("rotate_sun")
 	config = ConfigFile.new()
 
 	
@@ -90,4 +90,5 @@ func generate_waves():
 		new_wave.play("default")
 		new_wave.global_position = Vector2(i * 100, 200)
 		new_wave.z_index = 99
+		new_wave.scale.y += randf_range(0,2)
 		add_child(new_wave)

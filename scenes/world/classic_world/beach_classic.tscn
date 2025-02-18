@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://dj4vdaxwdewiu"]
+[gd_scene load_steps=15 format=3 uid="uid://dj4vdaxwdewiu"]
 
 [ext_resource type="Script" path="res://scripts/world/classic_world/world.gd" id="1_42akp"]
 [ext_resource type="Script" path="res://scripts/world/classic_world/collision_polygon_2d.gd" id="2_v0c5i"]
 [ext_resource type="Script" path="res://scripts/world/classic_world/ship_master.gd" id="3_wrqgk"]
 [ext_resource type="Texture2D" uid="uid://rjycrnaueu0r" path="res://art/world/classic_world/background.png" id="5_1xe8u"]
+[ext_resource type="Script" path="res://addons/antialiased_line2d/antialiased_polygon2d.gd" id="5_185ki"]
 [ext_resource type="Texture2D" uid="uid://cuojeer2s18bk" path="res://art/world/classic_world/sun.png" id="5_ubss0"]
 [ext_resource type="FontFile" uid="uid://c0quiovxikjm8" path="res://font/VT323-Regular.ttf" id="6_k6brb"]
 [ext_resource type="Texture2D" uid="uid://bfig4ppqc525o" path="res://art/world/classic_world/health.png" id="7_x8hl1"]
@@ -11,8 +12,9 @@
 
 [sub_resource type="Animation" id="Animation_6wfqe"]
 resource_name = "rotate_sun"
-length = 20.0
+length = 25.0
 loop_mode = 1
+step = 1.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -24,6 +26,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 6.28319]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sun:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333, 20, 20.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(2000, -46), Vector2(-200, -46), Vector2(1213, -553)]
 }
 
 [sub_resource type="Animation" id="Animation_wdsb5"]
@@ -39,6 +53,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sun:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1887, -55.9999)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5qlfs"]
@@ -70,7 +96,7 @@ timer_wait_time = 7.0
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
-[node name="Polygon2D" type="Polygon2D" parent="ParallaxBackground"]
+[node name="sky_polygon" type="Polygon2D" parent="ParallaxBackground"]
 color = Color(0.388235, 0.607843, 1, 1)
 antialiased = true
 polygon = PackedVector2Array(0, 0, 1920, 0, 1920, 206, 0, 206)
@@ -80,16 +106,21 @@ position = Vector2(0, 933)
 texture = ExtResource("5_1xe8u")
 centered = false
 
-[node name="background_polygon" type="Polygon2D" parent="ParallaxBackground"]
-color = Color(0.372549, 0.803922, 0.894118, 1)
-polygon = PackedVector2Array(0, 206, 1920, 206, 1920, 933, 0, 933)
+[node name="wave_polygon" type="Polygon2D" parent="ParallaxBackground"]
+color = Color(0.0156863, 0.717647, 0.862745, 1)
+antialiased = true
+polygon = PackedVector2Array(-1, 205, 1920, 206, 1921, 461, -2, 447)
+script = ExtResource("5_185ki")
+stroke_color = Color(0.0156863, 0.717647, 0.862745, 1)
+stroke_width = 2.0
 
 [node name="sun" type="Sprite2D" parent="ParallaxBackground"]
 texture_filter = 1
 position = Vector2(1887, -55.9999)
 texture = ExtResource("5_ubss0")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ParallaxBackground"]
+[node name="sun_animator" type="AnimationPlayer" parent="ParallaxBackground/sun"]
+root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_5qlfs")
 }
