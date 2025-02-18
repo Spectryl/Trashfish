@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://5a1x64gt0iqv"]
+[gd_scene load_steps=9 format=3 uid="uid://5a1x64gt0iqv"]
 
 [ext_resource type="Script" path="res://scripts/world/main_menu/main_menu_buttons.gd" id="1_flul8"]
 [ext_resource type="Texture2D" uid="uid://cq6ogwy2wds0i" path="res://art/world/main_menu/options_button.png" id="2_0iv6d"]
+[ext_resource type="FontFile" uid="uid://c0quiovxikjm8" path="res://font/VT323-Regular.ttf" id="2_gblwq"]
 [ext_resource type="Texture2D" uid="uid://kj5helsenb1r" path="res://art/world/main_menu/Logo.png" id="2_iqi4v"]
 [ext_resource type="Texture2D" uid="uid://dvwdbi3v5527f" path="res://art/world/main_menu/start_button.png" id="2_lhxgl"]
 [ext_resource type="Script" path="res://scripts/world/main_menu/start_button.gd" id="3_qcoiv"]
@@ -27,6 +28,14 @@ offset_top = -2.0
 offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="version_label" type="Label" parent="MarginContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_gblwq")
+theme_override_font_sizes/font_size = 120
+text = "x.x.x.x"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 texture_filter = 1

@@ -3,9 +3,14 @@ extends Control
 @onready var start_button   : TextureButton  = $MarginContainer/VBoxContainer/start_button
 @onready var options_button : TextureButton  = $MarginContainer/VBoxContainer/options_button
 @onready var quit_button : TextureButton     = $MarginContainer/VBoxContainer/quit_button
+@onready var versionLabel : Label            = $MarginContainer/version_label
 
 var hover_color : Color = Color8(0,255,255,255) # Color when we hover a button
 var reset_color : Color = Color8(255,255,255,255)     # Color when we stop hovering, this can be forced to be default color
+
+func _ready() -> void:
+	versionLabel.text = ProjectSettings.get_setting("application/config/version")
+
 #region Button_Press
 func _on_start_button_pressed() -> void:
 	menu.switch_menu(2)
