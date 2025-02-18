@@ -9,6 +9,9 @@ const spawnable_drop = preload("res://scenes/enemy/classic_world/drops/bullet.ts
 @onready var gunman          : AnimatedSprite2D = get_node("gunman")
 @onready var gun             : AnimatedSprite2D = get_node("gunman/gun")
 @onready var shoot_timer     : Timer            = get_node("shoot_timer")
+
+@export var min_fire_time    : float
+@export var max_fire_time    : float
 var isMoving : bool = true: set = changeState
 var nextX : int
 var speed : int
@@ -24,7 +27,6 @@ func _ready() -> void:
 	wait_timer.wait_time = randi_range(0,1) + ship_component.wait_time
 	var new_color = Color(randf_range(0,1), randf_range(0,1), randf_range(0,1), 1.0)
 	gunman.material.set_shader_parameter("u_replacement_color", new_color)
-
 func flip():
 	animated_sprite.flip_h = !animated_sprite.flip_h
 	water_layer.flip_h     = !water_layer.flip_h
@@ -83,14 +85,19 @@ func check_in_range(a : float, b : float , range_of_pos : float) -> bool:
 	return abs(a - b) < abs(range_of_pos) + 1
 
 func _on_shoot_timer_timeout() -> void:
-	gun.play("fire")
-	global.sound_master.play("rifle_shot")
 	if ship_component.counter < 0:
+		shoot_timer.stop()
 		ship_component.state = 3
+		ship_component.counter = -1
 		gun.visible = false
 		return
+	gun.play("fire")
+	global.sound_master.play("rifle_shot")
 	var bullet = spawnable_drop.instantiate()
-	add_child(bullet)
+	bullet.gun_ship = self
+	get_parent().add_child(bullet)
+	ship_component.counter -= 1
+	shoot_timer.start(randf_range(min_fire_time,max_fire_time))
 
 func flip_gunman() -> void:
 	gunman.flip_h = !gunman.flip_h

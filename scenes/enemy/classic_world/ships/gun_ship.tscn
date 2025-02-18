@@ -432,8 +432,9 @@ frame_progress = 0.0917188
 [node name="gunman" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 material = SubResource("ShaderMaterial_5jx3s")
-position = Vector2(-27, -39)
+position = Vector2(-27, -37)
 sprite_frames = SubResource("SpriteFrames_3gf1f")
+animation = &"walk"
 
 [node name="gun" type="AnimatedSprite2D" parent="gunman"]
 position = Vector2(-14, 21)

@@ -49,6 +49,8 @@ func spawn_new_enemy() -> void:
 			entity = capitalist_ship.instantiate()
 		2:
 			entity = gun_ship.instantiate()
+			entity.min_fire_time = 5
+			entity.max_fire_time = 10
 		3:
 			entity = pirate_ship.instantiate()
 		4: 

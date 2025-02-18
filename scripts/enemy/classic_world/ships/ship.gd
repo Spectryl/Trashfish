@@ -39,7 +39,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	# IF we aren't moving and we aren't dropping items, then we should find a new spot to go
 	
-	
 	match state:
 		0:
 			sound_timer.start(stream_length)
