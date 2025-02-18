@@ -103,6 +103,9 @@ func flip(value: bool):
 # Handles the Player rolling logic
 func roll():
 	starve -= int(self.max_starve / 2.0)
+	if starve <= 0:
+		decrease_health()
+		reset_starvation()
 	is_rolling = true
 	speed *= 1.8
 	velocity = speed * direction
