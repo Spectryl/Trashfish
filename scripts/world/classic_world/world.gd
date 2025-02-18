@@ -11,11 +11,12 @@ var world_id = 2
 @onready var score_ui : Label                  = $CanvasLayer/Panel/score
 @onready var high_score_ui : Label             = $CanvasLayer/Panel/high_score
 @onready var health_ui : Label                 = $CanvasLayer/Panel/health
+@onready var animation_player : AnimationPlayer= $ParallaxBackground/AnimationPlayer
 @onready var player : CharacterBody2D          = global.player
 @onready var sound_master : Node               = global.sound_master
 func _ready() -> void:
 	
-	
+	animation_player.play("rotate_sun")
 	config = ConfigFile.new()
 
 	

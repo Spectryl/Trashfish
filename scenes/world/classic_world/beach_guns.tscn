@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/world/classic_world/beach_guns.gd" id="1_5qjhs"]
 [ext_resource type="Script" path="res://scripts/world/classic_world/collision_polygon_2d.gd" id="1_y775y"]
-[ext_resource type="Texture2D" uid="uid://cgyve4kk648yh" path="res://art/world/classic_world/sky.png" id="2_0ec83"]
+[ext_resource type="Texture2D" path="res://art/world/classic_world/sky.png" id="2_0ec83"]
 [ext_resource type="Script" path="res://scripts/world/classic_world/gunship_master.gd" id="3_6xvo2"]
 [ext_resource type="Texture2D" uid="uid://rjycrnaueu0r" path="res://art/world/classic_world/background.png" id="3_q466n"]
 [ext_resource type="FontFile" uid="uid://c0quiovxikjm8" path="res://font/VT323-Regular.ttf" id="4_a6v73"]
