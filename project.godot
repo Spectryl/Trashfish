@@ -40,7 +40,7 @@ window/stretch/aspect="ignore"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/GenerateAnimationPlayerFrameTracks/plugin.cfg", "res://addons/antialiased_line2d/plugin.cfg", "res://addons/initialised_animation_player/plugin.cfg")
+enabled=PackedStringArray("res://addons/GenerateAnimationPlayerFrameTracks/plugin.cfg", "res://addons/antialiased_line2d/plugin.cfg")
 
 [global_group]
 
@@ -49,6 +49,7 @@ attack=""
 drop=""
 main_menu_block=""
 controls=""
+seaweed="seaweed"
 
 [input]
 

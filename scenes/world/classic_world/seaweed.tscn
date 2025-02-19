@@ -1,0 +1,224 @@
+[gd_scene load_steps=20 format=3 uid="uid://cxmatui4tldrh"]
+
+[ext_resource type="Texture2D" uid="uid://dstbc7r6hrr77" path="res://art/world/classic_world/grass.png" id="1_1gtjp"]
+[ext_resource type="Script" path="res://scripts/world/classic_world/seaweed.gd" id="1_wb3sn"]
+[ext_resource type="Texture2D" uid="uid://c3ogwt28rvqnl" path="res://art/world/classic_world/bubbles.png" id="2_dwe4e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78kq0"]
+atlas = ExtResource("1_1gtjp")
+region = Rect2(0, 0, 37, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wfdjm"]
+atlas = ExtResource("1_1gtjp")
+region = Rect2(37, 0, 37, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bcypb"]
+atlas = ExtResource("1_1gtjp")
+region = Rect2(74, 0, 37, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfa74"]
+atlas = ExtResource("1_1gtjp")
+region = Rect2(111, 0, 37, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5dlce"]
+atlas = ExtResource("1_1gtjp")
+region = Rect2(148, 0, 37, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_se2hk"]
+atlas = ExtResource("1_1gtjp")
+region = Rect2(111, 0, 37, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60cmj"]
+atlas = ExtResource("1_1gtjp")
+region = Rect2(74, 0, 37, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_amdao"]
+atlas = ExtResource("1_1gtjp")
+region = Rect2(37, 0, 37, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6kjr4"]
+atlas = ExtResource("1_1gtjp")
+region = Rect2(0, 0, 37, 44)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y3qnv"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_78kq0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wfdjm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bcypb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nfa74")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5dlce")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_se2hk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_60cmj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_amdao")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6kjr4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_1m62j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sea_weed:speed_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sea_weed2:speed_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_u4xyd"]
+resource_name = "left_sea_weed"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sea_weed:speed_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.966667, 1.63333),
+"transitions": PackedFloat32Array(1, 0.392292, 1),
+"update": 0,
+"values": [1.0, 3.0, 1.5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sea_weed2:speed_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.933333, 1.63333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [3.0, 1.0, 1.5]
+}
+
+[sub_resource type="Animation" id="Animation_60usf"]
+resource_name = "right_sea_weed"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sea_weed:speed_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.966667, 1.63333),
+"transitions": PackedFloat32Array(1, 0.392292, 1),
+"update": 0,
+"values": [3.0, 1.0, 1.5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sea_weed2:speed_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.933333, 1.63333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [3.0, 3.0, 1.5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_up54q"]
+_data = {
+"RESET": SubResource("Animation_1m62j"),
+"left_sea_weed": SubResource("Animation_u4xyd"),
+"right_sea_weed": SubResource("Animation_60usf")
+}
+
+[sub_resource type="Curve" id="Curve_o5sl8"]
+min_value = -200.0
+max_value = 200.0
+_data = [Vector2(0, 200), 0.0, 0.0, 0, 0, Vector2(0.949438, -200), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_n5ov8"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.713483, 0.0659341), 0.0, 0.0, 0, 0, Vector2(1, 0.043956), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="seaweed" type="Node2D" groups=["seaweed"]]
+script = ExtResource("1_wb3sn")
+
+[node name="sea_weed" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-26, -44)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_y3qnv")
+frame_progress = 0.841339
+
+[node name="sea_weed2" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(18, -44)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_y3qnv")
+frame_progress = 0.408588
+flip_h = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_up54q")
+}
+autoplay = "left_sea_weed"
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = -1
+texture_filter = 1
+position = Vector2(-1, -16)
+amount = 6
+lifetime = 3.0
+explosiveness = 0.1
+randomness = 0.85
+texture = ExtResource("2_dwe4e")
+emission_shape = 1
+emission_sphere_radius = 4.0
+direction = Vector2(0, -1)
+spread = 77.96
+gravity = Vector2(0, -61)
+initial_velocity_min = 2.0
+initial_velocity_max = 2.0
+linear_accel_curve = SubResource("Curve_o5sl8")
+scale_amount_min = 1.5
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_n5ov8")

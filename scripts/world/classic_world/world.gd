@@ -30,6 +30,7 @@ func _ready() -> void:
 		high_score = config.get_value("player", "beach_classic_high_score", 0)
 		
 	generate_waves()
+	generate_seaweed()
 	
 func _process(_delta: float) -> void:
 	if player.is_dead:
@@ -92,3 +93,24 @@ func generate_waves():
 		new_wave.z_index = 99
 		new_wave.scale.y += randf_range(0,2)
 		add_child(new_wave)
+
+func generate_seaweed():
+	var sea_weed_scene = load("res://scenes/world/classic_world/seaweed.tscn")
+	var total_weed = randi_range(20,30)
+	
+	for i in range(total_weed):
+		var isInRange : bool = false
+		var new_weed = sea_weed_scene.instantiate()
+		new_weed.global_position = Vector2(randi_range(20, 1960), 1003)
+		for node in get_children():
+			if node.is_in_group("seaweed"):
+				if check_in_range(new_weed.global_position.x, node.global_position.x, 40):
+					isInRange = true
+					break
+		
+		if not isInRange:
+			add_child(new_weed)
+	
+
+func check_in_range(a : float, b : float , range_of_pos : float) -> bool:
+	return abs(a - b) < range_of_pos + 1
