@@ -30,6 +30,7 @@ func _ready() -> void:
 		high_score = config.get_value("player", "beach_classic_high_score", 0)
 		
 	generate_waves()
+	generate_pebbles()
 	generate_seaweed()
 	
 func _process(_delta: float) -> void:
@@ -94,9 +95,16 @@ func generate_waves():
 		new_wave.scale.y += randf_range(0,2)
 		add_child(new_wave)
 
+func generate_pebbles():
+	var pebble_sprite = load("res://scenes/world/classic_world/pebble.tscn")
+	for i in range(100):
+		var new_pebble = pebble_sprite.instantiate()
+		new_pebble.global_position = Vector2(randi_range(20,1960), randi_range(1011, 1075))
+		add_child(new_pebble)
+
 func generate_seaweed():
 	var sea_weed_scene = load("res://scenes/world/classic_world/seaweed.tscn")
-	var total_weed = randi_range(20,30)
+	var total_weed = randi_range(50,60)
 	
 	for i in range(total_weed):
 		var isInRange : bool = false
@@ -104,7 +112,7 @@ func generate_seaweed():
 		new_weed.global_position = Vector2(randi_range(20, 1960), 1003)
 		for node in get_children():
 			if node.is_in_group("seaweed"):
-				if check_in_range(new_weed.global_position.x, node.global_position.x, 40):
+				if check_in_range(new_weed.global_position.x, node.global_position.x, 45):
 					isInRange = true
 					break
 		

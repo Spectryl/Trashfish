@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://4sciokkxgy1c"]
+
+[ext_resource type="Script" path="res://scripts/world/classic_world/pebble.gd" id="1_r22gf"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_163ro"]
+resource_local_to_scene = true
+load_path = "res://.godot/imported/pebble.png-106d9fd209bdee5c37a3de28e130fe04.ctex"
+
+[node name="pebble" type="Sprite2D"]
+texture_filter = 1
+texture = SubResource("CompressedTexture2D_163ro")
+script = ExtResource("1_r22gf")

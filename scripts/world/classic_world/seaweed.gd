@@ -12,7 +12,6 @@ func _ready() -> void:
 	sea_weed1.play("default")
 	sea_weed2.play("default")
 	weed_player.play("left_sea_weed")
-
 	match randi_range(0,1):
 		0:
 			weed_player.play("left_sea_weed")
