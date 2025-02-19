@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bl0b3f2132o8s"]
+
+[ext_resource type="Texture2D" uid="uid://ds1knkh0qp4j" path="res://art/world/classic_world/seashell.png" id="1_ehutr"]
+[ext_resource type="Script" path="res://scripts/world/classic_world/pebble.gd" id="2_6sws0"]
+
+[node name="seashell" type="Sprite2D"]
+texture_filter = 1
+texture = ExtResource("1_ehutr")
+script = ExtResource("2_6sws0")

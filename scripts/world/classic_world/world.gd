@@ -31,6 +31,7 @@ func _ready() -> void:
 		
 	generate_waves()
 	generate_pebbles()
+	generate_seashells()
 	generate_seaweed()
 	
 func _process(_delta: float) -> void:
@@ -97,10 +98,17 @@ func generate_waves():
 
 func generate_pebbles():
 	var pebble_sprite = load("res://scenes/world/classic_world/pebble.tscn")
-	for i in range(100):
+	for i in range(50):
 		var new_pebble = pebble_sprite.instantiate()
 		new_pebble.global_position = Vector2(randi_range(20,1960), randi_range(1011, 1075))
 		add_child(new_pebble)
+
+func generate_seashells():
+	var seashell_scene = load("res://scenes/world/classic_world/seashell.tscn")
+	for i in randi_range(5,10):
+		var new_seashell = seashell_scene.instantiate()
+		new_seashell.global_position = Vector2(randi_range(20,1960), randi_range(1022, 1075))
+		add_child(new_seashell)
 
 func generate_seaweed():
 	var sea_weed_scene = load("res://scenes/world/classic_world/seaweed.tscn")

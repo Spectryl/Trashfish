@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://cxmatui4tldrh"]
+[gd_scene load_steps=21 format=3 uid="uid://cxmatui4tldrh"]
 
 [ext_resource type="Texture2D" uid="uid://dstbc7r6hrr77" path="res://art/world/classic_world/grass.png" id="1_1gtjp"]
 [ext_resource type="Script" path="res://scripts/world/classic_world/seaweed.gd" id="1_wb3sn"]
 [ext_resource type="Texture2D" uid="uid://c3ogwt28rvqnl" path="res://art/world/classic_world/bubbles.png" id="2_dwe4e"]
+[ext_resource type="PackedScene" uid="uid://ctdvbp2l1ur0q" path="res://scenes/misc/web_delete_component.tscn" id="4_rjlvh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_78kq0"]
 atlas = ExtResource("1_1gtjp")
@@ -186,14 +187,14 @@ texture_filter = 1
 position = Vector2(-26, -44)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_y3qnv")
-frame_progress = 0.539818
+frame_progress = 0.883377
 
 [node name="sea_weed2" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(18, -44)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_y3qnv")
-frame_progress = 0.0436133
+frame_progress = 0.387173
 flip_h = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -223,3 +224,5 @@ linear_accel_curve = SubResource("Curve_o5sl8")
 scale_amount_min = 2.0
 scale_amount_max = 3.0
 scale_amount_curve = SubResource("Curve_n5ov8")
+
+[node name="web_delete_component" parent="CPUParticles2D" instance=ExtResource("4_rjlvh")]
