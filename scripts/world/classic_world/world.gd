@@ -104,7 +104,7 @@ func generate_pebbles():
 
 func generate_seaweed():
 	var sea_weed_scene = load("res://scenes/world/classic_world/seaweed.tscn")
-	var total_weed = randi_range(50,60)
+	var total_weed = randi_range(12,16)
 	
 	for i in range(total_weed):
 		var isInRange : bool = false

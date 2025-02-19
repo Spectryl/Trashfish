@@ -175,8 +175,8 @@ _data = [Vector2(0, 200), 0.0, 0.0, 0, 0, Vector2(0.949438, -200), 0.0, 0.0, 0, 
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_n5ov8"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.713483, 0.0659341), 0.0, 0.0, 0, 0, Vector2(1, 0.043956), 0.0, 0.0, 0, 0]
-point_count = 3
+_data = [Vector2(0.00561798, 0.879121), 0.0, 0.0, 0, 0, Vector2(0.589888, 0.703297), 0.0, 0.0, 0, 0, Vector2(0.792135, 0.648352), 0.0, 0.0, 0, 0, Vector2(1, 0.043956), 0.0, 0.0, 0, 0]
+point_count = 4
 
 [node name="seaweed" type="Node2D" groups=["seaweed"]]
 script = ExtResource("1_wb3sn")
@@ -186,14 +186,14 @@ texture_filter = 1
 position = Vector2(-26, -44)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_y3qnv")
-frame_progress = 0.511487
+frame_progress = 0.539818
 
 [node name="sea_weed2" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(18, -44)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_y3qnv")
-frame_progress = 0.0152841
+frame_progress = 0.0436133
 flip_h = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -210,6 +210,7 @@ amount = 6
 lifetime = 3.0
 explosiveness = 0.1
 randomness = 0.85
+lifetime_randomness = 1.0
 texture = ExtResource("2_dwe4e")
 emission_shape = 1
 emission_sphere_radius = 4.0
@@ -219,6 +220,6 @@ gravity = Vector2(0, -61)
 initial_velocity_min = 2.0
 initial_velocity_max = 2.0
 linear_accel_curve = SubResource("Curve_o5sl8")
-scale_amount_min = 1.5
-scale_amount_max = 2.0
+scale_amount_min = 2.0
+scale_amount_max = 3.0
 scale_amount_curve = SubResource("Curve_n5ov8")
