@@ -116,15 +116,16 @@ func generate_seaweed():
 	
 	for i in range(total_weed):
 		var isInRange : bool = false
-		var new_weed = sea_weed_scene.instantiate()
-		new_weed.global_position = Vector2(randi_range(20, 1960), 1003)
+		var test_global_position : Vector2 = Vector2(randi_range(20, 1960), 1003)
 		for node in get_children():
 			if node.is_in_group("seaweed"):
-				if check_in_range(new_weed.global_position.x, node.global_position.x, 45):
+				if check_in_range(test_global_position.x, node.global_position.x, 45):
 					isInRange = true
 					break
 		
 		if not isInRange:
+			var new_weed = sea_weed_scene.instantiate()
+			new_weed.global_position = test_global_position
 			add_child(new_weed)
 	
 
