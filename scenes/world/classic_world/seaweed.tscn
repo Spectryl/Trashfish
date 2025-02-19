@@ -187,14 +187,14 @@ texture_filter = 1
 position = Vector2(-26, -44)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_y3qnv")
-frame_progress = 0.883377
+frame_progress = 0.595572
 
 [node name="sea_weed2" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(18, -44)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_y3qnv")
-frame_progress = 0.387173
+frame_progress = 0.099366
 flip_h = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

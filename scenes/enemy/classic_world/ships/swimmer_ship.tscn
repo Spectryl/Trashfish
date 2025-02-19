@@ -1,10 +1,18 @@
-[gd_scene load_steps=33 format=3 uid="uid://dbq65hfwhr7jl"]
+[gd_scene load_steps=35 format=3 uid="uid://dbq65hfwhr7jl"]
 
 [ext_resource type="Script" path="res://scripts/enemy/classic_world/ships/swimmer_ship.gd" id="1_5kxml"]
 [ext_resource type="PackedScene" uid="uid://0ncg7uw24q8j" path="res://scenes/enemy/classic_world/ships/ship.tscn" id="2_ieon2"]
 [ext_resource type="Texture2D" uid="uid://byooo274jm3ub" path="res://art/enemy/classic_world/swimmer_ship_idle.png" id="3_caibn"]
+[ext_resource type="Shader" path="res://shaders/player/sprite_flip.gdshader" id="3_hlgmr"]
 [ext_resource type="Texture2D" uid="uid://ckcxlqny8owtb" path="res://art/enemy/classic_world/swimmer_ship.png" id="4_ktlmo"]
 [ext_resource type="Texture2D" uid="uid://mxk4ye0eopij" path="res://art/enemy/classic_world/water_layer.png" id="5_2ybxh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_07suy"]
+resource_local_to_scene = true
+shader = ExtResource("3_hlgmr")
+shader_parameter/u_color_key = Color(0.462745, 0.258824, 0.541176, 1)
+shader_parameter/u_replacement_color = Color(1, 1, 1, 1)
+shader_parameter/u_tolerance = 0.247
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_clo55"]
 atlas = ExtResource("3_caibn")
@@ -210,6 +218,7 @@ id = 4
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+material = SubResource("ShaderMaterial_07suy")
 position = Vector2(0, 4)
 sprite_frames = SubResource("SpriteFrames_c3lle")
 animation = &"idle"
