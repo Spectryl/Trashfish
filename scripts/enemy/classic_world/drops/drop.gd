@@ -46,7 +46,7 @@ func _ready() -> void:
 	horizontal_distance_component = xDirection * (fall_speed * 1.5) * -1.0
 	
 	# determines the rotation speed based on the falling speed
-	rotation_speed = (abs(horizontal_distance_component) / 62.0)
+	rotation_speed = (abs(horizontal_distance_component) / 1)
 		
 	# determines which direction the drop will rotate
 	match xDirection * -1.0 < 0:
@@ -60,7 +60,7 @@ func _process(delta: float) -> void:
 		return
 	parent.global_position.x += horizontal_distance_component * delta
 	parent.global_position.y += fall_speed * delta
-	parent.rotation_degrees += rotation_speed
+	parent.rotation_degrees += rotation_speed * delta
 	
 
 # On timer timeout, call the parents Event

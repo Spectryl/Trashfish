@@ -187,14 +187,14 @@ texture_filter = 1
 position = Vector2(-26, -44)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_y3qnv")
-frame_progress = 0.510447
+frame_progress = 0.251242
 
 [node name="sea_weed2" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(18, -44)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_y3qnv")
-frame_progress = 0.0142418
+frame_progress = 0.755036
 flip_h = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -204,6 +204,7 @@ libraries = {
 autoplay = "left_sea_weed"
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+show_behind_parent = true
 z_index = -1
 texture_filter = 1
 position = Vector2(-1, -16)
