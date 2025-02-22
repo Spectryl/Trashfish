@@ -14,6 +14,11 @@ func _ready() -> void:
 	beach.texture_normal = load("res://resources/buttons/beach_world_icon.tres")
 	beach.left_click .connect(_on_beach_left_click_pressed)
 	beach.right_click.connect(_on_beach_right_click_pressed)
+	beach.material = load("res://shaders/ui/bounce_shader.tres")
+	beach.material.set_shader_parameter("do_abs", false)
+	beach.material.set_shader_parameter("do_quantize", true)
+	beach.material.set_shader_parameter("sine_amplitude", Vector2(0,20))
+	beach.material.set_shader_parameter("sine_speed", Vector2(0,3))
 	worlds.add_child(beach)
 
 	volcano = TwoClickTextureButton.new()
