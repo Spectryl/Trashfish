@@ -1,13 +1,38 @@
-[gd_scene load_steps=9 format=3 uid="uid://5a1x64gt0iqv"]
+[gd_scene load_steps=13 format=3 uid="uid://5a1x64gt0iqv"]
 
 [ext_resource type="Script" path="res://scripts/world/main_menu/main_menu_buttons.gd" id="1_flul8"]
 [ext_resource type="Texture2D" uid="uid://cq6ogwy2wds0i" path="res://art/world/main_menu/options_button.png" id="2_0iv6d"]
 [ext_resource type="FontFile" uid="uid://c0quiovxikjm8" path="res://font/VT323-Regular.ttf" id="2_gblwq"]
 [ext_resource type="Texture2D" uid="uid://kj5helsenb1r" path="res://art/world/main_menu/Logo.png" id="2_iqi4v"]
 [ext_resource type="Texture2D" uid="uid://dvwdbi3v5527f" path="res://art/world/main_menu/start_button.png" id="2_lhxgl"]
+[ext_resource type="Shader" path="res://shaders/ui/bounce.gdshader" id="3_bvn5s"]
 [ext_resource type="Script" path="res://scripts/world/main_menu/start_button.gd" id="3_qcoiv"]
 [ext_resource type="Texture2D" uid="uid://1axiehrh7c1c" path="res://art/world/main_menu/quit_button.png" id="4_prk38"]
 [ext_resource type="PackedScene" uid="uid://ctdvbp2l1ur0q" path="res://scenes/misc/web_delete_component.tscn" id="7_21duf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l5lpi"]
+shader = ExtResource("3_bvn5s")
+shader_parameter/do_abs = false
+shader_parameter/do_quantize = false
+shader_parameter/quantize_to = 1.0
+shader_parameter/sine_amplitude = Vector2(0, 12)
+shader_parameter/sine_speed = Vector2(0, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jdqaa"]
+shader = ExtResource("3_bvn5s")
+shader_parameter/do_abs = null
+shader_parameter/do_quantize = false
+shader_parameter/quantize_to = 1.0
+shader_parameter/sine_amplitude = Vector2(0, 12)
+shader_parameter/sine_speed = Vector2(0, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n4263"]
+shader = ExtResource("3_bvn5s")
+shader_parameter/do_abs = false
+shader_parameter/do_quantize = null
+shader_parameter/quantize_to = 1.0
+shader_parameter/sine_amplitude = Vector2(0, 12)
+shader_parameter/sine_speed = Vector2(0, 2)
 
 [node name="main_menu_buttons" type="Control"]
 layout_mode = 3
@@ -47,6 +72,7 @@ alignment = 1
 
 [node name="start_button" type="TextureButton" parent="MarginContainer/VBoxContainer"]
 texture_filter = 1
+material = SubResource("ShaderMaterial_l5lpi")
 layout_mode = 2
 focus_neighbor_top = NodePath("../quit_button")
 focus_neighbor_bottom = NodePath("../options_button")
@@ -56,12 +82,14 @@ stretch_mode = 0
 script = ExtResource("3_qcoiv")
 
 [node name="options_button" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+material = SubResource("ShaderMaterial_jdqaa")
 layout_mode = 2
 focus_neighbor_top = NodePath("../start_button")
 texture_normal = ExtResource("2_0iv6d")
 
 [node name="quit_button" type="TextureButton" parent="MarginContainer/VBoxContainer"]
 texture_filter = 1
+material = SubResource("ShaderMaterial_n4263")
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../start_button")
 toggle_mode = true
