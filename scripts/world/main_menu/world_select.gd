@@ -8,13 +8,13 @@ var electro              : TwoClickTextureButton
 var state : int = 0
 var hover_color : Color = Color8(0,255,255,255) # Color when we hover a button
 var reset_color : Color = Color8(255,255,255,255)     # Color when we stop hovering, this can be forced to be default color
-
+var bounce_shader = load("res://resources/shaders/bounce_shader.res")
 func _ready() -> void:
 	beach = TwoClickTextureButton.new()
 	beach.texture_normal = load("res://resources/buttons/beach_world_icon.tres")
 	beach.left_click .connect(_on_beach_left_click_pressed)
 	beach.right_click.connect(_on_beach_right_click_pressed)
-	beach.material = load("res://shaders/ui/bounce_shader.tres")
+	beach.material = bounce_shader
 	beach.material.set_shader_parameter("do_abs", false)
 	beach.material.set_shader_parameter("do_quantize", true)
 	beach.material.set_shader_parameter("sine_amplitude", Vector2(0,20))
