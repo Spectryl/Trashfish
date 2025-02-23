@@ -1,7 +1,5 @@
 extends Node2D
 var player : CharacterBody2D
-
-const player_scene = preload("res://scenes/player/player.tscn")
 func _ready() -> void:
 	global.player = player
 	global.player_master = self
@@ -61,7 +59,7 @@ func create_new_player(index : int, starve : bool = false, active : bool = false
 	delete_player()
 	match index:
 		0:
-			player = player_scene.instantiate()
+			player = load("res://scenes/player/player.tscn").instantiate()
 	global.player = player
 	add_child(player)
 	@warning_ignore("standalone_ternary")

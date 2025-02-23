@@ -9,33 +9,33 @@ var starve : int = 100
 @export var honey_speed : float = 2.5
 @export var ice_speed : int = 5
 
-@onready var honey_sprite        = $CanvasGroup/honey
-@onready var ice_sprite          = $CanvasGroup/ice
-@onready var canvas_group        = $CanvasGroup
-@onready var head                = $CanvasGroup/head
-@onready var body                = $CanvasGroup/body
-@onready var attack_hitbox       = $attack_hitbox/CollisionShape2D
-@onready var attack_timer        = $attack_hitbox/attack_timer
-@onready var flash_timer         = $CanvasGroup/body/flash_timer
-@onready var honey_timer         = $debuff_master/honey_timer
-@onready var ice_timer           = $debuff_master/ice_timer
-@onready var control_timer       = $debuff_master/control_timer
-@onready var roll_timer          = $debuff_master/roll_timer
-@onready var roll_cooldown_timer = $debuff_master/roll_cooldown_timer
-@onready var starve_timer        = $Starve_Timer
+@onready var honey_sprite : AnimatedSprite2D      = $CanvasGroup/honey
+@onready var ice_sprite : AnimatedSprite2D        = $CanvasGroup/ice
+@onready var canvas_group : CanvasGroup           = $CanvasGroup
+@onready var head : AnimatedSprite2D              = $CanvasGroup/head
+@onready var body : AnimatedSprite2D              = $CanvasGroup/body
+@onready var attack_hitbox : CollisionShape2D     = $attack_hitbox/CollisionShape2D
+@onready var attack_timer : Timer                 = $attack_hitbox/attack_timer
+@onready var flash_timer : Timer                  = $CanvasGroup/body/flash_timer
+@onready var honey_timer : Timer                  = $debuff_master/honey_timer
+@onready var ice_timer : Timer                    = $debuff_master/ice_timer
+@onready var control_timer : Timer                = $debuff_master/control_timer
+@onready var roll_timer : Timer                   = $debuff_master/roll_timer
+@onready var roll_cooldown_timer : Timer          = $debuff_master/roll_cooldown_timer
+@onready var starve_timer : Timer                 = $Starve_Timer
 
-@onready var body_hurtbox        = $CollisionShape2D
+@onready var body_hurtbox : CollisionShape2D      = $CollisionShape2D
 
-var is_attacking : bool = false
-var is_dead : bool = false
-var is_honeyd : bool = false
-var is_iced : bool = false
-var is_rolling : bool = false
+var is_attacking : bool        = false
+var is_dead : bool             = false
+var is_honeyd : bool           = false
+var is_iced : bool             = false
+var is_rolling : bool          = false
 var is_controls_flipped : bool = false
-var is_active = false
-var drop
+var is_active                  = false
+var drop : Node
 var direction : Vector2
-const trash_can = preload("res://scenes/player/trash_can.tscn")
+const trash_can : PackedScene = preload("res://scenes/player/trash_can.tscn")
 var world : Node2D
 func _ready() -> void:
 	honey_sprite.play("default")

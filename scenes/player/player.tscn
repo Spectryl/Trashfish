@@ -368,7 +368,12 @@ z_index = 3
 texture_filter = 1
 position = Vector2(-5, 31)
 script = ExtResource("1_edec7")
+health = null
+max_starve = null
 max_health = 6
+world_id = null
+honey_speed = null
+ice_speed = null
 
 [node name="CanvasGroup" type="CanvasGroup" parent="."]
 material = SubResource("ShaderMaterial_esx0d")
