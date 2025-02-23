@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dj4vdaxwdewiu"]
+[gd_scene load_steps=16 format=3 uid="uid://dj4vdaxwdewiu"]
 
 [ext_resource type="Script" path="res://scripts/world/classic_world/world.gd" id="1_42akp"]
 [ext_resource type="Script" path="res://scripts/world/classic_world/collision_polygon_2d.gd" id="2_v0c5i"]
@@ -8,6 +8,11 @@
 [ext_resource type="FontFile" uid="uid://c0quiovxikjm8" path="res://font/VT323-Regular.ttf" id="6_k6brb"]
 [ext_resource type="Texture2D" uid="uid://bfig4ppqc525o" path="res://art/world/classic_world/health.png" id="7_x8hl1"]
 [ext_resource type="Texture2D" uid="uid://djpnypv17cuuo" path="res://art/world/classic_world/starve_icon.png" id="8_7hh7b"]
+[ext_resource type="PackedScene" uid="uid://l7yescmy2mty" path="res://scenes/enemy/misc/baby_fish.tscn" id="9_18dbc"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_m74sn"]
+vertices = PackedVector2Array(1779.14, 297.922, 1787.85, 896.039, 67, 903.953, 67, 284.078)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 
 [sub_resource type="Animation" id="Animation_wdsb5"]
 length = 0.001
@@ -82,11 +87,13 @@ bg_color = Color(0.882353, 0, 0.117647, 1)
 script = ExtResource("1_42akp")
 
 [node name="collision" type="StaticBody2D" parent="."]
-visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="collision"]
 polygon = PackedVector2Array(-44, 1, -42, 1044, -5, 1083, 2009, 1084, 1920, 177, 1921, 961, 1920, 1002, 0, 1003, 0, 207, 1922, 203, -3, 1)
 script = ExtResource("2_v0c5i")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="collision"]
+navigation_polygon = SubResource("NavigationPolygon_m74sn")
 
 [node name="ship_master" type="Node2D" parent="."]
 position = Vector2(393, 205)
@@ -212,3 +219,6 @@ texture_filter = 1
 position = Vector2(58, 127)
 scale = Vector2(3, 3)
 texture = ExtResource("8_7hh7b")
+
+[node name="baby_fish" parent="." instance=ExtResource("9_18dbc")]
+position = Vector2(242, 346)
