@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/world/options_menu/rebind_button.gd" id="1_dpcln"]
 [ext_resource type="FontFile" uid="uid://c0quiovxikjm8" path="res://font/VT323-Regular.ttf" id="1_uodfy"]
 
-[node name="rebind_button" type="Control" groups=["controls"]]
+[node name="rebind_button" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

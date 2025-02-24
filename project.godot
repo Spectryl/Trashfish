@@ -47,9 +47,8 @@ enabled=PackedStringArray("res://addons/GenerateAnimationPlayerFrameTracks/plugi
 player="player group"
 attack=""
 drop=""
-main_menu_block=""
-controls=""
 seaweed="seaweed"
+baby_fish=""
 
 [input]
 

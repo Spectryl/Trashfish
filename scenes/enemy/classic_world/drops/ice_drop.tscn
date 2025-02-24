@@ -79,6 +79,7 @@ sprite_frames = SubResource("SpriteFrames_r58q0")
 animation = &"idle"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." groups=["drop"]]
+collision_layer = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 position = Vector2(0, 20)

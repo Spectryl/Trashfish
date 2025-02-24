@@ -30,7 +30,7 @@ void fragment()
 		mod(TIME * shine_speed, shine_duration * shine_speed) - shine_duration * shine_speed * 0.5f
 	);
 	COLOR *= dist <= shine_width ? vec4(shine_color, 1.f) : default_color;
-	
+
 }
 
 void vertex() {
@@ -42,6 +42,6 @@ void vertex() {
 	if (do_quantize) {
 		VERTEX = round(VERTEX / quantize_to);
 		VERTEX *= quantize_to;
-	}	
-	
+	}
+
 }

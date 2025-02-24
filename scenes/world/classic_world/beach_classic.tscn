@@ -11,8 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://l7yescmy2mty" path="res://scenes/enemy/misc/baby_fish.tscn" id="9_18dbc"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_m74sn"]
-vertices = PackedVector2Array(1779.14, 297.922, 1787.85, 896.039, 67, 903.953, 67, 284.078)
+vertices = PackedVector2Array(1852, 979.953, 27.0625, 972.039, 31.9297, 251, 1852, 251)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(22, 241, 1862, 241, 1862, 990, 17, 982)])
 
 [sub_resource type="Animation" id="Animation_wdsb5"]
 length = 0.001
@@ -87,6 +88,7 @@ bg_color = Color(0.882353, 0, 0.117647, 1)
 script = ExtResource("1_42akp")
 
 [node name="collision" type="StaticBody2D" parent="."]
+collision_layer = 3
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="collision"]
 polygon = PackedVector2Array(-44, 1, -42, 1044, -5, 1083, 2009, 1084, 1920, 177, 1921, 961, 1920, 1002, 0, 1003, 0, 207, 1922, 203, -3, 1)
@@ -98,7 +100,8 @@ navigation_polygon = SubResource("NavigationPolygon_m74sn")
 [node name="ship_master" type="Node2D" parent="."]
 position = Vector2(393, 205)
 script = ExtResource("3_wrqgk")
-timer_wait_time = 7.0
+timer_wait_time = 1.0
+max_entities = 30000
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -221,4 +224,61 @@ scale = Vector2(3, 3)
 texture = ExtResource("8_7hh7b")
 
 [node name="baby_fish" parent="." instance=ExtResource("9_18dbc")]
+position = Vector2(242, 346)
+
+[node name="baby_fish2" parent="." instance=ExtResource("9_18dbc")]
+position = Vector2(242, 346)
+
+[node name="baby_fish3" parent="." instance=ExtResource("9_18dbc")]
+position = Vector2(242, 346)
+
+[node name="baby_fish4" parent="." instance=ExtResource("9_18dbc")]
+position = Vector2(242, 346)
+
+[node name="baby_fish5" parent="." instance=ExtResource("9_18dbc")]
+position = Vector2(242, 346)
+
+[node name="baby_fish6" parent="." instance=ExtResource("9_18dbc")]
+position = Vector2(242, 346)
+
+[node name="baby_fish7" parent="." instance=ExtResource("9_18dbc")]
+position = Vector2(242, 346)
+
+[node name="baby_fish8" parent="." instance=ExtResource("9_18dbc")]
+position = Vector2(242, 346)
+
+[node name="baby_fish9" parent="." instance=ExtResource("9_18dbc")]
+position = Vector2(242, 346)
+
+[node name="baby_fish10" parent="." instance=ExtResource("9_18dbc")]
+position = Vector2(242, 346)
+
+[node name="baby_fish11" parent="." instance=ExtResource("9_18dbc")]
+position = Vector2(242, 346)
+
+[node name="baby_fish12" parent="." instance=ExtResource("9_18dbc")]
+position = Vector2(242, 346)
+
+[node name="baby_fish13" parent="." instance=ExtResource("9_18dbc")]
+position = Vector2(242, 346)
+
+[node name="baby_fish14" parent="." instance=ExtResource("9_18dbc")]
+position = Vector2(242, 346)
+
+[node name="baby_fish15" parent="." instance=ExtResource("9_18dbc")]
+position = Vector2(242, 346)
+
+[node name="baby_fish16" parent="." instance=ExtResource("9_18dbc")]
+position = Vector2(242, 346)
+
+[node name="baby_fish17" parent="." instance=ExtResource("9_18dbc")]
+position = Vector2(242, 346)
+
+[node name="baby_fish18" parent="." instance=ExtResource("9_18dbc")]
+position = Vector2(242, 346)
+
+[node name="baby_fish19" parent="." instance=ExtResource("9_18dbc")]
+position = Vector2(242, 346)
+
+[node name="baby_fish20" parent="." instance=ExtResource("9_18dbc")]
 position = Vector2(242, 346)

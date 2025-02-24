@@ -44,7 +44,8 @@ func timer_timeout_event():
 func _on_explosion_hitbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		body.decrease_health()
-
+	if body.is_in_group("baby_fish"):
+		body.call_deferred("queue_free")
 # When the player attacks this object
 func attacked():
 	global.world.score += 1

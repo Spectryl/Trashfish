@@ -57,7 +57,7 @@ func _physics_process(delta):
 	handle_player_input(delta)
 	handle_player_animation()
 	move_and_slide()
-# Handles basic player movement
+## Handles basic player movement
 func handle_player_input(delta):
 	if not is_rolling:
 		direction = Input.get_vector("move_left","move_right","move_up","move_down").normalized()
@@ -70,7 +70,7 @@ func handle_player_input(delta):
 	rotation_degrees *= -1 if self.velocity.x < 0 else 1
 	rotation_degrees *= -1 if self.velocity.y < 0 else 1
 
-# Handles basic player animations using bools/state machine
+## Handles basic player animations using bools/state machine
 func handle_player_animation():
 	if abs(velocity.x) > 0.001:
 		flip(velocity.x < 0)
@@ -91,7 +91,7 @@ func handle_player_animation():
 			body.play("idle")
 	body.play("idle")
 	
-# Flip the animations and hitboxes
+##Flip the animations and hitboxes
 func flip(value: bool):
 	if value != body.flip_h:
 		body.flip_h = value
@@ -100,7 +100,7 @@ func flip(value: bool):
 		honey_sprite.flip_h = value
 		ice_sprite.flip_h = value
 		
-# Handles the Player rolling logic
+## Handles the Player rolling logic
 func roll():
 	starve -= int(self.max_starve / 2.0)
 	if starve <= 0:
@@ -113,11 +113,11 @@ func roll():
 	head.visible = false
 	roll_timer.start()
 
-# Getter for health
+## Getter for health
 func get_health():
 	return health
 
-# Variables to mess with player health
+## Variables to mess with player health
 func set_health(change : int):
 	health = change
 	
@@ -145,14 +145,14 @@ func player_death():
 	drop = trash_can.instantiate()
 	add_child(drop)
 	
-# If we attack, then we should turn on attack hitboxes
+## If we attack, then we should turn on attack hitboxes
 func attack():
 	attack_hitbox.set_deferred("disabled", false)
 	is_attacking = true
 	attack_timer.start()
 	
 	
-# Sets the player's debuff 
+## Sets the player's debuff 
 func set_debuff(debuff : String) -> void:
 	match debuff:
 		"honey":
@@ -179,26 +179,27 @@ func set_debuff(debuff : String) -> void:
 			is_controls_flipped = true
 			control_timer.start()
 
-# Flashes the player body when damaged
+## Flashes the player body when damaged
 func damage_flash_body():
 	if health <= 0:
 		return
 	player_flash_shader(0.76,0,0,1.0, 0.7)
 	flash_timer.start()
-# flashes player body green when healed
+## flashes player body green when healed
 func heal_flash_body():
 	if health <= 0 or health > max_health:
 		return
 	player_flash_shader(0.13,0.86,0.14,1.0, 0.7)
 	flash_timer.start()
 
-# When the attack timer resets (CD), we should turn off hitboxes
+## When the attack timer resets (CD), we should turn off hitboxes
 func _on_attack_timer_timeout() -> void:
 	get_node("attack_hitbox/CollisionShape2D").set_deferred("disabled", true)
 	is_attacking = false
 
-# handles what the attack hitbox calls on whatever it is attacking
+## handles what the attack hitbox calls on whatever it is attacking
 func _on_attack_hitbox_body_entered(object: Node2D) -> void:
+	#print(object)
 	if object.is_in_group("player"):
 		return
 	if object.is_in_group("drop"):
@@ -208,6 +209,10 @@ func _on_attack_hitbox_body_entered(object: Node2D) -> void:
 		return
 	if object.is_in_group("main_menu_block"):
 		object.get_parent().attacked()
+		return
+	if object.is_in_group("baby_fish"):
+		global.sound_master.play("chomp")
+		object.attacked()
 		return
 		
 

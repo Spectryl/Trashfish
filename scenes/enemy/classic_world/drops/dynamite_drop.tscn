@@ -72,12 +72,14 @@ sprite_frames = SubResource("SpriteFrames_kihmo")
 animation = &"idle"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." groups=["drop"]]
+collision_layer = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(5, -12, 2, -14, -2, -14, -5, -12, -5, 11, 0, 13, 5, 11)
 
 [node name="explosion_hitbox" type="Area2D" parent="."]
 visible = false
+collision_layer = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="explosion_hitbox"]
 position = Vector2(-1, 16)

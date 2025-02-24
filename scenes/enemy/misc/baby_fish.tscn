@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://l7yescmy2mty"]
+[gd_scene load_steps=13 format=3 uid="uid://l7yescmy2mty"]
 
 [ext_resource type="Texture2D" uid="uid://xfbioxcph81w" path="res://art/enemy/misc/baby_fish_head.png" id="1_1vu0f"]
 [ext_resource type="Script" path="res://scripts/enemy/misc/baby_fish.gd" id="1_knbxy"]
@@ -335,9 +335,14 @@ _data = {
 "swim_right": SubResource("Animation_bwuiw")
 }
 
-[node name="baby_fish" type="CharacterBody2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2yytr"]
+radius = 6.0
+height = 19.0
+
+[node name="baby_fish" type="CharacterBody2D" groups=["baby_fish"]]
 position = Vector2(2, 0)
 scale = Vector2(2, 2)
+collision_mask = 3
 script = ExtResource("1_knbxy")
 
 [node name="head" type="AnimatedSprite2D" parent="."]
@@ -364,6 +369,21 @@ libraries = {
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_postprocessing = 1
+avoidance_enabled = true
+radius = 100.0
+max_neighbors = 30
+time_horizon_obstacles = 1.0
+max_speed = 400.0
+avoidance_layers = 2
+avoidance_mask = 2
+avoidance_priority = 0.0
 debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(0, 1, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-7, -0.5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_2yytr")
 
 [connection signal="navigation_finished" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_navigation_finished"]

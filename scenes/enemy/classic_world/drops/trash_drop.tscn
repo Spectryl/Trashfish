@@ -19,6 +19,7 @@ colors = PackedColorArray(0.501961, 0.501961, 0.501961, 1, 0.25098, 0.25098, 0.2
 colors = PackedColorArray(0.501961, 0.501961, 0.501961, 1, 0.25098, 0.25098, 0.25098, 1)
 
 [node name="trash_drop" type="Node2D" groups=["drop"]]
+visibility_layer = 2
 script = ExtResource("1_lhp6l")
 
 [node name="drop_component" parent="." instance=ExtResource("1_iv03g")]
@@ -34,6 +35,7 @@ texture = ExtResource("2_ib0ly")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." groups=["drop"]]
 position = Vector2(0, -5)
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, 1)
@@ -54,3 +56,10 @@ scale_amount_max = 16.0
 scale_amount_curve = SubResource("Curve_x6uks")
 color_ramp = SubResource("Gradient_k88nl")
 color_initial_ramp = SubResource("Gradient_a2njw")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+position = Vector2(0, -5)
+radius = 22.0
+affect_navigation_mesh = true
+carve_navigation_mesh = true
+avoidance_layers = 2
