@@ -34,6 +34,7 @@ position = Vector2(0, -6)
 texture = ExtResource("2_ib0ly")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." groups=["drop"]]
+visible = false
 position = Vector2(0, -5)
 collision_layer = 2
 
@@ -56,10 +57,3 @@ scale_amount_max = 16.0
 scale_amount_curve = SubResource("Curve_x6uks")
 color_ramp = SubResource("Gradient_k88nl")
 color_initial_ramp = SubResource("Gradient_a2njw")
-
-[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
-position = Vector2(0, -5)
-radius = 22.0
-affect_navigation_mesh = true
-carve_navigation_mesh = true
-avoidance_layers = 2

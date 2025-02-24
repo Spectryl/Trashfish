@@ -22,15 +22,20 @@ func _physics_process(delta: float) -> void:
 
 	var direction : Vector2 = (navigation_agent.get_next_path_position() - global_position).normalized()
 	
-	velocity.x = lerp(velocity.x, speed * direction.x, acceleration * delta)
-	velocity.y = lerp(velocity.y, speed * direction.y * 0.45, acceleration * delta)
+	navigation_agent.set_velocity(Vector2(
+		lerp(velocity.x, speed * direction.x, acceleration * delta),
+		lerp(velocity.y, speed * direction.y * 0.45, acceleration * delta)
+	))
+
+	
+	
 	match velocity.x > 0:
 		true:
 			animation_player.play("swim_right")
 		_:
 			animation_player.play("swim_left")
 
-	move_and_slide()
+	
 
 	
 func _on_navigation_agent_2d_navigation_finished() -> void:
@@ -41,3 +46,8 @@ func _on_navigation_agent_2d_navigation_finished() -> void:
 func attacked() -> void:
 	call_deferred("queue_free")
 		
+
+
+func _on_navigation_agent_2d_velocity_computed(safe_velocity:Vector2) -> void:
+	velocity = safe_velocity
+	move_and_slide()
