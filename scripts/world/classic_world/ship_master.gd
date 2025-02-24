@@ -5,7 +5,7 @@ const gun_ship            = preload("res://scenes/enemy/classic_world/ships/gun_
 const pirate_ship          = preload("res://scenes/enemy/classic_world/ships/pirate_ship.tscn")
 const swimmer_ship         = preload("res://scenes/enemy/classic_world/ships/swimmer_ship.tscn")
 const orca                 = preload("res://scenes/enemy/classic_world/ships/fish_spawner.tscn")
-@export var timer_wait_time : float
+@export var timer_wait_time : float = 7.0
 @export var max_entities : int = 30
 var entities_spawned : int
 var score : int

@@ -204,7 +204,7 @@ func _on_attack_hitbox_body_entered(object: Node2D) -> void:
 		return
 	if object.is_in_group("drop"):
 		global.sound_master.play("chomp")
-		reset_starvation()
+		update_starvation(int(max_starve / 3.0))
 		object.get_parent().attacked()
 		return
 	if object.is_in_group("main_menu_block"):
@@ -212,6 +212,7 @@ func _on_attack_hitbox_body_entered(object: Node2D) -> void:
 		return
 	if object.is_in_group("baby_fish"):
 		global.sound_master.play("chomp")
+		update_starvation(int(max_starve / 2.0))
 		object.attacked()
 		return
 		
@@ -253,14 +254,20 @@ func player_flash_shader(a : float, b : float, c : float, d : float, e : float):
 	canvas_group.material.set_shader_parameter("flash_modifier", e)
 	canvas_group.material.set_shader_parameter("flash_color",Color(a,b,c,d))
 	canvas_group.material.set_shader_parameter("flash_modifier", e)
-# every second we will take a bit of starvation
-# default is you take a hit every 20 seconds of not eating
+## every second we will take a bit of starvation
+## default is you take a hit every 20 seconds of not eating
 func _on_starve_timer_timeout():
 	starve -= 5
 	if starve <= 0:
 		decrease_health()
 		reset_starvation()
-		
-# Resets starvation whenever called
+
+## Resets starvation back to export variable max_starve
 func reset_starvation():
 	starve = max_starve
+
+## Adds/Subtracts the param to the current starve 
+func update_starvation(new_starve : int = 30):
+	starve += new_starve
+	if starve > max_starve:
+		starve = max_starve

@@ -15,6 +15,8 @@ func _ready() -> void:
 	head.modulate = random_color
 	tail.modulate = random_color
 	_on_navigation_agent_2d_navigation_finished()
+	var r_scale = randf_range(1.85, 2.15)
+	self.scale = Vector2(r_scale, r_scale)
 
 func _physics_process(delta: float) -> void:
 	
