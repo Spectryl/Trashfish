@@ -11,6 +11,9 @@ var reset_color : Color = Color8(255,255,255,255)     # Color when we stop hover
 var bounce_shine_shader = load("res://resources/buttons/world_icon.res")
 func _ready() -> void:
 	beach = TwoClickTextureButton.new()
+	volcano = TwoClickTextureButton.new()
+	electro = TwoClickTextureButton.new()
+
 	beach.texture_normal = load("res://resources/buttons/beach_world_icon.tres")
 	beach.left_click .connect(_on_beach_left_click_pressed)
 	beach.right_click.connect(_on_beach_right_click_pressed)
@@ -20,13 +23,21 @@ func _ready() -> void:
 	beach.material.set_shader_parameter("sine_amplitude", Vector2(0,20))
 	beach.material.set_shader_parameter("sine_speed", Vector2(0,3))
 
-	
-	worlds.add_child(beach)
-
-	volcano = TwoClickTextureButton.new()
 	volcano.texture_normal = load("res://resources/buttons/locked_world_icon.tres")
-	electro = TwoClickTextureButton.new()
+	volcano.material = bounce_shine_shader
+	volcano.material.set_shader_parameter("do_abs", false)
+	volcano.material.set_shader_parameter("do_quantize", true)
+	volcano.material.set_shader_parameter("sine_amplitude", Vector2(0,20))
+	volcano.material.set_shader_parameter("sine_speed", Vector2(0,3))
+	
 	electro.texture_normal = load("res://resources/buttons/locked_world_icon.tres")
+	electro.material = bounce_shine_shader
+	electro.material.set_shader_parameter("do_abs", false)
+	electro.material.set_shader_parameter("do_quantize", true)
+	electro.material.set_shader_parameter("sine_amplitude", Vector2(0,20))
+	electro.material.set_shader_parameter("sine_speed", Vector2(0,3))
+
+	worlds.add_child(beach)
 	worlds.add_child(volcano)
 	worlds.add_child(electro)
 	
