@@ -405,7 +405,7 @@ libraries = {
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_postprocessing = 1
 avoidance_enabled = true
-radius = 20.0
+radius = 40.0
 max_neighbors = 5
 time_horizon_obstacles = 1.0
 max_speed = 400.0
@@ -413,6 +413,7 @@ avoidance_priority = 0.0
 debug_path_custom_color = Color(0, 1, 0, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-7, -0.5)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_2yytr")
