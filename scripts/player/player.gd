@@ -24,7 +24,7 @@ var starve : int = 100
 @onready var roll_cooldown_timer : Timer          = $debuff_master/roll_cooldown_timer
 @onready var starve_timer : Timer                 = $Starve_Timer
 
-@onready var body_hurtbox : CollisionShape2D      = $CollisionShape2D
+@onready var body_hurtbox : CollisionPolygon2D    = $CollisionPolygon2D
 
 var is_attacking : bool        = false
 var is_dead : bool             = false

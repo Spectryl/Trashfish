@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://ia6ngi8g5tqx"]
+[gd_scene load_steps=59 format=3 uid="uid://ia6ngi8g5tqx"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_edec7"]
 [ext_resource type="Shader" path="res://shaders/player/flash.gdshader" id="2_6cm53"]
@@ -13,8 +13,8 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_esx0d"]
 shader = ExtResource("2_6cm53")
-shader_parameter/flash_color = Color(1, 1, 0, 1)
-shader_parameter/flash_modifier = 0.353
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jvel1"]
 shader = ExtResource("3_tmm1g")
@@ -355,10 +355,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1cqym"]
-radius = 32.0
-height = 140.0
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jjfob"]
 radius = 28.0
 height = 56.0
@@ -366,7 +362,6 @@ height = 56.0
 [node name="player" type="CharacterBody2D" groups=["player"]]
 z_index = 3
 texture_filter = 1
-position = Vector2(-5, 31)
 collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_edec7")
@@ -374,6 +369,7 @@ max_health = 6
 
 [node name="CanvasGroup" type="CanvasGroup" parent="."]
 material = SubResource("ShaderMaterial_esx0d")
+position = Vector2(-5, 31)
 
 [node name="body" type="AnimatedSprite2D" parent="CanvasGroup"]
 texture_filter = 1
@@ -404,16 +400,16 @@ texture_filter = 1
 position = Vector2(8, -30)
 sprite_frames = SubResource("SpriteFrames_p7d51")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 visible = false
-position = Vector2(5, -31)
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_1cqym")
+polygon = PackedVector2Array(1.00019, 53, -3.99983, 48, -8.99988, 34, -10.9999, 24, -17.9999, 24.0001, -18.0001, -27.9999, -15.0001, -27.9999, -2.00025, -70, 8.99975, -68, 16.9999, -29.0001, 20.9999, -28.0001, 19.0001, 22.9999, 15.0001, 22.9999, 11.0001, 36, 9.00019, 51)
 
 [node name="Starve_Timer" type="Timer" parent="."]
 
 [node name="attack_hitbox" type="Area2D" parent="." groups=["attack"]]
 visible = false
+position = Vector2(-5, 31)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack_hitbox" groups=["attack"]]
 position = Vector2(89, -32)
@@ -426,6 +422,7 @@ wait_time = 0.45
 one_shot = true
 
 [node name="debuff_master" type="Node2D" parent="."]
+position = Vector2(-5, 31)
 
 [node name="honey_timer" type="Timer" parent="debuff_master"]
 wait_time = 4.0

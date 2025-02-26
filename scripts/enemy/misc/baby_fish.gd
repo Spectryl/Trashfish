@@ -5,6 +5,8 @@ extends CharacterBody2D
 @onready var garbage_can : Sprite2D               = $garbage_can
 @onready var animation_player : AnimationPlayer   = $AnimationPlayer
 @onready var navigation_agent : NavigationAgent2D = $NavigationAgent2D
+@onready var collision   : CollisionShape2D       = $CollisionShape2D
+@onready var job_detection : CollisionShape2D     = $area_detection/CollisionShape2D
 @onready var fish_master      : Node2D            = get_parent()
 
 var attack_timer : Timer
@@ -49,12 +51,25 @@ func _physics_process(delta: float) -> void:
 		lerp(velocity.x, speed * direction.x, acceleration * delta),
 		lerp(velocity.y, speed * direction.y * 0.45, acceleration * delta)
 	))
-	match velocity.x > 0:
-		true:
-			animation_player.play("swim_right")
-		_:
-			animation_player.play("swim_left")
+	handle_animations()
 	work()
+
+
+
+func handle_animations() -> void:
+	
+	match current_job:
+		fish_job.PLAYER:
+			animation_player.play("attacking")
+			set_global_rotation(get_angle_to_player())
+
+		fish_job.RANDOM:
+			match velocity.x > 0:
+				true:
+					animation_player.play("swim_right")
+				_:
+					animation_player.play("swim_left")
+
 
 func _on_navigation_agent_2d_navigation_finished() -> void:
 	navigation_agent.target_position = Vector2(randf_range(100, 1820), randf_range(300,900))
@@ -81,6 +96,7 @@ func _on_area_detection_body_exited(body:Node2D) -> void:
 	if body.is_in_group("player"):
 		current_job = fish_job.RANDOM
 		attack_timer.stop()
+		set_global_rotation(0)
 		return
 
 func work() -> void:
@@ -104,3 +120,8 @@ func attack_player() -> void:
 
 func reset_player_attack_cooldown() -> void:
 	can_attack_player = true
+
+
+## Gets the angle to the player from the baby_fish
+func get_angle_to_player() -> float:
+	return global_position.angle_to_point(global.player.player_position())
