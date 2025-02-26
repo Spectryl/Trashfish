@@ -13,8 +13,8 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_esx0d"]
 shader = ExtResource("2_6cm53")
-shader_parameter/flash_color = Color(1, 1, 1, 1)
-shader_parameter/flash_modifier = 0.0
+shader_parameter/flash_color = Color(1, 1, 0, 1)
+shader_parameter/flash_modifier = 0.353
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jvel1"]
 shader = ExtResource("3_tmm1g")

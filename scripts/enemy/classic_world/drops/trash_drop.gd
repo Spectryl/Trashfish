@@ -2,8 +2,8 @@ extends Node2D
 @onready var drop_component = $drop_component
 
 func _ready() -> void:
-	drop_component.timer_length += randi() % 6
-	drop_component.fall_speed += randi() % 30 
+	drop_component.timer_length += randi_range(0,6)
+	drop_component.fall_speed += randi_range(0,30)
 
 func timer_timeout_event():
 	pass

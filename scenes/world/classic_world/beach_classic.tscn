@@ -106,8 +106,7 @@ script = ExtResource("3_wrqgk")
 
 [node name="fish_master" type="Node2D" parent="."]
 script = ExtResource("4_e54kb")
-wait_time = 7.0
-max_entities = 30
+wait_time = 20.0
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 

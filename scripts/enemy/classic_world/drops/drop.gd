@@ -51,7 +51,7 @@ func _ready() -> void:
 	# determines which direction the drop will rotate
 	match xDirection * -1.0 < 0:
 		true: rotation_speed *= -1
-		false: pass
+		_: pass
 	
 	sound_master.play("drop_splash")
 

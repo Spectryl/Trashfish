@@ -1,8 +1,8 @@
 extends Node2D
 var spawn_timer : Timer
 var current_entities : int
-@export var wait_time : float
-@export var max_entities : int
+@export var wait_time : float = 7
+@export var max_entities : int = 30
 
 const baby_fish = preload("res://scenes/enemy/misc/baby_fish.tscn")
 
@@ -12,7 +12,8 @@ func _ready() -> void:
 	add_child(spawn_timer)
 	spawn_timer.wait_time = wait_time
 	spawn_timer.timeout.connect(spawn_new_enemy)
-	spawn_timer.start()
+	spawn_timer.start(1)
+	spawn_timer.wait_time = wait_time
 	
 
 

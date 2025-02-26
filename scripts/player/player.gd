@@ -129,6 +129,13 @@ func decrease_health() :
 		return
 	health -= 1
 	damage_flash_body()
+## stamina-change should be a negative number
+func decrease_starve(starve_change: int):
+	if world_id == 0 or world_id == 1 or (is_rolling and not starve <= 0):
+		return
+	starve -= starve_change
+	player_flash_shader(1, 1, 0, 1.0, 0.353)
+	flash_timer.start()
 
 func increase_health():
 	health += 1
@@ -212,7 +219,7 @@ func _on_attack_hitbox_body_entered(object: Node2D) -> void:
 		return
 	if object.is_in_group("baby_fish"):
 		global.sound_master.play("chomp")
-		update_starvation(int(max_starve / 2.0))
+		update_starvation(object.get_stamina())
 		object.attacked()
 		return
 		
@@ -249,6 +256,7 @@ func _on_roll_cooldown_timer_timeout():
 	flash_timer.start(0.5)
 
 #flashes the whole player sprite as a color
+## A,B,C are RGB values from 0.0 -> 1.0, D is transparency and e is intensity
 func player_flash_shader(a : float, b : float, c : float, d : float, e : float):
 	canvas_group.material.set_shader_parameter("flash_color",Color(a,b,c,d))
 	canvas_group.material.set_shader_parameter("flash_modifier", e)

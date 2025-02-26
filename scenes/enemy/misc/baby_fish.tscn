@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://l7yescmy2mty"]
+[gd_scene load_steps=14 format=3 uid="uid://l7yescmy2mty"]
 
 [ext_resource type="Texture2D" uid="uid://xfbioxcph81w" path="res://art/enemy/misc/baby_fish_head.png" id="1_1vu0f"]
 [ext_resource type="Script" path="res://scripts/enemy/misc/baby_fish.gd" id="1_knbxy"]
@@ -375,6 +375,9 @@ _data = {
 radius = 6.0
 height = 19.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_pvesk"]
+radius = 53.5093
+
 [node name="baby_fish" type="CharacterBody2D" groups=["baby_fish"]]
 position = Vector2(2, 0)
 scale = Vector2(2, 2)
@@ -410,6 +413,7 @@ max_neighbors = 5
 time_horizon_obstacles = 1.0
 max_speed = 400.0
 avoidance_priority = 0.0
+debug_enabled = true
 debug_path_custom_color = Color(0, 1, 0, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -418,5 +422,15 @@ position = Vector2(-7, -0.5)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_2yytr")
 
+[node name="area_detection" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="area_detection"]
+position = Vector2(-5, 0.5)
+shape = SubResource("CircleShape2D_pvesk")
+debug_color = Color(0.993246, 0, 0.240441, 0.42)
+
 [connection signal="navigation_finished" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_navigation_finished"]
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
+[connection signal="body_entered" from="area_detection" to="." method="_on_area_detection_body_entered"]
+[connection signal="body_exited" from="area_detection" to="." method="_on_area_detection_body_exited"]
