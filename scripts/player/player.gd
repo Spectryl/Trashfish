@@ -99,6 +99,7 @@ func flip(value: bool):
 		attack_hitbox.position.x *= -1
 		honey_sprite.flip_h = value
 		ice_sprite.flip_h = value
+		body_hurtbox.rotation_degrees = -90 if body.flip_h else 90
 		
 ## Handles the Player rolling logic
 func roll():
