@@ -100,6 +100,7 @@ func attack_player() -> void:
 	can_attack_player = false
 	player_attack_cooldown_timer.start()
 	current_job = fish_job.RANDOM
+	global.sound_master.play("small_chomp")
 
 func reset_player_attack_cooldown() -> void:
 	can_attack_player = true

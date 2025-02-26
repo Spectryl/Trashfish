@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c6bnupwh41dh5"]
+[gd_scene load_steps=12 format=3 uid="uid://c6bnupwh41dh5"]
 
 [ext_resource type="Script" path="res://scripts/main/sound_master.gd" id="1_amg6c"]
 [ext_resource type="AudioStream" uid="uid://dgk0ebaa1330k" path="res://audio/sound_effects/bloop.ogg" id="2_fjgyy"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://brbs0cxdqrjcw" path="res://audio/sound_effects/rifle_shot.ogg" id="7_u2wru"]
 [ext_resource type="AudioStream" uid="uid://bpilryhv40y1r" path="res://audio/sound_effects/fuse.ogg" id="8_ya4cn"]
 [ext_resource type="AudioStream" uid="uid://dho5fbun0qwp7" path="res://audio/sound_effects/wave_splash.ogg" id="9_1q5tc"]
+[ext_resource type="AudioStream" uid="uid://cpvnsnue43iah" path="res://audio/sound_effects/small_chomp.ogg" id="10_4xdid"]
 
 [node name="sound_master" type="Node"]
 script = ExtResource("1_amg6c")
@@ -60,7 +61,13 @@ pitch_scale_max = 1.1
 
 [node name="fuse" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_ya4cn")
-volume_db = -15.0
+volume_db = 15.0
+max_polyphony = 10
+bus = &"Sound"
+script = ExtResource("3_fwkhs")
+
+[node name="small_chomp" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_4xdid")
 max_polyphony = 5
 bus = &"Sound"
 script = ExtResource("3_fwkhs")

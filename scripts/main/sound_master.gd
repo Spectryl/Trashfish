@@ -6,13 +6,14 @@ extends Node
 @onready var explosion1 : AudioStreamPlayer  = $explosion1
 @onready var rifle_shot  : AudioStreamPlayer = $rifle_shot
 @onready var fuse  : AudioStreamPlayer       = $fuse
+@onready var small_chomp : AudioStreamPlayer = $small_chomp
 @onready var wave_splash : AudioStreamPlayer = $wave_splash
 @onready var ui_sfx_test : AudioStreamPlayer = $ui_sfx_test
 @onready var ui_music_test:AudioStreamPlayer = $ui_music_test
 
 
 
-var sound_dictionary : Dictionary= {
+var sound_dictionary : Dictionary = {
 }
 
 func _ready() -> void:
@@ -27,6 +28,7 @@ func _ready() -> void:
 	sound_dictionary["drop_splash"]  = drop_splash
 	sound_dictionary["ui_music_test"]= ui_music_test
 	sound_dictionary["ui_sfx_test"]  = ui_sfx_test
+	sound_dictionary["small_chomp"]  = small_chomp
 	global.sound_master = self
 
 #Plays a sound effect
