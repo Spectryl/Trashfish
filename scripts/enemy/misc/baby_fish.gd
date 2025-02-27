@@ -11,6 +11,7 @@ extends CharacterBody2D
 
 var attack_timer : Timer
 var player_attack_cooldown_timer : Timer
+var current_node : Node2D
 enum fish_job {
 	RANDOM,
 	PLAYER,
@@ -63,6 +64,13 @@ func handle_animations() -> void:
 			animation_player.play("attacking")
 			set_global_rotation(get_angle_to_player())
 
+		fish_job.DROP:
+			animation_player.play("attacking")
+			if current_node != null:
+				global_position.angle_to_point(current_node.global_position)
+			else:
+				current_job = fish_job.RANDOM
+
 		fish_job.RANDOM:
 			match velocity.x > 0:
 				true:
@@ -86,10 +94,12 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity:Vector2) -> void:
 func _on_area_detection_body_entered(body:Node2D) -> void:
 	if body.is_in_group("player") and can_attack_player:
 		current_job = fish_job.PLAYER
+		current_node = null
 		attack_timer.start()
 		return
-	if body.is_in_group("drop"):
+	if body.is_in_group("drop") and current_node == null:
 		current_job = fish_job.DROP
+		current_node = body
 		return
 
 func _on_area_detection_body_exited(body:Node2D) -> void:
@@ -98,11 +108,22 @@ func _on_area_detection_body_exited(body:Node2D) -> void:
 		attack_timer.stop()
 		set_global_rotation(0)
 		return
+	if body.is_in_group("drop"):
+		current_job = fish_job.RANDOM
+		current_node = null
+		return
 
 func work() -> void:
 	match current_job:
 		fish_job.PLAYER:
 			navigation_agent.target_position = global.player.global_position
+		fish_job.DROP:
+			if current_node != null:
+				navigation_agent.target_position = current_node.global_position
+			else:
+				current_job = fish_job.RANDOM
+		_:
+			return
 
 ## Returns stamina on hand of baby fish, use this for player node
 func get_stamina() -> int:

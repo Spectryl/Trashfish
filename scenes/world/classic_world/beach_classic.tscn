@@ -88,7 +88,7 @@ bg_color = Color(0.882353, 0, 0.117647, 1)
 script = ExtResource("1_42akp")
 
 [node name="collision" type="StaticBody2D" parent="."]
-collision_layer = 2
+collision_layer = 4
 
 [node name="collision_layer_1" type="CollisionPolygon2D" parent="collision"]
 build_mode = 1
