@@ -11,11 +11,13 @@ extends CharacterBody2D
 
 var attack_timer : Timer
 var player_attack_cooldown_timer : Timer
+var stun_timer : Timer
 var current_node : Node2D
 enum fish_job {
 	RANDOM,
 	PLAYER,
 	DROP,
+	STUN,
 	CRAB
 }
 
@@ -23,8 +25,9 @@ var current_job : fish_job
 var speed : int = 400
 var acceleration : float = 15
 var can_attack_player : bool = true
+var is_stunned : bool = false
 var stamina : int = 30
-
+@export var weight : float = 10
 func _ready() -> void:
 	var random_color: Color = Color8(randi_range(0,255), randi_range(0,255), randi_range(0,255), 255)
 	navigation_agent.set_avoidance_priority(randf_range(0,1))
@@ -32,6 +35,7 @@ func _ready() -> void:
 	tail.modulate = random_color
 	_on_navigation_agent_2d_navigation_finished()
 	var r_scale = randf_range(1.85, 2.15)
+	#weight = lerp(weight, 50, r_scale / 5)
 	self.scale = Vector2(r_scale, r_scale)
 	global_position.x = -100 if randi_range(0,1) == 1 else 2000
 	global_position.y = 540
@@ -43,6 +47,10 @@ func _ready() -> void:
 	player_attack_cooldown_timer.wait_time = 10
 	player_attack_cooldown_timer.timeout.connect(reset_player_attack_cooldown)
 	add_child(player_attack_cooldown_timer)
+	stun_timer = Timer.new()
+	stun_timer.wait_time = 2
+	stun_timer.timeout.connect(reset_stun_timer)
+	add_child(stun_timer)
 	
 
 func _physics_process(delta: float) -> void:
@@ -52,13 +60,17 @@ func _physics_process(delta: float) -> void:
 		lerp(velocity.x, speed * direction.x, acceleration * delta),
 		lerp(velocity.y, speed * direction.y * 0.45, acceleration * delta)
 	))
+	if can_attack_player and current_job == fish_job.PLAYER and not is_stunned:
+		if global.player.is_rolling:
+			current_job = fish_job.STUN
+			is_stunned = true
+			stun_timer.start()
 	handle_animations()
 	work()
 
 
 
 func handle_animations() -> void:
-	
 	match current_job:
 		fish_job.PLAYER:
 			animation_player.play("attacking")
@@ -67,7 +79,7 @@ func handle_animations() -> void:
 		fish_job.DROP:
 			animation_player.play("attacking")
 			if current_node != null:
-				global_position.angle_to_point(current_node.global_position)
+				set_global_rotation(global_position.angle_to_point(current_node.global_position))
 			else:
 				current_job = fish_job.RANDOM
 
@@ -77,6 +89,10 @@ func handle_animations() -> void:
 					animation_player.play("swim_right")
 				_:
 					animation_player.play("swim_left")
+		
+		fish_job.STUN:
+			#animation_player.play("stunned")
+			pass
 
 
 func _on_navigation_agent_2d_navigation_finished() -> void:
@@ -92,6 +108,9 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity:Vector2) -> void:
 
 
 func _on_area_detection_body_entered(body:Node2D) -> void:
+	if is_stunned:
+		return
+
 	if body.is_in_group("player") and can_attack_player:
 		current_job = fish_job.PLAYER
 		current_node = null
@@ -103,6 +122,9 @@ func _on_area_detection_body_entered(body:Node2D) -> void:
 		return
 
 func _on_area_detection_body_exited(body:Node2D) -> void:
+	if is_stunned:
+		return
+
 	if body.is_in_group("player"):
 		current_job = fish_job.RANDOM
 		attack_timer.stop()
@@ -111,6 +133,7 @@ func _on_area_detection_body_exited(body:Node2D) -> void:
 	if body.is_in_group("drop"):
 		current_job = fish_job.RANDOM
 		current_node = null
+		set_global_rotation(0)
 		return
 
 func work() -> void:
@@ -122,6 +145,8 @@ func work() -> void:
 				navigation_agent.target_position = current_node.global_position
 			else:
 				current_job = fish_job.RANDOM
+		fish_job.STUN:
+			navigation_agent.target_position = self.global_position
 		_:
 			return
 
@@ -142,7 +167,12 @@ func attack_player() -> void:
 func reset_player_attack_cooldown() -> void:
 	can_attack_player = true
 
-
 ## Gets the angle to the player from the baby_fish
 func get_angle_to_player() -> float:
 	return global_position.angle_to_point(global.player.player_position())
+
+## resets the stun timer
+func reset_stun_timer() -> void:
+	set_global_rotation(0)
+	current_job = fish_job.RANDOM
+	is_stunned = false

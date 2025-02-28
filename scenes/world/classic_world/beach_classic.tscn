@@ -97,7 +97,6 @@ one_way_collision_margin = 0.0
 script = ExtResource("2_v0c5i")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="collision"]
-visible = false
 navigation_polygon = SubResource("NavigationPolygon_m74sn")
 
 [node name="ship_master" type="Node2D" parent="."]
@@ -106,7 +105,7 @@ script = ExtResource("3_wrqgk")
 
 [node name="fish_master" type="Node2D" parent="."]
 script = ExtResource("4_e54kb")
-wait_time = 20.0
+wait_time = 5.0
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
