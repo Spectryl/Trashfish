@@ -65,6 +65,7 @@ func _physics_process(delta: float) -> void:
 			current_job = fish_job.STUN
 			is_stunned = true
 			stun_timer.start()
+			attack_timer.stop()
 	handle_animations()
 	work()
 
@@ -91,8 +92,7 @@ func handle_animations() -> void:
 					animation_player.play("swim_left")
 		
 		fish_job.STUN:
-			#animation_player.play("stunned")
-			pass
+			animation_player.play("stunned")
 
 
 func _on_navigation_agent_2d_navigation_finished() -> void:
