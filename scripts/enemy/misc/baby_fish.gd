@@ -11,6 +11,7 @@ extends CharacterBody2D
 
 var attack_timer : Timer
 var player_attack_cooldown_timer : Timer
+var drop_attack_cooldown_timer   : Timer
 var stun_timer : Timer
 var drop_timer : Timer
 var current_node : Node2D = null
@@ -26,6 +27,7 @@ var current_job : fish_job
 var speed : int = 400
 var acceleration : float = 15
 var can_attack_player : bool = true
+var can_attack_drop   : bool = true
 var is_stunned : bool = false
 var stamina : int = 30
 @export var weight : float = 10
@@ -39,26 +41,40 @@ func _ready() -> void:
 	var r_scale : float = weight / 10.0
 	stamina = int(weight)
 	self.scale = Vector2(r_scale, r_scale)
-	print(job_detection.shape.radius)
 	global_position.x = -100 if randi_range(0,1) == 1 else 2000
 	global_position.y = 540
 	attack_timer = Timer.new()
 	attack_timer.wait_time = 5
 	attack_timer.timeout.connect(attack_player)
+	attack_timer.autostart = false
+	attack_timer.one_shot = true
 	add_child(attack_timer)
 
 	player_attack_cooldown_timer = Timer.new()
 	player_attack_cooldown_timer.wait_time = 10
 	player_attack_cooldown_timer.timeout.connect(reset_player_attack_cooldown)
+	player_attack_cooldown_timer.one_shot = true
+	player_attack_cooldown_timer.autostart = false
 	add_child(player_attack_cooldown_timer)
+
+	drop_attack_cooldown_timer = Timer.new()
+	drop_attack_cooldown_timer.wait_time = 5
+	drop_attack_cooldown_timer.timeout.connect(reset_drop_attack_cooldown)
+	drop_attack_cooldown_timer.one_shot = true
+	drop_attack_cooldown_timer.autostart = false
+	add_child(drop_attack_cooldown_timer)
 
 	stun_timer = Timer.new()
 	stun_timer.wait_time = 2
 	stun_timer.timeout.connect(reset_stun_timer)
+	stun_timer.one_shot = true
+	stun_timer.autostart = false
 	add_child(stun_timer)
 
 	drop_timer = Timer.new()
 	drop_timer.wait_time = 1
+	drop_timer.autostart = false
+	drop_timer.one_shot = true
 	drop_timer.timeout.connect(reset_drop_timer)
 	add_child(drop_timer)
 	
@@ -126,10 +142,12 @@ func _on_area_detection_body_entered(body:Node2D) -> void:
 		current_node = null
 		attack_timer.start()
 		return
-	if body.is_in_group("drop") and current_node == null:
+	if body.is_in_group("drop") and current_node == null and can_attack_drop:
+		print("c")
 		current_job = fish_job.DROP
 		current_node = body.get_parent()
-		drop_timer.start()
+		if drop_timer.is_stopped():
+			drop_timer.start()
 		return
 
 func _on_area_detection_body_exited(body:Node2D) -> void:
@@ -141,7 +159,8 @@ func _on_area_detection_body_exited(body:Node2D) -> void:
 		attack_timer.stop()
 		set_global_rotation(0)
 		return
-	if body.is_in_group("drop") and current_job == fish_job.DROP:
+	if body.is_in_group("drop") and current_job == fish_job.DROP and body == current_node:
+		print("d")
 		current_job = fish_job.RANDOM
 		current_node = null
 		drop_timer.stop()
@@ -155,8 +174,6 @@ func work() -> void:
 		fish_job.DROP:
 			if current_node != null:
 				navigation_agent.target_position = current_node.global_position
-			else:
-				current_job = fish_job.RANDOM
 		fish_job.STUN:
 			navigation_agent.target_position = self.global_position
 		_:
@@ -168,12 +185,16 @@ func get_stamina() -> int:
 
 ## attacks the player and saps their starvation meter and adds it to self
 func attack_player() -> void:
+	if current_job != fish_job.PLAYER:
+		return
+	attack_timer.stop()
 	global.player.decrease_starve(10)
 	stamina += 10
 	current_job = fish_job.DROP
 	can_attack_player = false
 	player_attack_cooldown_timer.start()
 	current_job = fish_job.RANDOM
+	set_global_rotation(0)
 	global.sound_master.play("small_chomp")
 
 func reset_player_attack_cooldown() -> void:
@@ -190,7 +211,15 @@ func reset_stun_timer() -> void:
 	is_stunned = false
 
 func reset_drop_timer() -> void:
-	if current_node != null:
-		if current_node.has_method("baby_fish_attack_event"):
+	drop_timer.stop()
+	can_attack_drop = false
+	drop_attack_cooldown_timer.start()
+	current_job = fish_job.RANDOM
+	set_global_rotation(0)
+	global.sound_master.play("small_chomp")
+	if current_node != null and current_node.has_method("baby_fish_attack_event"):
 			current_node.baby_fish_attack_event(self.stamina)
-	drop_timer.start()
+			set_global_rotation(0)
+			
+func reset_drop_attack_cooldown() -> void:
+	can_attack_drop = true
