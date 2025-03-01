@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bfwtfar4maoqk"
-path="res://.godot/imported/solo_player_head_main_menu.png-0fb0934937a42572cb16d09aa6f69f27.ctex"
+uid="uid://bgmbn7uvtvio4"
+path="res://.godot/imported/cloud.png-bdf934dff24efb69bfea4c5e6e0347f4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/world/main_menu/solo_player_head_main_menu.png"
-dest_files=["res://.godot/imported/solo_player_head_main_menu.png-0fb0934937a42572cb16d09aa6f69f27.ctex"]
+source_file="res://art/misc/cloud.png"
+dest_files=["res://.godot/imported/cloud.png-bdf934dff24efb69bfea4c5e6e0347f4.ctex"]
 
 [params]
 

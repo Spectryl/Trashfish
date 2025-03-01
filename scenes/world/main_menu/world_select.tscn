@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dmk6o416kmbs2" path="res://art/world/main_menu/choose_your_world.png" id="2_8cebv"]
 [ext_resource type="Texture2D" uid="uid://wkdcrujuq5gd" path="res://art/world/main_menu/back_button.png" id="3_ye7fq"]
 [ext_resource type="Texture2D" uid="uid://bid5sqauqcplw" path="res://resources/buttons/beach_world_icon.tres" id="5_xvmf7"]
-[ext_resource type="Script" path="res://scenes/misc/TwoClickTextureButton.gd" id="6_y54j7"]
+[ext_resource type="Script" path="res://scripts/classes/TwoClickTextureButton.gd" id="6_y54j7"]
 
 [sub_resource type="Shader" id="Shader_fm5dq"]
 code = "shader_type canvas_item;
