@@ -12,7 +12,8 @@ extends CharacterBody2D
 var attack_timer : Timer
 var player_attack_cooldown_timer : Timer
 var stun_timer : Timer
-var current_node : Node2D
+var drop_timer : Timer
+var current_node : Node2D = null
 enum fish_job {
 	RANDOM,
 	PLAYER,
@@ -34,23 +35,32 @@ func _ready() -> void:
 	head.modulate = random_color
 	tail.modulate = random_color
 	_on_navigation_agent_2d_navigation_finished()
-	var r_scale = randf_range(1.85, 2.15)
-	#weight = lerp(weight, 50, r_scale / 5)
+	weight = randf_range(20,30)
+	var r_scale : float = weight / 10.0
+	stamina = int(weight)
 	self.scale = Vector2(r_scale, r_scale)
+	print(job_detection.shape.radius)
 	global_position.x = -100 if randi_range(0,1) == 1 else 2000
 	global_position.y = 540
 	attack_timer = Timer.new()
 	attack_timer.wait_time = 5
 	attack_timer.timeout.connect(attack_player)
 	add_child(attack_timer)
+
 	player_attack_cooldown_timer = Timer.new()
 	player_attack_cooldown_timer.wait_time = 10
 	player_attack_cooldown_timer.timeout.connect(reset_player_attack_cooldown)
 	add_child(player_attack_cooldown_timer)
+
 	stun_timer = Timer.new()
 	stun_timer.wait_time = 2
 	stun_timer.timeout.connect(reset_stun_timer)
 	add_child(stun_timer)
+
+	drop_timer = Timer.new()
+	drop_timer.wait_time = 1
+	drop_timer.timeout.connect(reset_drop_timer)
+	add_child(drop_timer)
 	
 
 func _physics_process(delta: float) -> void:
@@ -118,21 +128,23 @@ func _on_area_detection_body_entered(body:Node2D) -> void:
 		return
 	if body.is_in_group("drop") and current_node == null:
 		current_job = fish_job.DROP
-		current_node = body
+		current_node = body.get_parent()
+		drop_timer.start()
 		return
 
 func _on_area_detection_body_exited(body:Node2D) -> void:
 	if is_stunned:
 		return
 
-	if body.is_in_group("player"):
+	if body.is_in_group("player") and current_job == fish_job.PLAYER:
 		current_job = fish_job.RANDOM
 		attack_timer.stop()
 		set_global_rotation(0)
 		return
-	if body.is_in_group("drop"):
+	if body.is_in_group("drop") and current_job == fish_job.DROP:
 		current_job = fish_job.RANDOM
 		current_node = null
+		drop_timer.stop()
 		set_global_rotation(0)
 		return
 
@@ -176,3 +188,9 @@ func reset_stun_timer() -> void:
 	set_global_rotation(0)
 	current_job = fish_job.RANDOM
 	is_stunned = false
+
+func reset_drop_timer() -> void:
+	if current_node != null:
+		if current_node.has_method("baby_fish_attack_event"):
+			current_node.baby_fish_attack_event(self.stamina)
+	drop_timer.start()

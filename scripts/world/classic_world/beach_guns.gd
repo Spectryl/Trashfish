@@ -27,6 +27,9 @@ func _ready() -> void:
 		
 	high_time = high_time
 	generate_waves()
+	generate_pebbles()
+	generate_seashells()
+	generate_seaweed()
 	
 func _process(delta: float) -> void:
 	if player.is_dead:
@@ -90,6 +93,7 @@ func update_health_hud(new_health : int):
 	health = new_health
 	health_ui.text = "X %d" % health
 	
+	
 func generate_waves():
 	var waves_sprite = load("res://scenes/world/classic_world/waves.tscn")
 	for i in range(20):
@@ -97,4 +101,42 @@ func generate_waves():
 		new_wave.play("default")
 		new_wave.global_position = Vector2(i * 100, 200)
 		new_wave.z_index = 99
+		new_wave.scale.y += randf_range(0,2)
 		add_child(new_wave)
+
+func generate_pebbles():
+	var pebble_sprite = load("res://scenes/world/classic_world/pebble.tscn")
+	for i in range(50):
+		var new_pebble = pebble_sprite.instantiate()
+		new_pebble.global_position = Vector2(randi_range(20,1960), randi_range(1011, 1075))
+		add_child(new_pebble)
+
+func generate_seashells():
+	var seashell_scene = load("res://scenes/world/classic_world/seashell.tscn")
+	for i in randi_range(5,10):
+		var new_seashell = seashell_scene.instantiate()
+		new_seashell.global_position = Vector2(randi_range(20,1960), randi_range(1022, 1075))
+		add_child(new_seashell)
+
+func generate_seaweed():
+	var sea_weed_scene = load("res://scenes/world/classic_world/seaweed.tscn")
+	var total_weed = randi_range(12,16)
+	
+	for i in range(total_weed):
+		var isInRange : bool = false
+		var test_global_position : Vector2 = Vector2(randi_range(20, 1960), 1003)
+		for node in get_children():
+			if node.is_in_group("seaweed"):
+				if check_in_range(test_global_position.x, node.global_position.x, 45):
+					isInRange = true
+					break
+		
+		if not isInRange:
+			var new_weed = sea_weed_scene.instantiate()
+			new_weed.global_position = test_global_position
+			add_child(new_weed)
+	
+
+func check_in_range(a : float, b : float , range_of_pos : float) -> bool:
+	return abs(a - b) < range_of_pos + 1
+
