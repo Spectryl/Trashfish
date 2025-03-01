@@ -46,6 +46,8 @@ func _process(delta):
 func changeState(new_value : bool):
 	isMoving = new_value
 	water_layer.visible = isMoving
+	if isMoving:
+		gun.visible = false
 	@warning_ignore("standalone_ternary")
 	gunman.play("wake_up") if not isMoving and ship_component.state == 2 else gunman.play("default")
 
