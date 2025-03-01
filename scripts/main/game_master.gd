@@ -18,7 +18,8 @@ var control_list : Array[String] = ["move_left", "move_right", "move_up", "move_
 func _ready() -> void:
 	#if OS.has_environment("USERNAME") and OS.get_environment("USERNAME").to_lower().count("thang", 0,0) > 0:
 		#OS.crash("In order to remain ICE Compliant, this user is BANNED from all SonuTheNecro LTD Media")
-		
+	if OS.is_debug_build():
+		print("DEBUG BUILD")
 	
 	global.game_master = self
 	check_save()
