@@ -14,9 +14,9 @@ func timer_timeout_event():
 
 # When the player attacks this object
 func attacked():
-	#     Ship       Ship master   world
 	global.world.score += 1
 	global.world.heal_player()
+	global.player.update_starve(100)
 	particle_event()
 
 #Basically this is an extra event between the activeness and deleteness so particles can properly appear for certain objects

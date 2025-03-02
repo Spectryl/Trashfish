@@ -5,9 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://dhramjx5r0d1e" path="res://art/enemy/classic_world/nuclear_drop.png" id="2_nt6g2"]
 [ext_resource type="Texture2D" uid="uid://7f2pdbgscpso" path="res://art/enemy/classic_world/nuclear_explosion.png" id="3_ru38d"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7cwa2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_opts2"]
 atlas = ExtResource("3_ru38d")
-region = Rect2(0, 0, 56, 36)
+region = Rect2(0, 0, 70, 44)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vuaki"]
 atlas = ExtResource("2_nt6g2")
@@ -17,7 +17,7 @@ region = Rect2(0, 0, 52, 49)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7cwa2")
+"texture": SubResource("AtlasTexture_opts2")
 }],
 "loop": true,
 "name": &"explosion",
@@ -36,7 +36,7 @@ animations = [{
 size = Vector2(50, 46)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w1lg5"]
-size = Vector2(57, 38)
+size = Vector2(68, 44)
 
 [sub_resource type="Curve" id="Curve_44lcn"]
 _data = [Vector2(0.0168539, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -62,7 +62,7 @@ fall_speed = 45
 texture_filter = 1
 position = Vector2(0, 7)
 sprite_frames = SubResource("SpriteFrames_spm7c")
-animation = &"idle"
+animation = &"explosion"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." groups=["drop"]]
 visible = false
@@ -73,10 +73,9 @@ position = Vector2(0, 7)
 shape = SubResource("RectangleShape2D_6osk8")
 
 [node name="explosion_hitbox" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="explosion_hitbox"]
-position = Vector2(1, 7)
+position = Vector2(0, 7)
 shape = SubResource("RectangleShape2D_w1lg5")
 disabled = true
 
