@@ -1,17 +1,14 @@
 extends Node2D
-var animated_sprite : Node2D
-var drop_component : Node2D
-var particles : Node2D
+@onready var sprite : Node2D            = get_node("AnimatedSprite2D")
+@onready var drop_component : Node2D    = get_node("drop_component")
+@onready var particles : CPUParticles2D = get_node("CPUParticles2D")
 var sound_timer : Timer
 
 var stream_length : float
 
 var particle_check : bool = false
 func _ready() -> void:
-	animated_sprite = get_node("AnimatedSprite2D")
-	drop_component = get_node("drop_component")
-	particles = get_node("CPUParticles2D")
-	animated_sprite.play("idle")
+	sprite.play("idle")
 	drop_component.timer_length += randi_range(0,4)
 	drop_component.fall_speed += randi_range(0,55)
 	
@@ -26,7 +23,7 @@ func _ready() -> void:
 	sound_timer.start(stream_length)
 	global.sound_master.play("fuse")
 	
-	animated_sprite.position = Vector2(9,-13)
+	sprite.position = Vector2(9,-13)
 
 func sound_timer_timeout_event():
 	global.sound_master.play("fuse")
@@ -38,8 +35,8 @@ func timer_timeout_event():
 	global.sound_master.play("explosion1")
 	rotation_degrees = 0
 	$explosion_hitbox/CollisionPolygon2D.set_deferred("disabled", false)
-	animated_sprite.play("explosion")
-	animated_sprite.position = Vector2(0,0)
+	sprite.play("explosion")
+	sprite.position = Vector2(0,0)
 	$StaticBody2D/CollisionPolygon2D.set_deferred("disabled", true)
 	particles.emitting = true
 

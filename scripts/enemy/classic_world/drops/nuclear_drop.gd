@@ -1,21 +1,20 @@
 extends Node2D
 
-var animated_sprite : AnimatedSprite2D
-var drop_component : Node2D
+@onready var sprite : Node2D            = get_node("AnimatedSprite2D")
+@onready var drop_component : Node2D    = get_node("drop_component")
+@onready var particles : CPUParticles2D = get_node("CPUParticles2D")
 var collision : CollisionShape2D
 
 var particle_check : bool = false
 func _ready() -> void:
-	animated_sprite = get_node("AnimatedSprite2D")
-	drop_component = get_node("drop_component")
-	animated_sprite.play("idle")
+	sprite.play("idle")
 	drop_component.timer_length += randi_range(0,15)
 	drop_component.fall_speed += randi_range(0,210)
 	collision = $StaticBody2D/CollisionShape2D
 func timer_timeout_event():
 	self.rotation_degrees = 0
 	$explosion_hitbox/CollisionShape2D.set_deferred("disabled", false)
-	animated_sprite.play("explosion")
+	sprite.play("explosion")
 	collision.set_deferred("disabled", true)
 	$CPUParticles2D.emitting = true
 

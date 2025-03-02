@@ -180,7 +180,7 @@ animations = [{
 resource_local_to_scene = true
 shader = ExtResource("8_h10ow")
 shader_parameter/u_color_key = Color(0.462745, 0.258824, 0.541176, 1)
-shader_parameter/u_replacement_color = Color(100, 100, 100, 1)
+shader_parameter/u_replacement_color = Color(1, 1, 1, 1)
 shader_parameter/u_tolerance = 0.2
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w1wlr"]

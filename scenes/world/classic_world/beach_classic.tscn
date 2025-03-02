@@ -102,8 +102,10 @@ position = Vector2(393, 205)
 script = ExtResource("3_wrqgk")
 
 [node name="fish_master" type="Node2D" parent="."]
+process_mode = 4
 script = ExtResource("4_e54kb")
-wait_time = 5.0
+wait_time = 10.0
+max_entities = 10
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 

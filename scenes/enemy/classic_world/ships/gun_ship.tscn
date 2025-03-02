@@ -143,7 +143,7 @@ animations = [{
 resource_local_to_scene = true
 shader = ExtResource("6_1844h")
 shader_parameter/u_color_key = Color(0.462745, 0.258824, 0.541176, 1)
-shader_parameter/u_replacement_color = Color(0, 1, 0.156863, 1)
+shader_parameter/u_replacement_color = Color(1, 1, 1, 1)
 shader_parameter/u_tolerance = 0.2
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6jj3i"]
@@ -434,7 +434,6 @@ texture_filter = 1
 material = SubResource("ShaderMaterial_5jx3s")
 position = Vector2(-27, -37)
 sprite_frames = SubResource("SpriteFrames_3gf1f")
-animation = &"walk"
 
 [node name="gun" type="AnimatedSprite2D" parent="gunman"]
 position = Vector2(-14, 21)

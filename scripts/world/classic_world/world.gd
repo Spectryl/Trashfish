@@ -12,6 +12,10 @@ var world_id = 2
 @onready var high_score_ui : Label             = $CanvasLayer/Panel/high_score
 @onready var health_ui : Label                 = $CanvasLayer/Panel/health
 @onready var sun_player : AnimationPlayer      = $ParallaxBackground/sun/sun_animator
+
+@onready var ship_master : Node2D              = $ship_master
+@onready var fish_master : Node2D              = $fish_master
+
 @onready var player : CharacterBody2D          = global.player
 @onready var sound_master : Node               = global.sound_master
 func _ready() -> void:
@@ -76,6 +80,9 @@ func update_hud_when_dead():
 	
 func update_score_hud(new_score : int):
 	score = new_score
+	if score == 70:
+		fish_master.process_mode = Node.PROCESS_MODE_INHERIT
+
 	score_ui.text = "Score: %d" % score
 	
 func update_high_score_hud(new_high_score : int):

@@ -1,22 +1,23 @@
 extends Node2D
 
-var animated_sprite : AnimatedSprite2D
-var drop_component : Node2D
+@onready var sprite : Node2D            = get_node("AnimatedSprite2D")
+@onready var drop_component : Node2D    = get_node("drop_component")
+@onready var particles : CPUParticles2D = get_node("CPUParticles2D")
 
 var particle_check : bool = false
 func _ready() -> void:
-	animated_sprite = get_node("AnimatedSprite2D")
+	sprite = get_node("AnimatedSprite2D")
 	drop_component = get_node("drop_component")
-	animated_sprite.play("idle")
+	sprite.play("idle")
 	drop_component.timer_length += randi() % 20
 	drop_component.fall_speed += randi() % 150
 
 func timer_timeout_event():
 	self.rotation_degrees = 0
 	get_node("explosion_hitbox/CollisionPolygon2D").set_deferred("disabled", false)
-	animated_sprite.play("explosion")
+	sprite.play("explosion")
 	get_node("StaticBody2D/CollisionPolygon2D").set_deferred("disabled", true)
-	$CPUParticles2D.emitting = true
+	particles.emitting = true
 
 func _on_explosion_hitbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):

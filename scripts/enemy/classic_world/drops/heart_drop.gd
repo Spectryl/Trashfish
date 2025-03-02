@@ -1,5 +1,7 @@
 extends Node2D
-@onready var drop_component = $drop_component
+@onready var sprite : Node2D            = get_node("Sprite2D")
+@onready var drop_component : Node2D    = get_node("drop_component")
+@onready var particles : CPUParticles2D = get_node("CPUParticles2D")
 
 var particle_check : bool = false
 func _ready() -> void:
@@ -19,9 +21,9 @@ func attacked():
 
 #Basically this is an extra event between the activeness and deleteness so particles can properly appear for certain objects
 func particle_event():
-	$CPUParticles2D.emitting = true
+	particles.emitting = true
 	$StaticBody2D/CollisionShape2D.set_deferred("disabled",true)
-	$Sprite2D.visible = false
+	sprite.visible = false
 	drop_component.isActive = false
 	drop_component.particle_timer.start()
 
