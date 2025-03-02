@@ -407,7 +407,6 @@ polygon = PackedVector2Array(1.00019, 53, -3.99983, 48, -8.99988, 34, -10.9999, 
 [node name="Starve_Timer" type="Timer" parent="."]
 
 [node name="attack_hitbox" type="Area2D" parent="." groups=["attack"]]
-visible = false
 position = Vector2(-5, 31)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack_hitbox" groups=["attack"]]

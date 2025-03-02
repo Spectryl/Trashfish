@@ -103,7 +103,7 @@ func flip(value: bool):
 		
 ## Handles the Player rolling logic
 func roll():
-	starve -= int(self.max_starve / 2.0)
+	starve -= int(self.max_starve / 1.65)
 	if starve <= 0:
 		decrease_health()
 		reset_starvation()

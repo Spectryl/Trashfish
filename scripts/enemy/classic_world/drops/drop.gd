@@ -75,6 +75,8 @@ func _on_active_timer_timeout() -> void:
 
 
 func _on_particle_timer_timeout() -> void:
+	if parent.particle_check:
+		parent.particle_event()
 	delete_timer.start()
 func _on_delete_timer_timeout() -> void:
 

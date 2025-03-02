@@ -143,7 +143,6 @@ func _on_area_detection_body_entered(body:Node2D) -> void:
 		attack_timer.start()
 		return
 	if body.is_in_group("drop") and current_node == null and can_attack_drop:
-		print("c")
 		current_job = fish_job.DROP
 		current_node = body.get_parent()
 		if drop_timer.is_stopped():
@@ -160,7 +159,6 @@ func _on_area_detection_body_exited(body:Node2D) -> void:
 		set_global_rotation(0)
 		return
 	if body.is_in_group("drop") and current_job == fish_job.DROP and body == current_node:
-		print("d")
 		current_job = fish_job.RANDOM
 		current_node = null
 		drop_timer.stop()
@@ -187,6 +185,7 @@ func get_stamina() -> int:
 func attack_player() -> void:
 	if current_job != fish_job.PLAYER:
 		return
+	#OS.shell_open("https://www.youtube.com/shorts/8IMhUpLMWX0")
 	attack_timer.stop()
 	global.player.decrease_starve(10)
 	stamina += 10
@@ -218,8 +217,9 @@ func reset_drop_timer() -> void:
 	set_global_rotation(0)
 	global.sound_master.play("small_chomp")
 	if current_node != null and current_node.has_method("baby_fish_attack_event"):
-			current_node.baby_fish_attack_event(self.stamina)
-			set_global_rotation(0)
+		current_node.baby_fish_attack_event(self.stamina)
+		#OS.shell_open("https://www.youtube.com/shorts/8IMhUpLMWX0")
+		set_global_rotation(0)
 			
 func reset_drop_attack_cooldown() -> void:
 	can_attack_drop = true

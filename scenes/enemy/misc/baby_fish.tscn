@@ -725,7 +725,6 @@ position = Vector2(2, 0)
 collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_knbxy")
-weight = null
 
 [node name="head" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
