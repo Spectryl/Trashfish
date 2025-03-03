@@ -1,13 +1,13 @@
 [gd_scene load_steps=62 format=3 uid="uid://tnnxe3dimvi0"]
 
-[ext_resource type="Script" path="res://scripts/enemy/classic_world/ships/raft_enemy.gd" id="1_ef6wl"]
+[ext_resource type="Script" uid="uid://bnhmp6on5anbj" path="res://scripts/enemy/classic_world/ships/raft_enemy.gd" id="1_ef6wl"]
 [ext_resource type="PackedScene" uid="uid://0ncg7uw24q8j" path="res://scenes/enemy/classic_world/ships/ship.tscn" id="2_of3fo"]
 [ext_resource type="Texture2D" uid="uid://cne0awv7oh75w" path="res://art/enemy/classic_world/gun_ship.png" id="3_d5eil"]
 [ext_resource type="Texture2D" uid="uid://bg5py02ta0uvx" path="res://art/enemy/classic_world/small_awp.png" id="3_dejeu"]
-[ext_resource type="Script" path="res://scripts/enemy/classic_world/ships/gun.gd" id="4_its3k"]
+[ext_resource type="Script" uid="uid://lirnbp7yowsw" path="res://scripts/enemy/classic_world/ships/gun.gd" id="4_its3k"]
 [ext_resource type="Texture2D" uid="uid://babyliqo84vkb" path="res://art/enemy/classic_world/gun_ship_flag.png" id="4_rsww5"]
 [ext_resource type="Texture2D" uid="uid://mxk4ye0eopij" path="res://art/enemy/classic_world/water_layer.png" id="5_5f0vo"]
-[ext_resource type="Shader" path="res://shaders/player/sprite_flip.gdshader" id="6_1844h"]
+[ext_resource type="Shader" uid="uid://fthf5wpdc7ns" path="res://shaders/player/sprite_flip.gdshader" id="6_1844h"]
 [ext_resource type="Texture2D" uid="uid://c6yddyisxak0b" path="res://art/enemy/classic_world/idaho_man.png" id="6_tyopa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_52lcg"]

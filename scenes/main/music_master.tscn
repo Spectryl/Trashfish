@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://0cdy8j7yec2y"]
 
-[ext_resource type="Script" path="res://scripts/main/music_master.gd" id="1_2t2ie"]
+[ext_resource type="Script" uid="uid://cdj283viwyfue" path="res://scripts/main/music_master.gd" id="1_2t2ie"]
 [ext_resource type="AudioStream" uid="uid://ccp6gvrp78xp5" path="res://audio/music/lisa.ogg" id="1_eu33j"]
 [ext_resource type="AudioStream" uid="uid://cx7oeupgn61rq" path="res://audio/music/midnight_sands.ogg" id="2_habgx"]
 

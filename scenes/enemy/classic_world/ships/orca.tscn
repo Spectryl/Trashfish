@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://w8uyv2pvcphu"]
 
-[ext_resource type="Script" path="res://scripts/enemy/classic_world/ships/orca.gd" id="1_60f7f"]
+[ext_resource type="Script" uid="uid://dmcctrt805g3u" path="res://scripts/enemy/classic_world/ships/orca.gd" id="1_60f7f"]
 [ext_resource type="Texture2D" uid="uid://btld3jw1xhve8" path="res://art/enemy/classic_world/enemy_fish.png" id="1_unjmi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uqn5i"]

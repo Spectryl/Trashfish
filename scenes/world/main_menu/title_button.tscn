@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cjwviwi1ego2b"]
 
 [ext_resource type="Texture2D" uid="uid://3et37qb88nef" path="res://art/world/main_menu/title_screen_button.png" id="1_fft8g"]
-[ext_resource type="Script" path="res://scripts/world/main_menu/title_button.gd" id="1_xh8ck"]
+[ext_resource type="Script" uid="uid://c57hveyxlws24" path="res://scripts/world/main_menu/title_button.gd" id="1_xh8ck"]
 
 [node name="title_button" type="Node2D"]
 script = ExtResource("1_xh8ck")

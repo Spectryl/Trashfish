@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://bp1hsruqn2ikn"]
 
-[ext_resource type="Script" path="res://scripts/enemy/classic_world/drops/honey_drop.gd" id="1_fjm2x"]
+[ext_resource type="Script" uid="uid://b1f6k1iqbyvid" path="res://scripts/enemy/classic_world/drops/honey_drop.gd" id="1_fjm2x"]
 [ext_resource type="PackedScene" uid="uid://byt03rernj7cq" path="res://scenes/enemy/classic_world/drops/drop.tscn" id="1_mb7vy"]
 [ext_resource type="Texture2D" uid="uid://b5ba0xhj2skmx" path="res://art/enemy/classic_world/honey_drop.png" id="2_1k6aw"]
 [ext_resource type="Texture2D" uid="uid://chv64luwhe0vo" path="res://art/enemy/classic_world/honey_explosion.png" id="2_kdq6p"]

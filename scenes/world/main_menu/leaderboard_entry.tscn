@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://buus2cwmwg16"]
 
 [ext_resource type="FontFile" uid="uid://c0quiovxikjm8" path="res://font/VT323-Regular.ttf" id="1_lha7j"]
-[ext_resource type="Script" path="res://scripts/world/main_menu/leaderboard_entry.gd" id="1_x8e78"]
+[ext_resource type="Script" uid="uid://c64om7dbdp1ar" path="res://scripts/world/main_menu/leaderboard_entry.gd" id="1_x8e78"]
 
 [node name="leaderboard_entry" type="Control"]
 layout_mode = 3

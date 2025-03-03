@@ -1,15 +1,15 @@
 [gd_scene load_steps=47 format=3 uid="uid://bdrdrpgqc25qg"]
 
-[ext_resource type="Script" path="res://scripts/enemy/classic_world/ships/mrbeast_ship.gd" id="1_kjtjv"]
+[ext_resource type="Script" uid="uid://cskmycr3li673" path="res://scripts/enemy/classic_world/ships/mrbeast_ship.gd" id="1_kjtjv"]
 [ext_resource type="PackedScene" uid="uid://0ncg7uw24q8j" path="res://scenes/enemy/classic_world/ships/ship.tscn" id="1_u18oj"]
 [ext_resource type="Texture2D" uid="uid://delth42vcy31x" path="res://art/enemy/classic_world/capitalist_ship.png" id="3_npfm8"]
 [ext_resource type="Texture2D" uid="uid://mxk4ye0eopij" path="res://art/enemy/classic_world/water_layer.png" id="4_vj7ic"]
 [ext_resource type="Texture2D" uid="uid://6vlosgthljh7" path="res://art/enemy/classic_world/capitalist_ship_flag.png" id="5_c3w3d"]
 [ext_resource type="Texture2D" uid="uid://do51cp006w0m7" path="res://art/enemy/classic_world/capitalist_ship_smoke.png" id="6_iwul7"]
 [ext_resource type="Texture2D" uid="uid://8p1fsg0r2wu7" path="res://art/enemy/classic_world/rca_logo.png" id="7_oww5l"]
-[ext_resource type="Shader" path="res://shaders/player/sprite_flip.gdshader" id="8_h10ow"]
+[ext_resource type="Shader" uid="uid://fthf5wpdc7ns" path="res://shaders/player/sprite_flip.gdshader" id="8_h10ow"]
 [ext_resource type="Texture2D" uid="uid://c78xodykwyjtb" path="res://art/enemy/classic_world/josh.png" id="8_i4ts8"]
-[ext_resource type="Script" path="res://scripts/enemy/classic_world/ships/josh.gd" id="10_ma55b"]
+[ext_resource type="Script" uid="uid://dhctxsrccbkmk" path="res://scripts/enemy/classic_world/ships/josh.gd" id="10_ma55b"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7tg3e"]
 atlas = ExtResource("3_npfm8")

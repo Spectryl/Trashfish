@@ -1,6 +1,6 @@
 [gd_scene load_steps=42 format=3 uid="uid://bk0k8v1urwir0"]
 
-[ext_resource type="Script" path="res://scripts/enemy/classic_world/ships/pirate_ship.gd" id="1_q23a1"]
+[ext_resource type="Script" uid="uid://bqjpko0urd44b" path="res://scripts/enemy/classic_world/ships/pirate_ship.gd" id="1_q23a1"]
 [ext_resource type="PackedScene" uid="uid://0ncg7uw24q8j" path="res://scenes/enemy/classic_world/ships/ship.tscn" id="2_ufgkj"]
 [ext_resource type="Texture2D" uid="uid://bqttvkbag8jgq" path="res://art/enemy/classic_world/pirate_ship.png" id="3_f770c"]
 [ext_resource type="Texture2D" uid="uid://mxk4ye0eopij" path="res://art/enemy/classic_world/water_layer.png" id="5_btdi1"]

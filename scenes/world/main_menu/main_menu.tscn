@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://da51siwmltkoo"]
 
-[ext_resource type="Script" path="res://scripts/world/main_menu/main_menu.gd" id="1_thvtn"]
-[ext_resource type="Script" path="res://addons/antialiased_line2d/antialiased_polygon2d.gd" id="2_c102s"]
-[ext_resource type="Script" path="res://scripts/world/main_menu/menu.gd" id="3_y14qv"]
+[ext_resource type="Script" uid="uid://bstaor25yr1n5" path="res://scripts/world/main_menu/main_menu.gd" id="1_thvtn"]
+[ext_resource type="Script" uid="uid://c067qta5dxr8v" path="res://addons/antialiased_line2d/antialiased_polygon2d.gd" id="2_c102s"]
+[ext_resource type="Script" uid="uid://b6rv0igy57q7h" path="res://scripts/world/main_menu/menu.gd" id="3_y14qv"]
 
 [node name="main_menu" type="Node2D"]
 script = ExtResource("1_thvtn")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cyd2pqlg31kov"]
 
-[ext_resource type="Script" path="res://addons/simpleboards_plugin/simple_boards.gd" id="1_pwk4a"]
-[ext_resource type="Script" path="res://addons/simpleboards_plugin/SimpleBoardsApi.gd" id="2_4t6wl"]
+[ext_resource type="Script" uid="uid://bdwi8v404v6e7" path="res://addons/simpleboards_plugin/simple_boards.gd" id="1_pwk4a"]
+[ext_resource type="Script" uid="uid://b8rm5jsgc8nb8" path="res://addons/simpleboards_plugin/SimpleBoardsApi.gd" id="2_4t6wl"]
 
 [node name="SimpleBoards" type="Node2D"]
 script = ExtResource("1_pwk4a")

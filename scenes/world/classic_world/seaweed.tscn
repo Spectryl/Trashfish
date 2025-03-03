@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=3 uid="uid://cxmatui4tldrh"]
 
 [ext_resource type="Texture2D" uid="uid://dstbc7r6hrr77" path="res://art/world/classic_world/grass.png" id="1_1gtjp"]
-[ext_resource type="Script" path="res://scripts/world/classic_world/seaweed.gd" id="1_wb3sn"]
+[ext_resource type="Script" uid="uid://bg3ore6yulavb" path="res://scripts/world/classic_world/seaweed.gd" id="1_wb3sn"]
 [ext_resource type="Material" uid="uid://dlxhhy2j4gmpi" path="res://resources/objects/seaweed_wind.tres" id="2_a3gp8"]
 [ext_resource type="Texture2D" uid="uid://c3ogwt28rvqnl" path="res://art/world/classic_world/bubbles.png" id="2_dwe4e"]
 [ext_resource type="PackedScene" uid="uid://ctdvbp2l1ur0q" path="res://scenes/misc/web_delete_component.tscn" id="4_rjlvh"]
@@ -165,14 +165,13 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_up54q"]
 _data = {
-"RESET": SubResource("Animation_1m62j"),
-"left_sea_weed": SubResource("Animation_u4xyd"),
-"right_sea_weed": SubResource("Animation_60usf")
+&"RESET": SubResource("Animation_1m62j"),
+&"left_sea_weed": SubResource("Animation_u4xyd"),
+&"right_sea_weed": SubResource("Animation_60usf")
 }
 
 [sub_resource type="Curve" id="Curve_o5sl8"]
-min_value = -200.0
-max_value = 200.0
+_limits = [-200.0, 200.0, 0.0, 1.0]
 _data = [Vector2(0, 200), 0.0, 0.0, 0, 0, Vector2(0.949438, -200), 0.0, 0.0, 0, 0]
 point_count = 2
 

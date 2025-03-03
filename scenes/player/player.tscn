@@ -1,10 +1,10 @@
 [gd_scene load_steps=59 format=3 uid="uid://ia6ngi8g5tqx"]
 
-[ext_resource type="Script" path="res://scripts/player/player.gd" id="1_edec7"]
-[ext_resource type="Shader" path="res://shaders/player/flash.gdshader" id="2_6cm53"]
+[ext_resource type="Script" uid="uid://tgffquts5of2" path="res://scripts/player/player.gd" id="1_edec7"]
+[ext_resource type="Shader" uid="uid://c500l4phti72y" path="res://shaders/player/flash.gdshader" id="2_6cm53"]
 [ext_resource type="Texture2D" uid="uid://beolwmdrk1w4w" path="res://art/player/dead_player.png" id="2_y0gff"]
 [ext_resource type="Texture2D" uid="uid://d3ptwjd0li3mr" path="res://art/player/player_swim.png" id="3_58xq2"]
-[ext_resource type="Shader" path="res://shaders/player/sprite_flip.gdshader" id="3_tmm1g"]
+[ext_resource type="Shader" uid="uid://fthf5wpdc7ns" path="res://shaders/player/sprite_flip.gdshader" id="3_tmm1g"]
 [ext_resource type="Texture2D" uid="uid://ccy56dt2gdsyf" path="res://art/player/player_attack.png" id="4_17ldg"]
 [ext_resource type="Texture2D" uid="uid://bhx4urlhmshsf" path="res://art/player/player_head_idle.png" id="4_e3boi"]
 [ext_resource type="Texture2D" uid="uid://b2oahm8k5suqk" path="res://art/player/player_roll.png" id="5_7wplv"]
@@ -423,7 +423,7 @@ one_shot = true
 position = Vector2(-5, 31)
 
 [node name="honey_timer" type="Timer" parent="debuff_master"]
-wait_time = 4.0
+wait_time = 3.0
 one_shot = true
 
 [node name="ice_timer" type="Timer" parent="debuff_master"]

@@ -1,16 +1,16 @@
 [gd_scene load_steps=14 format=3 uid="uid://benrome6etksn"]
 
-[ext_resource type="Script" path="res://scripts/world/options_menu/options_ui.gd" id="1_wfmpv"]
+[ext_resource type="Script" uid="uid://csl22beuxqnuk" path="res://scripts/world/options_menu/options_ui.gd" id="1_wfmpv"]
 [ext_resource type="FontFile" uid="uid://c0quiovxikjm8" path="res://font/VT323-Regular.ttf" id="2_ekkdw"]
 [ext_resource type="PackedScene" uid="uid://cpx8dacbpg66w" path="res://scenes/world/options_menu/volume_slider.tscn" id="2_n2gfy"]
 [ext_resource type="Texture2D" uid="uid://3et37qb88nef" path="res://art/world/main_menu/title_screen_button.png" id="2_ug8si"]
-[ext_resource type="Script" path="res://scripts/world/options_menu/window_type_button.gd" id="4_p5yqb"]
-[ext_resource type="Script" path="res://scripts/world/options_menu/resolution_button.gd" id="5_1jvqv"]
-[ext_resource type="Script" path="res://scripts/world/options_menu/vsyncbutton.gd" id="6_gyuk1"]
-[ext_resource type="Script" path="res://scripts/world/options_menu/frame_rate_button.gd" id="7_f1h0w"]
+[ext_resource type="Script" uid="uid://dkq86e7k5jswq" path="res://scripts/world/options_menu/window_type_button.gd" id="4_p5yqb"]
+[ext_resource type="Script" uid="uid://3b43p4x6xtk2" path="res://scripts/world/options_menu/resolution_button.gd" id="5_1jvqv"]
+[ext_resource type="Script" uid="uid://dnoebi6cybnp1" path="res://scripts/world/options_menu/vsyncbutton.gd" id="6_gyuk1"]
+[ext_resource type="Script" uid="uid://ksbxbx461l7a" path="res://scripts/world/options_menu/frame_rate_button.gd" id="7_f1h0w"]
 [ext_resource type="PackedScene" uid="uid://ctdvbp2l1ur0q" path="res://scenes/misc/web_delete_component.tscn" id="8_5an64"]
 [ext_resource type="PackedScene" uid="uid://8fitsee2cxfn" path="res://scenes/world/options_menu/rebind_button.tscn" id="9_8v6ig"]
-[ext_resource type="Script" path="res://scripts/world/options_menu/control_button_text_container.gd" id="9_ub2ig"]
+[ext_resource type="Script" uid="uid://byl44aj6kerny" path="res://scripts/world/options_menu/control_button_text_container.gd" id="9_ub2ig"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sj0qs"]
 

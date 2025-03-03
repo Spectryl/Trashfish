@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cghw27vekq81v"]
 
 [ext_resource type="Texture2D" uid="uid://cd54tqmtylkf2" path="res://art/player/trash_can.png" id="1_5c1q1"]
-[ext_resource type="Script" path="res://scripts/player/trash_can.gd" id="1_sv40e"]
+[ext_resource type="Script" uid="uid://sxvi3yvn4rbe" path="res://scripts/player/trash_can.gd" id="1_sv40e"]
 [ext_resource type="PackedScene" uid="uid://cjxybxw3b24u4" path="res://scenes/misc/delete_component.tscn" id="3_u3gbp"]
 
 [node name="trash_can" type="Node2D"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://brwyum6fojkdd"]
 
 [ext_resource type="PackedScene" uid="uid://byt03rernj7cq" path="res://scenes/enemy/classic_world/drops/drop.tscn" id="1_a0qy8"]
-[ext_resource type="Script" path="res://scripts/enemy/classic_world/drops/nuclear_drop.gd" id="1_nbkry"]
+[ext_resource type="Script" uid="uid://dv2uvgnbb8vxg" path="res://scripts/enemy/classic_world/drops/nuclear_drop.gd" id="1_nbkry"]
 [ext_resource type="Texture2D" uid="uid://dhramjx5r0d1e" path="res://art/enemy/classic_world/nuclear_drop.png" id="2_nt6g2"]
 [ext_resource type="Texture2D" uid="uid://7f2pdbgscpso" path="res://art/enemy/classic_world/nuclear_explosion.png" id="3_ru38d"]
 

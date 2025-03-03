@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://bt0n0l7e3i1s"]
 
 [ext_resource type="PackedScene" uid="uid://byt03rernj7cq" path="res://scenes/enemy/classic_world/drops/drop.tscn" id="1_25fhf"]
-[ext_resource type="Script" path="res://scripts/enemy/classic_world/drops/ice_drop.gd" id="1_wgiwt"]
+[ext_resource type="Script" uid="uid://6phi5oi1pn4g" path="res://scripts/enemy/classic_world/drops/ice_drop.gd" id="1_wgiwt"]
 [ext_resource type="Texture2D" uid="uid://7cj8wkwn8sah" path="res://art/enemy/classic_world/ice_drop.png" id="2_3g1yb"]
 [ext_resource type="Texture2D" uid="uid://jo2guthsahun" path="res://art/enemy/classic_world/ice_explosion.png" id="3_q8222"]
 

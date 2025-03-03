@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cpx8dacbpg66w"]
 
-[ext_resource type="Script" path="res://scripts/world/options_menu/volume_slider.gd" id="1_4qrg3"]
+[ext_resource type="Script" uid="uid://dqwjcjbhfljw1" path="res://scripts/world/options_menu/volume_slider.gd" id="1_4qrg3"]
 
 [node name="volume_slider" type="HSlider"]
 size_flags_vertical = 1
