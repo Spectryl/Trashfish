@@ -80,6 +80,8 @@ func update_hud_when_dead():
 
 	
 func update_score_hud(new_score : int):
+	if player.is_dead:
+		return
 	score = new_score
 	if score == 70:
 		fish_master.process_mode = Node.PROCESS_MODE_INHERIT
@@ -87,10 +89,14 @@ func update_score_hud(new_score : int):
 	score_ui.text = "Score: %d" % score
 	
 func update_high_score_hud(new_high_score : int):
+	if player.is_dead:
+		return
 	high_score = new_high_score
 	high_score_ui.text = "High Score: %d" % high_score
 	
 func update_health_hud(new_health : int):
+	if player.is_dead:
+		return
 	health = new_health
 	health_ui.text = "X %d" % health
 	
