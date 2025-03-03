@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://5a1x64gt0iqv"]
+[gd_scene load_steps=14 format=3 uid="uid://5a1x64gt0iqv"]
 
 [ext_resource type="Script" path="res://scripts/world/main_menu/main_menu_buttons.gd" id="1_flul8"]
 [ext_resource type="Texture2D" uid="uid://cq6ogwy2wds0i" path="res://art/world/main_menu/options_button.png" id="2_0iv6d"]
@@ -8,6 +8,7 @@
 [ext_resource type="Shader" path="res://shaders/ui/bounce.gdshader" id="3_bvn5s"]
 [ext_resource type="Script" path="res://scripts/world/main_menu/start_button.gd" id="3_qcoiv"]
 [ext_resource type="Texture2D" uid="uid://1axiehrh7c1c" path="res://art/world/main_menu/quit_button.png" id="4_prk38"]
+[ext_resource type="Texture2D" uid="uid://cssdcebfb51co" path="res://art/world/main_menu/leader_board_button.png" id="6_u00w2"]
 [ext_resource type="PackedScene" uid="uid://ctdvbp2l1ur0q" path="res://scenes/misc/web_delete_component.tscn" id="7_21duf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l5lpi"]
@@ -81,6 +82,12 @@ texture_normal = ExtResource("2_lhxgl")
 stretch_mode = 0
 script = ExtResource("3_qcoiv")
 
+[node name="leaderboard_button" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+material = SubResource("ShaderMaterial_jdqaa")
+layout_mode = 2
+focus_neighbor_top = NodePath("../start_button")
+texture_normal = ExtResource("6_u00w2")
+
 [node name="options_button" type="TextureButton" parent="MarginContainer/VBoxContainer"]
 material = SubResource("ShaderMaterial_jdqaa")
 layout_mode = 2
@@ -120,6 +127,9 @@ texture = ExtResource("2_iqi4v")
 [connection signal="mouse_entered" from="MarginContainer/VBoxContainer/start_button" to="." method="_on_start_button_mouse_entered"]
 [connection signal="mouse_exited" from="MarginContainer/VBoxContainer/start_button" to="." method="_on_start_button_mouse_exited"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/start_button" to="." method="_on_start_button_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/leaderboard_button" to="." method="_on_leaderboard_button_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/VBoxContainer/leaderboard_button" to="." method="_on_leaderboard_button_mouse_exited"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/leaderboard_button" to="." method="_on_leaderboard_button_pressed"]
 [connection signal="mouse_entered" from="MarginContainer/VBoxContainer/options_button" to="." method="_on_options_button_mouse_entered"]
 [connection signal="mouse_exited" from="MarginContainer/VBoxContainer/options_button" to="." method="_on_options_button_mouse_exited"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/options_button" to="." method="_on_options_button_pressed"]

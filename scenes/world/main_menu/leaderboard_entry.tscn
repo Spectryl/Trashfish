@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=3 uid="uid://buus2cwmwg16"]
+
+[ext_resource type="FontFile" uid="uid://c0quiovxikjm8" path="res://font/VT323-Regular.ttf" id="1_lha7j"]
+[ext_resource type="Script" path="res://scripts/world/main_menu/leaderboard_entry.gd" id="1_x8e78"]
+
+[node name="leaderboard_entry" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x8e78")
+
+[node name="HSeparator" type="HSeparator" parent="."]
+visible = false
+layout_mode = 0
+offset_top = 529.88
+offset_right = 1917.0
+offset_bottom = 533.88
+scale = Vector2(1, 1.00816)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 50.0
+offset_top = -5.0
+offset_bottom = 115.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="player_name_label" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_lha7j")
+theme_override_font_sizes/font_size = 120
+text = "SonuTheNecro
+"
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="score_label" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(925, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_lha7j")
+theme_override_font_sizes/font_size = 120
+text = "500"
+horizontal_alignment = 2

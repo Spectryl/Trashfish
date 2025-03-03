@@ -16,4 +16,6 @@ func switch_menu(new_menu : int) -> void:
 			menu = load("res://scenes/world/options_menu/options_ui.tscn").instantiate()
 		2:
 			menu = load("res://scenes/world/main_menu/world_select.tscn").instantiate()
+		3:
+			menu = load("res://scenes/world/main_menu/leader_board.tscn").instantiate()
 	call_deferred("add_child", menu)
