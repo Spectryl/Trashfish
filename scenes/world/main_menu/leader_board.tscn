@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c7og2ikvuwkus"]
+[gd_scene load_steps=5 format=3 uid="uid://c7og2ikvuwkus"]
 
 [ext_resource type="Script" path="res://scripts/world/main_menu/leader_board.gd" id="1_lnfw4"]
 [ext_resource type="PackedScene" uid="uid://buus2cwmwg16" path="res://scenes/world/main_menu/leaderboard_entry.tscn" id="2_0tm3c"]
+[ext_resource type="FontFile" uid="uid://c0quiovxikjm8" path="res://font/VT323-Regular.ttf" id="2_ri82m"]
 [ext_resource type="Texture2D" uid="uid://3et37qb88nef" path="res://art/world/main_menu/title_screen_button.png" id="3_dra14"]
 
 [node name="leader_board" type="Control"]
@@ -15,6 +16,16 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
 script = ExtResource("1_lnfw4")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+offset_left = 708.0
+offset_top = -13.0
+offset_right = 1236.0
+offset_bottom = 107.0
+theme_override_fonts/font = ExtResource("2_ri82m")
+theme_override_font_sizes/font_size = 120
+text = "Leaderboard"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 0
@@ -58,15 +69,34 @@ layout_mode = 2
 [node name="leaderboard_entry10" parent="ScrollContainer/VBoxContainer" instance=ExtResource("2_0tm3c")]
 layout_mode = 2
 
+[node name="Control" type="Control" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
 [node name="title_screen_button" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 750.0
-offset_top = 965.0
-offset_right = 1200.0
-offset_bottom = 1065.0
+offset_left = 1451.0
+offset_top = 960.0
+offset_right = 1901.0
+offset_bottom = 1060.0
 scale = Vector2(1.00623, 1.00305)
 texture_normal = ExtResource("3_dra14")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.0470588, 0.0352941, 1, 0.0862745)
+polygon = PackedVector2Array(55, 21, 1876, 21, 1876, 689, 48, 689)
+
+[node name="player_name_input" type="LineEdit" parent="."]
+custom_minimum_size = Vector2(900, 0)
+layout_mode = 0
+offset_left = 20.0
+offset_top = 942.0
+offset_right = 220.0
+offset_bottom = 1070.0
+theme_override_fonts/font = ExtResource("2_ri82m")
+theme_override_font_sizes/font_size = 120
+placeholder_text = "Input Player Name"
 
 [connection signal="mouse_entered" from="title_screen_button" to="." method="_on_title_screen_button_mouse_entered"]
 [connection signal="mouse_exited" from="title_screen_button" to="." method="_on_title_screen_button_mouse_exited"]
 [connection signal="pressed" from="title_screen_button" to="." method="_on_title_screen_button_pressed"]
+[connection signal="text_submitted" from="player_name_input" to="." method="_on_player_name_input_text_submitted"]

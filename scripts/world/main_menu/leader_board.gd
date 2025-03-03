@@ -23,7 +23,16 @@ func _on_title_screen_button_mouse_exited() -> void:
 func _on_entries_got(entries):
 	var count : int = 0
 	for entry in entries:
-		print(entry)
 		vbox.get_child(count).player_name_label.text = entry["playerDisplayName"]
 		vbox.get_child(count).score_label.text       = entry["score"]
 		count += 1
+
+
+func _on_player_name_input_text_submitted(new_text: String) -> void:
+	var config : ConfigFile = ConfigFile.new()
+	var error : Error = config.load_encrypted_pass("user://savedata.cfg", global.game_master.password)
+	if error != OK:
+		config.set_value("player", "player_name", "player")
+	else:
+		config.set_value("player", "player_name", new_text)
+	config.save_encrypted_pass("user://savedata.cfg", global.game_master.password)

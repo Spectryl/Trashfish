@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://l7yescmy2mty"]
+[gd_scene load_steps=21 format=3 uid="uid://l7yescmy2mty"]
 
 [ext_resource type="Texture2D" uid="uid://xfbioxcph81w" path="res://art/enemy/misc/baby_fish_head.png" id="1_1vu0f"]
 [ext_resource type="Script" path="res://scripts/enemy/misc/baby_fish.gd" id="1_knbxy"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://cqc2ewjbrbm3k" path="res://art/enemy/misc/baby_fish_head_stun.png" id="4_hiu1l"]
 [ext_resource type="Texture2D" uid="uid://5u7y3igel8bj" path="res://resources/objects/baby_fish_tail.tres" id="5_tkpsb"]
 [ext_resource type="Texture2D" uid="uid://osbsg0yuy82" path="res://resources/objects/baby_fish_tail_stun.tres" id="7_o6l78"]
-[ext_resource type="PackedScene" uid="uid://cuuupwfqqx7or" path="res://scenes/misc/debug_delete_component.tscn" id="8_yltfc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sccma"]
 atlas = ExtResource("1_1vu0f")
@@ -774,8 +773,6 @@ visible = false
 position = Vector2(-5, 0.5)
 shape = SubResource("CircleShape2D_pvesk")
 debug_color = Color(0.993246, 0, 0.240441, 0.42)
-
-[node name="debug_delete_component" parent="." instance=ExtResource("8_yltfc")]
 
 [connection signal="navigation_finished" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_navigation_finished"]
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
