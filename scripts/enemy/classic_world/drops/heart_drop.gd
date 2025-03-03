@@ -16,7 +16,7 @@ func timer_timeout_event():
 func attacked():
 	global.world.score += 1
 	global.world.heal_player()
-	global.player.update_starve(100)
+	global.player.update_starvation(100)
 	particle_event()
 
 #Basically this is an extra event between the activeness and deleteness so particles can properly appear for certain objects
