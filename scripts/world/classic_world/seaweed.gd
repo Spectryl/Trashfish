@@ -14,8 +14,9 @@ func _ready() -> void:
 	sea_weed2.play("default")
 	weed_player.play("left_sea_weed")
 	cpu_particles.speed_scale = randf_range(0.25,1)
-	modulate = Color8(randi_range(0,255), 255, randi_range(0,255), 255)
-	cpu_particles.self_modulate = Color(1,1,1,1)
+	sea_weed1.modulate = Color8(randi_range(0,255), 255, randi_range(0,255), 255)
+	sea_weed2.modulate = Color8(randi_range(0,255), 255, randi_range(0,255), 255)
+	cpu_particles.modulate = Color8(randi_range(0,255),255,255,255)
 
 
 	sea_weed1.material.set_shader_parameter("minStrength", randf_range(0,0.1))
