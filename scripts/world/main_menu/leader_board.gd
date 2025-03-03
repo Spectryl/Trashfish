@@ -2,12 +2,16 @@ extends Control
 @onready var menu : Control                       = get_parent()
 @onready var vbox: VBoxContainer                  = $ScrollContainer/VBoxContainer
 @onready var title_screen_button  : TextureButton = $title_screen_button
-
+@onready var player_name_input    : LineEdit      = $player_name_input
 func _ready() -> void:
 	global.simple_boards.entries_got.connect(_on_entries_got)
+	
+	var config : ConfigFile = ConfigFile.new()
+	var error : Error = config.load_encrypted_pass("user://savedata.cfg", global.game_master.password)
+	if error != OK:
+		return
+	player_name_input.text = config.get_value("player", "player_name", "")
 	await global.simple_boards.get_entries("7dc916e3-eb5b-4bad-0f51-08dd59d342af")
-
-
 
 
 func _on_title_screen_button_pressed() -> void:
