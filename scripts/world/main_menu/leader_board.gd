@@ -40,3 +40,6 @@ func _on_player_name_input_text_submitted(new_text: String) -> void:
 	else:
 		config.set_value("player", "player_name", new_text)
 	config.save_encrypted_pass("user://savedata.cfg", global.game_master.password)
+
+func _on_player_name_input_button_pressed() -> void:
+	_on_player_name_input_text_submitted(player_name_input.text)
