@@ -16,40 +16,46 @@ grow_vertical = 2
 size_flags_horizontal = 0
 script = ExtResource("1_lnfw4")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
-offset_right = 1920.0
-offset_bottom = 1085.0
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 40.0
+offset_right = 1856.0
+offset_bottom = 673.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/separation = 90
 
-[node name="leaderboard_entry2" parent="VBoxContainer" instance=ExtResource("2_0tm3c")]
+[node name="leaderboard_entry2" parent="ScrollContainer/VBoxContainer" instance=ExtResource("2_0tm3c")]
 layout_mode = 2
 
-[node name="leaderboard_entry" parent="VBoxContainer" instance=ExtResource("2_0tm3c")]
+[node name="leaderboard_entry" parent="ScrollContainer/VBoxContainer" instance=ExtResource("2_0tm3c")]
 layout_mode = 2
 
-[node name="leaderboard_entry3" parent="VBoxContainer" instance=ExtResource("2_0tm3c")]
+[node name="leaderboard_entry3" parent="ScrollContainer/VBoxContainer" instance=ExtResource("2_0tm3c")]
 layout_mode = 2
 
-[node name="leaderboard_entry4" parent="VBoxContainer" instance=ExtResource("2_0tm3c")]
+[node name="leaderboard_entry4" parent="ScrollContainer/VBoxContainer" instance=ExtResource("2_0tm3c")]
 layout_mode = 2
 
-[node name="leaderboard_entry5" parent="VBoxContainer" instance=ExtResource("2_0tm3c")]
+[node name="leaderboard_entry5" parent="ScrollContainer/VBoxContainer" instance=ExtResource("2_0tm3c")]
 layout_mode = 2
 
-[node name="leaderboard_entry6" parent="VBoxContainer" instance=ExtResource("2_0tm3c")]
+[node name="leaderboard_entry6" parent="ScrollContainer/VBoxContainer" instance=ExtResource("2_0tm3c")]
 layout_mode = 2
 
-[node name="leaderboard_entry7" parent="VBoxContainer" instance=ExtResource("2_0tm3c")]
+[node name="leaderboard_entry7" parent="ScrollContainer/VBoxContainer" instance=ExtResource("2_0tm3c")]
 layout_mode = 2
 
-[node name="leaderboard_entry8" parent="VBoxContainer" instance=ExtResource("2_0tm3c")]
+[node name="leaderboard_entry8" parent="ScrollContainer/VBoxContainer" instance=ExtResource("2_0tm3c")]
 layout_mode = 2
 
-[node name="leaderboard_entry9" parent="VBoxContainer" instance=ExtResource("2_0tm3c")]
+[node name="leaderboard_entry9" parent="ScrollContainer/VBoxContainer" instance=ExtResource("2_0tm3c")]
 layout_mode = 2
 
-[node name="leaderboard_entry10" parent="VBoxContainer" instance=ExtResource("2_0tm3c")]
+[node name="leaderboard_entry10" parent="ScrollContainer/VBoxContainer" instance=ExtResource("2_0tm3c")]
 layout_mode = 2
 
 [node name="title_screen_button" type="TextureButton" parent="."]
@@ -58,7 +64,7 @@ offset_left = 750.0
 offset_top = 965.0
 offset_right = 1200.0
 offset_bottom = 1065.0
-scale = Vector2(1, 1.00305)
+scale = Vector2(1.00623, 1.00305)
 texture_normal = ExtResource("3_dra14")
 
 [connection signal="mouse_entered" from="title_screen_button" to="." method="_on_title_screen_button_mouse_entered"]
