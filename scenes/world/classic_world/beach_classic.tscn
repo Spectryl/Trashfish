@@ -138,7 +138,7 @@ texture = ExtResource("5_ubss0")
 [node name="sun_animator" type="AnimationPlayer" parent="ParallaxBackground/sun"]
 root_node = NodePath("../..")
 libraries = {
-"": SubResource("AnimationLibrary_5qlfs")
+&"": SubResource("AnimationLibrary_5qlfs")
 }
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

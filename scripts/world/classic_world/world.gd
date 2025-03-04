@@ -66,7 +66,7 @@ func update_hud_when_dead():
 	score_ui.text = "Score: %d" % score
 	health_ui.text = "X %d" % player.get_health()
 	config.set_value("player", "beach_classic_high_score", high_score)
-	await global.simple_boards.send_score_without_id("7dc916e3-eb5b-4bad-0f51-08dd59d342af", config.get_value("player", "player_name"), str(score), "{}")
+	
 	config.save_encrypted_pass("user://savedata.cfg", global.game_master.password)
 
 	starve_bar.queue_free()
@@ -76,6 +76,7 @@ func update_hud_when_dead():
 	var a = load("res://scenes/misc/death_score_scene.tscn").instantiate()
 	a.score_str = "SCORE: %d" % score
 	add_child(a)
+	await global.simple_boards.send_score_without_id("7dc916e3-eb5b-4bad-0f51-08dd59d342af", config.get_value("player", "player_name"), str(score), "{}")
 
 
 	

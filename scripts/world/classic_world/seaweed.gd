@@ -27,7 +27,7 @@ func _ready() -> void:
 		0:
 			weed_player.play("left_sea_weed")
 			sea_weed1.z_index = 1
-		1:
+		_:
 			weed_player.play("right_sea_weed")
 			sea_weed2.z_index = 1
 	weed_player.set_speed_scale( randf_range(0.125, 8) )
