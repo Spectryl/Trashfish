@@ -1,9 +1,12 @@
 extends Control
 @onready var menu : Control = get_parent()
 
-@onready var master_volume_slider : HSlider = $TabContainer/Sound/master_volume_container/master_volume_slider
-@onready var music_volume_slider  : HSlider = $TabContainer/Sound/master_volume_container/master_volume_slider
-@onready var sound_volume_slider  : HSlider = $TabContainer/Sound/sound_volume_container/sound_volume_slider
+@onready var master_volume_slider : HSlider    = $TabContainer/Sound/master_volume_container/master_volume_slider
+@onready var music_volume_slider  : HSlider    = $TabContainer/Sound/master_volume_container/master_volume_slider
+@onready var sound_volume_slider  : HSlider    = $TabContainer/Sound/sound_volume_container/sound_volume_slider
+
+@onready var online_check_button : CheckButton = $TabContainer/General/MarginContainer/VBoxContainer/HBoxContainer/online_check_button
+
 
 @onready var title_screen_button  : TextureButton = $title_screen_button
 
