@@ -14,6 +14,9 @@ func _ready() -> void:
 	config.load_encrypted_pass("user://savedata.cfg", "freedom")
 	versionLabel.text = ProjectSettings.get_setting("application/config/version")
 	leaderboard_button.disabled = !config.get_value("settings", "online_mode")
+	if leaderboard_button.disabled:
+		leaderboard_button.disconnect("mouse_entered", _on_leaderboard_button_mouse_entered)
+		leaderboard_button.disconnect("mouse_exited", _on_leaderboard_button_mouse_exited)
 
 #region Button_Press
 func _on_start_button_pressed() -> void:

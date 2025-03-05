@@ -47,9 +47,10 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_ekkdw")
 theme_override_font_sizes/font_size = 50
 tab_alignment = 1
-current_tab = 0
+current_tab = 2
 
 [node name="General" type="TabBar" parent="TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -217,7 +218,6 @@ offset_bottom = 761.0
 scale = Vector2(2, 2)
 
 [node name="Graphics" type="TabBar" parent="TabContainer"]
-visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_ekkdw")
 metadata/_tab_index = 2
@@ -332,11 +332,13 @@ offset_bottom = 400.0
 [node name="vsyncbutton" type="CheckButton" parent="TabContainer/Graphics/vsync"]
 texture_filter = 1
 layout_mode = 0
-offset_left = 1030.0
-offset_top = 243.0
-offset_right = 1074.0
-offset_bottom = 267.0
-scale = Vector2(7, 7)
+offset_left = 808.0
+offset_top = 264.0
+offset_right = 948.0
+offset_bottom = 400.0
+theme_override_icons/checked = ExtResource("4_7xjwb")
+theme_override_icons/unchecked = ExtResource("4_ty5sv")
+icon_alignment = 2
 script = ExtResource("6_gyuk1")
 
 [node name="HSeparator3" type="HSeparator" parent="TabContainer/Graphics"]
