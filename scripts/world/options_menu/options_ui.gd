@@ -31,6 +31,7 @@ func _ready() -> void:
 		resolution_index = 0
 		vsync_mode = 1
 		frame_rate = 60
+		online_check_button.button_pressed = false
 	else:
 		master_volume    = config.get_value("settings",  "master_volume", 1.0)
 		music_volume     = config.get_value("settings",  "music_volume" , 1.0)
@@ -39,6 +40,7 @@ func _ready() -> void:
 		resolution_index = config.get_value("settings",  "resolution", 0)
 		vsync_mode       = config.get_value("settings",  "vsync", 1.0)
 		frame_rate       = config.get_value("settings",  "framerate", 60.0)
+		online_check_button.button_pressed = config.get_value("settings", "online_mode", false)
 func _on_texture_button_pressed() -> void:
 	#print(db_to_linear(AudioServer.get_bus_volume_db(global.audio_master.master_bus_index)))
 	#print(db_to_linear(AudioServer.get_bus_volume_db(global.audio_master.music_bus_index)))
@@ -83,3 +85,8 @@ func _on_frame_rate_button_item_selected(index: int) -> void:
 	Engine.max_fps = fps
 	frame_rate     = fps
 	global.sound_master.play("button_hover")
+
+
+func _on_online_check_button_toggled(toggled_on:bool) -> void:
+	config.set_value("settings", "online_mode", toggled_on)
+	config.save_encrypted_pass("user://savedata.cfg", global.game_master.password)

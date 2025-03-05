@@ -19,8 +19,8 @@ func _ready() -> void:
 	if OS.has_environment("USERNAME") and OS.get_environment("USERNAME").to_lower().count("bhaar", 0,0) > 0:
 		pass
 		#OS.crash("In order to remain ICE Compliant, this user is BANNED from all SonuTheNecro LTD Media")
-	#OS.shell_open("https://www.youtube.com/shorts/8IMhUpLMWX0")
-	#OS.shell_open("https://discord.gg/PeD2cvjgt9")
+		#OS.shell_open("https://www.youtube.com/shorts/8IMhUpLMWX0")
+		#OS.shell_open("https://discord.gg/PeD2cvjgt9")
 	if OS.is_debug_build():
 		print("DEBUG BUILD")
 	

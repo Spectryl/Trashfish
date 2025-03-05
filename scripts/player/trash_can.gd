@@ -5,7 +5,6 @@ extends Node2D
 var timer : Timer
 var delete_timer : Timer
 func _ready() -> void:
-	# Creating this as a child to the player node
 	global_position.x = -1000
 	timer = Timer.new()
 	timer.wait_time = timer_start
@@ -16,7 +15,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	rotation_degrees += rotation_speed
+	rotation_degrees += rotation_speed * delta
 	global_position.y += fall_speed * delta
 
 func _on_active_timer_timeout() -> void:
