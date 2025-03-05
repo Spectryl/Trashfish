@@ -10,7 +10,6 @@ extends Control
 
 @onready var title_screen_button  : TextureButton = $title_screen_button
 
-var config : ConfigFile
 var master_volume : float
 var music_volume  : float
 var sound_volume  : float
@@ -20,40 +19,29 @@ var resolution_index : int
 var vsync_mode : bool
 var frame_rate : int
 func _ready() -> void:
-	config = ConfigFile.new()
-	var error = config.load_encrypted_pass("user://savedata.cfg", global.game_master.password)
-	if error != OK:
-		print("error:", error)
-		master_volume = 1.0
-		music_volume  = 1.0
-		sound_volume  = 1.0
-		window_index = 0
-		resolution_index = 0
-		vsync_mode = 1
-		frame_rate = 60
-		online_check_button.button_pressed = false
-	else:
-		master_volume    = config.get_value("settings",  "master_volume", 1.0)
-		music_volume     = config.get_value("settings",  "music_volume" , 1.0)
-		sound_volume     = config.get_value("settings",  "sound_volume" , 1.0)
-		window_index     = config.get_value("settings",  "window", 0)
-		resolution_index = config.get_value("settings",  "resolution", 0)
-		vsync_mode       = config.get_value("settings",  "vsync", 1.0)
-		frame_rate       = config.get_value("settings",  "framerate", 60.0)
-		online_check_button.button_pressed = config.get_value("settings", "online_mode", false)
+
+
+	master_volume    = save_master.save_data.get_value("settings",  "master_volume", 1.0)
+	music_volume     = save_master.save_data.get_value("settings",  "music_volume" , 1.0)
+	sound_volume     = save_master.save_data.get_value("settings",  "sound_volume" , 1.0)
+	window_index     = save_master.save_data.get_value("settings",  "window", 0)
+	resolution_index = save_master.save_data.get_value("settings",  "resolution", 0)
+	vsync_mode       = save_master.save_data.get_value("settings",  "vsync", 1.0)
+	frame_rate       = save_master.save_data.get_value("settings",  "framerate", 60.0)
+	online_check_button.button_pressed = save_master.save_data.get_value("settings", "online_mode", false)
 func _on_texture_button_pressed() -> void:
 	#print(db_to_linear(AudioServer.get_bus_volume_db(global.audio_master.master_bus_index)))
 	#print(db_to_linear(AudioServer.get_bus_volume_db(global.audio_master.music_bus_index)))
 	#print(db_to_linear(AudioServer.get_bus_volume_db(global.audio_master.sound_bus_index)))
-	config.set_value("settings", "master_volume", db_to_linear(AudioServer.get_bus_volume_db(global.audio_master.master_bus_index)))
-	config.set_value("settings", "music_volume" , db_to_linear(AudioServer.get_bus_volume_db(global.audio_master.music_bus_index)))
-	config.set_value("settings", "sound_volume" , db_to_linear(AudioServer.get_bus_volume_db(global.audio_master.sound_bus_index)))
-	config.set_value("settings", "window", window_index)
-	config.set_value("settings", "resolution", resolution_index)
-	config.set_value("settings", "vsync", vsync_mode)
-	config.set_value("settings", "framerate", frame_rate)
-	#config.set_value("controls", "controls", InputMap)
-	config.save_encrypted_pass("user://savedata.cfg", global.game_master.password)
+	save_master.save_data.set_value("settings", "master_volume", db_to_linear(AudioServer.get_bus_volume_db(global.audio_master.master_bus_index)))
+	save_master.save_data.set_value("settings", "music_volume" , db_to_linear(AudioServer.get_bus_volume_db(global.audio_master.music_bus_index)))
+	save_master.save_data.set_value("settings", "sound_volume" , db_to_linear(AudioServer.get_bus_volume_db(global.audio_master.sound_bus_index)))
+	save_master.save_data.set_value("settings", "window", window_index)
+	save_master.save_data.set_value("settings", "resolution", resolution_index)
+	save_master.save_data.set_value("settings", "vsync", vsync_mode)
+	save_master.save_data.set_value("settings", "framerate", frame_rate)
+	#save_master.save_data.set_value("controls", "controls", InputMap)
+	save_master.save_data.save_encrypted_pass("user://savedata.cfg", save_master.password)
 	menu.switch_menu(0)
 ## from the main_menu_buttons, same exact code basically
 func _on_title_screen_button_mouse_entered() -> void:
@@ -88,5 +76,5 @@ func _on_frame_rate_button_item_selected(index: int) -> void:
 
 
 func _on_online_check_button_toggled(toggled_on:bool) -> void:
-	config.set_value("settings", "online_mode", toggled_on)
-	config.save_encrypted_pass("user://savedata.cfg", global.game_master.password)
+	save_master.save_data.set_value("settings", "online_mode", toggled_on)
+	save_master.save_data.save_encrypted_pass("user://savedata.cfg", save_master.password)

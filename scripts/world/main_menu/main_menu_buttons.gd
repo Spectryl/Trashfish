@@ -10,7 +10,10 @@ var hover_color : Color = Color8(0,255,255,255) # Color when we hover a button
 var reset_color : Color = Color8(255,255,255,255)     # Color when we stop hovering, this can be forced to be default color
 
 func _ready() -> void:
+	var config : ConfigFile = ConfigFile.new()
+	config.load_encrypted_pass("user://savedata.cfg", "freedom")
 	versionLabel.text = ProjectSettings.get_setting("application/config/version")
+	leaderboard_button.disabled = !config.get_value("settings", "online_mode")
 
 #region Button_Press
 func _on_start_button_pressed() -> void:
@@ -59,9 +62,3 @@ func _on_quit_button_mouse_entered() -> void:
 func _on_quit_button_mouse_exited() -> void:
 	quit_button.set_deferred("modulate", reset_color)
 #endregion
-
-
-
-
-
-

@@ -1,6 +1,5 @@
 extends Node2D
 var health : int = 0: set = update_health_hud
-var config : ConfigFile
 var high_time : float = 0.0: set = update_high_time_hud
 var time : float = 0.0     : set = update_time_hud
 var minutes: int = 0
@@ -15,17 +14,9 @@ var world_id = 3
 @onready var player : CharacterBody2D          = global.player
 @onready var sound_master : Node               = global.sound_master
 func _ready() -> void:
-	config = ConfigFile.new()	
 	health = player.get_health()
 	starve_bar.max_value = player.max_starve
-	var error = config.load_encrypted_pass("user://savedata.cfg",global.game_master.password)
-	if error != OK:
-		print("error")
-		high_time = 0.0
-	else:
-		high_time = config.get_value("player", "beach_guns_high_score", 0)
-		
-	high_time = high_time
+	high_time = save_master.save_data.get_value("player", "beach_guns_high_score", 0)
 	generate_waves()
 	generate_pebbles()
 	generate_seashells()
@@ -43,8 +34,8 @@ func _process(delta: float) -> void:
 	minutes = fmod(time,3600) / 60
 	if time > high_time:
 		high_time = time
-		config.set_value("player", "beach_guns_high_score", high_time)
-		config.save_encrypted_pass("user://savedata.cfg", global.game_master.password)
+		save_master.save_data.set_value("player", "beach_guns_high_score", high_time)
+		save_master.save_data.save_encrypted_pass("user://savedata.cfg", save_master.password)
 	starve_bar.value = get_player_starvation()
 	var player_health = player.get_health()
 	if health != player_health:
@@ -65,8 +56,8 @@ func get_player_starvation() -> int:
 func update_hud_when_dead():
 	score_ui.text = "%02d:%02d.%03d" % [minutes, seconds, mili]
 	health_ui.text = "X %d" % player.get_health()
-	config.set_value("player", "beach_guns_high_score", high_time)
-	config.save_encrypted_pass("user://savedata.cfg", global.game_master.password)
+	save_master.save_data.set_value("player", "beach_guns_high_score", high_time)
+	save_master.save_data.save_encrypted_pass("user://savedata.cfg", save_master.password)
 
 	starve_bar.queue_free()
 	score_ui.queue_free()

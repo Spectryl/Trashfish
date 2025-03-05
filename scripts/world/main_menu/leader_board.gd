@@ -5,12 +5,7 @@ extends Control
 @onready var player_name_input    : LineEdit      = $player_name_input
 func _ready() -> void:
 	global.simple_boards.entries_got.connect(_on_entries_got)
-	
-	var config : ConfigFile = ConfigFile.new()
-	var error : Error = config.load_encrypted_pass("user://savedata.cfg", global.game_master.password)
-	if error != OK:
-		return
-	player_name_input.text = config.get_value("player", "player_name", "")
+	player_name_input.text = save_master.save_data.get_value("player", "player_name", "")
 	await global.simple_boards.get_entries("7dc916e3-eb5b-4bad-0f51-08dd59d342af")
 
 
@@ -33,13 +28,9 @@ func _on_entries_got(entries):
 
 
 func _on_player_name_input_text_submitted(new_text: String) -> void:
-	var config : ConfigFile = ConfigFile.new()
-	var error : Error = config.load_encrypted_pass("user://savedata.cfg", global.game_master.password)
-	if error != OK:
-		config.set_value("player", "player_name", "player")
-	else:
-		config.set_value("player", "player_name", new_text)
-	config.save_encrypted_pass("user://savedata.cfg", global.game_master.password)
+
+	save_master.save_data.set_value("player", "player_name", new_text)
+	save_master.save_data.save_encrypted_pass("user://savedata.cfg", save_master.password)
 
 func _on_player_name_input_button_pressed() -> void:
 	_on_player_name_input_text_submitted(player_name_input.text)

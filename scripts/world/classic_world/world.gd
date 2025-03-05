@@ -2,9 +2,6 @@ extends Node2D
 var score : int = 0: set = update_score_hud
 var high_score : int = 0: set = update_high_score_hud
 var health : int = 0: set = update_health_hud
-var config : ConfigFile
-
-
 var world_id = 2 
 
 @onready var starve_bar : ProgressBar          = $CanvasLayer/starve_bar
@@ -21,18 +18,11 @@ var world_id = 2
 func _ready() -> void:
 	
 	sun_player.play("rotate_sun")
-	config = ConfigFile.new()
 
 	
 	health = player.get_health()
 	starve_bar.max_value = player.max_starve
-	var error = config.load_encrypted_pass("user://savedata.cfg",global.game_master.password)
-	if error != OK:
-		print("error")
-		high_score = 0
-	else:
-		high_score = config.get_value("player", "beach_classic_high_score", 0)
-		
+	high_score = save_master.save_data.get_value("player", "beach_classic_high_score", 0)
 	generate_waves()
 	generate_pebbles()
 	generate_seashells()
@@ -43,8 +33,8 @@ func _process(_delta: float) -> void:
 		return
 	if score > high_score:
 		high_score = score
-		config.set_value("player", "beach_classic_high_score", high_score)
-		config.save_encrypted_pass("user://savedata.cfg", global.game_master.password)
+		save_master.save_data.set_value("player", "beach_classic_high_score", high_score)
+		save_master.save_data.save_encrypted_pass("user://savedata.cfg", save_master.password)
 	starve_bar.value = get_player_starvation()
 	var player_health = player.get_health()
 	if health != player_health:
@@ -65,9 +55,9 @@ func get_player_starvation() -> int:
 func update_hud_when_dead():
 	score_ui.text = "Score: %d" % score
 	health_ui.text = "X %d" % player.get_health()
-	config.set_value("player", "beach_classic_high_score", high_score)
+	save_master.save_data.set_value("player", "beach_classic_high_score", high_score)
 	
-	config.save_encrypted_pass("user://savedata.cfg", global.game_master.password)
+	save_master.save_data.save_encrypted_pass("user://savedata.cfg", save_master.password)
 
 	starve_bar.queue_free()
 	score_ui.queue_free()
@@ -76,7 +66,7 @@ func update_hud_when_dead():
 	var a = load("res://scenes/misc/death_score_scene.tscn").instantiate()
 	a.score_str = "SCORE: %d" % score
 	add_child(a)
-	await global.simple_boards.send_score_without_id("7dc916e3-eb5b-4bad-0f51-08dd59d342af", config.get_value("player", "player_name"), str(score), "{}")
+	await global.simple_boards.send_score_without_id("7dc916e3-eb5b-4bad-0f51-08dd59d342af", save_master.save_data.get_value("player", "player_name"), str(score), "{}")
 
 
 	

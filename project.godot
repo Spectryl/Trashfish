@@ -28,6 +28,7 @@ buses/default_bus_layout="res://scenes/misc/default_bus_layout.tres"
 
 [autoload]
 
+save_master="*res://scripts/main/save_master.gd"
 global="*res://scripts/misc/global_variables.gd"
 AntialiasedLine2DTexture="*res://addons/antialiased_line2d/texture.gd"
 

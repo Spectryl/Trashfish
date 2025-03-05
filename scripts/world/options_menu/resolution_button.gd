@@ -19,6 +19,4 @@ func _ready() -> void:
 		if resolutions[res].x > screen_x_value or resolutions[res].y > screen_y_value:
 			break
 		self.add_item(res)
-	var config : ConfigFile = ConfigFile.new()
-	config.load_encrypted_pass("user://savedata.cfg", global.game_master.password)
-	selected = config.get_value("settings","resolution",0)
+	selected = save_master.save_data.get_value("settings","resolution",0)

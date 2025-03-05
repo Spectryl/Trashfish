@@ -8,7 +8,5 @@ func _ready() -> void:
 			fps = 144 #okay if you are past this point, then you probaby got goofy ah number 144 hertz
 		if fps > DisplayServer.screen_get_refresh_rate():
 			break
-	var config : ConfigFile = ConfigFile.new()
-	config.load_encrypted_pass("user://savedata.cfg", global.game_master.password)
-	selected = config.get_value("settings","framerate",0) / 15 - 1 #convert it back into indexes
+	selected = save_master.save_data.get_value("settings","framerate",0) / 15 - 1 #convert it back into indexes
 	
