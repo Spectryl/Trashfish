@@ -1,5 +1,10 @@
 extends OptionButton
 func _ready() -> void:
+	theme = Theme.new()
+	theme.default_font = FontFile.new()
+	theme.default_font_size = 50
+	theme.default_font.font_data = load("res://font/VT323-Regular.ttf")
+
 	var fps : int = 15
 	for i in range(10):
 		add_item(str(fps))

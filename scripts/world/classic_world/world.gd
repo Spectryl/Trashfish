@@ -66,7 +66,8 @@ func update_hud_when_dead():
 	var a = load("res://scenes/misc/death_score_scene.tscn").instantiate()
 	a.score_str = "SCORE: %d" % score
 	add_child(a)
-	
+	if save_master.save_data.get_value("settings", "online_mode", false):
+		online_master.send_data(score)
 
 
 	

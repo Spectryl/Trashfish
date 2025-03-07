@@ -13,6 +13,10 @@ const resolutions : Dictionary = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	theme = Theme.new()
+	theme.default_font = FontFile.new()
+	theme.default_font_size = 50
+	theme.default_font.font_data = load("res://font/VT323-Regular.ttf")
 	var screen_x_value : int = DisplayServer.screen_get_size().x
 	var screen_y_value : int = DisplayServer.screen_get_size().y
 	for res in resolutions:
