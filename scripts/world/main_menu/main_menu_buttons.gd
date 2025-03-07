@@ -6,12 +6,11 @@ extends Control
 @onready var quit_button : TextureButton        = $MarginContainer/VBoxContainer/quit_button
 @onready var versionLabel : Label               = $MarginContainer/version_label
 
-var hover_color : Color = Color8(0,255,255,255) # Color when we hover a button
+var hover_color : Color = Color8(0,255,255,255) # Color when we hover a button	
 var reset_color : Color = Color8(255,255,255,255)     # Color when we stop hovering, this can be forced to be default color
-
 func _ready() -> void:
 	var config : ConfigFile = ConfigFile.new()
-	config.load_encrypted_pass("user://savedata.cfg", "freedom")
+	config.load_encrypted_pass("user://savedata.cfg", save_master.password)
 	versionLabel.text = ProjectSettings.get_setting("application/config/version")
 	leaderboard_button.disabled = !config.get_value("settings", "online_mode")
 	if leaderboard_button.disabled:

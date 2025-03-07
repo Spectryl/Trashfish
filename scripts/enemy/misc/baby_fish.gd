@@ -15,6 +15,9 @@ var drop_attack_cooldown_timer   : Timer
 var stun_timer : Timer
 var drop_timer : Timer
 var current_node : Node2D = null
+
+var rotation_timer : Timer
+@export var rotation_interval : float = 0.1
 enum fish_job {
 	RANDOM,
 	PLAYER,
@@ -31,6 +34,7 @@ var can_attack_drop   : bool = true
 var is_stunned : bool = false
 var stamina : int = 30
 @export var weight : float = 10
+@export var rotation_speed : float = 5.0
 func _ready() -> void:
 	var random_color: Color = Color8(randi_range(0,255), randi_range(0,255), randi_range(0,255), 255)
 	navigation_agent.set_avoidance_priority(randf_range(0,1))
@@ -77,6 +81,13 @@ func _ready() -> void:
 	drop_timer.one_shot = true
 	drop_timer.timeout.connect(reset_drop_timer)
 	add_child(drop_timer)
+
+	rotation_timer = Timer.new()
+	rotation_timer.wait_time = rotation_interval
+	rotation_timer.timeout.connect(update_rotation)
+	rotation_timer.autostart = true
+	rotation_timer.one_shot = false
+	add_child(rotation_timer)
 	
 
 func _physics_process(delta: float) -> void:
@@ -101,13 +112,10 @@ func handle_animations() -> void:
 	match current_job:
 		fish_job.PLAYER:
 			animation_player.play("attacking")
-			set_global_rotation(get_angle_to_player())
 
 		fish_job.DROP:
 			animation_player.play("attacking")
-			if current_node != null:
-				set_global_rotation(global_position.angle_to_point(current_node.global_position))
-			else:
+			if current_node == null:
 				current_job = fish_job.RANDOM
 
 		fish_job.RANDOM:
@@ -120,6 +128,11 @@ func handle_animations() -> void:
 		fish_job.STUN:
 			animation_player.play("stunned")
 
+func update_rotation() -> void:
+	if current_job == fish_job.PLAYER:
+		global_rotation = lerp_angle(global_rotation, get_angle_to_player(), rotation_speed * get_process_delta_time())
+	elif current_job == fish_job.DROP and current_node != null:
+		global_rotation = lerp_angle(global_rotation, global_position.angle_to_point(current_node.global_position), rotation_speed * get_process_delta_time())
 
 func _on_navigation_agent_2d_navigation_finished() -> void:
 	navigation_agent.target_position = Vector2(randf_range(100, 1820), randf_range(300,900))
