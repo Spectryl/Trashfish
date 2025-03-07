@@ -29,6 +29,9 @@ func _ready() -> void:
 	change_display(save_master.save_data.get_value("settings", "window", 1))
 	change_resolution(save_master.save_data.get_value("settings", "resolution", 2))
 	set_controls()
+	if save_master.save_data.get_value("settings", "online_mode", false):
+		online_master.turn_on_online()
+		online_master.get_results()
 
 
 func change_display(index : int) -> void:

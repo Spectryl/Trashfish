@@ -76,3 +76,8 @@ func _on_frame_rate_button_item_selected(index: int) -> void:
 func _on_online_check_button_toggled(toggled_on:bool) -> void:
 	save_master.save_data.set_value("settings", "online_mode", toggled_on)
 	save_master.save_data.save_encrypted_pass("user://savedata.cfg", save_master.password)
+	if toggled_on:
+		online_master.turn_on_online()
+		online_master.get_results()
+	else:
+		online_master.turn_off_online()

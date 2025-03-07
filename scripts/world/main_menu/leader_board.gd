@@ -3,11 +3,17 @@ extends Control
 @onready var vbox: VBoxContainer                  = $ScrollContainer/VBoxContainer
 @onready var title_screen_button  : TextureButton = $title_screen_button
 @onready var player_name_input    : LineEdit      = $player_name_input
+var delay_timer : Timer
 func _ready() -> void:
-	global.simple_boards.entries_got.connect(_on_entries_got)
 	player_name_input.text = save_master.save_data.get_value("player", "player_name", "")
-	await global.simple_boards.get_entries("7dc916e3-eb5b-4bad-0f51-08dd59d342af")
+	delay_timer  = Timer.new()
+	delay_timer .wait_time = 3
+	delay_timer .timeout.connect(delay_timer_check)
+	delay_timer .one_shot = true
+	delay_timer .autostart = false
+	add_child(delay_timer)
 
+	set_up_data(online_master.data)
 
 func _on_title_screen_button_pressed() -> void:
 	menu.switch_menu(0)
@@ -19,13 +25,22 @@ func _on_title_screen_button_mouse_exited() -> void:
 	title_screen_button.set_deferred("modulate", Color8(255,255,255,255))
 
 
-func _on_entries_got(entries):
+func set_up_data(entries):
+	if entries == null:
+		delay_timer.start()
+		return
 	var count : int = 0
 	for entry in entries:
 		vbox.get_child(count).player_name_label.text = entry["playerDisplayName"]
 		vbox.get_child(count).score_label.text       = entry["score"]
 		count += 1
-
+func delay_timer_check():
+	if online_master.data == null:
+		delay_timer.start()
+		return
+	
+	delay_timer.queue_free()
+	set_up_data(online_master.data)
 
 func _on_player_name_input_text_submitted(new_text: String) -> void:
 

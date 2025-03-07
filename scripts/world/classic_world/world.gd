@@ -66,7 +66,7 @@ func update_hud_when_dead():
 	var a = load("res://scenes/misc/death_score_scene.tscn").instantiate()
 	a.score_str = "SCORE: %d" % score
 	add_child(a)
-	await global.simple_boards.send_score_without_id("7dc916e3-eb5b-4bad-0f51-08dd59d342af", save_master.save_data.get_value("player", "player_name"), str(score), "{}")
+	
 
 
 	
