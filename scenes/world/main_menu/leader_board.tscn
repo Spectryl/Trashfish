@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://c7og2ikvuwkus"]
+[gd_scene load_steps=8 format=3 uid="uid://c7og2ikvuwkus"]
 
 [ext_resource type="Script" uid="uid://bbp88ae2xme21" path="res://scripts/world/main_menu/leader_board.gd" id="1_lnfw4"]
 [ext_resource type="PackedScene" uid="uid://buus2cwmwg16" path="res://scenes/world/main_menu/leaderboard_entry.tscn" id="2_0tm3c"]
 [ext_resource type="FontFile" uid="uid://c0quiovxikjm8" path="res://font/VT323-Regular.ttf" id="2_ri82m"]
 [ext_resource type="Texture2D" uid="uid://3et37qb88nef" path="res://art/world/main_menu/title_screen_button.png" id="3_dra14"]
 [ext_resource type="Texture2D" uid="uid://cb6qdhog2bmrt" path="res://art/world/main_menu/check_button.png" id="5_4wya7"]
+[ext_resource type="Texture2D" uid="uid://b78mypqio0hbw" path="res://art/world/main_menu/refresh_button.png" id="5_octph"]
+[ext_resource type="Texture2D" uid="uid://7vtj56ovkki2" path="res://art/world/main_menu/refresh_button_disabled.png" id="6_s6fdt"]
 
 [node name="leader_board" type="Control"]
 layout_mode = 3
@@ -82,6 +84,15 @@ offset_bottom = 1060.0
 scale = Vector2(1.00623, 1.00305)
 texture_normal = ExtResource("3_dra14")
 
+[node name="refresh_button" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 1748.0
+offset_top = 689.0
+offset_right = 1876.0
+offset_bottom = 817.0
+texture_normal = ExtResource("5_octph")
+texture_disabled = ExtResource("6_s6fdt")
+
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color(0.0470588, 0.0352941, 1, 0.0862745)
 polygon = PackedVector2Array(55, 21, 1876, 21, 1876, 689, 48, 689)
@@ -110,5 +121,6 @@ texture_normal = ExtResource("5_4wya7")
 [connection signal="mouse_entered" from="title_screen_button" to="." method="_on_title_screen_button_mouse_entered"]
 [connection signal="mouse_exited" from="title_screen_button" to="." method="_on_title_screen_button_mouse_exited"]
 [connection signal="pressed" from="title_screen_button" to="." method="_on_title_screen_button_pressed"]
+[connection signal="pressed" from="refresh_button" to="." method="_on_refresh_button_pressed"]
 [connection signal="text_submitted" from="player_name_input" to="." method="_on_player_name_input_text_submitted"]
 [connection signal="pressed" from="player_name_input_button" to="." method="_on_player_name_input_button_pressed"]
