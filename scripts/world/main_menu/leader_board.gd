@@ -4,16 +4,10 @@ extends Control
 @onready var title_screen_button  : TextureButton = $title_screen_button
 @onready var refresh_button       : TextureButton = $refresh_button
 @onready var player_name_input    : LineEdit      = $player_name_input
-var delay_timer : Timer
+var delay_timer : IntervalTimer
 func _ready() -> void:
 	player_name_input.text = save_master.save_data.get_value("player", "player_name", "")
-	delay_timer  = Timer.new()
-	delay_timer .wait_time = 3
-	delay_timer .timeout.connect(delay_timer_check)
-	delay_timer .one_shot = true
-	delay_timer .autostart = false
-	add_child(delay_timer)
-
+	
 	set_up_data(online_master.data)
 
 func _on_title_screen_button_pressed() -> void:
@@ -28,6 +22,8 @@ func _on_title_screen_button_mouse_exited() -> void:
 
 func set_up_data(entries):
 	if entries == null:
+		delay_timer  = IntervalTimer.new(delay_timer_check,3)
+		add_child(delay_timer)
 		delay_timer.start()
 		return
 	var count : int = 0
@@ -45,11 +41,7 @@ func delay_timer_check():
 	set_up_data(online_master.data)
 
 func get_data() -> void:
-	delay_timer  = Timer.new()
-	delay_timer .wait_time = 3
-	delay_timer .timeout.connect(delay_timer_check)
-	delay_timer .one_shot = true
-	delay_timer .autostart = false
+	delay_timer  = IntervalTimer.new(delay_timer_check,3)
 	add_child(delay_timer)
 	online_master.get_results()
 	online_master.data = null
