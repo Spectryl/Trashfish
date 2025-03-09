@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://cjaxyif6tg7td"]
 
 [ext_resource type="Script" uid="uid://uqyroemmtha0" path="res://scripts/enemy/misc/cloud.gd" id="1_be8xj"]
-[ext_resource type="Texture2D" uid="uid://dtsb0xtb34o0k" path="res://resources/objects/empty_cloud.tres" id="1_shu0j"]
+[ext_resource type="Texture2D" uid="uid://bvpv5lg8hwln4" path="res://resources/objects/cloud_face2.tres" id="2_be8xj"]
 
 [node name="cloud" type="Node2D"]
 script = ExtResource("1_be8xj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("1_shu0j")
+texture = ExtResource("2_be8xj")

@@ -23,6 +23,7 @@ func _ready() -> void:
 	beach.material.set_shader_parameter("sine_amplitude", Vector2(0,20))
 	beach.material.set_shader_parameter("sine_speed", Vector2(0,3))
 	beach.material.set_shader_parameter("time_offset", 55.0)
+
 	volcano.texture_normal = load("res://resources/buttons/locked_world_icon.tres")
 	volcano.material = load(bounce_shine_shader)
 	volcano.material.set_shader_parameter("do_abs", false)

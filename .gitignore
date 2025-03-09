@@ -8,3 +8,8 @@ export_presets.cfg
 *.7z
 *.pck
 TODO.txt
+export_html/
+export_linux/
+export_windows/
+.vscode/
+README.MD

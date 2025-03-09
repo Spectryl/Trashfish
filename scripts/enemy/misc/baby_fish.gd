@@ -16,8 +16,7 @@ var stun_timer : Timer
 var drop_timer : Timer
 var current_node : Node2D = null
 
-var rotation_timer : Timer
-@export var rotation_interval : float = 0.1
+
 enum fish_job {
 	RANDOM,
 	PLAYER,
@@ -82,13 +81,6 @@ func _ready() -> void:
 	drop_timer.timeout.connect(reset_drop_timer)
 	add_child(drop_timer)
 
-	rotation_timer = Timer.new()
-	rotation_timer.wait_time = rotation_interval
-	rotation_timer.timeout.connect(update_rotation)
-	rotation_timer.autostart = true
-	rotation_timer.one_shot = false
-	add_child(rotation_timer)
-	
 
 func _physics_process(delta: float) -> void:
 	
@@ -105,6 +97,7 @@ func _physics_process(delta: float) -> void:
 			attack_timer.stop()
 	handle_animations()
 	work()
+	update_rotation()
 
 
 

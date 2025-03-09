@@ -49,6 +49,16 @@ func get_data() -> void:
 
 
 func _on_player_name_input_text_submitted(new_text: String) -> void:
+	var file = FileAccess.open("res://text/swears.txt", FileAccess.READ)
+	if file:
+		while not file.eof_reached():
+			var current_word = file.get_line().strip_edges()
+			#print(current_word)
+			if current_word != "" and current_word in new_text.to_lower():
+				print("Bad Word Found!")
+				OS.shell_open("https://youtu.be/nEcjq0dVM-k?si=MI9MpOwanZay30fr")
+				return
+
 
 	save_master.save_data.set_value("player", "player_name", new_text)
 	save_master.save_data.save_encrypted_pass("user://savedata.cfg", save_master.password)
