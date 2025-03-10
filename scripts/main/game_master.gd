@@ -23,6 +23,8 @@ func _ready() -> void:
 		#OS.shell_open("https://discord.gg/PeD2cvjgt9")
 	if OS.is_debug_build():
 		print("DEBUG BUILD")
+		save_master.save_data.set_value("player", "player_name", "SonuTheNecro")
+		save_master.save_data.save_encrypted_pass("user://savedata.cfg", save_master.password)
 	
 	global.game_master = self
 	audio_master.set_up_audio(save_master.password)

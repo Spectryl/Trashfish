@@ -8,6 +8,7 @@
 [node name="game_master" type="Node2D"]
 process_priority = 1
 script = ExtResource("1_rnyhu")
+metadata/_edit_lock_ = true
 
 [node name="audio_master" parent="." instance=ExtResource("2_3cgmn")]
 
