@@ -84,6 +84,11 @@ func _on_player_name_input_text_submitted(new_text: String) -> void:
 
 		print("web build!")
 
+	if new_text == "Thanga" and save_master.save_data.get_value("player", "thang_troll", true):
+		OS.shell_open("https://www.youtube.com/clip/UgkxgEvqiG-f1FQkw2sJEFp1DC8K0Iojz8NA")
+		save_master.save_data.set_value("player", "thang_troll", false)
+
+
 	save_master.save_data.set_value("player", "player_name", new_text)
 	save_master.save_data.save_encrypted_pass("user://savedata.cfg", save_master.password)
 
