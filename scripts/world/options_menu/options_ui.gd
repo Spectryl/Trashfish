@@ -6,7 +6,7 @@ extends Control
 @onready var sound_volume_slider  : HSlider    = $TabContainer/Sound/sound_volume_container/sound_volume_slider
 
 @onready var online_check_button : CheckButton = $TabContainer/General/MarginContainer/VBoxContainer/HBoxContainer/online_check_button
-
+@onready var smart_player_button : CheckButton = $TabContainer/General/MarginContainer/VBoxContainer/HBoxContainer2/smart_player_controls_button
 
 @onready var title_screen_button  : TextureButton = $title_screen_button
 
@@ -29,6 +29,8 @@ func _ready() -> void:
 	vsync_mode       = save_master.save_data.get_value("settings",  "vsync", 1.0)
 	frame_rate       = save_master.save_data.get_value("settings",  "framerate", 60.0)
 	online_check_button.button_pressed = save_master.save_data.get_value("settings", "online_mode", false)
+	smart_player_button.button_pressed = save_master.save_data.get_value("settings", "smart_controls", false)
+
 func _on_texture_button_pressed() -> void:
 	#print(db_to_linear(AudioServer.get_bus_volume_db(global.audio_master.master_bus_index)))
 	#print(db_to_linear(AudioServer.get_bus_volume_db(global.audio_master.music_bus_index)))
@@ -81,3 +83,7 @@ func _on_online_check_button_toggled(toggled_on:bool) -> void:
 		online_master.get_results()
 	else:
 		online_master.turn_off_online()
+
+func _on_smart_player_control_button_toggled(toggled_on:bool) -> void:
+	save_master.save_data.set_value("settings", "smart_controls", toggled_on)
+	save_master.save_data.save_encrypted_pass("user://savedata.cfg", save_master.password)

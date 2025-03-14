@@ -60,6 +60,8 @@ func create_new_player(index : int, starve : bool = false, active : bool = false
 	match index:
 		0:
 			player = load("res://scenes/player/player.tscn").instantiate()
+		1:
+			player = load("res://scenes/player/smart_player.tscn").instantiate()
 	global.player = player
 	add_child(player)
 	@warning_ignore("standalone_ternary")

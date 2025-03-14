@@ -47,10 +47,9 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_ekkdw")
 theme_override_font_sizes/font_size = 50
 tab_alignment = 1
-current_tab = 2
+current_tab = 0
 
 [node name="General" type="TabBar" parent="TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -87,6 +86,28 @@ layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_ewkaw")
 
 [node name="online_check_button" type="CheckButton" parent="TabContainer/General/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_icons/checked = ExtResource("4_7xjwb")
+theme_override_icons/unchecked = ExtResource("4_ty5sv")
+alignment = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/General/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="TabContainer/General/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(900, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ekkdw")
+theme_override_font_sizes/font_size = 70
+text = "Enable Smart Player Controls"
+
+[node name="VSeparator" type="VSeparator" parent="TabContainer/General/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(550, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_ewkaw")
+
+[node name="smart_player_controls_button" type="CheckButton" parent="TabContainer/General/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 theme_override_icons/checked = ExtResource("4_7xjwb")
 theme_override_icons/unchecked = ExtResource("4_ty5sv")
@@ -218,6 +239,7 @@ offset_bottom = 761.0
 scale = Vector2(2, 2)
 
 [node name="Graphics" type="TabBar" parent="TabContainer"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_ekkdw")
 metadata/_tab_index = 2
@@ -515,6 +537,7 @@ grow_vertical = 2
 texture_normal = ExtResource("2_ug8si")
 
 [connection signal="toggled" from="TabContainer/General/MarginContainer/VBoxContainer/HBoxContainer/online_check_button" to="." method="_on_online_check_button_toggled"]
+[connection signal="toggled" from="TabContainer/General/MarginContainer/VBoxContainer/HBoxContainer2/smart_player_controls_button" to="." method="_on_smart_player_control_button_toggled"]
 [connection signal="item_selected" from="TabContainer/Graphics/window_type/window_type_button" to="." method="_on_window_type_button_item_selected"]
 [connection signal="item_selected" from="TabContainer/Graphics/resolution/resolution_button" to="." method="_on_resolution_button_item_selected"]
 [connection signal="toggled" from="TabContainer/Graphics/vsync/vsyncbutton" to="." method="_on_vsyncbutton_toggled"]

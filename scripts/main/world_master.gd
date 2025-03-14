@@ -34,7 +34,7 @@ func change_world(world_id : int) -> void:
 			global.player_master.change_player_scale(3)
 		2:
 			world = load("res://scenes/world/classic_world/beach_classic.tscn").instantiate()
-			global.player_master.create_new_player(0,true,true)
+			global.player_master.create_new_player(1 if save_master.save_data.get_value("settings", "smart_controls", false) else 0,true,true)
 			global.player_master.change_player_scale(2)
 			global.player_master.change_player_global_position(Vector2(800,650))
 			global.music_master.change_song("lisa")

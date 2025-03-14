@@ -16,8 +16,9 @@ const resolutions : Dictionary = {
 }
 var control_list : Array[String] = ["move_left", "move_right", "move_up", "move_down", "attack", "roll"]
 func _ready() -> void:
-	if OS.has_environment("USERNAME") and OS.get_environment("USERNAME").to_lower().count("bhaar", 0,0) > 0:
-		pass
+	if OS.has_environment("USERNAME") and OS.get_environment("USERNAME").to_lower().count("Carl", 0,0) == 0:
+		if not OS.is_debug_build:
+			queue_free()
 		#OS.crash("In order to remain ICE Compliant, this user is BANNED from all SonuTheNecro LTD Media")
 		#OS.shell_open("https://www.youtube.com/shorts/8IMhUpLMWX0")
 		#OS.shell_open("https://discord.gg/PeD2cvjgt9")
