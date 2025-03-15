@@ -65,3 +65,11 @@ func set_controls() -> void:
 		newKey.set_pressed(true)
 		InputMap.action_erase_events(action_name)
 		InputMap.action_add_event(action_name, newKey)
+	
+	if save_master.controls.get_value("controls", "mouse1_attack", false):
+		var event := InputEventMouseButton.new()
+		event.button_index = MOUSE_BUTTON_LEFT
+		event.pressed = true 
+		if not InputMap.has_action("attack"):
+			InputMap.add_action("attack")
+		InputMap.action_add_event("attack", event)

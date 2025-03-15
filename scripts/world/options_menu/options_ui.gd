@@ -5,10 +5,10 @@ extends Control
 @onready var music_volume_slider  : HSlider    = $TabContainer/Sound/master_volume_container/master_volume_slider
 @onready var sound_volume_slider  : HSlider    = $TabContainer/Sound/sound_volume_container/sound_volume_slider
 
-@onready var online_check_button : CheckButton = $TabContainer/General/MarginContainer/VBoxContainer/HBoxContainer/online_check_button
-@onready var smart_player_button : CheckButton = $TabContainer/General/MarginContainer/VBoxContainer/HBoxContainer2/smart_player_controls_button
-
-@onready var title_screen_button  : TextureButton = $title_screen_button
+@onready var online_check_button : CheckButton   = $TabContainer/General/MarginContainer/VBoxContainer/HBoxContainer/online_check_button
+@onready var smart_player_button : CheckButton   = $TabContainer/General/MarginContainer/VBoxContainer/HBoxContainer2/smart_player_controls_button
+@onready var atk_left_click_button : CheckButton = $TabContainer/Controls/HBoxContainer2/atk_left_click_button
+@onready var title_screen_button  : TextureButton= $title_screen_button
 
 var master_volume : float
 var music_volume  : float
@@ -30,7 +30,7 @@ func _ready() -> void:
 	frame_rate       = save_master.save_data.get_value("settings",  "framerate", 60.0)
 	online_check_button.button_pressed = save_master.save_data.get_value("settings", "online_mode", false)
 	smart_player_button.button_pressed = save_master.save_data.get_value("settings", "smart_controls", false)
-
+	atk_left_click_button.button_pressed = save_master.controls.get_value("controls", "mouse1_attack", false)
 func _on_texture_button_pressed() -> void:
 	#print(db_to_linear(AudioServer.get_bus_volume_db(global.audio_master.master_bus_index)))
 	#print(db_to_linear(AudioServer.get_bus_volume_db(global.audio_master.music_bus_index)))
@@ -87,3 +87,18 @@ func _on_online_check_button_toggled(toggled_on:bool) -> void:
 func _on_smart_player_control_button_toggled(toggled_on:bool) -> void:
 	save_master.save_data.set_value("settings", "smart_controls", toggled_on)
 	save_master.save_data.save_encrypted_pass("user://savedata.cfg", save_master.password)
+
+func _on_atk_left_click_button_toggled(toggled_on:bool) -> void:
+	save_master.controls.set_value("controls", "mouse1_attack", toggled_on)
+	save_master.controls.save_encrypted_pass("user://savedata.cfg", save_master.password)
+	if toggled_on:
+		var event := InputEventMouseButton.new()
+		event.button_index = MOUSE_BUTTON_LEFT
+		event.pressed = true 
+		if not InputMap.has_action("attack"):
+			InputMap.add_action("attack")
+		InputMap.action_add_event("attack", event)
+	else:
+		for event in InputMap.action_get_events("attack"):
+			if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+				InputMap.action_erase_event("attack", event)

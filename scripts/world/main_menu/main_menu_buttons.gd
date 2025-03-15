@@ -12,7 +12,7 @@ func _ready() -> void:
 	var config : ConfigFile = ConfigFile.new()
 	config.load_encrypted_pass("user://savedata.cfg", save_master.password)
 	versionLabel.text = ProjectSettings.get_setting("application/config/version")
-	leaderboard_button.disabled = !config.get_value("settings", "online_mode")
+	leaderboard_button.disabled = !config.get_value("settings", "online_mode", false)
 	if leaderboard_button.disabled:
 		leaderboard_button.disconnect("mouse_entered", _on_leaderboard_button_mouse_entered)
 		leaderboard_button.disconnect("mouse_exited", _on_leaderboard_button_mouse_exited)
