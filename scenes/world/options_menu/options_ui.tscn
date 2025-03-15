@@ -481,10 +481,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 2.0
-offset_top = 134.0
-offset_right = 2.0
-offset_bottom = -128.0
+offset_top = 272.0
+offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -559,6 +557,33 @@ alignment = 2
 
 [node name="web_delete_component" parent="TabContainer/Controls/HBoxContainer2" instance=ExtResource("8_5an64")]
 
+[node name="HBoxContainer3" type="HBoxContainer" parent="TabContainer/Controls"]
+offset_left = 22.0
+offset_top = 134.0
+offset_right = 1620.0
+offset_bottom = 270.0
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="TabContainer/Controls/HBoxContainer3"]
+custom_minimum_size = Vector2(900, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ekkdw")
+theme_override_font_sizes/font_size = 70
+text = "Allow Roll on Right-Click"
+
+[node name="VSeparator" type="VSeparator" parent="TabContainer/Controls/HBoxContainer3"]
+custom_minimum_size = Vector2(550, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_ewkaw")
+
+[node name="roll_right_click_button" type="CheckButton" parent="TabContainer/Controls/HBoxContainer3"]
+layout_mode = 2
+theme_override_icons/checked = ExtResource("4_7xjwb")
+theme_override_icons/unchecked = ExtResource("4_ty5sv")
+alignment = 2
+
+[node name="web_delete_component" parent="TabContainer/Controls/HBoxContainer3" instance=ExtResource("8_5an64")]
+
 [node name="title_screen_button" type="TextureButton" parent="."]
 layout_mode = 2
 offset_left = 750.0
@@ -577,6 +602,7 @@ texture_normal = ExtResource("2_ug8si")
 [connection signal="item_selected" from="TabContainer/Graphics/frame_rate/frame_rate_button" to="." method="_on_frame_rate_button_item_selected"]
 [connection signal="tab_button_pressed" from="TabContainer/Controls" to="." method="_on_controls_tab_button_pressed"]
 [connection signal="toggled" from="TabContainer/Controls/HBoxContainer2/atk_left_click_button" to="." method="_on_atk_left_click_button_toggled"]
+[connection signal="toggled" from="TabContainer/Controls/HBoxContainer3/roll_right_click_button" to="." method="_on_roll_right_click_button_toggled"]
 [connection signal="mouse_entered" from="title_screen_button" to="." method="_on_title_screen_button_mouse_entered"]
 [connection signal="mouse_exited" from="title_screen_button" to="." method="_on_title_screen_button_mouse_exited"]
 [connection signal="pressed" from="title_screen_button" to="." method="_on_texture_button_pressed"]

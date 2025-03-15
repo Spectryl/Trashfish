@@ -1,14 +1,15 @@
 extends Control
 @onready var menu : Control = get_parent()
 
-@onready var master_volume_slider : HSlider    = $TabContainer/Sound/master_volume_container/master_volume_slider
-@onready var music_volume_slider  : HSlider    = $TabContainer/Sound/master_volume_container/master_volume_slider
-@onready var sound_volume_slider  : HSlider    = $TabContainer/Sound/sound_volume_container/sound_volume_slider
+@onready var master_volume_slider : HSlider           = $TabContainer/Sound/master_volume_container/master_volume_slider
+@onready var music_volume_slider  : HSlider           = $TabContainer/Sound/master_volume_container/master_volume_slider
+@onready var sound_volume_slider  : HSlider           = $TabContainer/Sound/sound_volume_container/sound_volume_slider
 
-@onready var online_check_button : CheckButton   = $TabContainer/General/MarginContainer/VBoxContainer/HBoxContainer/online_check_button
-@onready var smart_player_button : CheckButton   = $TabContainer/General/MarginContainer/VBoxContainer/HBoxContainer2/smart_player_controls_button
-@onready var atk_left_click_button : CheckButton = $TabContainer/Controls/HBoxContainer2/atk_left_click_button
-@onready var title_screen_button  : TextureButton= $title_screen_button
+@onready var online_check_button     : CheckButton    = $TabContainer/General/MarginContainer/VBoxContainer/HBoxContainer/online_check_button
+@onready var smart_player_button     : CheckButton    = $TabContainer/General/MarginContainer/VBoxContainer/HBoxContainer2/smart_player_controls_button
+@onready var atk_left_click_button   : CheckButton    = $TabContainer/Controls/HBoxContainer2/atk_left_click_button
+@onready var roll_right_click_button : CheckButton    = $TabContainer/Controls/HBoxContainer3/roll_right_click_button
+@onready var title_screen_button     : TextureButton  = $title_screen_button
 
 var master_volume : float
 var music_volume  : float
@@ -30,7 +31,8 @@ func _ready() -> void:
 	frame_rate       = save_master.save_data.get_value("settings",  "framerate", 60.0)
 	online_check_button.button_pressed = save_master.save_data.get_value("settings", "online_mode", false)
 	smart_player_button.button_pressed = save_master.save_data.get_value("settings", "smart_controls", false)
-	atk_left_click_button.button_pressed = save_master.controls.get_value("controls", "mouse1_attack", false)
+	atk_left_click_button.button_pressed   = save_master.controls.get_value("controls", "mouse1_attack", false)
+	roll_right_click_button.button_pressed = save_master.controls.get_value("controls", "mouse2_roll"  , false)
 func _on_texture_button_pressed() -> void:
 	#print(db_to_linear(AudioServer.get_bus_volume_db(global.audio_master.master_bus_index)))
 	#print(db_to_linear(AudioServer.get_bus_volume_db(global.audio_master.music_bus_index)))
@@ -102,3 +104,19 @@ func _on_atk_left_click_button_toggled(toggled_on:bool) -> void:
 		for event in InputMap.action_get_events("attack"):
 			if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 				InputMap.action_erase_event("attack", event)
+
+
+func _on_roll_right_click_button_toggled(toggled_on: bool) -> void:
+	save_master.controls.set_value("controls", "mouse2_roll", toggled_on)
+	save_master.controls.save_encrypted_pass("user://savedata.cfg", save_master.password)
+	if toggled_on:
+		var event := InputEventMouseButton.new()
+		event.button_index = MOUSE_BUTTON_RIGHT
+		event.pressed = true 
+		if not InputMap.has_action("roll"):
+			InputMap.add_action("roll")
+		InputMap.action_add_event("roll", event)
+	else:
+		for event in InputMap.action_get_events("roll"):
+			if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT:
+				InputMap.action_erase_event("roll", event)
