@@ -94,7 +94,7 @@ func _on_shoot_timer_timeout() -> void:
 		gun.visible = false
 		return
 	gun.play("fire")
-	global.sound_master.play("rifle_shot")
+	global.sound_master.play_gunshot()
 	var bullet = spawnable_drop.instantiate()
 	bullet.gun_ship = self
 	get_parent().add_child(bullet)

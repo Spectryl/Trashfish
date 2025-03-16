@@ -143,7 +143,7 @@ func increase_health():
 	if health > max_health:
 		health = max_health
 	heal_flash_body()
-	
+	global.sound_master.play("heal")
 func player_death():
 	global.world.update_hud_when_dead()
 	health = 0
