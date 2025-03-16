@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cgdxhotiii4ud" path="res://scripts/main/sound_master.gd" id="1_amg6c"]
 [ext_resource type="AudioStream" uid="uid://dgk0ebaa1330k" path="res://audio/sound_effects/bloop.ogg" id="2_fjgyy"]
-[ext_resource type="Script" uid="uid://ceej3mdlq733g" path="res://scripts/misc/audio_stream_component.gd" id="3_fwkhs"]
+[ext_resource type="Script" uid="uid://ceej3mdlq733g" path="res://scripts/classes/SoundEffect.gd" id="3_fwkhs"]
 [ext_resource type="AudioStream" uid="uid://gsi72bnh6h0n" path="res://audio/sound_effects/chomp.ogg" id="4_neqga"]
 [ext_resource type="AudioStream" uid="uid://brsyehqsmf2k7" path="res://audio/sound_effects/hover_button.ogg" id="4_vm0py"]
 [ext_resource type="AudioStream" uid="uid://d0hsnqyblfroh" path="res://audio/sound_effects/drop_splash.ogg" id="5_reh3m"]

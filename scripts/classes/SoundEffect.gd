@@ -1,3 +1,4 @@
+class_name SoundEffect
 extends AudioStreamPlayer
 @export var pitch_scale_min : float = 0.95
 @export var pitch_scale_max : float = 1.05
