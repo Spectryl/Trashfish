@@ -37,7 +37,7 @@ size = Vector2(32, 47)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hyw57"]
 radius = 31.0
-height = 96.0
+height = 74.0
 
 [sub_resource type="Curve" id="Curve_dc5av"]
 _data = [Vector2(0.0168539, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
