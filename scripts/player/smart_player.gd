@@ -8,6 +8,7 @@ var starve : int = 100
 @export var world_id : int = 0
 @export var honey_speed : float = 2.5
 @export var ice_speed : int = 5
+@export var turn_speed : float = 5.0
 
 @onready var honey_sprite : AnimatedSprite2D      = $CanvasGroup/honey
 @onready var ice_sprite : AnimatedSprite2D        = $CanvasGroup/ice
@@ -66,7 +67,9 @@ func handle_player_input(delta):
 	
 	velocity.x = lerp(velocity.x, speed * direction.x, acceleration * delta)
 	velocity.y = lerp(velocity.y, speed * direction.y * 0.65, acceleration * delta)
+	#global_rotation = lerp(global_rotation, global_position.angle_to_point(get_global_mouse_position()), turn_speed * delta )
 	global_rotation = global_position.angle_to_point(get_global_mouse_position())
+	#print(global_rotation)
 	flip()
 
 ## Handles basic player animations using bools/state machine
@@ -90,10 +93,10 @@ func handle_player_animation():
 	
 ##Flip the animations and hitboxes
 func flip():
-	body.flip_v = 1 if self.global_rotation > 1.57 else 0
-	head.flip_v = 1 if self.global_rotation > 1.57 else 0
-	honey_sprite.flip_v = 1 if self.global_rotation > 1.57 else 0
-	ice_sprite.flip_v = 1 if self.global_rotation > 1.57 else 0
+	body.flip_v = 1 if abs(self.global_rotation) > 1.57 else 0
+	head.flip_v = 1 if abs(self.global_rotation) > 1.57 else 0
+	honey_sprite.flip_v = 1 if abs(self.global_rotation) > 1.57 else 0
+	ice_sprite.flip_v = 1 if abs(self.global_rotation) > 1.57 else 0
 	#print(global_rotation)
 	return
 

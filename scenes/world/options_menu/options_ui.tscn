@@ -47,10 +47,9 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_ekkdw")
 theme_override_font_sizes/font_size = 50
 tab_alignment = 1
-current_tab = 3
+current_tab = 0
 
 [node name="General" type="TabBar" parent="TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -441,6 +440,7 @@ scale = Vector2(2, 2)
 [node name="web_delete_component" parent="TabContainer/Graphics" instance=ExtResource("8_5an64")]
 
 [node name="Controls" type="TabBar" parent="TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 
@@ -531,6 +531,7 @@ theme_override_constants/separation = 12
 theme_override_styles/separator = SubResource("StyleBoxEmpty_mei8e")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Controls"]
+layout_mode = 0
 offset_left = 22.0
 offset_top = 1.0
 offset_right = 1620.0
@@ -558,6 +559,7 @@ alignment = 2
 [node name="web_delete_component" parent="TabContainer/Controls/HBoxContainer2" instance=ExtResource("8_5an64")]
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="TabContainer/Controls"]
+layout_mode = 0
 offset_left = 22.0
 offset_top = 134.0
 offset_right = 1620.0
