@@ -1,7 +1,9 @@
 extends Node
 @onready var bloop : AudioStreamPlayer       = $bloop
 @onready var button_hover : AudioStreamPlayer= $button_hover
-@onready var chomp      : AudioStreamPlayer  = $chomp
+@onready var chomp1     : AudioStreamPlayer  = $chomp1
+@onready var chomp2     : AudioStreamPlayer  = $chomp2
+@onready var chomp3     : AudioStreamPlayer  = $chomp3
 @onready var drop_splash : AudioStreamPlayer = $drop_splash
 @onready var explosion1 : AudioStreamPlayer  = $explosion1
 @onready var rifle_shot  : AudioStreamPlayer = $rifle_shot
@@ -21,7 +23,9 @@ func _ready() -> void:
 	sound_dictionary["bloop"]        = bloop
 	sound_dictionary["button_hover"] = button_hover
 	sound_dictionary["explosion1"]   = explosion1
-	sound_dictionary["chomp"]        = chomp
+	sound_dictionary["chomp1"]       = chomp1
+	sound_dictionary["chomp2"]       = chomp2
+	sound_dictionary["chomp3"]       = chomp3
 	sound_dictionary["rifle_shot"]   = rifle_shot
 	sound_dictionary["fuse"]         = fuse
 	sound_dictionary["wave_splash"]  = wave_splash
@@ -37,3 +41,16 @@ func play(sfx_name : String):
 # stops a sound effect (this shouldn't be used
 func stop(sfx_name : String):
 	sound_dictionary[sfx_name].stop()
+
+
+## Handles playing the different chomp sound effects to avoid noise fatigue, use this for the player attacking
+func play_chomp():
+	var chomp_to_play : String = ""
+	match randi_range(0,2):
+		0:
+			chomp_to_play = "chomp1"
+		1:
+			chomp_to_play = "chomp2"
+		_:
+			chomp_to_play = "chomp3"
+	self.play(chomp_to_play)

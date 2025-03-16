@@ -211,7 +211,7 @@ func _on_attack_hitbox_body_entered(object: Node2D) -> void:
 	if object.is_in_group("player"):
 		return
 	if object.is_in_group("drop"):
-		global.sound_master.play("chomp")
+		global.sound_master.play_chomp()
 		update_starvation(int(max_starve / 3.0))
 		object.get_parent().attacked()
 		return
@@ -219,7 +219,7 @@ func _on_attack_hitbox_body_entered(object: Node2D) -> void:
 		object.get_parent().attacked()
 		return
 	if object.is_in_group("baby_fish"):
-		global.sound_master.play("chomp")
+		global.sound_master.play_chomp()
 		update_starvation(object.get_stamina())
 		object.attacked()
 		return

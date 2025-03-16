@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c6bnupwh41dh5"]
+[gd_scene load_steps=14 format=3 uid="uid://c6bnupwh41dh5"]
 
 [ext_resource type="Script" uid="uid://cgdxhotiii4ud" path="res://scripts/main/sound_master.gd" id="1_amg6c"]
 [ext_resource type="AudioStream" uid="uid://dgk0ebaa1330k" path="res://audio/sound_effects/bloop.ogg" id="2_fjgyy"]
@@ -6,8 +6,10 @@
 [ext_resource type="AudioStream" uid="uid://gsi72bnh6h0n" path="res://audio/sound_effects/chomp.ogg" id="4_neqga"]
 [ext_resource type="AudioStream" uid="uid://brsyehqsmf2k7" path="res://audio/sound_effects/hover_button.ogg" id="4_vm0py"]
 [ext_resource type="AudioStream" uid="uid://d0hsnqyblfroh" path="res://audio/sound_effects/drop_splash.ogg" id="5_reh3m"]
+[ext_resource type="AudioStream" uid="uid://dy1hc8dl6fkos" path="res://audio/sound_effects/chomp2.ogg" id="6_8bh3l"]
 [ext_resource type="AudioStream" uid="uid://cro1yryl0ibsl" path="res://audio/sound_effects/explosion1.ogg" id="6_4682m"]
 [ext_resource type="AudioStream" uid="uid://brbs0cxdqrjcw" path="res://audio/sound_effects/rifle_shot.ogg" id="7_u2wru"]
+[ext_resource type="AudioStream" uid="uid://bbowq0d2cn0ou" path="res://audio/sound_effects/chomp3.ogg" id="7_xahof"]
 [ext_resource type="AudioStream" uid="uid://bpilryhv40y1r" path="res://audio/sound_effects/fuse.ogg" id="8_ya4cn"]
 [ext_resource type="AudioStream" uid="uid://dho5fbun0qwp7" path="res://audio/sound_effects/wave_splash.ogg" id="9_1q5tc"]
 [ext_resource type="AudioStream" uid="uid://cpvnsnue43iah" path="res://audio/sound_effects/small_chomp.ogg" id="10_4xdid"]
@@ -28,8 +30,20 @@ max_polyphony = 50
 bus = &"Sound"
 script = ExtResource("3_fwkhs")
 
-[node name="chomp" type="AudioStreamPlayer" parent="."]
+[node name="chomp1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_neqga")
+max_polyphony = 5
+bus = &"Sound"
+script = ExtResource("3_fwkhs")
+
+[node name="chomp2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_8bh3l")
+max_polyphony = 5
+bus = &"Sound"
+script = ExtResource("3_fwkhs")
+
+[node name="chomp3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_xahof")
 max_polyphony = 5
 bus = &"Sound"
 script = ExtResource("3_fwkhs")
