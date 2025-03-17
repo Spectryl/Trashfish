@@ -1,77 +1,109 @@
-[gd_scene load_steps=11 format=3 uid="uid://w8uyv2pvcphu"]
+[gd_scene load_steps=17 format=3 uid="uid://w8uyv2pvcphu"]
 
 [ext_resource type="Script" uid="uid://dmcctrt805g3u" path="res://scripts/enemy/classic_world/ships/orca.gd" id="1_60f7f"]
-[ext_resource type="Texture2D" uid="uid://btld3jw1xhve8" path="res://art/enemy/classic_world/enemy_fish.png" id="1_unjmi"]
+[ext_resource type="Texture2D" uid="uid://cabrfler6iq2x" path="res://art/enemy/classic_world/orca_body.png" id="2_7ok1j"]
+[ext_resource type="Texture2D" uid="uid://dkrenasa5rsy2" path="res://art/enemy/classic_world/orca_fins.png" id="3_ef6gy"]
+[ext_resource type="Texture2D" uid="uid://bfxji2aqjbu81" path="res://art/enemy/classic_world/orca_tail.png" id="4_ef6gy"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_uqn5i"]
-atlas = ExtResource("1_unjmi")
-region = Rect2(0, 0, 100, 70)
+[sub_resource type="AtlasTexture" id="AtlasTexture_io3va"]
+atlas = ExtResource("3_ef6gy")
+region = Rect2(0, 0, 20, 40)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dkyx3"]
-atlas = ExtResource("1_unjmi")
-region = Rect2(100, 0, 100, 70)
+[sub_resource type="AtlasTexture" id="AtlasTexture_7yrl4"]
+atlas = ExtResource("3_ef6gy")
+region = Rect2(20, 0, 20, 40)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lpqjf"]
-atlas = ExtResource("1_unjmi")
-region = Rect2(200, 0, 100, 70)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ohnx8"]
+atlas = ExtResource("3_ef6gy")
+region = Rect2(40, 0, 20, 40)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lf1sc"]
-atlas = ExtResource("1_unjmi")
-region = Rect2(300, 0, 100, 70)
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5sgr"]
+atlas = ExtResource("3_ef6gy")
+region = Rect2(60, 0, 20, 40)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hqea0"]
-atlas = ExtResource("1_unjmi")
-region = Rect2(400, 0, 100, 70)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ijv32"]
+atlas = ExtResource("3_ef6gy")
+region = Rect2(80, 0, 20, 40)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_uo0ey"]
-atlas = ExtResource("1_unjmi")
-region = Rect2(500, 0, 100, 70)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cfqf8"]
-atlas = ExtResource("1_unjmi")
-region = Rect2(600, 0, 100, 70)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_s203c"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_0paym"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_uqn5i")
+"texture": SubResource("AtlasTexture_io3va")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dkyx3")
+"texture": SubResource("AtlasTexture_7yrl4")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lpqjf")
+"texture": SubResource("AtlasTexture_ohnx8")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lf1sc")
+"texture": SubResource("AtlasTexture_f5sgr")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hqea0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_uo0ey")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cfqf8")
+"texture": SubResource("AtlasTexture_ijv32")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
-[node name="orca" type="Node2D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0paym"]
+atlas = ExtResource("4_ef6gy")
+region = Rect2(0, 0, 14, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5u81"]
+atlas = ExtResource("4_ef6gy")
+region = Rect2(14, 0, 14, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cjcee"]
+atlas = ExtResource("4_ef6gy")
+region = Rect2(28, 0, 14, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jj24s"]
+atlas = ExtResource("4_ef6gy")
+region = Rect2(42, 0, 14, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvkt2"]
+atlas = ExtResource("4_ef6gy")
+region = Rect2(56, 0, 14, 34)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3fwav"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0paym")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q5u81")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cjcee")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jj24s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvkt2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="orca" type="CharacterBody2D"]
 script = ExtResource("1_60f7f")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="body" type="Sprite2D" parent="."]
 texture_filter = 1
-texture_repeat = 1
-position = Vector2(5, -16)
-sprite_frames = SubResource("SpriteFrames_s203c")
+texture = ExtResource("2_7ok1j")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="fins" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(2, 3)
+sprite_frames = SubResource("SpriteFrames_0paym")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-polygon = PackedVector2Array(-29, -31, -22, -20, -19, -20, -15, -25, -2, -25, -4, -33, 0, -35, 7, -25, 20, -25, 29, -18, 29, -13, 14, -6, 2, -1, -2, -1, -13, -6, -18, -14, -27, -4, -28, -4, -30, -6)
-
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[node name="tail" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-26, 0)
+sprite_frames = SubResource("SpriteFrames_3fwav")
