@@ -52,6 +52,7 @@ drop=""
 seaweed="seaweed"
 baby_fish=""
 controls="use this for the control labels so they can be set properly"
+orca="orcane"
 
 [input]
 

@@ -18,7 +18,7 @@ var world_id = 2
 func _ready() -> void:
 	
 	sun_player.play("rotate_sun")
-	fish_master.set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
+	#fish_master.set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
 	health = player.get_health()
 	starve_bar.max_value = player.max_starve
 	high_score = save_master.save_data.get_value("player", "beach_classic_high_score", 0)

@@ -217,14 +217,15 @@ func _on_attack_hitbox_body_entered(object: Node2D) -> void:
 		update_starvation(int(max_starve / 3.0))
 		object.get_parent().attacked()
 		return
-	if object.is_in_group("main_menu_block"):
-		object.get_parent().attacked()
-		return
-	if object.is_in_group("baby_fish"):
+	if object.is_in_group("baby_fish") or object.is_in_group("orca"):
 		global.sound_master.play_chomp()
-		update_starvation(object.get_stamina())
+		if object.has_method("get_stamina"):
+			update_starvation(object.get_stamina())
+		else:
+			update_starvation(5)
 		object.attacked()
 		return
+
 		
 
 
