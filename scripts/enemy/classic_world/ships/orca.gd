@@ -9,7 +9,8 @@ extends CharacterBody2D
 @onready var nav_agent : NavigationAgent2D      = $NavigationAgent2D
 @onready var parent : Node2D = get_parent()
 
-@export var speed : int = 150
+@export var health : int = 3
+@export var speed  : int = 150
 const acceleration = 10
 var endPos : Vector2
 var angle : float
@@ -25,8 +26,8 @@ enum state {
 func _ready() -> void:
 	current_state = state.SWIM
 	bin.visible = true
-	var parentX : float = parent.global_position.x
-	var parentY : float = parent.global_position.y
+	var parentX : int = int(parent.global_position.x)
+	var parentY : int = int(parent.global_position.y)
 	speed += randi_range(0,50)
 	match parentX:
 		50:
@@ -40,7 +41,7 @@ func _ready() -> void:
 			endPos.y = randi_range(0,700) + 250
 			global_position.x = 2000
 			global_position.y = parentY
-	new_angle()
+	create_new_angle()
 
 
 ## turns on the particles when the orca goes anger mode, run this in the animation player
@@ -48,31 +49,21 @@ func turn_on_particles() -> void:
 	particle.emitting = true
 
 func attacked() -> void:
-	if current_state == state.hurt:
+	if current_state == state.HURT:
 		return
-
-	current_state = state.HURT
 	velocity = Vector2(0,0)
+	print("Orca has been hit!")
 	animation_player.play("attacked")
-
-func new_angle() -> void:
-	angle = global_position.angle_to_point(endPos)
-	direction = Vector2.from_angle(angle)
-	distance = direction * speed
+	#animation_player.play("start_anger_mode")
 
 func _physics_process(delta) -> void:
 	work(delta)
-
-
-
 	if global_position.x > 2000 or global_position.x < -100:
-		parent.fish_returned += 1
 		parent.fish_returned += 1
 		call_deferred("queue_free")
 	move_and_slide()
 
-
-
+## do an assignment based on our current state
 func work(delta):
 	match current_state:
 		state.SWIM:
@@ -82,4 +73,22 @@ func work(delta):
 		state.HURT:
 			print("ouch")
 		state.ATTACK:
-			print("die")
+			print("time to hurt!")
+## allows the animation player to change the state we are on
+func change_state(new_state : state):
+	print(new_state)
+	current_state = new_state
+
+## change the angle we are heading towards
+func create_new_angle() -> void:
+	angle = global_position.angle_to_point(endPos)
+	direction = Vector2.from_angle(angle)
+	distance = direction * speed
+
+func decrease_health() -> void:
+	health -= 1
+
+	if health == 1:
+		change_state(state.ATTACK)
+		return
+	change_state(state.SWIM)
