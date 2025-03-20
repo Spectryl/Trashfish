@@ -1,12 +1,12 @@
 extends CharacterBody2D
-@onready var body : Sprite2D                    = $CanvasGroup/body
-@onready var fins : AnimatedSprite2D            = $CanvasGroup/fins
-@onready var bin  : Sprite2D                    = $CanvasGroup/bin
-@onready var tail : AnimatedSprite2D            = $CanvasGroup/tail
-@onready var animation_player : AnimationPlayer = $AnimationPlayer
-@onready var collision : CollisionShape2D       = $CollisionShape2D
-@onready var particle : CPUParticles2D          = $CPUParticles2D
-@onready var nav_agent : NavigationAgent2D      = $NavigationAgent2D
+@onready var body : Sprite2D                           = $CanvasGroup/body
+@onready var fins : AnimatedSprite2D                   = $CanvasGroup/fins
+@onready var bin  : Sprite2D                           = $CanvasGroup/bin
+@onready var tail : AnimatedSprite2D                   = $CanvasGroup/tail
+@onready var animation_player : AnimationPlayer        = $AnimationPlayer
+@onready var collision : CollisionShape2D              = $CollisionShape2D
+@onready var particle : CPUParticles2D                 = $CPUParticles2D
+@onready var navigation_agent : NavigationAgent2D      = $NavigationAgent2D
 @onready var parent : Node2D = get_parent()
 
 @export var health : int = 3
@@ -24,6 +24,7 @@ enum state {
 }
 
 func _ready() -> void:
+	animation_player.play("RESET")
 	current_state = state.SWIM
 	bin.visible = true
 	var parentX : int = int(parent.global_position.x)
@@ -53,6 +54,7 @@ func attacked() -> void:
 		return
 	velocity = Vector2(0,0)
 	print("Orca has been hit!")
+	change_state(2)
 	animation_player.play("attacked")
 	#animation_player.play("start_anger_mode")
 
@@ -67,16 +69,20 @@ func _physics_process(delta) -> void:
 func work(delta):
 	match current_state:
 		state.SWIM:
-			animation_player.play("swim_right" if velocity.x > 0 else "swim_left")
 			velocity.x = lerp(velocity.x, speed * direction.x, acceleration * delta)
 			velocity.y = lerp(velocity.y, speed * direction.y * 0.45, acceleration * delta)
+			animation_player.play("swim_right" if velocity.x > 0 else "swim_left")
 		state.HURT:
-			print("ouch")
+			pass
 		state.ATTACK:
-			print("time to hurt!")
+			navigation_agent.target_position = global.player.global_position
+			var nav_direction : Vector2 = (navigation_agent.get_next_path_position() - global_position).normalized()
+			velocity.x = lerp(velocity.x, speed * nav_direction.x, acceleration * delta)
+			velocity.y = lerp(velocity.y, speed * nav_direction.y * 0.45, acceleration * delta)
+			animation_player.play("swim_right" if velocity.x > 0 else "swim_left")
 ## allows the animation player to change the state we are on
-func change_state(new_state : state):
-	print(new_state)
+func change_state(new_state : int):
+	#print(new_state)
 	current_state = new_state
 
 ## change the angle we are heading towards
@@ -89,6 +95,10 @@ func decrease_health() -> void:
 	health -= 1
 
 	if health == 1:
-		change_state(state.ATTACK)
+		animation_player.play("start_anger_mode")
+		speed *= 2
 		return
-	change_state(state.SWIM)
+	if health == 0:
+		global.world.score += 1
+		call_deferred("queue_free")
+	change_state(0)

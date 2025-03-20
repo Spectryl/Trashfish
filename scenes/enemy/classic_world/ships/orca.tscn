@@ -262,12 +262,9 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
 "values": [{
-"args": [2],
-"method": &"change_state"
-}, {
 "args": [],
 "method": &"decrease_health"
 }]
@@ -327,6 +324,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [ExtResource("2_io3va"), ExtResource("2_ef6gy")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasGroup:material:shader_parameter/flash_modifier")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_ef6gy"]
@@ -619,3 +628,13 @@ color_ramp = SubResource("Gradient_f5sgr")
 color_initial_ramp = SubResource("Gradient_ijv32")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_postprocessing = 1
+avoidance_enabled = true
+radius = 30.0
+max_neighbors = 5
+time_horizon_obstacles = 1.0
+max_speed = 400.0
+avoidance_priority = 0.0
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(0, 1, 0, 1)
