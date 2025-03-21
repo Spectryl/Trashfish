@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://w8uyv2pvcphu"]
+[gd_scene load_steps=32 format=3 uid="uid://w8uyv2pvcphu"]
 
 [ext_resource type="Script" uid="uid://dmcctrt805g3u" path="res://scripts/enemy/classic_world/ships/orca.gd" id="1_60f7f"]
 [ext_resource type="Texture2D" uid="uid://c3d41pfyqeote" path="res://resources/objects/evil_orca_body.tres" id="2_ef6gy"]
@@ -240,6 +240,18 @@ tracks/11/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Area2D/CollisionShape2D:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(53, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_f5sgr"]
 resource_name = "attacked"
@@ -438,6 +450,18 @@ tracks/7/keys = {
 "update": 0,
 "values": [Vector2(0, 2)]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Area2D/CollisionShape2D:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-53.315, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_7yrl4"]
 resource_name = "swim_right"
@@ -539,6 +563,18 @@ tracks/7/keys = {
 "update": 1,
 "values": [Vector2(-1, 2)]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Area2D/CollisionShape2D:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(53.405, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7yrl4"]
 _data = {
@@ -567,6 +603,10 @@ colors = PackedColorArray(0.6142, 0.807499, 0.442552, 1, 0.294118, 0.411765, 0.1
 [sub_resource type="Gradient" id="Gradient_ijv32"]
 offsets = PackedFloat32Array(0, 0.994444, 1)
 colors = PackedColorArray(0.518563, 0.727581, 0.328613, 1, 0.481386, 0.678388, 0.301775, 1, 0.121689, 0.189186, 0.0590869, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ohnx8"]
+radius = 11.0
+height = 46.0
 
 [node name="orca" type="CharacterBody2D" groups=["orca"]]
 motion_mode = 1
@@ -638,3 +678,13 @@ avoidance_priority = 0.0
 debug_enabled = true
 debug_use_custom = true
 debug_path_custom_color = Color(0, 1, 0, 1)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(53, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ohnx8")
+debug_color = Color(0.95993, 9.62615e-07, 0.518882, 0.42)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

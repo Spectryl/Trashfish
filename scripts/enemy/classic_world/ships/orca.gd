@@ -7,6 +7,7 @@ extends CharacterBody2D
 @onready var collision : CollisionShape2D              = $CollisionShape2D
 @onready var particle : CPUParticles2D                 = $CPUParticles2D
 @onready var navigation_agent : NavigationAgent2D      = $NavigationAgent2D
+@onready var attack_hitbox : CollisionShape2D          = $Area2D/CollisionShape2D
 @onready var parent : Node2D = get_parent()
 
 @export var health : int = 3
@@ -17,6 +18,9 @@ var angle : float
 var direction : Vector2
 var distance : Vector2
 var current_state : state
+
+
+var angle_of_object_that_is_attacking_me : float
 enum state {
 	SWIM = 0,
 	ATTACK = 1,
@@ -49,13 +53,14 @@ func _ready() -> void:
 func turn_on_particles() -> void:
 	particle.emitting = true
 
-func attacked() -> void:
+func attacked(object: Node2D) -> void:
 	if current_state == state.HURT:
 		return
 	velocity = Vector2(0,0)
 	print("Orca has been hit!")
 	change_state(2)
 	animation_player.play("attacked")
+	angle_of_object_that_is_attacking_me = global_position.angle_to_point(object.global_position) + PI
 	#animation_player.play("start_anger_mode")
 
 func _physics_process(delta) -> void:
@@ -73,7 +78,9 @@ func work(delta):
 			velocity.y = lerp(velocity.y, speed * direction.y * 0.45, acceleration * delta)
 			animation_player.play("swim_right" if velocity.x > 0 else "swim_left")
 		state.HURT:
-			pass
+			var obj_direction = Vector2(cos(angle_of_object_that_is_attacking_me), sin(angle_of_object_that_is_attacking_me))
+			velocity.x = lerp(velocity.x, speed * obj_direction.x / 2, acceleration * delta)
+			velocity.y = lerp(velocity.y, speed * obj_direction.y * 0.45 / 2, acceleration * delta)
 		state.ATTACK:
 			navigation_agent.target_position = global.player.global_position
 			var nav_direction : Vector2 = (navigation_agent.get_next_path_position() - global_position).normalized()
@@ -83,6 +90,7 @@ func work(delta):
 ## allows the animation player to change the state we are on
 func change_state(new_state : int):
 	#print(new_state)
+	@warning_ignore("int_as_enum_without_cast")
 	current_state = new_state
 
 ## change the angle we are heading towards
@@ -102,3 +110,22 @@ func decrease_health() -> void:
 		global.world.score += 1
 		call_deferred("queue_free")
 	change_state(0)
+
+func _on_area_2d_body_entered(object: Node2D) -> void:
+	if object == self:
+		return
+
+	if object.is_in_group("player"):
+		global.sound_master.play_chomp()
+		body.decrease_health()
+	if object.is_in_group("drop"):
+		global.sound_master.play_chomp()
+		body.get_parent().queue_free()
+	if object.is_in_group("baby_fish"):
+		global.sound_master.play_chomp()
+		body.attacked()
+		return
+	if object.is_in_group("orca"):
+		global.sound_master.play_chomp()
+		body.attacked(self)
+		return

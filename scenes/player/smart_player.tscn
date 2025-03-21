@@ -441,8 +441,6 @@ one_shot = true
 
 [node name="control_timer" type="Timer" parent="debuff_master"]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
 [connection signal="timeout" from="CanvasGroup/body/flash_timer" to="." method="_on_flash_timer_timeout"]
 [connection signal="timeout" from="Starve_Timer" to="." method="_on_starve_timer_timeout"]
 [connection signal="body_entered" from="attack_hitbox" to="." method="_on_attack_hitbox_body_entered"]
