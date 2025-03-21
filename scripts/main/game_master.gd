@@ -14,6 +14,18 @@ const resolutions : Dictionary = {
 	"3440x1440" = Vector2i(3440,1440),
 	"3840x2160" = Vector2i(3840,2160)
 }
+const frames_per_second : Array[int] = [
+	30,
+	60,
+	75,
+	90,
+	120,
+	144,
+	240,
+	360,
+	480,
+	640, #Gamer fps right here
+]
 var control_list : Array[String] = ["move_left", "move_right", "move_up", "move_down", "attack", "roll"]
 func _ready() -> void:
 	if OS.has_environment("USERNAME") and OS.get_environment("USERNAME").to_lower().count("Carl", 0,0) == 0:
@@ -31,6 +43,7 @@ func _ready() -> void:
 	audio_master.set_up_audio(save_master.password)
 	change_display(save_master.save_data.get_value("settings", "window", 1))
 	change_resolution(save_master.save_data.get_value("settings", "resolution", 2))
+	change_frames(save_master.save_data.get_value("settings", "framerate", 1))
 	set_controls()
 	if save_master.save_data.get_value("settings", "online_mode", false):
 		online_master.turn_on_online()
@@ -54,6 +67,9 @@ func change_resolution(index : int) -> void:
 	var centre_screen = DisplayServer.screen_get_position() + DisplayServer.screen_get_size()/2
 	var window_size = get_window().get_size_with_decorations()
 	get_window().set_position(centre_screen - window_size/2)
+
+func change_frames(index: int) -> void:
+	Engine.max_fps = frames_per_second[index]
 
 func set_controls() -> void:
 	for i in range(len(control_list)):

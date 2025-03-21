@@ -18,7 +18,7 @@ var sound_volume  : float
 var window_index : int
 var resolution_index : int
 var vsync_mode : bool
-var frame_rate : int
+var frame_index : int
 func _ready() -> void:
 	
 
@@ -28,7 +28,7 @@ func _ready() -> void:
 	window_index     = save_master.save_data.get_value("settings",  "window", 0)
 	resolution_index = save_master.save_data.get_value("settings",  "resolution", 0)
 	vsync_mode       = save_master.save_data.get_value("settings",  "vsync", 1.0)
-	frame_rate       = save_master.save_data.get_value("settings",  "framerate", 60.0)
+	frame_index       = save_master.save_data.get_value("settings",  "framerate", 0)
 	online_check_button.button_pressed = save_master.save_data.get_value("settings", "online_mode", false)
 	smart_player_button.button_pressed = save_master.save_data.get_value("settings", "smart_controls", false)
 	atk_left_click_button.button_pressed   = save_master.controls.get_value("controls", "mouse1_attack", false)
@@ -43,7 +43,7 @@ func _on_texture_button_pressed() -> void:
 	save_master.save_data.set_value("settings", "window", window_index)
 	save_master.save_data.set_value("settings", "resolution", resolution_index)
 	save_master.save_data.set_value("settings", "vsync", vsync_mode)
-	save_master.save_data.set_value("settings", "framerate", frame_rate)
+	save_master.save_data.set_value("settings", "framerate", frame_index)
 	#save_master.save_data.set_value("controls", "controls", InputMap)
 	save_master.save_data.save_encrypted_pass("user://savedata.cfg", save_master.password)
 	menu.switch_menu(0)
@@ -73,7 +73,7 @@ func _on_frame_rate_button_item_selected(index: int) -> void:
 	var fps        = (index+1) * 15
 	#print(fps)
 	Engine.max_fps = fps
-	frame_rate     = fps
+	frame_index    = index
 	global.sound_master.play("button_hover")
 
 
