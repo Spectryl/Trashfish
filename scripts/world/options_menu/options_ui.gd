@@ -92,7 +92,7 @@ func _on_smart_player_control_button_toggled(toggled_on:bool) -> void:
 
 func _on_atk_left_click_button_toggled(toggled_on:bool) -> void:
 	save_master.controls.set_value("controls", "mouse1_attack", toggled_on)
-	save_master.controls.save_encrypted_pass("user://savedata.cfg", save_master.password)
+	save_master.controls.save_encrypted_pass("user://controls.cfg", save_master.password)
 	if toggled_on:
 		var event := InputEventMouseButton.new()
 		event.button_index = MOUSE_BUTTON_LEFT
@@ -108,7 +108,7 @@ func _on_atk_left_click_button_toggled(toggled_on:bool) -> void:
 
 func _on_roll_right_click_button_toggled(toggled_on: bool) -> void:
 	save_master.controls.set_value("controls", "mouse2_roll", toggled_on)
-	save_master.controls.save_encrypted_pass("user://savedata.cfg", save_master.password)
+	save_master.controls.save_encrypted_pass("user://controls.cfg", save_master.password)
 	if toggled_on:
 		var event := InputEventMouseButton.new()
 		event.button_index = MOUSE_BUTTON_RIGHT

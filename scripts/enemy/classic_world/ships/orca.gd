@@ -117,15 +117,15 @@ func _on_area_2d_body_entered(object: Node2D) -> void:
 
 	if object.is_in_group("player"):
 		global.sound_master.play_chomp()
-		body.decrease_health()
+		object.decrease_health()
 	if object.is_in_group("drop"):
 		global.sound_master.play_chomp()
-		body.get_parent().queue_free()
+		object.get_parent().queue_free()
 	if object.is_in_group("baby_fish"):
 		global.sound_master.play_chomp()
-		body.attacked()
+		object.attacked()
 		return
 	if object.is_in_group("orca"):
 		global.sound_master.play_chomp()
-		body.attacked(self)
+		object.attacked(self)
 		return
