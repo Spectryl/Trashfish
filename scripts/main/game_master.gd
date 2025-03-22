@@ -38,8 +38,8 @@ func _ready() -> void:
 		print("DEBUG BUILD")
 		save_master.save_data.set_value("player", "player_name", "dev_build" + ProjectSettings.get_setting("application/config/version"))
 		save_master.save_data.save_encrypted_pass("user://savedata.cfg", save_master.password)
-		print(save_master.controls.get_value("controls", "mouse1_attack", false))
-		print(save_master.controls.get_value("controls", "mouse2_roll"  , false))
+		#print(save_master.controls.get_value("controls", "mouse1_attack", false))
+		#print(save_master.controls.get_value("controls", "mouse2_roll"  , false))
 		
 	
 	global.game_master = self

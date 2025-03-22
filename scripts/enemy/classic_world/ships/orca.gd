@@ -8,6 +8,7 @@ extends CharacterBody2D
 @onready var particle : CPUParticles2D                 = $CPUParticles2D
 @onready var navigation_agent : NavigationAgent2D      = $NavigationAgent2D
 @onready var attack_hitbox : CollisionShape2D          = $Area2D/CollisionShape2D
+@onready var attack_cooldown_timer : Timer             = $attack_cooldown_timer
 @onready var parent : Node2D = get_parent()
 
 @export var health : int = 3
@@ -61,6 +62,7 @@ func attacked(object: Node2D) -> void:
 	change_state(2)
 	animation_player.play("attacked")
 	angle_of_object_that_is_attacking_me = global_position.angle_to_point(object.global_position) + PI
+	attack_hitbox.set_deferred("disabled", true)
 	#animation_player.play("start_anger_mode")
 
 func _physics_process(delta) -> void:
@@ -110,7 +112,7 @@ func decrease_health() -> void:
 		global.world.score += 1
 		call_deferred("queue_free")
 	change_state(0)
-
+	attack_hitbox.set_deferred("disabled", false)
 func _on_area_2d_body_entered(object: Node2D) -> void:
 	if object == self:
 		return
@@ -129,3 +131,6 @@ func _on_area_2d_body_entered(object: Node2D) -> void:
 		global.sound_master.play_chomp()
 		object.attacked(self)
 		return
+
+func reset_attack_cooldown_timer() -> void:
+	attack_hitbox.set_deferred("disabled", false)
