@@ -18,7 +18,7 @@ var drop
 var sound_master : Node
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	parent.global_position.y = parent.get_parent().global_position.y + randi_range(0,3)
+	parent.global_position.y = 205 + randi_range(0,3)
 	world = global.world
 	sound_timer = Timer.new()
 	sound_master = global.sound_master
@@ -38,7 +38,6 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	# IF we aren't moving and we aren't dropping items, then we should find a new spot to go
-	
 	match state:
 		0:
 			sound_timer.start(stream_length)

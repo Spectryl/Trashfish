@@ -10,8 +10,9 @@ var world_id = 2
 @onready var health_ui : Label                 = $CanvasLayer/Panel/health
 @onready var sun_player : AnimationPlayer      = $ParallaxBackground/sun/sun_animator
 
-@onready var ship_master : Node2D              = $ship_master
-@onready var fish_master : Node2D              = $fish_master
+@onready var ship_master : Node              = $ship_spawner
+@onready var fish_master : Node              = $fish_spawner
+@onready var cloud_master : Node             = $cloud_spawner
 
 @onready var player : CharacterBody2D          = global.player
 @onready var sound_master : Node               = global.sound_master

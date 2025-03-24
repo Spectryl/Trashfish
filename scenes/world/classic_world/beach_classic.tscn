@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://dj4vdaxwdewiu"]
+[gd_scene load_steps=16 format=3 uid="uid://dj4vdaxwdewiu"]
 
 [ext_resource type="Script" uid="uid://vfulhdfdtfq" path="res://scripts/world/classic_world/world.gd" id="1_42akp"]
 [ext_resource type="Script" uid="uid://cwv7wyh41r5ej" path="res://scripts/world/classic_world/ship_master.gd" id="3_wrqgk"]
 [ext_resource type="Script" uid="uid://bceuqvwln5csp" path="res://scripts/world/classic_world/fish_master.gd" id="4_e54kb"]
+[ext_resource type="Script" uid="uid://b1j4jwuqlu6xa" path="res://scripts/world/classic_world/cloud_master.gd" id="4_qtf37"]
 [ext_resource type="Script" uid="uid://c067qta5dxr8v" path="res://addons/antialiased_line2d/antialiased_polygon2d.gd" id="5_185ki"]
 [ext_resource type="Texture2D" uid="uid://cuojeer2s18bk" path="res://art/world/classic_world/sun.png" id="5_ubss0"]
 [ext_resource type="FontFile" uid="uid://c0quiovxikjm8" path="res://font/VT323-Regular.ttf" id="6_k6brb"]
@@ -95,16 +96,29 @@ polygon = PackedVector2Array(0, 205, 1920, 205, 1920, 1003, 0, 1003)
 one_way_collision_margin = 0.0
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="collision"]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_m74sn")
 
-[node name="ship_master" type="Node2D" parent="."]
-position = Vector2(393, 205)
-script = ExtResource("3_wrqgk")
+[node name="orca_collision" type="StaticBody2D" parent="."]
+collision_layer = 8
 
-[node name="fish_master" type="Node2D" parent="."]
+[node name="collision_layer_4" type="CollisionPolygon2D" parent="orca_collision"]
+polygon = PackedVector2Array(1920, 203, 1920, 95, -522, 104, 0, 1081, 1921, 1080, 1920, 1003, 1, 1003, -435, 182, -1, 203)
+
+[node name="ship_spawner" type="Node" parent="."]
+script = ExtResource("3_wrqgk")
+metadata/_custom_type_script = "uid://busgbpk51m382"
+
+[node name="fish_spawner" type="Node" parent="."]
 script = ExtResource("4_e54kb")
-wait_time = 10.0
 max_entities = 10
+wait_time = 10.0
+metadata/_custom_type_script = "uid://busgbpk51m382"
+
+[node name="cloud_spawner" type="Node" parent="."]
+script = ExtResource("4_qtf37")
+wait_time = 15.0
+metadata/_custom_type_script = "uid://busgbpk51m382"
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 

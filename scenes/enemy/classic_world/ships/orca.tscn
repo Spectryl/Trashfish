@@ -623,6 +623,7 @@ radius = 11.0
 height = 46.0
 
 [node name="orca" type="CharacterBody2D" groups=["orca"]]
+collision_mask = 9
 motion_mode = 1
 script = ExtResource("1_60f7f")
 

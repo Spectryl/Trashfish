@@ -35,8 +35,8 @@ func _ready() -> void:
 	var parentX : int = int(parent.global_position.x)
 	var parentY : int = int(parent.global_position.y)
 	speed += randi_range(0,50)
-	match parentX:
-		50:
+	match parentX < 100:
+		true:
 			endPos.x = 2000
 			endPos.y = randi_range(0,700) + 250
 			global_position.x = -100
