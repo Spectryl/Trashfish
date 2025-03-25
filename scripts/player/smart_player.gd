@@ -1,6 +1,7 @@
 extends TrashShark
 
 ## Handles basic player movement
+# @Override
 func handle_player_input(delta):
 	if not is_rolling:
 		direction = Input.get_vector("move_left","move_right","move_up","move_down").normalized()
@@ -17,6 +18,7 @@ func handle_player_input(delta):
 
 
 ##Flip the animations and hitboxes
+# @Override
 func flip(_new_value : bool) -> void:
 	body.flip_v = 1 if abs(self.global_rotation) > 1.57 else 0
 	head.flip_v = 1 if abs(self.global_rotation) > 1.57 else 0

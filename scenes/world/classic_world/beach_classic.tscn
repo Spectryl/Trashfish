@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dj4vdaxwdewiu"]
+[gd_scene load_steps=18 format=3 uid="uid://dj4vdaxwdewiu"]
 
 [ext_resource type="Script" uid="uid://vfulhdfdtfq" path="res://scripts/world/classic_world/world.gd" id="1_42akp"]
 [ext_resource type="Script" uid="uid://cwv7wyh41r5ej" path="res://scripts/world/classic_world/ship_master.gd" id="3_wrqgk"]
@@ -78,6 +78,12 @@ _data = {
 &"rotate_sun": SubResource("Animation_6wfqe")
 }
 
+[sub_resource type="Gradient" id="Gradient_qtf37"]
+colors = PackedColorArray(0.0117647, 0.713726, 0.858824, 1, 0.356863, 0.67451, 0.882353, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y273x"]
+gradient = SubResource("Gradient_qtf37")
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wl38v"]
 bg_color = Color(0, 0, 0, 1)
 
@@ -103,6 +109,7 @@ navigation_polygon = SubResource("NavigationPolygon_m74sn")
 collision_layer = 8
 
 [node name="collision_layer_4" type="CollisionPolygon2D" parent="orca_collision"]
+visible = false
 polygon = PackedVector2Array(1920, 203, 1920, 95, -522, 104, 0, 1081, 1921, 1080, 1920, 1003, 1, 1003, -435, 182, -1, 203)
 
 [node name="ship_spawner" type="Node" parent="."]
@@ -128,6 +135,7 @@ antialiased = true
 polygon = PackedVector2Array(0, 0, 1920, 0, 1920, 206, 0, 206)
 
 [node name="wave_polygon" type="Polygon2D" parent="ParallaxBackground"]
+visible = false
 color = Color(0.0156863, 0.717647, 0.862745, 1)
 antialiased = true
 polygon = PackedVector2Array(-1, 205, 1920, 205, 1921, 461, -2, 461)
@@ -136,12 +144,13 @@ stroke_color = Color(0.0156863, 0.717647, 0.862745, 1)
 stroke_width = 2.0
 
 [node name="deep_water_polygon" type="Polygon2D" parent="ParallaxBackground"]
+visible = false
 color = Color(0.356863, 0.678431, 0.882353, 1)
 polygon = PackedVector2Array(0, 461, 1920, 461, 1920, 1004, -1, 1004)
 
 [node name="sand_polygon" type="Polygon2D" parent="ParallaxBackground"]
 color = Color(0.933333, 0.764706, 0.603922, 1)
-polygon = PackedVector2Array(0, 1003, 1921, 1003, 1921, 1080, 0, 1081)
+polygon = PackedVector2Array(0, 1003, 1920, 1004, 1921, 1080, 0, 1081)
 
 [node name="sun" type="Sprite2D" parent="ParallaxBackground"]
 texture_filter = 1
@@ -153,6 +162,12 @@ root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_5qlfs")
 }
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground"]
+position = Vector2(959.999, 604.479)
+rotation = 1.5708
+scale = Vector2(12.4857, 30)
+texture = SubResource("GradientTexture2D_y273x")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 10

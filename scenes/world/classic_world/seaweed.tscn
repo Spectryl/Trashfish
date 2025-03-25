@@ -180,6 +180,7 @@ _data = [Vector2(0.00561798, 0.879121), 0.0, 0.0, 0, 0, Vector2(0.589888, 0.7032
 point_count = 4
 
 [node name="seaweed" type="Node2D" groups=["seaweed"]]
+z_index = -1
 script = ExtResource("1_wb3sn")
 
 [node name="sea_weed" type="AnimatedSprite2D" parent="."]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btld3jw1xhve8"
-path="res://.godot/imported/enemy_fish.png-b280d0e3b347c0641b5ca9d3d3ad1abf.ctex"
+uid="uid://c4sprrywpxla6"
+path="res://.godot/imported/gamemode_button.png-7a459c4190cef0d314a00c7c3945636b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/enemy/classic_world/enemy_fish.png"
-dest_files=["res://.godot/imported/enemy_fish.png-b280d0e3b347c0641b5ca9d3d3ad1abf.ctex"]
+source_file="res://art/world/main_menu/gamemode_button.png"
+dest_files=["res://.godot/imported/gamemode_button.png-7a459c4190cef0d314a00c7c3945636b.ctex"]
 
 [params]
 

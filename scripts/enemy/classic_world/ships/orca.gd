@@ -110,6 +110,7 @@ func decrease_health() -> void:
 		return
 	if health == 0:
 		global.world.score += 1
+		parent.fish_returned += 1
 		call_deferred("queue_free")
 	change_state(0)
 	attack_hitbox.set_deferred("disabled", false)

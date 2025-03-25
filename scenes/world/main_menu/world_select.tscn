@@ -1,23 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://vk3bcqbry74w"]
+[gd_scene load_steps=10 format=3 uid="uid://vk3bcqbry74w"]
 
 [ext_resource type="Script" uid="uid://defoyjahjbed4" path="res://scripts/world/main_menu/world_select.gd" id="1_1xcrm"]
 [ext_resource type="Texture2D" uid="uid://dmk6o416kmbs2" path="res://art/world/main_menu/choose_your_world.png" id="2_8cebv"]
 [ext_resource type="Texture2D" uid="uid://wkdcrujuq5gd" path="res://art/world/main_menu/back_button.png" id="3_ye7fq"]
+[ext_resource type="Material" uid="uid://delj7xeqnk2md" path="res://resources/buttons/world_icon.res" id="4_frych"]
 [ext_resource type="Texture2D" uid="uid://bid5sqauqcplw" path="res://resources/buttons/beach_world_icon.tres" id="5_xvmf7"]
 [ext_resource type="Script" uid="uid://qpwyi83ax14r" path="res://scripts/classes/TwoClickTextureButton.gd" id="6_y54j7"]
+[ext_resource type="PackedScene" uid="uid://dn0i2d6rnjorj" path="res://scenes/misc/gamemode_select.tscn" id="7_75n5u"]
 
-[sub_resource type="Shader" id="Shader_fm5dq"]
+[sub_resource type="Shader" id="Shader_2xcyd"]
 code = "shader_type canvas_item;
-
-uniform vec4 default_color: source_color;
-uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
-group_uniforms Shine;
-uniform vec3 shine_color: source_color;
-uniform float shine_angle = -45;
-uniform float shine_duration = 5;
-uniform float shine_speed = 800;
-uniform float shine_width = 10;
-uniform float time_offset = 0;
 
 group_uniforms Sine;
 uniform bool do_abs;
@@ -25,25 +17,9 @@ uniform bool do_quantize;
 uniform float quantize_to : hint_range(0, 2, 0.1) = 1;
 uniform vec2 sine_amplitude = vec2(1.0, 0.0);
 uniform vec2 sine_speed = vec2(1.0, 0.0);
-group_uniforms;
-
-void fragment()
-{
-	COLOR = texture(TEXTURE, UV);
-
-	// Shine
-	vec2 coord = SCREEN_UV / SCREEN_PIXEL_SIZE;
-	float dist = abs(
-		sin(radians(shine_angle)) * coord.x +
-		cos(radians(shine_angle)) * coord.y +
-		mod((TIME + time_offset) * shine_speed, shine_duration * shine_speed) - shine_duration * shine_speed * 0.5f
-	);
-	COLOR *= dist <= shine_width ? vec4(shine_color, 1.f) : default_color;
-
-}
 
 void vertex() {
-		vec2 s = sin(TIME * sine_speed);
+	vec2 s = sin(TIME * sine_speed);
 	if (do_abs) {
 		s = abs(s);
 	}
@@ -52,19 +28,11 @@ void vertex() {
 		VERTEX = round(VERTEX / quantize_to);
 		VERTEX *= quantize_to;
 	}
-
 }"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hhoxw"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_frych"]
 resource_local_to_scene = true
-shader = SubResource("Shader_fm5dq")
-shader_parameter/default_color = Color(1, 1, 1, 1)
-shader_parameter/shine_color = Color(0.131848, 0.341657, 1, 1)
-shader_parameter/shine_angle = -45.0
-shader_parameter/shine_duration = 5.0
-shader_parameter/shine_speed = 800.0
-shader_parameter/shine_width = 10.0
-shader_parameter/time_offset = 0.0
+shader = SubResource("Shader_2xcyd")
 shader_parameter/do_abs = false
 shader_parameter/do_quantize = true
 shader_parameter/quantize_to = 1.0
@@ -112,6 +80,7 @@ texture_normal = ExtResource("3_ye7fq")
 
 [node name="worlds" type="HBoxContainer" parent="."]
 texture_filter = 1
+material = ExtResource("4_frych")
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -128,12 +97,19 @@ scale = Vector2(2, 2)
 size_flags_horizontal = 4
 alignment = 1
 
-[node name="TwoClickTextureButton" type="TextureButton" parent="worlds"]
-visible = false
-material = SubResource("ShaderMaterial_hhoxw")
+[node name="VBoxContainer" type="VBoxContainer" parent="worlds"]
+layout_mode = 2
+theme_override_constants/separation = -8
+alignment = 1
+
+[node name="TwoClickTextureButton" type="TextureButton" parent="worlds/VBoxContainer"]
+material = ExtResource("4_frych")
 layout_mode = 2
 texture_normal = ExtResource("5_xvmf7")
 script = ExtResource("6_y54j7")
+
+[node name="TextureRect" parent="worlds/VBoxContainer" instance=ExtResource("7_75n5u")]
+material = SubResource("ShaderMaterial_frych")
 
 [connection signal="mouse_entered" from="back_button" to="." method="_on_back_button_mouse_entered"]
 [connection signal="mouse_exited" from="back_button" to="." method="_on_back_button_mouse_exited"]

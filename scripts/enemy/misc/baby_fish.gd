@@ -7,7 +7,7 @@ extends CharacterBody2D
 @onready var navigation_agent : NavigationAgent2D = $NavigationAgent2D
 @onready var collision   : CollisionShape2D       = $CollisionShape2D
 @onready var job_detection : CollisionShape2D     = $area_detection/CollisionShape2D
-@onready var fish_master      : Node2D            = get_parent()
+@onready var fish_master      : Node              = get_parent()
 
 var attack_timer : Timer
 var player_attack_cooldown_timer : Timer
