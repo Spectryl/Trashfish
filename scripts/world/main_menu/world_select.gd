@@ -9,33 +9,16 @@ var reset_color : Color = Color8(255,255,255,255)     # Color when we stop hover
 var bounce_shine_shader : String = "res://resources/buttons/world_icon.res"
 func _ready() -> void:
 	beach = WorldSelect.new()
-	beach.world_icon_button = TwoClickTextureButton.new()
-	beach.texture_rect = TextureRect.new()
-	beach.left_button  = TextureButton.new()
-	beach.right_button = TextureButton.new()
-	beach.add_theme_constant_override("separation", -8)
-	
+	beach.create_children()
 	beach.world_icon_button.left_click.connect(beach_left_click)
 	beach.world_icon_button.call_deferred("connect","right_click", beach_right_click)
 	beach.left_button.call_deferred("connect","pressed" , beach_minus_signal )
 	beach.right_button.call_deferred("connect","pressed" , beach_right_click )
-	beach.max_gamemodes = 1
 	beach.first_texture  = load("res://resources/buttons/beach_world_icon.tres")
 	beach.second_texture = load("res://resources/buttons/beach_world_guns_icon.tres")
-	
 	beach.world_icon_button.texture_normal = load("res://resources/buttons/beach_world_icon.tres")
-	beach.world_icon_button.material = load(bounce_shine_shader)
-	beach.world_icon_button.material.set_shader_parameter("do_abs", false)
-	beach.world_icon_button.material.set_shader_parameter("do_quantize", true)
-	beach.world_icon_button.material.set_shader_parameter("sine_amplitude", Vector2(0,10))
-	beach.world_icon_button.material.set_shader_parameter("sine_speed", Vector2(0,4))
-	beach.world_icon_button.material.set_shader_parameter("time_offset", 55.0)
-	beach.texture_rect.texture = load("res://resources/buttons/gamemode_selection_background.res")
-	
-	beach.texture_rect.material = load("res://resources/buttons/gamemode_icon_bounce.res")
+	beach.add_all_general_purpose(bounce_shine_shader)
 	beach.create_sign_buttons()
-
-	
 	beach.add_children()
 	
 	worlds.add_child(beach)
