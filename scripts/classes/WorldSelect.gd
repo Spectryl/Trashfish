@@ -58,3 +58,16 @@ func add_all_general_purpose(bounce_shine_shader : String) -> void:
 	world_icon_button.material.set_shader_parameter("time_offset", 55.0)
 	texture_rect.texture = load("res://resources/buttons/gamemode_selection_background.res")
 	texture_rect.material = load("res://resources/buttons/gamemode_icon_bounce.res")
+
+func set_up_mouse_cursors() -> void:
+	world_icon_button.connect("mouse_entered", set_pointer_mouse.bind(2))
+	left_button      .connect("mouse_entered", set_pointer_mouse.bind(2))
+	right_button     .connect("mouse_entered", set_pointer_mouse.bind(2))
+	
+	world_icon_button.connect("mouse_exited", set_pointer_mouse.bind(0))
+	left_button      .connect("mouse_exited", set_pointer_mouse.bind(0))
+	right_button     .connect("mouse_exited", set_pointer_mouse.bind(0))
+	
+
+func set_pointer_mouse(i : int) -> void:
+	Cursor.set_shape(i)

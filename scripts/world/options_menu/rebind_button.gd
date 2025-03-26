@@ -80,3 +80,6 @@ func initial_update_key_text() -> void:
 	var action_event = action_events[0]
 	var action_keycode = OS.get_keycode_string(action_event.get_keycode())
 	button.text = "%s" % action_keycode
+
+func set_mouse_cursor(i : int) -> void:
+	Cursor.set_shape(i)

@@ -47,10 +47,9 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_ekkdw")
 theme_override_font_sizes/font_size = 50
 tab_alignment = 1
-current_tab = 3
+current_tab = 0
 
 [node name="General" type="TabBar" parent="TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -441,6 +440,7 @@ scale = Vector2(2, 2)
 [node name="web_delete_component" parent="TabContainer/Graphics" instance=ExtResource("8_5an64")]
 
 [node name="Controls" type="TabBar" parent="TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 
@@ -596,14 +596,36 @@ grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("2_ug8si")
 
+[connection signal="mouse_entered" from="TabContainer/General/MarginContainer/VBoxContainer/HBoxContainer/online_check_button" to="." method="set_mouse_cursor" flags=3 binds= [2]]
+[connection signal="mouse_exited" from="TabContainer/General/MarginContainer/VBoxContainer/HBoxContainer/online_check_button" to="." method="set_mouse_cursor" binds= [0]]
 [connection signal="toggled" from="TabContainer/General/MarginContainer/VBoxContainer/HBoxContainer/online_check_button" to="." method="_on_online_check_button_toggled"]
+[connection signal="mouse_entered" from="TabContainer/General/MarginContainer/VBoxContainer/HBoxContainer2/smart_player_controls_button" to="." method="set_mouse_cursor" binds= [2]]
+[connection signal="mouse_exited" from="TabContainer/General/MarginContainer/VBoxContainer/HBoxContainer2/smart_player_controls_button" to="." method="set_mouse_cursor" binds= [0]]
 [connection signal="toggled" from="TabContainer/General/MarginContainer/VBoxContainer/HBoxContainer2/smart_player_controls_button" to="." method="_on_smart_player_control_button_toggled"]
+[connection signal="mouse_entered" from="TabContainer/Sound/master_volume_container/master_volume_slider" to="." method="set_mouse_cursor" binds= [2]]
+[connection signal="mouse_exited" from="TabContainer/Sound/master_volume_container/master_volume_slider" to="." method="set_mouse_cursor" binds= [0]]
+[connection signal="mouse_entered" from="TabContainer/Sound/music_volume_container/music_volume_slider" to="." method="set_mouse_cursor" binds= [2]]
+[connection signal="mouse_exited" from="TabContainer/Sound/music_volume_container/music_volume_slider" to="." method="set_mouse_cursor" binds= [0]]
+[connection signal="mouse_entered" from="TabContainer/Sound/sound_volume_container/sound_volume_slider" to="." method="set_mouse_cursor" binds= [2]]
+[connection signal="mouse_exited" from="TabContainer/Sound/sound_volume_container/sound_volume_slider" to="." method="set_mouse_cursor" binds= [0]]
 [connection signal="item_selected" from="TabContainer/Graphics/window_type/window_type_button" to="." method="_on_window_type_button_item_selected"]
+[connection signal="mouse_entered" from="TabContainer/Graphics/window_type/window_type_button" to="." method="set_mouse_cursor" binds= [2]]
+[connection signal="mouse_exited" from="TabContainer/Graphics/window_type/window_type_button" to="." method="set_mouse_cursor" binds= [0]]
 [connection signal="item_selected" from="TabContainer/Graphics/resolution/resolution_button" to="." method="_on_resolution_button_item_selected"]
+[connection signal="mouse_entered" from="TabContainer/Graphics/resolution/resolution_button" to="." method="set_mouse_cursor" binds= [2]]
+[connection signal="mouse_exited" from="TabContainer/Graphics/resolution/resolution_button" to="." method="set_mouse_cursor" binds= [0]]
+[connection signal="mouse_entered" from="TabContainer/Graphics/vsync/vsyncbutton" to="." method="set_mouse_cursor" binds= [2]]
+[connection signal="mouse_exited" from="TabContainer/Graphics/vsync/vsyncbutton" to="." method="set_mouse_cursor" binds= [0]]
 [connection signal="toggled" from="TabContainer/Graphics/vsync/vsyncbutton" to="." method="_on_vsyncbutton_toggled"]
 [connection signal="item_selected" from="TabContainer/Graphics/frame_rate/frame_rate_button" to="." method="_on_frame_rate_button_item_selected"]
+[connection signal="mouse_entered" from="TabContainer/Graphics/frame_rate/frame_rate_button" to="." method="set_mouse_cursor" binds= [2]]
+[connection signal="mouse_exited" from="TabContainer/Graphics/frame_rate/frame_rate_button" to="." method="set_mouse_cursor" binds= [0]]
 [connection signal="tab_button_pressed" from="TabContainer/Controls" to="." method="_on_controls_tab_button_pressed"]
+[connection signal="mouse_entered" from="TabContainer/Controls/HBoxContainer2/atk_left_click_button" to="." method="set_mouse_cursor" binds= [2]]
+[connection signal="mouse_exited" from="TabContainer/Controls/HBoxContainer2/atk_left_click_button" to="." method="set_mouse_cursor" binds= [0]]
 [connection signal="toggled" from="TabContainer/Controls/HBoxContainer2/atk_left_click_button" to="." method="_on_atk_left_click_button_toggled"]
+[connection signal="mouse_entered" from="TabContainer/Controls/HBoxContainer3/roll_right_click_button" to="." method="set_mouse_cursor" binds= [2]]
+[connection signal="mouse_exited" from="TabContainer/Controls/HBoxContainer3/roll_right_click_button" to="." method="set_mouse_cursor" binds= [0]]
 [connection signal="toggled" from="TabContainer/Controls/HBoxContainer3/roll_right_click_button" to="." method="_on_roll_right_click_button_toggled"]
 [connection signal="mouse_entered" from="title_screen_button" to="." method="_on_title_screen_button_mouse_entered"]
 [connection signal="mouse_exited" from="title_screen_button" to="." method="_on_title_screen_button_mouse_exited"]

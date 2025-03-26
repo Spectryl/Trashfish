@@ -174,6 +174,8 @@ size_flags_vertical = 4
 size_flags_stretch_ratio = 0.0
 texture = ExtResource("2_iqi4v")
 
+[connection signal="mouse_entered" from="MarginContainer/itch_button" to="." method="itch_button_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/itch_button" to="." method="itch_button_mouse_exited"]
 [connection signal="pressed" from="MarginContainer/itch_button" to="." method="itch_button_pressed"]
 [connection signal="mouse_entered" from="MarginContainer/VBoxContainer/start_button" to="." method="_on_start_button_mouse_entered"]
 [connection signal="mouse_exited" from="MarginContainer/VBoxContainer/start_button" to="." method="_on_start_button_mouse_exited"]

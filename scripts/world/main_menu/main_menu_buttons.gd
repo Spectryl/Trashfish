@@ -7,6 +7,7 @@ extends Control
 @onready var versionLabel : Label               = $MarginContainer/version_label
 @onready var itch_button : TextureButton        = $MarginContainer/itch_button
 
+
 var hover_color : Color = Color8(0,255,255,255) # Color when we hover a button	
 var reset_color : Color = Color8(255,255,255,255)     # Color when we stop hovering, this can be forced to be default color
 func _ready() -> void:
@@ -17,7 +18,6 @@ func _ready() -> void:
 	if leaderboard_button.disabled:
 		leaderboard_button.disconnect("mouse_entered", _on_leaderboard_button_mouse_entered)
 		leaderboard_button.disconnect("mouse_exited", _on_leaderboard_button_mouse_exited)
-
 #region Button_Press
 func _on_start_button_pressed() -> void:
 	menu.switch_menu(2)
@@ -40,33 +40,49 @@ func _on_quit_button_pressed() -> void:
 func _on_start_button_mouse_entered() -> void:
 	start_button.set_deferred("modulate", hover_color)
 	global.sound_master.play("button_hover")
+	Cursor.set_shape(2)
 
 func _on_start_button_mouse_exited() -> void:
 	start_button.set_deferred("modulate", reset_color)
+	Cursor.set_shape(0)
 
 func _on_leaderboard_button_mouse_entered() -> void:
 	leaderboard_button.set_deferred("modulate", hover_color)
 	global.sound_master.play("button_hover")
+	Cursor.set_shape(2)
 
 func _on_leaderboard_button_mouse_exited() -> void:
 	leaderboard_button.set_deferred("modulate", reset_color)
+	Cursor.set_shape(0)
 
 func _on_options_button_mouse_entered() -> void:
 	options_button.set_deferred("modulate", hover_color)
 	global.sound_master.play("button_hover")
+	Cursor.set_shape(2)
 
 func _on_options_button_mouse_exited() -> void:
 	options_button.set_deferred("modulate", reset_color)
+	Cursor.set_shape(0)
 
 func _on_quit_button_mouse_entered() -> void:
 	quit_button.set_deferred("modulate", hover_color)
 	global.sound_master.play("button_hover")
+	Cursor.set_shape(2)
 
 func _on_quit_button_mouse_exited() -> void:
 	quit_button.set_deferred("modulate", reset_color)
+	Cursor.set_shape(0)
 #endregion
 
 
 func itch_button_pressed() -> void:
 	print("Opening Itch.io Build")
 	OS.shell_open("https://sonuthenecro.itch.io/trashfish")
+
+
+func itch_button_mouse_entered():
+	Cursor.set_shape(2)
+
+
+func itch_button_mouse_exited():
+	Cursor.set_shape(0)

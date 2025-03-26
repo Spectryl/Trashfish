@@ -46,4 +46,6 @@ theme_override_font_sizes/font_size = 120
 toggle_mode = true
 text = "ACTION_KEY"
 
+[connection signal="mouse_entered" from="HBoxContainer/Button" to="." method="set_mouse_cursor" binds= [2]]
+[connection signal="mouse_exited" from="HBoxContainer/Button" to="." method="set_mouse_cursor" binds= [0]]
 [connection signal="toggled" from="HBoxContainer/Button" to="." method="_on_button_toggled"]

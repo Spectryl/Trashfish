@@ -10,6 +10,7 @@ var bounce_shine_shader : String = "res://resources/buttons/world_icon.res"
 func _ready() -> void:
 	beach = WorldSelect.new()
 	beach.create_children()
+	## Connect signals and setup all textures
 	beach.world_icon_button.left_click.connect(beach_left_click)
 	beach.world_icon_button.call_deferred("connect","right_click", beach_right_click)
 	beach.left_button.call_deferred("connect","pressed" , beach_minus_signal )
@@ -17,10 +18,10 @@ func _ready() -> void:
 	beach.first_texture  = load("res://resources/buttons/beach_world_icon.tres")
 	beach.second_texture = load("res://resources/buttons/beach_world_guns_icon.tres")
 	beach.world_icon_button.texture_normal = load("res://resources/buttons/beach_world_icon.tres")
+	beach.set_up_mouse_cursors()
 	beach.add_all_general_purpose(bounce_shine_shader)
 	beach.create_sign_buttons()
 	beach.add_children()
-	
 	worlds.add_child(beach)
 
 func beach_left_click() -> void:
@@ -58,7 +59,9 @@ func _on_back_button_pressed() -> void:
 func _on_back_button_mouse_entered() -> void:
 	back_button.set_deferred("modulate", hover_color)
 	global.sound_master.play("button_hover")
+	Cursor.set_shape(2)
 
 
 func _on_back_button_mouse_exited() -> void:
 	back_button.set_deferred("modulate", reset_color)
+	Cursor.set_shape(0)
