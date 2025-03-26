@@ -1,0 +1,9 @@
+[gd_resource type="GradientTexture2D" load_steps=2 format=3 uid="uid://dlkul04k7v8e0"]
+
+[sub_resource type="Gradient" id="Gradient_urhdp"]
+colors = PackedColorArray(2.07564e-07, 0.260467, 2.16588e-07, 1, 0.0862745, 0.32549, 0.0862745, 1)
+
+[resource]
+gradient = SubResource("Gradient_urhdp")
+width = 79
+height = 31

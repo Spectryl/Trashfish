@@ -1,0 +1,84 @@
+[gd_scene load_steps=13 format=3 uid="uid://6jaqq5qpj0dd"]
+
+[ext_resource type="Material" uid="uid://delj7xeqnk2md" path="res://resources/buttons/world_icon.res" id="2_1qi3l"]
+[ext_resource type="Texture2D" uid="uid://bid5sqauqcplw" path="res://resources/buttons/beach_world_icon.tres" id="3_wyah6"]
+[ext_resource type="Script" uid="uid://qpwyi83ax14r" path="res://scripts/classes/TwoClickTextureButton.gd" id="4_n3b3c"]
+[ext_resource type="Texture2D" uid="uid://bhgbb1c3vh70k" path="res://resources/buttons/gamemode_selection_background.res" id="5_wyah6"]
+[ext_resource type="Texture2D" uid="uid://dfsu5rkrkh05n" path="res://resources/buttons/gamemode_red_normal.tres" id="6_n3b3c"]
+[ext_resource type="Texture2D" uid="uid://dbpb7yvvtfxqf" path="res://resources/buttons/gamemode_red_pressed.tres" id="7_2ubyk"]
+[ext_resource type="Texture2D" uid="uid://cxrpjctlp2dkr" path="res://resources/buttons/gamemode_red_hover.tres" id="8_ll6w8"]
+[ext_resource type="Texture2D" uid="uid://dlkul04k7v8e0" path="res://resources/buttons/gamemode_green_normal.tres" id="9_ll6w8"]
+[ext_resource type="Texture2D" uid="uid://dlmxth0mqtqxp" path="res://resources/buttons/gamemode_green_pressed.tres" id="10_nwjd5"]
+[ext_resource type="Texture2D" uid="uid://bsqvwy3cxixxe" path="res://resources/buttons/gamemode_green_hover.tres" id="11_sd0qk"]
+
+[sub_resource type="Shader" id="Shader_2xcyd"]
+code = "shader_type canvas_item;
+
+group_uniforms Sine;
+uniform bool do_abs;
+uniform bool do_quantize;
+uniform float quantize_to : hint_range(0, 2, 0.1) = 1;
+uniform vec2 sine_amplitude = vec2(1.0, 0.0);
+uniform vec2 sine_speed = vec2(1.0, 0.0);
+
+void vertex() {
+	vec2 s = sin(TIME * sine_speed);
+	if (do_abs) {
+		s = abs(s);
+	}
+	VERTEX += s * sine_amplitude;
+	if (do_quantize) {
+		VERTEX = round(VERTEX / quantize_to);
+		VERTEX *= quantize_to;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vwfo5"]
+resource_local_to_scene = true
+shader = SubResource("Shader_2xcyd")
+shader_parameter/do_abs = false
+shader_parameter/do_quantize = true
+shader_parameter/quantize_to = 1.0
+shader_parameter/sine_amplitude = Vector2(0, 10)
+shader_parameter/sine_speed = Vector2(0, 4)
+
+[node name="world_select_button_template" type="VBoxContainer"]
+offset_right = 200.0
+offset_bottom = 321.0
+theme_override_constants/separation = -8
+alignment = 1
+metadata/_custom_type_script = "uid://cs2w7jal51bjv"
+
+[node name="TwoClickTextureButton" type="TextureButton" parent="."]
+material = ExtResource("2_1qi3l")
+layout_mode = 2
+texture_normal = ExtResource("3_wyah6")
+script = ExtResource("4_n3b3c")
+metadata/_custom_type_script = "uid://qpwyi83ax14r"
+
+[node name="texture_rect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_vwfo5")
+layout_mode = 2
+texture = ExtResource("5_wyah6")
+
+[node name="left_texture_button" type="TextureButton" parent="texture_rect"]
+use_parent_material = true
+layout_mode = 0
+offset_left = 19.0
+offset_top = 38.25
+offset_right = 98.0
+offset_bottom = 125.25
+texture_normal = ExtResource("6_n3b3c")
+texture_pressed = ExtResource("7_2ubyk")
+texture_hover = ExtResource("8_ll6w8")
+
+[node name="right_texture_button" type="TextureButton" parent="texture_rect"]
+use_parent_material = true
+layout_mode = 0
+offset_left = 110.41
+offset_top = 38.25
+offset_right = 189.41
+offset_bottom = 125.25
+texture_normal = ExtResource("9_ll6w8")
+texture_pressed = ExtResource("10_nwjd5")
+texture_hover = ExtResource("11_sd0qk")

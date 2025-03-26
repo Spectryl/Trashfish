@@ -1,0 +1,97 @@
+[gd_scene load_steps=19 format=3 uid="uid://8njh5vijus8w"]
+
+[ext_resource type="Material" uid="uid://delj7xeqnk2md" path="res://resources/buttons/world_icon.res" id="1_le75r"]
+[ext_resource type="Script" uid="uid://botgwtufm6m25" path="res://scripts/world/main_menu/beach_select_icon.gd" id="1_pj3kx"]
+[ext_resource type="Texture2D" uid="uid://bid5sqauqcplw" path="res://resources/buttons/beach_world_icon.tres" id="2_pj3kx"]
+[ext_resource type="Script" uid="uid://qpwyi83ax14r" path="res://scripts/classes/TwoClickTextureButton.gd" id="3_desy5"]
+[ext_resource type="Material" uid="uid://crlrkbn6qmktl" path="res://resources/buttons/gamemode_icon_bounce.res" id="4_50s88"]
+[ext_resource type="Texture2D" uid="uid://c4sprrywpxla6" path="res://art/world/main_menu/gamemode_button.png" id="5_1emds"]
+
+[sub_resource type="Gradient" id="Gradient_75n5u"]
+colors = PackedColorArray(0.533333, 0, 0, 1, 0.596078, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_frych"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_75n5u")
+width = 79
+height = 31
+
+[sub_resource type="Gradient" id="Gradient_juufn"]
+colors = PackedColorArray(0.999945, 0.525952, 0.460471, 1, 0.996078, 0.498039, 0.435294, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pkyic"]
+gradient = SubResource("Gradient_juufn")
+width = 79
+height = 31
+
+[sub_resource type="Gradient" id="Gradient_f7a8e"]
+colors = PackedColorArray(0.909804, 0, 0, 1, 0.917647, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3jhpr"]
+gradient = SubResource("Gradient_f7a8e")
+width = 79
+height = 31
+
+[sub_resource type="Gradient" id="Gradient_frych"]
+colors = PackedColorArray(2.07564e-07, 0.260467, 2.16588e-07, 1, 0.0862745, 0.32549, 0.0862745, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_juufn"]
+gradient = SubResource("Gradient_frych")
+width = 79
+height = 31
+
+[sub_resource type="Gradient" id="Gradient_3jhpr"]
+colors = PackedColorArray(0.0970097, 0.819978, 0.102331, 1, 0.0901961, 0.768627, 0.0901961, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g8w80"]
+gradient = SubResource("Gradient_3jhpr")
+width = 79
+height = 31
+
+[sub_resource type="Gradient" id="Gradient_pkyic"]
+colors = PackedColorArray(0.0588235, 0.490196, 0.0588235, 1, 0.0709081, 0.518795, 0.0718357, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_f7a8e"]
+gradient = SubResource("Gradient_pkyic")
+width = 79
+height = 31
+
+[node name="beach" type="VBoxContainer"]
+offset_right = 200.0
+offset_bottom = 333.0
+script = ExtResource("1_pj3kx")
+metadata/_custom_type_script = "uid://cs2w7jal51bjv"
+
+[node name="TwoClickTextureButton" type="TextureButton" parent="."]
+material = ExtResource("1_le75r")
+layout_mode = 2
+texture_normal = ExtResource("2_pj3kx")
+script = ExtResource("3_desy5")
+metadata/_custom_type_script = "uid://qpwyi83ax14r"
+
+[node name="texture_rect" type="TextureRect" parent="."]
+material = ExtResource("4_50s88")
+layout_mode = 2
+texture = ExtResource("5_1emds")
+
+[node name="left_texture_button" type="TextureButton" parent="texture_rect"]
+use_parent_material = true
+layout_mode = 0
+offset_left = 19.0
+offset_top = 38.25
+offset_right = 98.0
+offset_bottom = 125.25
+texture_normal = SubResource("GradientTexture2D_frych")
+texture_pressed = SubResource("GradientTexture2D_pkyic")
+texture_hover = SubResource("GradientTexture2D_3jhpr")
+
+[node name="right_texture_button" type="TextureButton" parent="texture_rect"]
+use_parent_material = true
+layout_mode = 0
+offset_left = 110.41
+offset_top = 38.25
+offset_right = 189.41
+offset_bottom = 125.25
+texture_normal = SubResource("GradientTexture2D_juufn")
+texture_pressed = SubResource("GradientTexture2D_g8w80")
+texture_hover = SubResource("GradientTexture2D_f7a8e")
