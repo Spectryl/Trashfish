@@ -5,14 +5,15 @@ extends Control
 @onready var options_button : TextureButton     = $MarginContainer/VBoxContainer/options_button
 @onready var quit_button : TextureButton        = $MarginContainer/VBoxContainer/quit_button
 @onready var versionLabel : Label               = $MarginContainer/version_label
+@onready var itch_button : TextureButton        = $MarginContainer/itch_button
 
 var hover_color : Color = Color8(0,255,255,255) # Color when we hover a button	
 var reset_color : Color = Color8(255,255,255,255)     # Color when we stop hovering, this can be forced to be default color
 func _ready() -> void:
-	var config : ConfigFile = ConfigFile.new()
-	config.load_encrypted_pass("user://savedata.cfg", save_master.password)
+
+
 	versionLabel.text = ProjectSettings.get_setting("application/config/version")
-	leaderboard_button.disabled = !config.get_value("settings", "online_mode", false)
+	leaderboard_button.disabled = !save_master.save_data.get_value("settings", "online_mode", false)
 	if leaderboard_button.disabled:
 		leaderboard_button.disconnect("mouse_entered", _on_leaderboard_button_mouse_entered)
 		leaderboard_button.disconnect("mouse_exited", _on_leaderboard_button_mouse_exited)
@@ -64,3 +65,8 @@ func _on_quit_button_mouse_entered() -> void:
 func _on_quit_button_mouse_exited() -> void:
 	quit_button.set_deferred("modulate", reset_color)
 #endregion
+
+
+func itch_button_pressed() -> void:
+	print("Opening Itch.io Build")
+	OS.shell_open("https://sonuthenecro.itch.io/trashfish")

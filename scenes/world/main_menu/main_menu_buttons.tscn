@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://5a1x64gt0iqv"]
+[gd_scene load_steps=18 format=3 uid="uid://5a1x64gt0iqv"]
 
 [ext_resource type="Script" uid="uid://nyqnsjm8235n" path="res://scripts/world/main_menu/main_menu_buttons.gd" id="1_flul8"]
 [ext_resource type="Texture2D" uid="uid://cq6ogwy2wds0i" path="res://art/world/main_menu/options_button.png" id="2_0iv6d"]
+[ext_resource type="Texture2D" uid="uid://dionuxder6svv" path="res://art/world/main_menu/itch.io_icon.png" id="2_6dslr"]
 [ext_resource type="FontFile" uid="uid://c0quiovxikjm8" path="res://font/VT323-Regular.ttf" id="2_gblwq"]
 [ext_resource type="Texture2D" uid="uid://kj5helsenb1r" path="res://art/world/main_menu/Logo.png" id="2_iqi4v"]
 [ext_resource type="Texture2D" uid="uid://dvwdbi3v5527f" path="res://art/world/main_menu/start_button.png" id="2_lhxgl"]
@@ -12,7 +13,39 @@
 [ext_resource type="PackedScene" uid="uid://ctdvbp2l1ur0q" path="res://scenes/misc/web_delete_component.tscn" id="7_21duf"]
 [ext_resource type="Texture2D" uid="uid://bcyn32htaeja4" path="res://art/world/main_menu/leader_board_button_disabled.png" id="7_dss21"]
 
+[sub_resource type="Shader" id="Shader_6dslr"]
+code = "shader_type canvas_item;
+
+group_uniforms Sine;
+uniform bool do_abs;
+uniform bool do_quantize;
+uniform float quantize_to : hint_range(0, 2, 0.1) = 1;
+uniform vec2 sine_amplitude = vec2(1.0, 0.0);
+uniform vec2 sine_speed = vec2(1.0, 0.0);
+
+void vertex() {
+	vec2 s = sin(TIME * sine_speed);
+	if (do_abs) {
+		s = abs(s);
+	}
+	VERTEX += s * sine_amplitude;
+	if (do_quantize) {
+		VERTEX = round(VERTEX / quantize_to);
+		VERTEX *= quantize_to;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ie0nn"]
+resource_local_to_scene = true
+shader = SubResource("Shader_6dslr")
+shader_parameter/do_abs = false
+shader_parameter/do_quantize = false
+shader_parameter/quantize_to = 1.0
+shader_parameter/sine_amplitude = Vector2(0, 4)
+shader_parameter/sine_speed = Vector2(0, 1)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l5lpi"]
+resource_local_to_scene = true
 shader = ExtResource("3_bvn5s")
 shader_parameter/do_abs = false
 shader_parameter/do_quantize = false
@@ -46,13 +79,14 @@ grow_vertical = 2
 script = ExtResource("1_flul8")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+clip_contents = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 5.0
 offset_top = -2.0
-offset_bottom = 1.0
+offset_bottom = -9.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -63,6 +97,20 @@ size_flags_vertical = 8
 theme_override_fonts/font = ExtResource("2_gblwq")
 theme_override_font_sizes/font_size = 120
 text = "x.x.x.x"
+
+[node name="itch_button" type="TextureButton" parent="MarginContainer"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_ie0nn")
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+focus_neighbor_top = NodePath("../VBoxContainer/quit_button")
+focus_neighbor_bottom = NodePath("../VBoxContainer/options_button")
+toggle_mode = true
+texture_normal = ExtResource("2_6dslr")
+stretch_mode = 0
+
+[node name="web_delete_component" parent="MarginContainer/itch_button" instance=ExtResource("7_21duf")]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 texture_filter = 1
@@ -126,6 +174,7 @@ size_flags_vertical = 4
 size_flags_stretch_ratio = 0.0
 texture = ExtResource("2_iqi4v")
 
+[connection signal="pressed" from="MarginContainer/itch_button" to="." method="itch_button_pressed"]
 [connection signal="mouse_entered" from="MarginContainer/VBoxContainer/start_button" to="." method="_on_start_button_mouse_entered"]
 [connection signal="mouse_exited" from="MarginContainer/VBoxContainer/start_button" to="." method="_on_start_button_mouse_exited"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/start_button" to="." method="_on_start_button_pressed"]
