@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://6jaqq5qpj0dd"]
 
 [ext_resource type="Material" uid="uid://delj7xeqnk2md" path="res://resources/buttons/world_icon.res" id="2_1qi3l"]
-[ext_resource type="Texture2D" uid="uid://bid5sqauqcplw" path="res://resources/buttons/beach_world_icon.tres" id="3_wyah6"]
+[ext_resource type="Texture2D" uid="uid://fao8mi24vxb0" path="res://resources/buttons/beach_world_shadows_icon.tres" id="2_2ubyk"]
 [ext_resource type="Script" uid="uid://qpwyi83ax14r" path="res://scripts/classes/TwoClickTextureButton.gd" id="4_n3b3c"]
 [ext_resource type="Texture2D" uid="uid://bhgbb1c3vh70k" path="res://resources/buttons/gamemode_selection_background.res" id="5_wyah6"]
 [ext_resource type="Texture2D" uid="uid://dfsu5rkrkh05n" path="res://resources/buttons/gamemode_red_normal.tres" id="6_n3b3c"]
@@ -50,9 +50,10 @@ alignment = 1
 metadata/_custom_type_script = "uid://cs2w7jal51bjv"
 
 [node name="TwoClickTextureButton" type="TextureButton" parent="."]
+texture_filter = 1
 material = ExtResource("2_1qi3l")
 layout_mode = 2
-texture_normal = ExtResource("3_wyah6")
+texture_normal = ExtResource("2_2ubyk")
 script = ExtResource("4_n3b3c")
 metadata/_custom_type_script = "uid://qpwyi83ax14r"
 

@@ -550,9 +550,6 @@ position = Vector2(7, -33)
 sprite_frames = SubResource("SpriteFrames_0o1mn")
 animation = &"idle"
 
-[node name="flash_timer" type="Timer" parent="CanvasGroup/body"]
-one_shot = true
-
 [node name="head" type="AnimatedSprite2D" parent="CanvasGroup"]
 texture_filter = 1
 material = SubResource("ShaderMaterial_w7h5i")
@@ -618,7 +615,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_fm80t")
 }
 
-[connection signal="timeout" from="CanvasGroup/body/flash_timer" to="." method="_on_flash_timer_timeout"]
 [connection signal="timeout" from="Starve_Timer" to="." method="_on_starve_timer_timeout"]
 [connection signal="body_entered" from="attack_hitbox" to="." method="_on_attack_hitbox_body_entered"]
 [connection signal="timeout" from="attack_hitbox/attack_timer" to="." method="_on_attack_timer_timeout"]
