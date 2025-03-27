@@ -28,13 +28,14 @@ var starve : int = 100
 @onready var body_hurtbox : CollisionPolygon2D    = $CollisionPolygon2D
 @onready var shader_player : AnimationPlayer      = $shader_player
 
-var is_attacking : bool        = false
-var is_dead : bool             = false
-var is_honeyd : bool           = false
-var is_iced : bool             = false
-var is_rolling : bool          = false
-var is_controls_flipped : bool = false
-var is_active                  = false
+var is_attacking : bool           = false
+var is_dead : bool                = false
+var is_honeyd : bool              = false
+var is_iced : bool                = false
+var is_rolling : bool             = false
+var is_controls_flipped : bool    = false
+var is_active                     = false
+@export var is_invincible : bool   = false
 var drop : Node
 var direction : Vector2
 const trash_can : PackedScene = preload("res://scenes/player/trash_can.tscn")
@@ -127,13 +128,14 @@ func player_position() -> Vector2:
 	return global_position
 
 func decrease_health() :
-	if world_id == 0 or world_id == 1 or (is_rolling and not starve <= 0):
+	print("Player is invincibile: ", is_invincible)
+	if ((is_invincible or is_rolling) and not starve <= 0):
 		return
 	health -= 1
 	damage_flash_body()
 ## stamina-change should be a negative number
 func decrease_starve(starve_change: int):
-	if world_id == 0 or world_id == 1 or (is_rolling and not starve <= 0):
+	if (is_rolling and not starve <= 0):
 		return
 	starve -= starve_change
 	shader_player.play("starve")
