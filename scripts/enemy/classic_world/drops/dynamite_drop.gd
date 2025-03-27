@@ -47,7 +47,7 @@ func _on_explosion_hitbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("baby_fish"):
 		body.call_deferred("queue_free")
 	if body.is_in_group("orca"):
-		body.attacked()
+		body.attacked(self)
 # When the player attacks this object
 func attacked():
 	global.world.score += 1

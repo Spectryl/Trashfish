@@ -1,6 +1,6 @@
 class_name TrashShark
 extends CharacterBody2D
-var speed : float = 250
+
 const acceleration : float = 22
 var starve : int = 100
 @export var health : int = 6
@@ -9,6 +9,7 @@ var starve : int = 100
 @export var world_id : int = 0
 @export var honey_speed : float = 2.5
 @export var ice_speed : int = 5
+@export var speed : float = 250
 
 @onready var honey_sprite : AnimatedSprite2D      = $CanvasGroup/honey
 @onready var ice_sprite : AnimatedSprite2D        = $CanvasGroup/ice
@@ -17,7 +18,6 @@ var starve : int = 100
 @onready var body : AnimatedSprite2D              = $CanvasGroup/body
 @onready var attack_hitbox : CollisionShape2D     = $attack_hitbox/CollisionShape2D
 @onready var attack_timer : Timer                 = $attack_hitbox/attack_timer
-@onready var flash_timer : Timer                  = $CanvasGroup/body/flash_timer
 @onready var honey_timer : Timer                  = $debuff_master/honey_timer
 @onready var ice_timer : Timer                    = $debuff_master/ice_timer
 @onready var control_timer : Timer                = $debuff_master/control_timer
@@ -26,6 +26,7 @@ var starve : int = 100
 @onready var starve_timer : Timer                 = $Starve_Timer
 
 @onready var body_hurtbox : CollisionPolygon2D    = $CollisionPolygon2D
+@onready var shader_player : AnimationPlayer      = $shader_player
 
 var is_attacking : bool        = false
 var is_dead : bool             = false
@@ -41,7 +42,6 @@ var world : Node2D
 func _ready() -> void:
 	honey_sprite.play("default")
 	ice_sprite.play("default")
-	player_flash_shader(0,0,0,0,0)
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("attack") and not is_attacking and not is_rolling:
@@ -136,8 +136,7 @@ func decrease_starve(starve_change: int):
 	if world_id == 0 or world_id == 1 or (is_rolling and not starve <= 0):
 		return
 	starve -= starve_change
-	player_flash_shader(1, 1, 0, 1.0, 0.353)
-	flash_timer.start()
+	shader_player.play("starve")
 
 func increase_health():
 	health += 1
@@ -188,18 +187,17 @@ func set_debuff(debuff : String) -> void:
 			is_controls_flipped = true
 			control_timer.start()
 
+
 ## Flashes the player body when damaged
 func damage_flash_body():
 	if health <= 0:
 		return
-	player_flash_shader(0.76,0,0,1.0, 0.7)
-	flash_timer.start()
+	shader_player.play("damage")
 ## flashes player body green when healed
 func heal_flash_body():
 	if health <= 0 or health > max_health:
 		return
-	player_flash_shader(0.13,0.86,0.14,1.0, 0.7)
-	flash_timer.start()
+	shader_player.play("heal")
 
 ## When the attack timer resets (CD), we should turn off hitboxes
 func _on_attack_timer_timeout() -> void:
@@ -229,13 +227,10 @@ func _on_attack_hitbox_body_entered(object: Node2D) -> void:
 		update_starvation(10)
 		object.attacked(self)
 		return
-		
-
 
 func _on_honey_timer_timeout() -> void:
 	speed = speed * honey_speed
 	is_honeyd = false
-
 
 func _on_ice_timer_timeout() -> void:
 	speed = speed * ice_speed
@@ -246,9 +241,6 @@ func _on_control_timer_timeout():
 	head.material.set_shader_parameter("u_tolerance", 0)
 	is_controls_flipped = false
 
-func _on_flash_timer_timeout() -> void:
-	canvas_group.material.set_shader_parameter("flash_modifier", 0)
-	canvas_group.material.set_shader_parameter("flash_modifier", 0)
 	
 func _on_roll_timer_timeout():
 	head.visible = true
@@ -259,16 +251,9 @@ func _on_roll_timer_timeout():
 # lets player know they can roll again
 func _on_roll_cooldown_timer_timeout():
 	global.sound_master.play("bloop")
-	player_flash_shader(0.66, 0.51, 0.17, 1.0, 0.7)
-	flash_timer.start(0.5)
+	shader_player.play("refresh")
 
-#flashes the whole player sprite as a color
-## A,B,C are RGB values from 0.0 -> 1.0, D is transparency and e is intensity
-func player_flash_shader(a : float, b : float, c : float, d : float, e : float):
-	canvas_group.material.set_shader_parameter("flash_color",Color(a,b,c,d))
-	canvas_group.material.set_shader_parameter("flash_modifier", e)
-	canvas_group.material.set_shader_parameter("flash_color",Color(a,b,c,d))
-	canvas_group.material.set_shader_parameter("flash_modifier", e)
+
 ## every second we will take a bit of starvation
 ## default is you take a hit every 20 seconds of not eating
 func _on_starve_timer_timeout():

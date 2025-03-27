@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://qcopfliklj76"]
+[gd_scene load_steps=65 format=3 uid="uid://qcopfliklj76"]
 
 [ext_resource type="Script" uid="uid://bcxuqlme1s2g3" path="res://scripts/player/smart_player.gd" id="1_5j3o6"]
 [ext_resource type="Shader" uid="uid://c500l4phti72y" path="res://shaders/player/flash.gdshader" id="2_rwq3x"]
@@ -359,6 +359,177 @@ animations = [{
 radius = 28.0
 height = 56.0
 
+[sub_resource type="Animation" id="Animation_h17s1"]
+resource_name = "heal"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasGroup:material:shader_parameter/flash_modifier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.966667),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [0.7, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasGroup:material:shader_parameter/flash_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Color(0.13, 0.86, 0.14, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_je7p5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasGroup:material:shader_parameter/flash_modifier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasGroup:material:shader_parameter/flash_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasGroup/body:material")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("ShaderMaterial_jvel1")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasGroup/head:material")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("ShaderMaterial_w7h5i")]
+}
+
+[sub_resource type="Animation" id="Animation_fm80t"]
+resource_name = "damage"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasGroup:material:shader_parameter/flash_modifier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.966667, 1.1),
+"transitions": PackedFloat32Array(2, 1, 1),
+"update": 0,
+"values": [0.86, 0.2, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasGroup:material:shader_parameter/flash_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Color(0.76, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gx1jg"]
+resource_name = "refresh"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasGroup:material:shader_parameter/flash_modifier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(2, -0.5),
+"update": 0,
+"values": [0.86, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasGroup:material:shader_parameter/flash_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Color(0.66, 0.51, 0.17, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ugbui"]
+resource_name = "starve"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasGroup:material:shader_parameter/flash_modifier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(2, -0.5),
+"update": 0,
+"values": [0.353, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasGroup:material:shader_parameter/flash_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Color(1, 1, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fm80t"]
+_data = {
+&"RESET": SubResource("Animation_je7p5"),
+&"damage": SubResource("Animation_fm80t"),
+&"heal": SubResource("Animation_h17s1"),
+&"refresh": SubResource("Animation_gx1jg"),
+&"starve": SubResource("Animation_ugbui")
+}
+
 [node name="smart_player" type="CharacterBody2D" groups=["player"]]
 z_index = 3
 texture_filter = 1
@@ -441,6 +612,11 @@ wait_time = 2.8
 one_shot = true
 
 [node name="control_timer" type="Timer" parent="debuff_master"]
+
+[node name="shader_player" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_fm80t")
+}
 
 [connection signal="timeout" from="CanvasGroup/body/flash_timer" to="." method="_on_flash_timer_timeout"]
 [connection signal="timeout" from="Starve_Timer" to="." method="_on_starve_timer_timeout"]
