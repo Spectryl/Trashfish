@@ -130,4 +130,3 @@ func generate_seaweed():
 
 func check_in_range(a : float, b : float , range_of_pos : float) -> bool:
 	return abs(a - b) < range_of_pos + 1
-

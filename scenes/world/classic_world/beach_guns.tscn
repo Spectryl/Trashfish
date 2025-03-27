@@ -3,13 +3,15 @@
 [ext_resource type="Script" uid="uid://co2eswauk10rw" path="res://scripts/world/classic_world/beach_guns.gd" id="1_5qjhs"]
 [ext_resource type="Script" uid="uid://cyuai6w35m3s3" path="res://scripts/world/classic_world/gunship_master.gd" id="3_6xvo2"]
 [ext_resource type="FontFile" uid="uid://c0quiovxikjm8" path="res://font/VT323-Regular.ttf" id="4_a6v73"]
-[ext_resource type="Script" uid="uid://c067qta5dxr8v" path="res://addons/antialiased_line2d/antialiased_polygon2d.gd" id="4_vgu54"]
 [ext_resource type="Texture2D" uid="uid://bfig4ppqc525o" path="res://art/world/classic_world/health.png" id="5_ewotj"]
 [ext_resource type="Texture2D" uid="uid://cuojeer2s18bk" path="res://art/world/classic_world/sun.png" id="5_h7d7d"]
 [ext_resource type="Texture2D" uid="uid://djpnypv17cuuo" path="res://art/world/classic_world/starve_icon.png" id="6_sojk0"]
 
-[sub_resource type="Resource" id="Resource_cj7lp"]
-metadata/__load_path__ = "res://scripts/world/classic_world/collision_polygon_2d.gd"
+[sub_resource type="Gradient" id="Gradient_qtf37"]
+colors = PackedColorArray(0.0117647, 0.713726, 0.858824, 1, 0.356863, 0.67451, 0.882353, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rg1cq"]
+gradient = SubResource("Gradient_qtf37")
 
 [sub_resource type="Animation" id="Animation_wdsb5"]
 length = 0.001
@@ -90,11 +92,10 @@ collision_layer = 4
 build_mode = 1
 polygon = PackedVector2Array(0, 205, 1920, 205, 1920, 1003, 0, 1003)
 one_way_collision_margin = 0.0
-script = SubResource("Resource_cj7lp")
 
-[node name="ship_master" type="Node2D" parent="."]
-position = Vector2(393, 205)
+[node name="ship_master" type="Node" parent="."]
 script = ExtResource("3_6xvo2")
+metadata/_custom_type_script = "uid://busgbpk51m382"
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -103,17 +104,11 @@ color = Color(0.388235, 0.607843, 1, 1)
 antialiased = true
 polygon = PackedVector2Array(0, 0, 1920, 0, 1920, 206, 0, 206)
 
-[node name="wave_polygon" type="Polygon2D" parent="ParallaxBackground"]
-color = Color(0.0156863, 0.717647, 0.862745, 1)
-antialiased = true
-polygon = PackedVector2Array(-1, 205, 1920, 205, 1921, 461, -2, 461)
-script = ExtResource("4_vgu54")
-stroke_color = Color(0.0156863, 0.717647, 0.862745, 1)
-stroke_width = 2.0
-
-[node name="deep_water_polygon" type="Polygon2D" parent="ParallaxBackground"]
-color = Color(0.356863, 0.678431, 0.882353, 1)
-polygon = PackedVector2Array(0, 461, 1920, 461, 1920, 1004, -1, 1004)
+[node name="water" type="Sprite2D" parent="ParallaxBackground"]
+position = Vector2(959.999, 604.479)
+rotation = 1.5708
+scale = Vector2(12.4857, 30)
+texture = SubResource("GradientTexture2D_rg1cq")
 
 [node name="sand_polygon" type="Polygon2D" parent="ParallaxBackground"]
 color = Color(0.933333, 0.764706, 0.603922, 1)
@@ -127,7 +122,7 @@ texture = ExtResource("5_h7d7d")
 [node name="sun_animator" type="AnimationPlayer" parent="ParallaxBackground/sun"]
 root_node = NodePath("../..")
 libraries = {
-"": SubResource("AnimationLibrary_5qlfs")
+&"": SubResource("AnimationLibrary_5qlfs")
 }
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

@@ -45,7 +45,6 @@ func spawn_new_enemy() -> void:
 			entity = swimmer_ship.instantiate()
 		5:
 			entity = orca.instantiate()
-	entity = orca.instantiate()
 	entity.set_global_scale(Vector2(2.0,2.0))
 	entity.z_index = entities_spawned
 	add_child(entity)
