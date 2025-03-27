@@ -124,7 +124,7 @@ metadata/_custom_type_script = "uid://busgbpk51m382"
 
 [node name="cloud_spawner" type="Node" parent="."]
 script = ExtResource("4_qtf37")
-wait_time = 1.0
+wait_time = 15.0
 metadata/_custom_type_script = "uid://busgbpk51m382"
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
