@@ -1,0 +1,275 @@
+[gd_scene load_steps=20 format=3 uid="uid://o5v1j88o4qst"]
+
+[ext_resource type="Script" uid="uid://vfulhdfdtfq" path="res://scripts/world/classic_world/world.gd" id="1_afdeb"]
+[ext_resource type="Script" uid="uid://cwv7wyh41r5ej" path="res://scripts/world/classic_world/ship_master.gd" id="2_sf6ru"]
+[ext_resource type="Script" uid="uid://bceuqvwln5csp" path="res://scripts/world/classic_world/fish_master.gd" id="3_us0s7"]
+[ext_resource type="Script" uid="uid://b1j4jwuqlu6xa" path="res://scripts/world/classic_world/cloud_master.gd" id="4_5ofdh"]
+[ext_resource type="Script" uid="uid://c067qta5dxr8v" path="res://addons/antialiased_line2d/antialiased_polygon2d.gd" id="5_0uuup"]
+[ext_resource type="Texture2D" uid="uid://cuojeer2s18bk" path="res://art/world/classic_world/sun.png" id="6_3kno0"]
+[ext_resource type="FontFile" uid="uid://c0quiovxikjm8" path="res://font/VT323-Regular.ttf" id="7_42lsf"]
+[ext_resource type="Texture2D" uid="uid://bfig4ppqc525o" path="res://art/world/classic_world/health.png" id="8_ddfm3"]
+[ext_resource type="Texture2D" uid="uid://djpnypv17cuuo" path="res://art/world/classic_world/starve_icon.png" id="9_55v73"]
+[ext_resource type="Shader" uid="uid://dhhxvvnvjtj4r" path="res://shaders/world/darkness.gdshader" id="10_sf6ru"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_m74sn"]
+vertices = PackedVector2Array(1852, 979.953, 27.0625, 972.039, 31.9297, 251, 1852, 251)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(22, 241, 1862, 241, 1862, 990, 17, 982)])
+
+[sub_resource type="Animation" id="Animation_wdsb5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sun:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sun:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1887, -55.9999)]
+}
+
+[sub_resource type="Animation" id="Animation_6wfqe"]
+resource_name = "rotate_sun"
+length = 25.0
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sun:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 20),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sun:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333, 20, 20.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(2000, -46), Vector2(-200, -46), Vector2(1213, -553)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5qlfs"]
+_data = {
+&"RESET": SubResource("Animation_wdsb5"),
+&"rotate_sun": SubResource("Animation_6wfqe")
+}
+
+[sub_resource type="Gradient" id="Gradient_qtf37"]
+colors = PackedColorArray(0.0117647, 0.713726, 0.858824, 1, 0.356863, 0.67451, 0.882353, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y273x"]
+gradient = SubResource("Gradient_qtf37")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wl38v"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pjxve"]
+bg_color = Color(0.882353, 0, 0.117647, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sf6ru"]
+shader = ExtResource("10_sf6ru")
+
+[node name="beach_shadows" type="Node2D"]
+script = ExtResource("1_afdeb")
+
+[node name="collision" type="StaticBody2D" parent="."]
+collision_layer = 4
+
+[node name="collision_layer_1" type="CollisionPolygon2D" parent="collision"]
+build_mode = 1
+polygon = PackedVector2Array(0, 205, 1920, 205, 1920, 1003, 0, 1003)
+one_way_collision_margin = 0.0
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="collision"]
+visible = false
+navigation_polygon = SubResource("NavigationPolygon_m74sn")
+
+[node name="orca_collision" type="StaticBody2D" parent="."]
+collision_layer = 8
+
+[node name="collision_layer_4" type="CollisionPolygon2D" parent="orca_collision"]
+visible = false
+polygon = PackedVector2Array(1920, 203, 1920, 95, -522, 104, 0, 1081, 1921, 1080, 1920, 1003, 1, 1003, -435, 182, -1, 203)
+
+[node name="ship_spawner" type="Node" parent="."]
+script = ExtResource("2_sf6ru")
+metadata/_custom_type_script = "uid://busgbpk51m382"
+
+[node name="fish_spawner" type="Node" parent="."]
+script = ExtResource("3_us0s7")
+max_entities = 10
+wait_time = 10.0
+metadata/_custom_type_script = "uid://busgbpk51m382"
+
+[node name="cloud_spawner" type="Node" parent="."]
+script = ExtResource("4_5ofdh")
+wait_time = 15.0
+metadata/_custom_type_script = "uid://busgbpk51m382"
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="sky_polygon" type="Polygon2D" parent="ParallaxBackground"]
+color = Color(0.388235, 0.607843, 1, 1)
+antialiased = true
+polygon = PackedVector2Array(0, 0, 1920, 0, 1920, 206, 0, 206)
+
+[node name="wave_polygon" type="Polygon2D" parent="ParallaxBackground"]
+visible = false
+color = Color(0.0156863, 0.717647, 0.862745, 1)
+antialiased = true
+polygon = PackedVector2Array(-1, 205, 1920, 205, 1921, 461, -2, 461)
+script = ExtResource("5_0uuup")
+stroke_color = Color(0.0156863, 0.717647, 0.862745, 1)
+stroke_width = 2.0
+
+[node name="deep_water_polygon" type="Polygon2D" parent="ParallaxBackground"]
+visible = false
+color = Color(0.356863, 0.678431, 0.882353, 1)
+polygon = PackedVector2Array(0, 461, 1920, 461, 1920, 1004, -1, 1004)
+
+[node name="sand_polygon" type="Polygon2D" parent="ParallaxBackground"]
+color = Color(0.933333, 0.764706, 0.603922, 1)
+polygon = PackedVector2Array(0, 1003, 1920, 1004, 1921, 1080, 0, 1081)
+
+[node name="sun" type="Sprite2D" parent="ParallaxBackground"]
+texture_filter = 1
+position = Vector2(1887, -55.9999)
+texture = ExtResource("6_3kno0")
+
+[node name="sun_animator" type="AnimationPlayer" parent="ParallaxBackground/sun"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_5qlfs")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground"]
+position = Vector2(959.999, 604.479)
+rotation = 1.5708
+scale = Vector2(12.4857, 30)
+texture = SubResource("GradientTexture2D_y273x")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="high_score" type="Label" parent="CanvasLayer/Panel"]
+modulate = Color(1, 1, 1, 0.921569)
+texture_filter = 5
+layout_mode = 0
+offset_left = 664.0
+offset_top = -7.0
+offset_right = 1921.0
+offset_bottom = 113.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("7_42lsf")
+theme_override_font_sizes/font_size = 120
+text = "High Score: 0"
+horizontal_alignment = 2
+
+[node name="score" type="Label" parent="CanvasLayer/Panel"]
+modulate = Color(1, 1, 1, 0.921569)
+texture_filter = 5
+texture_repeat = 1
+layout_mode = 0
+offset_left = 663.0
+offset_top = 73.0
+offset_right = 1922.0
+offset_bottom = 193.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("7_42lsf")
+theme_override_font_sizes/font_size = 120
+text = "Score: 0"
+horizontal_alignment = 2
+
+[node name="health_icon" type="Sprite2D" parent="CanvasLayer/Panel"]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(51, 49)
+scale = Vector2(3, 3)
+texture = ExtResource("8_ddfm3")
+
+[node name="health" type="Label" parent="CanvasLayer/Panel"]
+texture_filter = 1
+texture_repeat = 1
+layout_mode = 0
+offset_left = 107.0
+offset_top = -9.0
+offset_right = 251.0
+offset_bottom = 111.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("7_42lsf")
+theme_override_font_sizes/font_size = 120
+text = "X 3"
+
+[node name="starve_bar" type="ProgressBar" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0.74902)
+offset_left = 109.0
+offset_top = 104.0
+offset_right = 254.0
+offset_bottom = 147.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.917647, 0, 0, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_wl38v")
+theme_override_styles/fill = SubResource("StyleBoxFlat_pjxve")
+value = 50.0
+rounded = true
+show_percentage = false
+
+[node name="starve_icon" type="Sprite2D" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0.901961)
+texture_filter = 1
+position = Vector2(58, 127)
+scale = Vector2(3, 3)
+texture = ExtResource("9_55v73")
+
+[node name="polygon_2d" type="Polygon2D" parent="."]
+visible = false
+z_index = 95
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(0, 0, 1920, 0, 1920, 1080, 0, 1080)
+
+[node name="canvas_layer_2" type="CanvasLayer" parent="."]
+layer = 4
+
+[node name="color_rect" type="ColorRect" parent="canvas_layer_2"]
+material = SubResource("ShaderMaterial_sf6ru")
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 1)

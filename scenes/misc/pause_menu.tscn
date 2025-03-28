@@ -6,6 +6,7 @@
 
 [node name="pause_menu" type="Control"]
 process_mode = 3
+z_index = 200
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,8 +15,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_23o4d")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
+[node name="canvas_layer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="canvas_layer"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -28,24 +30,24 @@ offset_bottom = 440.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="canvas_layer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 40
 
-[node name="resume_button" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+[node name="resume_button" type="TextureButton" parent="canvas_layer/MarginContainer/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 texture_normal = ExtResource("1_a046k")
 
-[node name="quit_button" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+[node name="quit_button" type="TextureButton" parent="canvas_layer/MarginContainer/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 texture_normal = ExtResource("3_24gtw")
 
-[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/resume_button" to="." method="_on_resume_button_mouse_entered"]
-[connection signal="mouse_exited" from="MarginContainer/VBoxContainer/resume_button" to="." method="_on_resume_button_mouse_exited"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/resume_button" to="." method="_on_resume_button_pressed"]
-[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/quit_button" to="." method="_on_quit_button_mouse_entered"]
-[connection signal="mouse_exited" from="MarginContainer/VBoxContainer/quit_button" to="." method="_on_quit_button_mouse_exited"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/quit_button" to="." method="_on_quit_button_pressed"]
+[connection signal="mouse_entered" from="canvas_layer/MarginContainer/VBoxContainer/resume_button" to="." method="_on_resume_button_mouse_entered"]
+[connection signal="mouse_exited" from="canvas_layer/MarginContainer/VBoxContainer/resume_button" to="." method="_on_resume_button_mouse_exited"]
+[connection signal="pressed" from="canvas_layer/MarginContainer/VBoxContainer/resume_button" to="." method="_on_resume_button_pressed"]
+[connection signal="mouse_entered" from="canvas_layer/MarginContainer/VBoxContainer/quit_button" to="." method="_on_quit_button_mouse_entered"]
+[connection signal="mouse_exited" from="canvas_layer/MarginContainer/VBoxContainer/quit_button" to="." method="_on_quit_button_mouse_exited"]
+[connection signal="pressed" from="canvas_layer/MarginContainer/VBoxContainer/quit_button" to="." method="_on_quit_button_pressed"]

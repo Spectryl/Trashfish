@@ -1,6 +1,7 @@
-[gd_scene load_steps=65 format=3 uid="uid://qcopfliklj76"]
+[gd_scene load_steps=67 format=3 uid="uid://qcopfliklj76"]
 
 [ext_resource type="Script" uid="uid://bcxuqlme1s2g3" path="res://scripts/player/smart_player.gd" id="1_5j3o6"]
+[ext_resource type="Shader" uid="uid://by8vnpnrq37s2" path="res://shaders/world/lightness.gdshader" id="1_rwq3x"]
 [ext_resource type="Shader" uid="uid://c500l4phti72y" path="res://shaders/player/flash.gdshader" id="2_rwq3x"]
 [ext_resource type="Shader" uid="uid://fthf5wpdc7ns" path="res://shaders/player/sprite_flip.gdshader" id="3_gopim"]
 [ext_resource type="Texture2D" uid="uid://beolwmdrk1w4w" path="res://art/player/dead_player.png" id="4_jkact"]
@@ -10,6 +11,11 @@
 [ext_resource type="Texture2D" uid="uid://bhx4urlhmshsf" path="res://art/player/player_head_idle.png" id="8_ekfjg"]
 [ext_resource type="Texture2D" uid="uid://d1rgjm4vsluua" path="res://art/player/honey_player.png" id="9_chn5o"]
 [ext_resource type="Texture2D" uid="uid://dfskd1e87ktt4" path="res://art/player/ice_player.png" id="10_qb4gv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gopim"]
+shader = ExtResource("1_rwq3x")
+shader_parameter/light_position = Vector2(0, 0)
+shader_parameter/light_radius = 50.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_esx0d"]
 shader = ExtResource("2_rwq3x")
@@ -557,6 +563,7 @@ _data = {
 [node name="smart_player" type="CharacterBody2D" groups=["player"]]
 z_index = 3
 texture_filter = 1
+material = SubResource("ShaderMaterial_gopim")
 collision_mask = 6
 motion_mode = 1
 script = ExtResource("1_5j3o6")

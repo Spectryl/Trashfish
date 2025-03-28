@@ -1,5 +1,9 @@
 extends TrashShark
 
+func _physics_process(delta):
+	super._physics_process(delta)
+	material.set_shader_parameter("light_position", global_position)
+
 ## Handles basic player movement
 # @Override
 func handle_player_input(delta):
