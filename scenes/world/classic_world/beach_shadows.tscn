@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://o5v1j88o4qst"]
 
-[ext_resource type="Script" uid="uid://vfulhdfdtfq" path="res://scripts/world/classic_world/world.gd" id="1_afdeb"]
+[ext_resource type="Script" uid="uid://bbbguum0d00y3" path="res://scripts/world/classic_world/beach_shadows.gd" id="1_4sshn"]
 [ext_resource type="Script" uid="uid://cwv7wyh41r5ej" path="res://scripts/world/classic_world/ship_master.gd" id="2_sf6ru"]
 [ext_resource type="Script" uid="uid://bceuqvwln5csp" path="res://scripts/world/classic_world/fish_master.gd" id="3_us0s7"]
 [ext_resource type="Script" uid="uid://b1j4jwuqlu6xa" path="res://scripts/world/classic_world/cloud_master.gd" id="4_5ofdh"]
@@ -91,8 +91,7 @@ bg_color = Color(0, 0, 0, 1)
 bg_color = Color(0.882353, 0, 0.117647, 1)
 
 [node name="beach_shadows" type="Node2D"]
-script = ExtResource("1_afdeb")
-world_id = 4
+script = ExtResource("1_4sshn")
 
 [node name="collision" type="StaticBody2D" parent="."]
 collision_layer = 4
@@ -115,12 +114,14 @@ polygon = PackedVector2Array(1920, 203, 1920, 95, -522, 104, 0, 1081, 1921, 1080
 
 [node name="ship_spawner" type="Node" parent="."]
 script = ExtResource("2_sf6ru")
+max_entities = 40
+wait_time = 5.0
 metadata/_custom_type_script = "uid://busgbpk51m382"
 
 [node name="fish_spawner" type="Node" parent="."]
 script = ExtResource("3_us0s7")
-max_entities = 10
-wait_time = 10.0
+max_entities = 15
+wait_time = 7.5
 metadata/_custom_type_script = "uid://busgbpk51m382"
 
 [node name="cloud_spawner" type="Node" parent="."]

@@ -43,11 +43,18 @@ func disable_player_activity() -> void:
 	player.visible = false
 	player.body_hurtbox.set_deferred("disabled", true)
 
-#Enables a player, use this on play-areas
+## Enables a player, use this on play-areas
 func enable_player_activity() -> void:
 	player.set_process(true)
 	player.visible = true
 	player.body_hurtbox.set_deferred("disabled", false)
+# Use this on worlds where we never need light
+func destroy_player_light() -> void:
+	player.point_light.queue_free()
+
+## Only use if on maps with total darkness
+func enable_player_light() -> void:
+	player.point_light.visible = true
 
 # Allows the ability to change max health, useful for different gamemodes in worlds
 func change_player_max_health(new_max_health : int) -> void:
@@ -55,7 +62,7 @@ func change_player_max_health(new_max_health : int) -> void:
 	player.health = new_max_health
 
 # call this whenever we swap/reload worlds to delete the old player and create a whole new one : D
-func create_new_player(index : int, starve : bool = false, active : bool = false) -> void:
+func create_new_player(index : int, starve : bool = false, active : bool = false, light : bool = false) -> void:
 	delete_player()
 	match index:
 		0:
@@ -68,6 +75,8 @@ func create_new_player(index : int, starve : bool = false, active : bool = false
 	enable_player_starve_timer() if starve else disable_player_starve_timer()
 	@warning_ignore("standalone_ternary")
 	enable_player_activity()     if active else disable_player_activity()
+	@warning_ignore("standalone_ternary")
+	enable_player_light()        if light else destroy_player_light()
 	
 
 func delete_player():

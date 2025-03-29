@@ -2,7 +2,7 @@ extends Node2D
 var score : int = 0: set = update_score_hud
 var high_score : int = 0: set = update_high_score_hud
 var health : int = 0: set = update_health_hud
-var world_id = 2
+var world_id = 4
 
 @onready var starve_bar : ProgressBar          = $CanvasLayer/starve_bar
 @onready var score_ui : Label                  = $CanvasLayer/Panel/score
@@ -17,12 +17,12 @@ var world_id = 2
 @onready var player : CharacterBody2D          = global.player
 @onready var sound_master : Node               = global.sound_master
 func _ready() -> void:
-	print("Beach Classic")
+	print("Beach Shadows")
 	sun_player.play("rotate_sun")
 	#fish_master.set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
 	health = player.get_health()
 	starve_bar.max_value = player.max_starve
-	high_score = save_master.save_data.get_value("player", "beach_classic_high_score", 0)
+	high_score = save_master.save_data.get_value("player", "beach_shadows_high_score", 0)
 	generate_waves()
 	generate_pebbles()
 	generate_seashells()
