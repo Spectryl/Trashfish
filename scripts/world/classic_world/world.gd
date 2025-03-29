@@ -2,7 +2,7 @@ extends Node2D
 var score : int = 0: set = update_score_hud
 var high_score : int = 0: set = update_high_score_hud
 var health : int = 0: set = update_health_hud
-var world_id = 4
+@export var world_id = 2
 
 @onready var starve_bar : ProgressBar          = $CanvasLayer/starve_bar
 @onready var score_ui : Label                  = $CanvasLayer/Panel/score
@@ -27,6 +27,10 @@ func _ready() -> void:
 	generate_pebbles()
 	generate_seashells()
 	generate_seaweed()
+	if world_id == 4:
+		player.point_light.visible = true
+	else:
+		player.point_light.queue_free() #If we don't need light, then get the light OUTTA HERE
 	
 func _process(_delta: float) -> void:
 	if player.is_dead:
@@ -98,7 +102,7 @@ func generate_waves():
 		var new_wave = waves_sprite.instantiate()
 		new_wave.play("default")
 		new_wave.global_position = Vector2(i * 100, 200)
-		new_wave.z_index = 75
+		new_wave.z_index = 2
 		new_wave.scale.y += randf_range(0,2)
 		add_child(new_wave)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://o5v1j88o4qst"]
+[gd_scene load_steps=17 format=3 uid="uid://o5v1j88o4qst"]
 
 [ext_resource type="Script" uid="uid://vfulhdfdtfq" path="res://scripts/world/classic_world/world.gd" id="1_afdeb"]
 [ext_resource type="Script" uid="uid://cwv7wyh41r5ej" path="res://scripts/world/classic_world/ship_master.gd" id="2_sf6ru"]
@@ -78,7 +78,8 @@ _data = {
 }
 
 [sub_resource type="Gradient" id="Gradient_qtf37"]
-colors = PackedColorArray(0.0117647, 0.713726, 0.858824, 1, 0.356863, 0.67451, 0.882353, 1)
+offsets = PackedFloat32Array(0, 0.330986)
+colors = PackedColorArray(0.0117647, 0.713726, 0.858824, 1, 0.128947, 0.363197, 0.50637, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_y273x"]
 gradient = SubResource("Gradient_qtf37")
@@ -89,13 +90,9 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pjxve"]
 bg_color = Color(0.882353, 0, 0.117647, 1)
 
-[sub_resource type="Environment" id="Environment_4sshn"]
-background_mode = 3
-tonemap_mode = 2
-tonemap_white = 0.0
-
 [node name="beach_shadows" type="Node2D"]
 script = ExtResource("1_afdeb")
+world_id = 4
 
 [node name="collision" type="StaticBody2D" parent="."]
 collision_layer = 4
@@ -132,6 +129,7 @@ wait_time = 15.0
 metadata/_custom_type_script = "uid://busgbpk51m382"
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+layer = -1
 
 [node name="sky_polygon" type="Polygon2D" parent="ParallaxBackground"]
 color = Color(0.388235, 0.607843, 1, 1)
@@ -245,5 +243,7 @@ position = Vector2(58, 127)
 scale = Vector2(3, 3)
 texture = ExtResource("9_55v73")
 
-[node name="world_environment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_4sshn")
+[node name="directional_light_2d" type="DirectionalLight2D" parent="."]
+energy = 3.33
+blend_mode = 1
+range_layer_min = -1

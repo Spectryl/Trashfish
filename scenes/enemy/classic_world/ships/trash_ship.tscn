@@ -227,7 +227,6 @@ position = Vector2(-1, -33)
 texture = ExtResource("4_kagrb")
 
 [node name="water_layer" type="AnimatedSprite2D" parent="."]
-z_index = 2
 texture_filter = 1
 position = Vector2(0, -35)
 sprite_frames = SubResource("SpriteFrames_t6ul5")

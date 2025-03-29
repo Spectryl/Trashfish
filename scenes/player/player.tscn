@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://ia6ngi8g5tqx"]
+[gd_scene load_steps=66 format=3 uid="uid://ia6ngi8g5tqx"]
 
 [ext_resource type="Script" uid="uid://tgffquts5of2" path="res://scripts/player/player.gd" id="1_edec7"]
 [ext_resource type="Shader" uid="uid://c500l4phti72y" path="res://shaders/player/flash.gdshader" id="2_6cm53"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://b2oahm8k5suqk" path="res://art/player/player_roll.png" id="5_7wplv"]
 [ext_resource type="Texture2D" uid="uid://d1rgjm4vsluua" path="res://art/player/honey_player.png" id="6_pyiet"]
 [ext_resource type="Texture2D" uid="uid://dfskd1e87ktt4" path="res://art/player/ice_player.png" id="7_qtndv"]
+[ext_resource type="Texture2D" uid="uid://bsbska4s0uc5t" path="res://art/world/classic_world/2d_lights_and_shadows_neutral_point_light.png" id="11_je7p5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_esx0d"]
 shader = ExtResource("2_6cm53")
@@ -639,6 +640,15 @@ one_shot = true
 libraries = {
 &"": SubResource("AnimationLibrary_fm80t")
 }
+
+[node name="point_light_2d" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(1, -1)
+scale = Vector2(1, 0.5)
+blend_mode = 2
+range_layer_min = -100
+range_layer_max = 1
+texture = ExtResource("11_je7p5")
 
 [connection signal="timeout" from="Starve_Timer" to="." method="_on_starve_timer_timeout"]
 [connection signal="body_entered" from="attack_hitbox" to="." method="_on_attack_hitbox_body_entered"]
