@@ -1,15 +1,13 @@
-[gd_scene load_steps=20 format=3 uid="uid://o5v1j88o4qst"]
+[gd_scene load_steps=18 format=3 uid="uid://o5v1j88o4qst"]
 
 [ext_resource type="Script" uid="uid://vfulhdfdtfq" path="res://scripts/world/classic_world/world.gd" id="1_afdeb"]
 [ext_resource type="Script" uid="uid://cwv7wyh41r5ej" path="res://scripts/world/classic_world/ship_master.gd" id="2_sf6ru"]
 [ext_resource type="Script" uid="uid://bceuqvwln5csp" path="res://scripts/world/classic_world/fish_master.gd" id="3_us0s7"]
 [ext_resource type="Script" uid="uid://b1j4jwuqlu6xa" path="res://scripts/world/classic_world/cloud_master.gd" id="4_5ofdh"]
-[ext_resource type="Script" uid="uid://c067qta5dxr8v" path="res://addons/antialiased_line2d/antialiased_polygon2d.gd" id="5_0uuup"]
 [ext_resource type="Texture2D" uid="uid://cuojeer2s18bk" path="res://art/world/classic_world/sun.png" id="6_3kno0"]
 [ext_resource type="FontFile" uid="uid://c0quiovxikjm8" path="res://font/VT323-Regular.ttf" id="7_42lsf"]
 [ext_resource type="Texture2D" uid="uid://bfig4ppqc525o" path="res://art/world/classic_world/health.png" id="8_ddfm3"]
 [ext_resource type="Texture2D" uid="uid://djpnypv17cuuo" path="res://art/world/classic_world/starve_icon.png" id="9_55v73"]
-[ext_resource type="Shader" uid="uid://dhhxvvnvjtj4r" path="res://shaders/world/darkness.gdshader" id="10_sf6ru"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_m74sn"]
 vertices = PackedVector2Array(1852, 979.953, 27.0625, 972.039, 31.9297, 251, 1852, 251)
@@ -91,8 +89,10 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pjxve"]
 bg_color = Color(0.882353, 0, 0.117647, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_sf6ru"]
-shader = ExtResource("10_sf6ru")
+[sub_resource type="Environment" id="Environment_4sshn"]
+background_mode = 3
+tonemap_mode = 2
+tonemap_white = 0.0
 
 [node name="beach_shadows" type="Node2D"]
 script = ExtResource("1_afdeb")
@@ -137,20 +137,6 @@ metadata/_custom_type_script = "uid://busgbpk51m382"
 color = Color(0.388235, 0.607843, 1, 1)
 antialiased = true
 polygon = PackedVector2Array(0, 0, 1920, 0, 1920, 206, 0, 206)
-
-[node name="wave_polygon" type="Polygon2D" parent="ParallaxBackground"]
-visible = false
-color = Color(0.0156863, 0.717647, 0.862745, 1)
-antialiased = true
-polygon = PackedVector2Array(-1, 205, 1920, 205, 1921, 461, -2, 461)
-script = ExtResource("5_0uuup")
-stroke_color = Color(0.0156863, 0.717647, 0.862745, 1)
-stroke_width = 2.0
-
-[node name="deep_water_polygon" type="Polygon2D" parent="ParallaxBackground"]
-visible = false
-color = Color(0.356863, 0.678431, 0.882353, 1)
-polygon = PackedVector2Array(0, 461, 1920, 461, 1920, 1004, -1, 1004)
 
 [node name="sand_polygon" type="Polygon2D" parent="ParallaxBackground"]
 color = Color(0.933333, 0.764706, 0.603922, 1)
@@ -259,17 +245,5 @@ position = Vector2(58, 127)
 scale = Vector2(3, 3)
 texture = ExtResource("9_55v73")
 
-[node name="polygon_2d" type="Polygon2D" parent="."]
-visible = false
-z_index = 95
-color = Color(0, 0, 0, 1)
-polygon = PackedVector2Array(0, 0, 1920, 0, 1920, 1080, 0, 1080)
-
-[node name="canvas_layer_2" type="CanvasLayer" parent="."]
-layer = 4
-
-[node name="color_rect" type="ColorRect" parent="canvas_layer_2"]
-material = SubResource("ShaderMaterial_sf6ru")
-offset_right = 1920.0
-offset_bottom = 1080.0
-color = Color(0, 0, 0, 1)
+[node name="world_environment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4sshn")
