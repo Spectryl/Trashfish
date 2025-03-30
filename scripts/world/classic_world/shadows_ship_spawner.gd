@@ -45,7 +45,7 @@ func spawn_new_enemy() -> void:
 		5:
 			entity = orca.instantiate()
 	entity.set_global_scale(Vector2(2.0,2.0))
-	entity.z_index = -100 + entities_spawned #This number needs to be in the negatives so it works with waves, but waves needs to be lower than player so the player can't clip
+	entity.z_index = clamp(-100 + entities_spawned, -100, 0) #This number needs to be in the negatives so it works with waves, but waves needs to be lower than player so the player can't clip
 	add_child(entity)
 	spawn_timer.start()
 	entities_spawned += 1

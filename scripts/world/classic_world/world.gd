@@ -19,7 +19,7 @@ var world_id = 2
 func _ready() -> void:
 	print("Beach Classic")
 	sun_player.play("rotate_sun")
-	#fish_master.set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
+	fish_master.set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
 	health = player.get_health()
 	starve_bar.max_value = player.max_starve
 	high_score = save_master.save_data.get_value("player", "beach_classic_high_score", 0)
@@ -63,6 +63,8 @@ func update_hud_when_dead():
 	score_ui.queue_free()
 	high_score_ui.queue_free()
 	health_ui.queue_free()
+	$CanvasLayer/Panel/health_icon.queue_free()
+	$CanvasLayer/starve_icon.queue_free()
 	var a = load("res://scenes/misc/death_score_scene.tscn").instantiate()
 	a.score_str = "SCORE: %d" % score
 	add_child(a)

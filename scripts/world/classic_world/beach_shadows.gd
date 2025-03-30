@@ -13,6 +13,7 @@ var world_id = 4
 @onready var ship_master : Node              = $ship_spawner
 @onready var fish_master : Node              = $fish_spawner
 @onready var cloud_master : Node             = $cloud_spawner
+@onready var light : DirectionalLight2D      = $directional_light_2d
 
 @onready var player : CharacterBody2D          = global.player
 @onready var sound_master : Node               = global.sound_master
@@ -62,11 +63,13 @@ func update_hud_when_dead():
 	score_ui.queue_free()
 	high_score_ui.queue_free()
 	health_ui.queue_free()
+	$CanvasLayer/Panel/health_icon.queue_free()
+	$CanvasLayer/starve_icon.queue_free()
 	var a = load("res://scenes/misc/death_score_scene.tscn").instantiate()
 	a.score_str = "SCORE: %d" % score
+	light.queue_free()
+	global.player_master.destroy_player_light()
 	add_child(a)
-	if save_master.save_data.get_value("settings", "online_mode", false):
-		online_master.send_data(score)
 
 
 	
@@ -74,9 +77,6 @@ func update_score_hud(new_score : int):
 	if player.is_dead:
 		return
 	score = new_score
-	if score == 70:
-		fish_master.process_mode = Node.PROCESS_MODE_INHERIT
-
 	score_ui.text = "Score: %d" % score
 	
 func update_high_score_hud(new_high_score : int):

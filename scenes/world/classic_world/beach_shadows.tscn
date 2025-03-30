@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bsexcrft0e5jo" path="res://scripts/world/classic_world/shadows_ship_spawner.gd" id="2_4sshn"]
 [ext_resource type="Script" uid="uid://bceuqvwln5csp" path="res://scripts/world/classic_world/fish_master.gd" id="3_us0s7"]
 [ext_resource type="Script" uid="uid://b1j4jwuqlu6xa" path="res://scripts/world/classic_world/cloud_master.gd" id="4_5ofdh"]
-[ext_resource type="Texture2D" uid="uid://cuojeer2s18bk" path="res://art/world/classic_world/sun.png" id="6_3kno0"]
+[ext_resource type="Texture2D" uid="uid://s2b8aghvwj4r" path="res://art/world/classic_world/moon.png" id="5_4sshn"]
 [ext_resource type="FontFile" uid="uid://c0quiovxikjm8" path="res://font/VT323-Regular.ttf" id="7_42lsf"]
 [ext_resource type="Texture2D" uid="uid://bfig4ppqc525o" path="res://art/world/classic_world/health.png" id="8_ddfm3"]
 [ext_resource type="Texture2D" uid="uid://djpnypv17cuuo" path="res://art/world/classic_world/starve_icon.png" id="9_55v73"]
@@ -42,7 +42,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_6wfqe"]
-resource_name = "rotate_sun"
+resource_name = "rotate_moon"
 length = 25.0
 loop_mode = 1
 step = 1.0
@@ -74,7 +74,7 @@ tracks/1/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5qlfs"]
 _data = {
 &"RESET": SubResource("Animation_wdsb5"),
-&"rotate_sun": SubResource("Animation_6wfqe")
+&"rotate_moon": SubResource("Animation_6wfqe")
 }
 
 [sub_resource type="Gradient" id="Gradient_qtf37"]
@@ -149,7 +149,7 @@ polygon = PackedVector2Array(0, 1003, 1920, 1004, 1921, 1080, 0, 1081)
 [node name="moon" type="Sprite2D" parent="ParallaxBackground"]
 texture_filter = 1
 position = Vector2(1887, -55.9999)
-texture = ExtResource("6_3kno0")
+texture = ExtResource("5_4sshn")
 
 [node name="moon_animator" type="AnimationPlayer" parent="ParallaxBackground/moon"]
 root_node = NodePath("../..")
@@ -250,7 +250,6 @@ scale = Vector2(3, 3)
 texture = ExtResource("9_55v73")
 
 [node name="directional_light_2d" type="DirectionalLight2D" parent="."]
-visible = false
 energy = 3.33
 blend_mode = 1
 range_layer_min = -1

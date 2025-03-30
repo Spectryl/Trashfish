@@ -63,6 +63,8 @@ func update_hud_when_dead():
 	score_ui.queue_free()
 	high_score_ui.queue_free()
 	health_ui.queue_free()
+	$CanvasLayer/Panel/health_icon.queue_free()
+	$CanvasLayer/starve_icon.queue_free()
 	var a = load("res://scenes/misc/death_score_scene.tscn").instantiate()
 	a.score_str = "TIME SURVIVED: %02d:%02d.%03d" % [minutes, seconds, mili]
 	add_child(a)
