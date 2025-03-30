@@ -1,7 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://o5v1j88o4qst"]
+[gd_scene load_steps=18 format=3 uid="uid://o5v1j88o4qst"]
 
 [ext_resource type="Script" uid="uid://bbbguum0d00y3" path="res://scripts/world/classic_world/beach_shadows.gd" id="1_4sshn"]
-[ext_resource type="Script" uid="uid://cwv7wyh41r5ej" path="res://scripts/world/classic_world/ship_master.gd" id="2_sf6ru"]
+[ext_resource type="Script" uid="uid://bsexcrft0e5jo" path="res://scripts/world/classic_world/shadows_ship_spawner.gd" id="2_4sshn"]
 [ext_resource type="Script" uid="uid://bceuqvwln5csp" path="res://scripts/world/classic_world/fish_master.gd" id="3_us0s7"]
 [ext_resource type="Script" uid="uid://b1j4jwuqlu6xa" path="res://scripts/world/classic_world/cloud_master.gd" id="4_5ofdh"]
 [ext_resource type="Texture2D" uid="uid://cuojeer2s18bk" path="res://art/world/classic_world/sun.png" id="6_3kno0"]
@@ -90,6 +90,11 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pjxve"]
 bg_color = Color(0.882353, 0, 0.117647, 1)
 
+[sub_resource type="Environment" id="Environment_4sshn"]
+background_mode = 3
+tonemap_mode = 1
+tonemap_white = 6.9
+
 [node name="beach_shadows" type="Node2D"]
 script = ExtResource("1_4sshn")
 
@@ -113,8 +118,8 @@ visible = false
 polygon = PackedVector2Array(1920, 203, 1920, 95, -522, 104, 0, 1081, 1921, 1080, 1920, 1003, 1, 1003, -435, 182, -1, 203)
 
 [node name="ship_spawner" type="Node" parent="."]
-script = ExtResource("2_sf6ru")
-max_entities = 40
+script = ExtResource("2_4sshn")
+max_entities = 35
 wait_time = 5.0
 metadata/_custom_type_script = "uid://busgbpk51m382"
 
@@ -133,12 +138,12 @@ metadata/_custom_type_script = "uid://busgbpk51m382"
 layer = -1
 
 [node name="sky_polygon" type="Polygon2D" parent="ParallaxBackground"]
-color = Color(0.388235, 0.607843, 1, 1)
+color = Color(3.89859e-06, 0.165797, 0.468795, 1)
 antialiased = true
 polygon = PackedVector2Array(0, 0, 1920, 0, 1920, 206, 0, 206)
 
 [node name="sand_polygon" type="Polygon2D" parent="ParallaxBackground"]
-color = Color(0.933333, 0.764706, 0.603922, 1)
+color = Color(0.467629, 0.314564, 0.153835, 1)
 polygon = PackedVector2Array(0, 1003, 1920, 1004, 1921, 1080, 0, 1081)
 
 [node name="sun" type="Sprite2D" parent="ParallaxBackground"]
@@ -248,3 +253,6 @@ texture = ExtResource("9_55v73")
 energy = 3.33
 blend_mode = 1
 range_layer_min = -1
+
+[node name="world_environment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4sshn")
