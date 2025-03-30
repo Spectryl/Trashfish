@@ -19,7 +19,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("sun:rotation")
+tracks/0/path = NodePath("moon:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -31,7 +31,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("sun:position")
+tracks/1/path = NodePath("moon:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -49,7 +49,7 @@ step = 1.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("sun:rotation")
+tracks/0/path = NodePath("moon:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -61,7 +61,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("sun:position")
+tracks/1/path = NodePath("moon:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -146,12 +146,12 @@ polygon = PackedVector2Array(0, 0, 1920, 0, 1920, 206, 0, 206)
 color = Color(0.467629, 0.314564, 0.153835, 1)
 polygon = PackedVector2Array(0, 1003, 1920, 1004, 1921, 1080, 0, 1081)
 
-[node name="sun" type="Sprite2D" parent="ParallaxBackground"]
+[node name="moon" type="Sprite2D" parent="ParallaxBackground"]
 texture_filter = 1
 position = Vector2(1887, -55.9999)
 texture = ExtResource("6_3kno0")
 
-[node name="sun_animator" type="AnimationPlayer" parent="ParallaxBackground/sun"]
+[node name="moon_animator" type="AnimationPlayer" parent="ParallaxBackground/moon"]
 root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_5qlfs")
@@ -250,6 +250,7 @@ scale = Vector2(3, 3)
 texture = ExtResource("9_55v73")
 
 [node name="directional_light_2d" type="DirectionalLight2D" parent="."]
+visible = false
 energy = 3.33
 blend_mode = 1
 range_layer_min = -1

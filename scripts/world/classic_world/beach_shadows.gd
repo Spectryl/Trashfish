@@ -8,7 +8,7 @@ var world_id = 4
 @onready var score_ui : Label                  = $CanvasLayer/Panel/score
 @onready var high_score_ui : Label             = $CanvasLayer/Panel/high_score
 @onready var health_ui : Label                 = $CanvasLayer/Panel/health
-@onready var sun_player : AnimationPlayer      = $ParallaxBackground/sun/sun_animator
+@onready var moon_player : AnimationPlayer     = $ParallaxBackground/moon/moon_animator
 
 @onready var ship_master : Node              = $ship_spawner
 @onready var fish_master : Node              = $fish_spawner
@@ -18,8 +18,7 @@ var world_id = 4
 @onready var sound_master : Node               = global.sound_master
 func _ready() -> void:
 	print("Beach Shadows")
-	sun_player.play("rotate_sun")
-	#fish_master.set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
+	moon_player.play("rotate_moon")
 	health = player.get_health()
 	starve_bar.max_value = player.max_starve
 	high_score = save_master.save_data.get_value("player", "beach_shadows_high_score", 0)

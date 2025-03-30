@@ -27,7 +27,7 @@ func _process(delta: float) -> void:
 		return
 	time += delta
 	@warning_ignore("narrowing_conversion")
-	mili = fmod(time,1) * 100
+	mili = fmod(time,1) * 1000
 	@warning_ignore("narrowing_conversion")
 	seconds = fmod(time, 60)
 	@warning_ignore("narrowing_conversion")
