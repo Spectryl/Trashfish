@@ -71,7 +71,11 @@ func update_hud_when_dead():
 	global.player_master.destroy_player_light()
 	add_child(a)
 
-
+## Work around so the animation player can access global methods
+func player_shadows_off() -> void:
+	global.player_master.disable_player_light()
+func player_shadows_on() -> void:
+	global.player_master.enable_player_light()
 	
 func update_score_hud(new_score : int):
 	if player.is_dead:

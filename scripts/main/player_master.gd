@@ -56,6 +56,10 @@ func destroy_player_light() -> void:
 func enable_player_light() -> void:
 	player.point_light.visible = true
 
+## Only use if on maps with total darkness
+func disable_player_light() -> void:
+	player.point_light.visible = false
+
 # Allows the ability to change max health, useful for different gamemodes in worlds
 func change_player_max_health(new_max_health : int) -> void:
 	player.max_health = new_max_health
