@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://bto4f68swdyh"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_m74sn"]
+vertices = PackedVector2Array(1852, 979.953, 27.0625, 972.039, 31.9297, 251, 1852, 251)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(22, 241, 1862, 241, 1862, 990, 17, 982)])
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qtf37"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_y273x"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_pyu5t"]
+normal = Vector2(-1, 0)
+distance = -1921.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8vikj"]
+distance = -1005.0
+
+[node name="collision" type="StaticBody2D"]
+collision_layer = 4
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
+navigation_polygon = SubResource("NavigationPolygon_m74sn")
+
+[node name="top" type="CollisionShape2D" parent="."]
+position = Vector2(4, 203)
+shape = SubResource("WorldBoundaryShape2D_qtf37")
+
+[node name="left" type="CollisionShape2D" parent="."]
+position = Vector2(1.16, 277)
+shape = SubResource("WorldBoundaryShape2D_y273x")
+
+[node name="right" type="CollisionShape2D" parent="."]
+shape = SubResource("WorldBoundaryShape2D_pyu5t")
+
+[node name="down" type="CollisionShape2D" parent="."]
+shape = SubResource("WorldBoundaryShape2D_8vikj")

@@ -2,17 +2,13 @@
 
 [ext_resource type="Script" uid="uid://bbbguum0d00y3" path="res://scripts/world/classic_world/beach_shadows.gd" id="1_4sshn"]
 [ext_resource type="Script" uid="uid://bsexcrft0e5jo" path="res://scripts/world/classic_world/shadows_ship_spawner.gd" id="2_4sshn"]
+[ext_resource type="PackedScene" uid="uid://bto4f68swdyh" path="res://scenes/world/classic_world/player_collision.tscn" id="2_afdeb"]
 [ext_resource type="Script" uid="uid://bceuqvwln5csp" path="res://scripts/world/classic_world/fish_master.gd" id="3_us0s7"]
 [ext_resource type="Script" uid="uid://b1j4jwuqlu6xa" path="res://scripts/world/classic_world/cloud_master.gd" id="4_5ofdh"]
 [ext_resource type="Texture2D" uid="uid://s2b8aghvwj4r" path="res://art/world/classic_world/moon.png" id="5_4sshn"]
 [ext_resource type="FontFile" uid="uid://c0quiovxikjm8" path="res://font/VT323-Regular.ttf" id="7_42lsf"]
 [ext_resource type="Texture2D" uid="uid://bfig4ppqc525o" path="res://art/world/classic_world/health.png" id="8_ddfm3"]
 [ext_resource type="Texture2D" uid="uid://djpnypv17cuuo" path="res://art/world/classic_world/starve_icon.png" id="9_55v73"]
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_m74sn"]
-vertices = PackedVector2Array(1852, 979.953, 27.0625, 972.039, 31.9297, 251, 1852, 251)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(22, 241, 1862, 241, 1862, 990, 17, 982)])
 
 [sub_resource type="Animation" id="Animation_wdsb5"]
 length = 0.001
@@ -165,17 +161,7 @@ tonemap_white = 6.9
 [node name="beach_shadows" type="Node2D"]
 script = ExtResource("1_4sshn")
 
-[node name="collision" type="StaticBody2D" parent="."]
-collision_layer = 4
-
-[node name="collision_layer_1" type="CollisionPolygon2D" parent="collision"]
-build_mode = 1
-polygon = PackedVector2Array(0, 205, 1920, 205, 1920, 1003, 0, 1003)
-one_way_collision_margin = 0.0
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="collision"]
-visible = false
-navigation_polygon = SubResource("NavigationPolygon_m74sn")
+[node name="player_collision" parent="." instance=ExtResource("2_afdeb")]
 
 [node name="orca_collision" type="StaticBody2D" parent="."]
 collision_layer = 8

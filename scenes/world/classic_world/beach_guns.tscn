@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://bbi7t7tacp7s5"]
+[gd_scene load_steps=15 format=3 uid="uid://bbi7t7tacp7s5"]
 
 [ext_resource type="Script" uid="uid://co2eswauk10rw" path="res://scripts/world/classic_world/beach_guns.gd" id="1_5qjhs"]
+[ext_resource type="PackedScene" uid="uid://bto4f68swdyh" path="res://scenes/world/classic_world/player_collision.tscn" id="2_cj7lp"]
 [ext_resource type="Script" uid="uid://cyuai6w35m3s3" path="res://scripts/world/classic_world/gunship_master.gd" id="3_6xvo2"]
 [ext_resource type="FontFile" uid="uid://c0quiovxikjm8" path="res://font/VT323-Regular.ttf" id="4_a6v73"]
 [ext_resource type="Texture2D" uid="uid://bfig4ppqc525o" path="res://art/world/classic_world/health.png" id="5_ewotj"]
@@ -85,13 +86,7 @@ bg_color = Color(0.882353, 0, 0.117647, 1)
 [node name="beach_guns" type="Node2D"]
 script = ExtResource("1_5qjhs")
 
-[node name="collision" type="StaticBody2D" parent="."]
-collision_layer = 4
-
-[node name="collision_layer_1" type="CollisionPolygon2D" parent="collision"]
-build_mode = 1
-polygon = PackedVector2Array(0, 205, 1920, 205, 1920, 1003, 0, 1003)
-one_way_collision_margin = 0.0
+[node name="player_collision" parent="." instance=ExtResource("2_cj7lp")]
 
 [node name="ship_master" type="Node" parent="."]
 script = ExtResource("3_6xvo2")
