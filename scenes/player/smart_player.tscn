@@ -657,7 +657,6 @@ libraries = {
 }
 
 [node name="point_light_2d" type="PointLight2D" parent="."]
-position = Vector2(-5, -1.875)
 scale = Vector2(4, 2)
 color = Color(0.188235, 0.376471, 0.509804, 1)
 energy = 3.0

@@ -14,12 +14,14 @@ var world_id = 4
 @onready var fish_master : Node              = $fish_spawner
 @onready var cloud_master : Node             = $cloud_spawner
 @onready var light : DirectionalLight2D      = $directional_light_2d
+@onready var light_player : AnimationPlayer  = $directional_light_2d/light_animator
 
 @onready var player : CharacterBody2D          = global.player
 @onready var sound_master : Node               = global.sound_master
 func _ready() -> void:
 	print("Beach Shadows")
-	moon_player.play("rotate_moon")
+	moon_player .play("rotate_moon")
+	light_player.play("light")
 	health = player.get_health()
 	starve_bar.max_value = player.max_starve
 	high_score = save_master.save_data.get_value("player", "beach_shadows_high_score", 0)
@@ -73,8 +75,10 @@ func update_hud_when_dead():
 
 ## Work around so the animation player can access global methods
 func player_shadows_off() -> void:
+	print("disabling player darkness filter")
 	global.player_master.disable_player_light()
 func player_shadows_on() -> void:
+	print("enabling player darkness filter")
 	global.player_master.enable_player_light()
 	
 func update_score_hud(new_score : int):

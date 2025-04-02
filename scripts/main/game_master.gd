@@ -24,6 +24,7 @@ const frames_per_second : Array[int] = [
 	240,
 	360,
 	480,
+	540,
 	640, #Gamer fps right here
 ]
 var control_list : Array[String] = ["move_left", "move_right", "move_up", "move_down", "attack", "roll"]
