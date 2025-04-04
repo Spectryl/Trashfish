@@ -29,7 +29,7 @@ const frames_per_second : Array[int] = [
 ]
 var control_list : Array[String] = ["move_left", "move_right", "move_up", "move_down", "attack", "roll"]
 func _ready() -> void:
-	if OS.has_environment("USERNAME") and OS.get_environment("USERNAME").to_lower().count("Carl", 0,0) == 0:
+	if OS.has_environment("USERNAME") and OS.get_environment("USERNAME").to_lower().count("Carl Tupas", 0,0) == 0:
 		if not OS.is_debug_build:
 			queue_free()
 		#OS.crash("In order to remain ICE Compliant, this user is BANNED from all SonuTheNecro LTD Media")

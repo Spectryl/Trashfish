@@ -27,6 +27,7 @@ var starve : int = 100
 
 @onready var body_hurtbox : CollisionPolygon2D      = $CollisionPolygon2D
 @onready var shader_player : AnimationPlayer        = $shader_player
+@onready var damage_player : AnimationPlayer        = $damage_player
 @onready var point_light : PointLight2D             = $point_light_2d
 
 var is_attacking : bool           = false
@@ -196,6 +197,7 @@ func damage_flash_body():
 	if health <= 0:
 		return
 	shader_player.play("damage")
+	damage_player.play("damage")
 ## flashes player body green when healed
 func heal_flash_body():
 	if health <= 0 or health > max_health:
