@@ -17,6 +17,9 @@ var world_id = 4
 @onready var light_player : AnimationPlayer  = $directional_light_2d/light_animator
 @onready var player : CharacterBody2D          = global.player
 @onready var sound_master : Node               = global.sound_master
+
+const LIGHTNING = preload("res://scenes/world/classic_world/lightning.tscn")
+
 func _ready() -> void:
 	print("Beach Shadows")
 	moon_player .play("rotate_moon")
@@ -79,6 +82,14 @@ func player_shadows_off() -> void:
 func player_shadows_on() -> void:
 	print("enabling player darkness filter")
 	global.player_master.enable_player_light()
+
+func create_lightning_visual() -> void:
+	var new_lightning = (LIGHTNING).instantiate()
+	new_lightning.global_position.x = randf_range(200, 1400)
+	new_lightning.global_position.x = randf_range(0, 40)
+	add_child(new_lightning)
+	print("Lightning has spawned!")
+
 func update_score_hud(new_score : int):
 	if player.is_dead:
 		return

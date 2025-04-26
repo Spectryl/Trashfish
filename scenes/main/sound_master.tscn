@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c6bnupwh41dh5"]
+[gd_scene load_steps=20 format=3 uid="uid://c6bnupwh41dh5"]
 
 [ext_resource type="Script" uid="uid://cgdxhotiii4ud" path="res://scripts/main/sound_master.gd" id="1_amg6c"]
 [ext_resource type="AudioStream" uid="uid://dgk0ebaa1330k" path="res://audio/sound_effects/bloop.ogg" id="2_fjgyy"]
@@ -14,7 +14,10 @@
 [ext_resource type="AudioStream" uid="uid://dho5fbun0qwp7" path="res://audio/sound_effects/wave_splash.ogg" id="9_1q5tc"]
 [ext_resource type="AudioStream" uid="uid://cpvnsnue43iah" path="res://audio/sound_effects/small_chomp.ogg" id="10_4xdid"]
 [ext_resource type="AudioStream" uid="uid://p80ub3mq5gk4" path="res://audio/sound_effects/heal.ogg" id="10_xahof"]
+[ext_resource type="AudioStream" uid="uid://smvefs6myb6a" path="res://audio/sound_effects/lightning1.ogg" id="12_mg7po"]
+[ext_resource type="AudioStream" uid="uid://bf35mlpcx88n2" path="res://audio/sound_effects/lightning2.ogg" id="13_3awyi"]
 [ext_resource type="AudioStream" uid="uid://lja1scshwkht" path="res://audio/sound_effects/rifle_shot2.ogg" id="13_f0slw"]
+[ext_resource type="AudioStream" uid="uid://bcit82wq3x5tx" path="res://audio/sound_effects/lightning3.ogg" id="14_d8y38"]
 [ext_resource type="AudioStream" uid="uid://b6q257w0nf0sf" path="res://audio/sound_effects/rifle_shot3.ogg" id="14_xwu2l"]
 
 [node name="sound_master" type="Node"]
@@ -68,6 +71,13 @@ script = ExtResource("3_fwkhs")
 pitch_scale_min = 0.8
 pitch_scale_max = 1.2
 
+[node name="fuse" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_ya4cn")
+volume_db = 15.0
+max_polyphony = 10
+bus = &"Sound"
+script = ExtResource("3_fwkhs")
+
 [node name="heal" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_xahof")
 max_polyphony = 5
@@ -75,12 +85,26 @@ bus = &"Sound"
 script = ExtResource("3_fwkhs")
 metadata/_custom_type_script = "uid://ceej3mdlq733g"
 
-[node name="fuse" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("8_ya4cn")
-volume_db = 15.0
-max_polyphony = 10
-bus = &"Sound"
+[node name="lightning1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_mg7po")
 script = ExtResource("3_fwkhs")
+pitch_scale_min = 0.9
+pitch_scale_max = 1.1
+metadata/_custom_type_script = "uid://ceej3mdlq733g"
+
+[node name="lightning2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_3awyi")
+script = ExtResource("3_fwkhs")
+pitch_scale_min = 0.9
+pitch_scale_max = 1.1
+metadata/_custom_type_script = "uid://ceej3mdlq733g"
+
+[node name="lightning3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_d8y38")
+script = ExtResource("3_fwkhs")
+pitch_scale_min = 0.9
+pitch_scale_max = 1.1
+metadata/_custom_type_script = "uid://ceej3mdlq733g"
 
 [node name="rifle_shot1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_u2wru")

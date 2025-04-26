@@ -8,6 +8,9 @@ extends Node
 @onready var explosion1 : AudioStreamPlayer  = $explosion1
 @onready var fuse  : AudioStreamPlayer       = $fuse
 @onready var heal        : AudioStreamPlayer = $heal
+@onready var lightning1 : AudioStreamPlayer  = $lightning1
+@onready var lightning2 : AudioStreamPlayer  = $lightning2
+@onready var lightning3 : AudioStreamPlayer  = $lightning3
 @onready var rifle_shot1  : AudioStreamPlayer= $rifle_shot1
 @onready var rifle_shot2  : AudioStreamPlayer= $rifle_shot2
 @onready var rifle_shot3  : AudioStreamPlayer= $rifle_shot3
@@ -32,6 +35,9 @@ func _ready() -> void:
 	sound_dictionary["explosion1"]   = explosion1
 	sound_dictionary["fuse"]         = fuse
 	sound_dictionary["heal"]         = heal
+	sound_dictionary["lightning1"]   = lightning1
+	sound_dictionary["lightning2"]   = lightning2
+	sound_dictionary["lightning3"]   = lightning3
 	sound_dictionary["rifle_shot1"]  = rifle_shot1
 	sound_dictionary["rifle_shot2"]  = rifle_shot2
 	sound_dictionary["rifle_shot3"]  = rifle_shot3
@@ -71,3 +77,14 @@ func play_gunshot():
 		_:
 			gunshot_to_play = "rifle_shot3"
 	self.play(gunshot_to_play)
+
+func play_lightning():
+	var lightning_to_play : String = ""
+	match randi_range(0,2):
+		0:
+			lightning_to_play = "lightning1"
+		1:
+			lightning_to_play = "lightning2"
+		_:
+			lightning_to_play = "lightning3"
+	play(lightning_to_play)

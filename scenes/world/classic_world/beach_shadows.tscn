@@ -124,11 +124,14 @@ tracks/0/path = NodePath("..")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.6, 4.33333),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.6, 0.733333, 4.33333),
+"transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
 "args": [],
 "method": &"player_shadows_off"
+}, {
+"args": [],
+"method": &"create_lightning_visual"
 }, {
 "args": [],
 "method": &"player_shadows_on"

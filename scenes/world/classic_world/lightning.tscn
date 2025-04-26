@@ -1,0 +1,134 @@
+[gd_scene load_steps=12 format=3 uid="uid://ns11uralpyr0"]
+
+[ext_resource type="Script" uid="uid://cxmuunbki727m" path="res://scripts/enemy/classic_world/lightning.gd" id="1_p51d8"]
+[ext_resource type="Texture2D" uid="uid://chrcw8paa0yeo" path="res://art/enemy/classic_world/lightning.png" id="2_scbi5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1et67"]
+atlas = ExtResource("2_scbi5")
+region = Rect2(0, 0, 363, 373)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lbf5c"]
+atlas = ExtResource("2_scbi5")
+region = Rect2(363, 0, 363, 373)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rm35h"]
+atlas = ExtResource("2_scbi5")
+region = Rect2(726, 0, 363, 373)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r16yd"]
+atlas = ExtResource("2_scbi5")
+region = Rect2(1089, 0, 363, 373)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_djvv3"]
+atlas = ExtResource("2_scbi5")
+region = Rect2(1452, 0, 363, 373)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wyra2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1et67")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lbf5c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rm35h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r16yd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_djvv3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_w7pim"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("animated_sprite_2d:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("animated_sprite_2d:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_lbri4"]
+resource_name = "default"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("animated_sprite_2d:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [4, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("animated_sprite_2d:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.966667, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2.03333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6cknc"]
+_data = {
+&"RESET": SubResource("Animation_w7pim"),
+&"default": SubResource("Animation_lbri4")
+}
+
+[node name="lightning" type="Node2D"]
+script = ExtResource("1_p51d8")
+
+[node name="animated_sprite_2d" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_wyra2")
+
+[node name="animation_player" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_6cknc")
+}

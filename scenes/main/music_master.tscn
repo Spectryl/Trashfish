@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://0cdy8j7yec2y"]
+[gd_scene load_steps=5 format=3 uid="uid://0cdy8j7yec2y"]
 
 [ext_resource type="Script" uid="uid://cdj283viwyfue" path="res://scripts/main/music_master.gd" id="1_2t2ie"]
 [ext_resource type="AudioStream" uid="uid://ccp6gvrp78xp5" path="res://audio/music/lisa.ogg" id="1_eu33j"]
 [ext_resource type="AudioStream" uid="uid://cx7oeupgn61rq" path="res://audio/music/midnight_sands.ogg" id="2_habgx"]
+[ext_resource type="AudioStream" uid="uid://dn74etir56vdc" path="res://audio/music/nighttime_solitude.ogg" id="4_h1qn8"]
 
 [node name="music_master" type="Node"]
 script = ExtResource("1_2t2ie")
@@ -13,4 +14,9 @@ bus = &"Music"
 
 [node name="midnight_sands" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_habgx")
+bus = &"Music"
+
+[node name="nighttime_solitude" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_h1qn8")
+volume_db = -14.0
 bus = &"Music"
