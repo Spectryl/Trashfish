@@ -15,7 +15,6 @@ var world_id = 4
 @onready var cloud_master : Node             = $cloud_spawner
 @onready var light : DirectionalLight2D      = $directional_light_2d
 @onready var light_player : AnimationPlayer  = $directional_light_2d/light_animator
-
 @onready var player : CharacterBody2D          = global.player
 @onready var sound_master : Node               = global.sound_master
 func _ready() -> void:
@@ -80,7 +79,6 @@ func player_shadows_off() -> void:
 func player_shadows_on() -> void:
 	print("enabling player darkness filter")
 	global.player_master.enable_player_light()
-	
 func update_score_hud(new_score : int):
 	if player.is_dead:
 		return

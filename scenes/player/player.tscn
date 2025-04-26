@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://ia6ngi8g5tqx"]
+[gd_scene load_steps=70 format=3 uid="uid://ia6ngi8g5tqx"]
 
 [ext_resource type="Script" uid="uid://tgffquts5of2" path="res://scripts/player/player.gd" id="1_edec7"]
 [ext_resource type="Shader" uid="uid://c500l4phti72y" path="res://shaders/player/flash.gdshader" id="2_6cm53"]
@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://b2oahm8k5suqk" path="res://art/player/player_roll.png" id="5_7wplv"]
 [ext_resource type="Texture2D" uid="uid://d1rgjm4vsluua" path="res://art/player/honey_player.png" id="6_pyiet"]
 [ext_resource type="Texture2D" uid="uid://dfskd1e87ktt4" path="res://art/player/ice_player.png" id="7_qtndv"]
-[ext_resource type="Texture2D" uid="uid://bsbska4s0uc5t" path="res://art/world/classic_world/2d_lights_and_shadows_neutral_point_light.png" id="11_je7p5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_esx0d"]
 shader = ExtResource("2_6cm53")
@@ -555,21 +554,6 @@ _data = {
 &"starve": SubResource("Animation_ugbui")
 }
 
-[sub_resource type="Animation" id="Animation_rwq3x"]
-resource_name = "damage"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:is_invincible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
 [sub_resource type="Animation" id="Animation_gopim"]
 length = 0.001
 tracks/0/type = "value"
@@ -585,11 +569,36 @@ tracks/0/keys = {
 "values": [false]
 }
 
+[sub_resource type="Animation" id="Animation_rwq3x"]
+resource_name = "damage"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:is_invincible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jkact"]
 _data = {
 &"RESET": SubResource("Animation_gopim"),
 &"damage": SubResource("Animation_rwq3x")
 }
+
+[sub_resource type="Gradient" id="Gradient_rwq3x"]
+offsets = PackedFloat32Array(0, 0.608696)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_h17s1"]
+gradient = SubResource("Gradient_rwq3x")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
 
 [node name="player" type="CharacterBody2D" groups=["player"]]
 z_index = 3
@@ -684,13 +693,13 @@ libraries = {
 }
 
 [node name="point_light_2d" type="PointLight2D" parent="."]
-visible = false
-position = Vector2(1, -1)
-scale = Vector2(1, 0.5)
+scale = Vector2(6, 3)
+color = Color(0.188235, 0.376471, 0.509804, 1)
+energy = 3.0
 blend_mode = 2
+range_z_max = 3
 range_layer_min = -100
-range_layer_max = 1
-texture = ExtResource("11_je7p5")
+texture = SubResource("GradientTexture2D_h17s1")
 
 [connection signal="timeout" from="Starve_Timer" to="." method="_on_starve_timer_timeout"]
 [connection signal="body_entered" from="attack_hitbox" to="." method="_on_attack_hitbox_body_entered"]
