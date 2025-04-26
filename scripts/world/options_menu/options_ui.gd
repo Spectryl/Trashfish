@@ -51,10 +51,10 @@ func _on_texture_button_pressed() -> void:
 func _on_title_screen_button_mouse_entered() -> void:
 	title_screen_button.set_deferred("modulate", Color8(0,255,255,255))
 	global.sound_master.play("button_hover")
-	set_mouse_cursor(2)
+	if not OS.has_feature("web"):set_mouse_cursor(2)
 func _on_title_screen_button_mouse_exited() -> void:
 	title_screen_button.set_deferred("modulate", Color8(255,255,255,255))
-	set_mouse_cursor(0)
+	if not OS.has_feature("web"):set_mouse_cursor(0)
 ## When we click an option, we should change the screen we are on
 func _on_window_type_button_item_selected(index: int) -> void:
 	self.window_index = index
@@ -124,4 +124,5 @@ func _on_roll_right_click_button_toggled(toggled_on: bool) -> void:
 				InputMap.action_erase_event("roll", event)
 
 func set_mouse_cursor(i : int) -> void:
-	Cursor.set_shape(i)
+	pass
+	#if not OS.has_feature("web"):Cursor.set_shape(i)

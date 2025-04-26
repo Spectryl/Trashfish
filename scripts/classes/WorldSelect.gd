@@ -60,6 +60,9 @@ func add_all_general_purpose(bounce_shine_shader : String) -> void:
 	texture_rect.material = load("res://resources/buttons/gamemode_icon_bounce.res")
 
 func set_up_mouse_cursors() -> void:
+	if OS.has_feature("web"):
+		return
+
 	world_icon_button.connect("mouse_entered", set_pointer_mouse.bind(2))
 	left_button      .connect("mouse_entered", set_pointer_mouse.bind(2))
 	right_button     .connect("mouse_entered", set_pointer_mouse.bind(2))
@@ -70,4 +73,5 @@ func set_up_mouse_cursors() -> void:
 	
 
 func set_pointer_mouse(i : int) -> void:
-	Cursor.set_shape(i)
+	pass
+	#if not OS.has_feature("web"):Cursor.set_shape(i)

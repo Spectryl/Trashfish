@@ -40,38 +40,39 @@ func _on_quit_button_pressed() -> void:
 func _on_start_button_mouse_entered() -> void:
 	start_button.set_deferred("modulate", hover_color)
 	global.sound_master.play("button_hover")
-	Cursor.set_shape(2)
+	
+	#if not OS.has_feature("web"):Cursor.set_shape(2)
 
 func _on_start_button_mouse_exited() -> void:
 	start_button.set_deferred("modulate", reset_color)
-	Cursor.set_shape(0)
+	#if not OS.has_feature("web"):Cursor.set_shape(0)
 
 func _on_leaderboard_button_mouse_entered() -> void:
 	leaderboard_button.set_deferred("modulate", hover_color)
 	global.sound_master.play("button_hover")
-	Cursor.set_shape(2)
+	#if not OS.has_feature("web"):Cursor.set_shape(2)
 
 func _on_leaderboard_button_mouse_exited() -> void:
 	leaderboard_button.set_deferred("modulate", reset_color)
-	Cursor.set_shape(0)
+	#if not OS.has_feature("web"):Cursor.set_shape(0)
 
 func _on_options_button_mouse_entered() -> void:
 	options_button.set_deferred("modulate", hover_color)
 	global.sound_master.play("button_hover")
-	Cursor.set_shape(2)
+	#if not OS.has_feature("web"):Cursor.set_shape(2)
 
 func _on_options_button_mouse_exited() -> void:
 	options_button.set_deferred("modulate", reset_color)
-	Cursor.set_shape(0)
+	#if not OS.has_feature("web"):Cursor.set_shape(0)
 
 func _on_quit_button_mouse_entered() -> void:
 	quit_button.set_deferred("modulate", hover_color)
 	global.sound_master.play("button_hover")
-	Cursor.set_shape(2)
+	#if not OS.has_feature("web"):Cursor.set_shape(2)
 
 func _on_quit_button_mouse_exited() -> void:
 	quit_button.set_deferred("modulate", reset_color)
-	Cursor.set_shape(0)
+	#if not OS.has_feature("web"):Cursor.set_shape(0)
 #endregion
 
 
@@ -81,8 +82,10 @@ func itch_button_pressed() -> void:
 
 
 func itch_button_mouse_entered():
-	Cursor.set_shape(2)
+	pass
+	#if not OS.has_feature("web"):Cursor.set_shape(2)
 
 
 func itch_button_mouse_exited():
-	Cursor.set_shape(0)
+	pass
+	#if not OS.has_feature("web"):Cursor.set_shape(0)

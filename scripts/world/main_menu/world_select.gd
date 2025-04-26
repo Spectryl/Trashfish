@@ -20,7 +20,7 @@ func _ready() -> void:
 	beach.second_texture = load("res://resources/buttons/beach_world_guns_icon.tres")
 	beach.third_texture = load("res://resources/buttons/beach_world_shadows_icon.tres")
 	beach.world_icon_button.texture_normal = load("res://resources/buttons/beach_world_icon.tres")
-	beach.set_up_mouse_cursors()
+	if not OS.has_feature("web"): beach.set_up_mouse_cursors()
 	beach.add_all_general_purpose(bounce_shine_shader)
 	beach.create_sign_buttons()
 	beach.add_children()
@@ -65,9 +65,9 @@ func _on_back_button_pressed() -> void:
 func _on_back_button_mouse_entered() -> void:
 	back_button.set_deferred("modulate", hover_color)
 	global.sound_master.play("button_hover")
-	Cursor.set_shape(2)
+	#if not OS.has_feature("web"):Cursor.set_shape(2)
 
 
 func _on_back_button_mouse_exited() -> void:
 	back_button.set_deferred("modulate", reset_color)
-	Cursor.set_shape(0)
+	#if not OS.has_feature("web"):Cursor.set_shape(0)

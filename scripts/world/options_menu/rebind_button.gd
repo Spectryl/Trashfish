@@ -82,4 +82,5 @@ func initial_update_key_text() -> void:
 	button.text = "%s" % action_keycode
 
 func set_mouse_cursor(i : int) -> void:
-	Cursor.set_shape(i)
+	pass
+	#if not OS.has_feature("web"):Cursor.set_shape(i)
