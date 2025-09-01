@@ -78,7 +78,7 @@ func _on_quit_button_mouse_exited() -> void:
 
 func itch_button_pressed() -> void:
 	print("Opening Itch.io Build")
-	OS.shell_open("https://sonuthenecro.itch.io/trashfish")
+	OS.shell_open("https://spectryl.itch.io/trashfish")
 
 
 func itch_button_mouse_entered():

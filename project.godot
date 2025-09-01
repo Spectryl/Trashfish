@@ -40,6 +40,10 @@ window/size/viewport_height=1080
 window/stretch/mode="viewport"
 window/stretch/aspect="ignore"
 
+[dotnet]
+
+project/assembly_name="trashfish"
+
 [editor]
 
 naming/node_name_num_separator=2
