@@ -1,5 +1,5 @@
 extends Node
-@onready var lisa : AudioStreamPlayer               = $lisa
+@onready var seashell : AudioStreamPlayer           = $seashell
 @onready var midnight_sands : AudioStreamPlayer     = $midnight_sands
 @onready var nighttime_solitude : AudioStreamPlayer = $nighttime_solitude
 var current_song_playing : String = "none"
@@ -8,13 +8,13 @@ var music_dictionary : Dictionary = {
 
 func _ready() -> void:
 	# Have to declare the dictionary like this because onready priority moment
-	music_dictionary["lisa"]               = lisa
+	music_dictionary["seashell"]           = seashell
 	music_dictionary["midnight_sands"]     = midnight_sands
 	music_dictionary["nighttime_solitude"] = nighttime_solitude
 	global.music_master = self
 	play("midnight_sands")
 
-	lisa.connect("finished", song_has_ended)
+	seashell.connect("finished", song_has_ended)
 	midnight_sands.connect("finished", song_has_ended)
 	nighttime_solitude.connect("finished", song_has_ended)
 

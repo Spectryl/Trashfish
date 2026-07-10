@@ -37,13 +37,13 @@ func change_world(world_id : int) -> void:
 			global.player_master.create_new_player(1 if save_master.save_data.get_value("settings", "smart_controls", false) else 0,true,true, false)
 			global.player_master.change_player_scale(2)
 			global.player_master.change_player_global_position(Vector2(800,650))
-			global.music_master.change_song("lisa")
+			global.music_master.change_song("seashell")
 		3:
 			world = load("res://scenes/world/classic_world/beach_guns.tscn").instantiate()
 			global.player_master.create_new_player(1 if save_master.save_data.get_value("settings", "smart_controls", false) else 0, false, true, false)
 			global.player_master.change_player_scale(2)
 			global.player_master.change_player_global_position(Vector2(800,650))
-			global.music_master.change_song("lisa")
+			global.music_master.change_song("seashell") #Did i just not know what enums were in gdscript, this is actually embarrassing ngl
 		4:
 			world = load("res://scenes/world/classic_world/beach_shadows.tscn").instantiate()
 			global.player_master.create_new_player(1 if save_master.save_data.get_value("settings", "smart_controls", false) else 0, true, true, true)
